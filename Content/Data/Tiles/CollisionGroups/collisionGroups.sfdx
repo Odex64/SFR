@@ -1,0 +1,96 @@
+// FEDC BA98 7654 3210;
+// 0000 0000 0000 0000;
+// 0-static_ground
+// 1-dynamic_platforms
+// 2-players
+// 3-dynamics_g1
+// 4-dynamics_g2, debris
+// 5-items
+// 6-
+// 7-
+// 8-
+// 9-
+// A-
+// B-
+// C-
+// D-
+// E-
+// F-dynamics_thrown
+
+// *Solid collision
+// **Solid collision from above
+
+collisionGroup(none)
+{
+	categoryBits =	0000 0000 0000 0000;
+	maskBits =		0000 0000 0000 0000;
+	aboveBits =		0000 0000 0000 0000;
+}
+
+collisionGroup(static_ground)
+{
+	categoryBits =	0000 0000 0000 0001;
+	maskBits =		1110 1111 1110 1101;
+	aboveBits =		0000 0000 0000 0000;
+}
+
+collisionGroup(dynamic_platforms)
+{
+	categoryBits =	0000 0000 0000 0010;
+	maskBits =		1110 1111 1110 1100;
+	aboveBits =		0000 0000 0000 0000;
+}
+
+collisionGroup(players)
+{
+	categoryBits =	0000 0000 0000 0100;
+	maskBits =		0000 0000 0000 1011;
+	aboveBits =		0000 0000 0000 0000;
+}
+
+collisionGroup(dynamics_g1)
+{
+	categoryBits =	0000 0000 0000 1000;
+	maskBits =		1111 1111 1110 1111;
+	aboveBits =		0000 0000 0000 0000;
+}
+
+collisionGroup(dynamics_g2){
+	categoryBits =	0000 0000 0001 0000;
+	maskBits =		0000 0000 0000 0011;
+	aboveBits =		0000 0000 0000 1000;
+}
+
+collisionGroup(items)
+{
+	categoryBits =	0000 0000 0010 0000;
+	maskBits =		0000 0000 0000 0011;
+	aboveBits =		0000 0000 0000 0000;
+}
+
+collisionGroup(debris)
+{
+	categoryBits =	0000 0000 0001 0000;
+	maskBits =		0000 0000 0000 0011;
+	aboveBits =		0000 0000 0000 1000;
+}
+
+collisionGroup(debris_self)
+{
+	categoryBits =	0000 0000 0001 0000;
+	maskBits =		0000 0000 0001 0011;
+	aboveBits =		0000 0000 0000 1000;
+}
+
+collisionGroup(dynamics_thrown)
+{
+	categoryBits =	1000 0000 0000 0000;
+	maskBits =		1000 0000 0000 1011;
+	aboveBits =		0000 0000 0000 0000;
+}
+
+collisionGroup(full){
+	categoryBits =	1111 1111 1111 1111;
+	maskBits =		1111 1111 1111 1111;
+	aboveBits =		0000 0000 0000 0000;
+}

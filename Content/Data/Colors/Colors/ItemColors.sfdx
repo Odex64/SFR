@@ -1,0 +1,70 @@
+// default for RGBA is 255
+color(Skin1)				{ c = (135, 83, 48), (116, 71, 41), (96, 58, 34); }
+color(Skin2)				{ c = (255, 149, 98), (255, 124, 62), (192, 118, 092); }
+color(Skin3)				{ c = (255, 172, 132), (255, 156, 108), (192, 096, 048); }
+color(Skin4)				{ c = (255, 192, 160), (255, 172, 132), (224, 128, 114); }
+color(Skin5)				{ c = (224, 224, 224), (208, 192, 192), (192, 160, 160); }
+
+color(Skin6)				{ c = (104, 58, 42), (76, 42, 31, (76, 42, 31); }
+color(Skin7)				{ c = (204, 106, 73), (165, 86, 59), (165, 86, 59); }
+color(Skin8)				{ c = (211, 142, 124), (168, 113, 99), (168, 113, 99); }
+color(Skin9)				{ c = (255, 181, 181), (226, 152, 152), (226, 152, 152); }
+
+color(ClothingLightGray)	{ c = (224, 224, 224), (192, 192, 192), (128, 128, 128); }
+color(ClothingLightPink)	{ c = (255, 192, 192), (255, 160, 160), (255, 128, 128); }
+color(ClothingLightRed)		{ c = (255, 64, 48), (224, 48, 32), (192, 32, 16); }
+color(ClothingLightOrange)	{ c = (255, 160, 064), (255, 128, 032), (192, 96, 016); }
+color(ClothingLightYellow)	{ c = (255, 224, 000), (240, 192, 000), (208, 150, 000); }
+color(ClothingLightGreen)	{ c = (096, 192, 064), (016, 160, 000), (008, 128, 000); }
+color(ClothingLightCyan)	{ c = (024, 192, 192), (016, 160, 160), (08, 128, 128); }
+color(ClothingLightBlue)	{ c = (160, 160, 255), (128, 128, 255), (96, 96, 192); }
+color(ClothingLightPurple)	{ c = (224, 128, 224), (192, 64, 192), (160, 32, 160); }
+color(ClothingLightBrown)	{ c = (192, 108, 096), (160, 096, 064), (128, 064, 032); }
+color(ClothingLightIndigo)    { c = (120, 46, 230), (102, 34, 204), (76, 26, 153); }
+color(ClothingLightCrimson)   { c = (205, 21, 58), (168, 18, 50), (135, 14, 40); }
+color(ClothingLightFadeBlue)  { c = (69, 192, 211), (75, 154, 188), (64, 131, 173); }
+color(ClothingLightPineapple) { c = (255, 215, 142), (255, 191, 89), (234, 165, 75); }
+color(ClothingLightSoftPink)  { c = (255, 142, 230), (225, 99, 196), (197, 87, 171); }
+color(ClothingLightEmerald)   { c = (45, 188, 114), (1, 145, 73), (0, 99, 50)); }
+
+color(ClothingGray)			{ c = (096, 096, 096), (064, 064, 064), (032, 032, 032); }
+color(ClothingPink)			{ c = (255, 128, 128), (232, 96, 96), (192, 064, 064); }
+color(ClothingRed)			{ c = (232, 040, 000), (180, 032, 000), (136, 016, 000); }
+color(ClothingOrange)		{ c = (255, 128, 000), (192, 096, 000), (128, 064, 000); }
+color(ClothingYellow)		{ c = (240, 224, 000), (208, 192, 000), (176, 160, 000); }
+color(ClothingGreen)		{ c = (032, 160, 000), (016, 128, 000), (008, 096, 000); }
+color(ClothingCyan)			{ c = (016, 128, 128), (008, 096, 096), (000, 064, 064); }
+color(ClothingBlue)			{ c = (64, 64, 224), (48, 48, 192), (36, 36, 160); }
+color(ClothingPurple)		{ c = (192, 064, 192), (160, 032, 160), (128, 016, 128); }
+color(ClothingBrown)		{ c = (128, 064, 048), (096, 048, 032), (064, 032, 016); }
+color(ClothingIndigo)         { c = (72, 28, 138), (55, 21, 105), (44, 17, 85); }
+color(ClothingCrimson)        { c = (137, 15, 39), (113, 12, 32), (97, 10, 28); }
+color(ClothingFadeBlue)       { c = (66, 112, 158), (56, 88, 135), (46, 65, 112); }
+color(ClothingPineapple)      { c = (219, 143, 72), (175, 111, 58), (145, 85, 50); }
+color(ClothingSoftPink)       { c = (173, 76, 150), (153, 67, 133), (130, 57, 113); }
+color(ClothingEmerald)        { c = (2, 107, 52), (1, 73, 36), (1, 39, 20); }
+
+color(ClothingDarkGray)		{ c = (048, 048, 048), (024, 024, 024), (012, 012, 012); }
+color(ClothingDarkPink)		{ c = (160, 064, 064), (128, 048, 048), (096, 032, 032); }
+color(ClothingDarkRed)		{ c = (128, 016, 000), (096, 008, 000), (064, 000, 000); }
+color(ClothingDarkOrange)	{ c = (128, 064, 000), (096, 032, 000), (064, 032, 000); }
+color(ClothingDarkYellow)	{ c = (128, 128, 000), (096, 096, 000), (064, 064, 000); }
+color(ClothingDarkGreen)	{ c = (016, 128, 000), (012, 096, 000), (008, 048, 000); }
+color(ClothingDarkCyan)		{ c = (008, 096, 096), (000, 064, 064), (000, 032, 032); }
+color(ClothingDarkBlue)		{ c = (64, 64, 160), (32, 32, 128), (24, 24, 96); }
+color(ClothingDarkPurple)	{ c = (128, 000, 128), (096, 000, 096), (064, 000, 064); }
+color(ClothingDarkBrown)	{ c = (096, 048, 032), (064, 032, 016), (048, 024, 008); }
+color(ClothingDarkIndigo)   { c = (24, 10, 46), (14, 6, 26), (6, 3, 11); }
+color(ClothingDarkCrimson)  { c = (57, 6, 16), (41, 5, 12), (26, 3, 8); }
+color(ClothingDarkFadeBlue) { c = (35, 46, 91), (27, 31, 73), (20, 23, 56); }
+color(ClothingDarkPineapple){ c = (119, 65, 41), (86, 47, 30), (61, 33, 21); }
+color(ClothingDarkSoftPink) { c = (81, 36, 71), (63, 28, 55), (45, 20, 40); }
+color(ClothingDarkEmerald)  { c = (0, 63, 29), (0, 40, 19), (0, 25, 12); }
+color(ClothingWhite)		{ c = (255, 255, 255), (192, 192, 192), (160, 160, 160); }
+color(ClothingBlack)		{ c = (0, 0, 0), (0, 0, 0), (0, 0, 0); }
+
+color(Meat1)			{ c = (248, 120, 088), (248, 056, 000), (168, 016, 000); }
+color(Meat2)			{ c = (151, 027, 027), (175, 031, 031), (248, 056, 000); }
+color(Bone1)			{ c = (255, 255, 255), (252, 224, 168), (255, 255, 170); }
+color(SkinZombie)		{ c = (115, 150, 070), (086, 112, 052), (086, 112, 052); }
+color(Brain)			{ c = (255, 128, 128), (232, 096, 096), (192, 064, 064); }

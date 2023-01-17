@@ -1,0 +1,62 @@
+defaultTile(default_tile)
+{
+	drawCategory = MAR;
+	mainLayer = 0;
+	type = Static;
+	uniqueId = 0;
+	material = air;
+	fixture() { collisionGroup = none; collisionPoints = null; blockFire = false; }
+	colorPalette = palNone;
+	editorEnabled = true;
+	sizeable = N;
+	kickable = false;
+	punchable = false;
+	projectileHit = false;
+	doTakeDamage.Fire = false;
+	material.resistance.fire.modifier = 0;
+}
+
+Tile(World){ editorEnabled = false; }
+Tile(WorldLayer){ editorEnabled = false; }
+Tile(GroupMarker){ editorEnabled = false; tileTexture = marker; listTexture = GroupMarker2X; }
+Tile(SpawnPlayer){ tileTexture = SpawnPlayer; freeRotation = false; fixture() { collisionPoints = (-8, -12), (8, -12), (8, 8), (-8, 8); } } //tileTextureOffset=(0,10.5);
+Tile(SpawnWeapon){ tileTexture = SpawnWeapon; freeRotation = false; }
+Tile(SpawnUnknown){ }
+Tile(SpawnTarget){ tileTexture = marker; listTexture = SpawnTarget2X; }
+Tile(DestroyNode){ life = 1; material = default ; doTakeDamage.Fire = false; kickable = false; punchable = false; projectileHit = false; fixture() { collisionGroup = dynamics_g2; blockFire = false; collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2); } }
+Tile(DestroyTargets){ tileTexture = marker; listTexture = DestroyTargets2X; }
+Tile(FaceAtObject){ tileTexture = marker; listTexture = FaceAtObject2X; }
+Tile(WeldJoint){ type = Dynamic; tileTexture = marker; listTexture = WeldJoint2X; }
+Tile(RevoluteJoint){ type = Dynamic; tileTexture = marker; listTexture = RevoluteJoint2X; }
+Tile(DistanceJoint){ type = Dynamic; tileTexture = marker; listTexture = DistanceJoint2X; }
+Tile(PulleyJoint){ type = Static; tileTexture = marker; listTexture = PulleyJoint2X; }
+Tile(PulleyEndJoint){ type = Static; tileTexture = marker; listTexture = PulleyEndJoint2X; }
+Tile(TargetObjectJoint){ type = Dynamic; tileTexture = marker; listTexture = TargetObjectJoint2X; }
+Tile(ConvertTileType){ type = Static; tileTexture = marker; listTexture = ConvertTileType2X; }
+Tile(AlterCollisionTile){ type = Static; tileTexture = marker; listTexture = AlterCollisionTile2X; }
+Tile(PullJoint){ type = Dynamic; tileTexture = marker; listTexture = PullJoint2X; }
+Tile(RailJoint){ type = Dynamic; tileTexture = marker; listTexture = RailJoint2X; }
+Tile(RailAttachmentJoint){ type = Dynamic; tileTexture = marker; listTexture = RailAttachmentJoint2X; }
+Tile(ElevatorPathJoint){ tileTexture = marker; listTexture = ElevatorPathJoint2X; }
+Tile(ElevatorAttachmentJoint){ tileTexture = marker; listTexture = ElevatorAttachmentJoint2X; }
+Tile(LedgeGrab){ sizeable = N; drawCategory = FG; }
+Tile(PathNode){ sizeable = N; drawCategory = PN; listTexture = PathNode2X; }
+Tile(PathNodeConnection){ sizeable = N; drawCategory = PN; listTexture = PathNodeConnection2X; fixture() { collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2); } }
+Tile(PathDebugTarget) { sizeable = N; drawCategory = PN; editorEnabled = false; animation(PathDebugTarget){ width = 16; frameTime = 500; } }
+Tile(PathZone){ sizeable = D; drawCategory = PN; listTexture = PathZone2XIcon; }
+Tile(SoundArea){ listTexture = SoundArea2X; sizeable = D; }
+Tile(SpawnWeaponArea){ sizeable = H; }
+Tile(SpawnWeaponAreaCeiling){ sizeable = H; }
+Tile(PlayerSpawnArea){ sizeable = H; }
+Tile(PlayerProfileInfo){ freeRotation = false; fixture() { collisionPoints = (-8, -12), (8, -12), (8, 8), (-8, 8); } }
+Tile(PlayerModifierInfo){ freeRotation = false; tileTexture = marker; listTexture = PlayerModifierInfo2X; }
+Tile(PlayerSpawnTrigger){ freeRotation = false; fixture() { collisionPoints = (-8, -12), (8, -12), (8, 8), (-8, 8); } }
+Tile(BgText){ tileTexture = Text; drawCategory = BG; tileTexture = marker; listTexture = BgText2X; }
+Tile(Text){ tileTexture = marker; listTexture = Text2X; }
+Tile(FarBgText){ tileTexture = Text; drawCategory = FBG; tileTexture = marker; listTexture = BgText2X; }
+Tile(EditorText){ drawCategory = FG; tileTexture = marker; listTexture = EditorText2X; }
+Tile(GibZone){ listTexture = GibZone2X; fixture(){ collisionGroup = full; } sizeable = D; }
+Tile(GibZoneClean){ listTexture = GibZone2X; tileTexture = GibZone; fixture(){ collisionGroup = full; } sizeable = D; }
+Tile(ProjectileDeflectZone){ listTexture = ProjectileDeflectZone2X; material = metal; sizeable = D; projectileHit = true; }
+Tile(AcidZone){ listTexture = AcidZone2X; projectileHit = true; absorbProjectile = false; material.blockExplosions = false; fixture(){ collisionGroup = full; } sizeable = D; }
+Tile(WaterZone){ listTexture = WaterZone2X; projectileHit = true; absorbProjectile = false; material.blockExplosions = false; fixture(){ collisionGroup = full; } sizeable = D; }

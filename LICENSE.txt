@@ -1,0 +1,43 @@
+Copyright (C) MythoLogic Interactive 2022
+
+Superfighters Deluxe, a game by MythoLogic Interactive.
+Superfighters Redux, a modification to the game by the community.
+
+All content that is Superfighters Deluxe and its related source files, tools 
+and data within this directory and its subdirectories are for limited use only 
+for the Superfighters Redux mod.
+
+* The Superfighters Redux mod is allowed to adapt and modify Superfighters Deluxe 
+and its content to allow for other mod integration that is not Superfighters Redux. 
+* Superfighters Redux may only adapt and modify Superfighters Deluxe in a reasonable 
+manner so that the mod is not confused to be another game or a sequel to Superfighters Deluxe.
+* Superfighters Redux mustn't claim to be the author of the original game or present 
+the mod in a way that suggests that they are the author of the original game.
+* Superfighters Redux must in a reasonable manner show that it is a mod to the original 
+Superfighters Deluxe but not in a way that suggests that MythoLogic Interactive is
+the author of Superfighters Redux mod.
+* Superfighters Redux may only use these files for non-commercial purposes for the
+purpose of adding mod support to Superfighters Deluxe.
+* Superfighters Redux is allowed to re-distribute the Superfighters Deluxe assemblies required for 
+Superfighters Redux to work as intended but only as part of the Superfighters Redux package.
+* Superfighters Redux is not allowed to distribute or share source code related to the 
+Superfighters Deluxe animation editor. It is for internal use only for Superfighters Redux team 
+to get an insight into the animation system and to enable animation mod support as they see fit. 
+Superfighters Redux may build and share a working animation editor as a runnable executable as part 
+of the mod and share it as part of the mod-package.
+* Superfighters Redux must not bypass or modify checks towards the SteamAPI, such as (but not limited to) 
+the check that verifies the user owns Superfighters Deluxe.
+* Superfighters Redux mustn't include the animation editor source code in any public repository (but may
+include a built animation editor executable).
+* Superfighters Redux may include the required Superfighters Deluxe assemblies (or other required files) 
+in a public repository for Superfighters Redux to run properly.
+
+
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

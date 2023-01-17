@@ -1,0 +1,103 @@
+// inserting unique colors into a palette (RGB) or (RGBA) instead of color-id only
+colorPalette(palNone){ colors1 = White; }
+
+colorPalette(Solid)
+{
+	colors1 = Gray, Red, Green, Blue, Yellow, Cyan, Magenta;
+	colors2 = Gray, Red, Green, Blue, Yellow, Cyan, Magenta;
+	colors3 = Gray, Red, Green, Blue, Yellow, Cyan, Magenta;
+}
+
+colorPalette(Concrete)
+{
+	colors1 = StoneGray, StoneYellow, StoneRed, StoneBlue, StoneEmerald, StoneLightBlue, StoneIndigo, StonePink, StoneFadedRed, StonePineapple, StoneDark;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, White, Black, Transparent;
+}
+
+colorPalette(Stone)
+{
+	colors1 = StoneGray, StoneEmerald, StonePineapple, StoneLightBlue, StoneIndigo, StonePink, StoneFadedRed, StoneYellow, StoneRed, StoneBlue, StoneCyan, StoneDark;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, White, Black, Transparent;
+}
+
+colorPalette(BambooBlock)
+{
+	colors1 = BambooGreen, BambooClean;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, White, Black, Transparent;
+}
+
+colorPalette(Cloth)
+{
+	colors1 = Gray, Red, Blue, Yellow, Brown, Cyan, Magenta, Twilight, Purple, Emerald, DeepCyan;
+}
+
+colorPalette(Metal)
+{
+	colors1 = MetalGray, MetalBlue, MetalPink, MetalCyan, MetalYellow, MetalLightBlue, MetalDeepCyan, MetalIndigo, MetalRed, MetalFadedRed, MetalTwilightPink, MetalEmerald, MetalPineapple;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, White, Black, Transparent;
+}
+
+colorPalette(Tile)
+{
+	colors1 = TileOrange, TileCyan, TileGray, TilePineapple, TilePink, TileLightBlue;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, White, Black, Transparent;
+}
+
+colorPalette(Wood)
+{
+	colors1 = Wood0, Wood1, Wood2, Wood3;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, White, Black, Transparent;
+}
+
+colorPalette(FG)
+{
+	colors1 = BgLightGray, BgLightRed, BgLightPink, BgLightGreen, BgLightBlue, BgLightYellow, BgLightOrange, BgLightBrown, BgLightCyan, BgLightMagenta, BgGray, BgRed, BgPink, BgGreen, BgBlue, BgYellow, BgOrange, BgBrown, BgCyan, BgMagenta, BgDarkGray, BgDarkRed, BgDarkPink, BgDarkGreen, BgDarkBlue, BgDarkYellow, BgDarkOrange, BgDarkBrown, BgDarkCyan, BgDarkMagenta, BgBlackGray, BgBlackRed, BgBlackPink, BgBlackGreen, BgBlackBlue, BgBlackYellow, BgBlackOrange, BgBlackBrown, BgBlackCyan, BgBlackMagenta, BgLightIndigo, BgLightCrimson, BgLightFadeBlue, BgLightPineapple, BgLightSoftPink, BgIndigo, BgCrimson, BgFadeBlue, BgPineapple, BgSoftPink, BgDarkIndigo, BgDarkCrimson, BgDarkFadeBlue, BgDarkPineapple, BgDarkSoftPink, BgLightEmerald, BgEmerald, BgDarkEmerald, Black, White;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, LightLightBlue, LightEmerald, LightPineapple, White, Black;
+}
+
+colorPalette(Lamp)
+{
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, LightLightBlue, LightEmerald, LightPineapple, White, Black;
+}
+
+colorPalette(Neon)
+{
+	colors1 = NeonBlue, NeonGreen, NeonRed, NeonPink, NeonYellow, NeonCyan, NeonPineapple, NeonEmerald, NeonLightBlue, NeonDeepCyan, NeonIndigo;
+	colors2 = NeonBlue, NeonGreen, NeonRed, NeonPink, NeonYellow, NeonCyan, NeonPineapple, NeonEmerald, NeonLightBlue, NeonDeepCyan, NeonIndigo;
+}
+
+colorPalette(Ground)
+{
+	colors1 = GroundGreen, GroundOrange, GroundCyan, GroundWhite, GroundBrown, GroundMuddy, GroundRed, GroundPurple;
+	colors2 = GroundBrown, GroundMuddy, GroundRed, GroundPurple, GroundGreen, GroundOrange, GroundCyan, GroundWhite;
+}
+
+colorPalette(Dirt)
+{
+	colors1 = DirtYellow, DirtBrown, DirtBlue, DirtDarkOrange, DirtPink, DirtFadedRed, DirtEmerald, DirtDeepCyan, DirtIndigo, DirtPineapple, DirtEmerald;
+	colors1 = DirtYellow, DirtBrown, DirtBlue, DirtDarkOrange, DirtPink, DirtFadedRed, DirtEmerald, DirtDeepCyan, DirtIndigo, DirtPineapple, DirtEmerald;
+}
+
+colorPalette(BG)
+{
+	colors1 = BgLightGray, BgLightRed, BgLightPink, BgLightGreen, BgLightBlue, BgLightYellow, BgLightOrange, BgLightBrown, BgLightCyan, BgLightMagenta, BgGray, BgRed, BgPink, BgGreen, BgBlue, BgYellow, BgOrange, BgBrown, BgCyan, BgMagenta, BgDarkGray, BgDarkRed, BgDarkPink, BgDarkGreen, BgDarkBlue, BgDarkYellow, BgDarkOrange, BgDarkBrown, BgDarkCyan, BgDarkMagenta, BgBlackGray, BgBlackRed, BgBlackPink, BgBlackGreen, BgBlackBlue, BgBlackYellow, BgBlackOrange, BgBlackBrown, BgBlackCyan, BgBlackMagenta, BgLightIndigo, BgLightCrimson, BgLightFadeBlue, BgLightPineapple, BgLightSoftPink, BgIndigo, BgCrimson, BgFadeBlue, BgPineapple, BgSoftPink, BgDarkIndigo, BgDarkCrimson, BgDarkFadeBlue, BgDarkPineapple, BgDarkSoftPink, BgLightEmerald, BgEmerald, BgDarkEmerald, Black, White;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, LightLightBlue, LightEmerald, LightPineapple, White, Black;
+}
+
+colorPalette(Moon)
+{
+	colors1 = BgLightYellow, White, BgLightGray, BgLightRed, BgLightPink, BgLightGreen, BgLightBlue, BgLightOrange, BgLightBrown, BgLightCyan, BgLightMagenta, BgGray, BgRed, BgPink, BgGreen, BgBlue, BgYellow, BgOrange, BgBrown, BgCyan, BgMagenta, BgDarkGray, BgDarkRed, BgDarkPink, BgDarkGreen, BgDarkBlue, BgDarkYellow, BgDarkOrange, BgDarkBrown, BgDarkCyan, BgDarkMagenta, BgBlackGray, BgBlackRed, BgBlackPink, BgBlackGreen, BgBlackBlue, BgBlackYellow, BgBlackOrange, BgBlackBrown, BgBlackCyan, BgBlackMagenta, BgLightIndigo, BgLightCrimson, BgLightFadeBlue, BgLightPineapple, BgLightSoftPink, BgIndigo, BgCrimson, BgFadeBlue, BgPineapple, BgSoftPink, BgDarkIndigo, BgDarkCrimson, BgDarkFadeBlue, BgDarkPineapple, BgDarkSoftPink, BgLightEmerald, BgEmerald, BgDarkEmerald, Black, White;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, LightLightBlue, LightEmerald, LightPineapple, White, Black;
+}
+
+colorPalette(FarBG)
+{
+	colors1 = BgGray, BgRed, BgPink, BgGreen, BgBlue, BgYellow, BgOrange, BgBrown, BgCyan, BgMagenta, BgDarkGray, BgDarkRed, BgDarkPink, BgDarkGreen, BgDarkBlue, BgDarkYellow, BgDarkOrange, BgDarkBrown, BgDarkCyan, BgDarkMagenta, SkyDarkRed, SkyDarkBlue, SkyDarkGray, BgLightIndigo, BgLightCrimson, BgLightFadeBlue, BgLightPineapple, BgLightSoftPink, BgIndigo, BgCrimson, BgFadeBlue, BgPineapple, BgSoftPink, BgDarkIndigo, BgDarkCrimson, BgDarkFadeBlue, BgDarkPineapple, BgDarkSoftPink, BgLightEmerald, BgEmerald, BgDarkEmerald, Black, White;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, LightLightBlue, LightEmerald, LightPineapple, White, Black;
+}
+
+colorPalette(Sky)
+{
+	colors1 = BgGray, BgRed, BgPink, BgGreen, BgBlue, BgYellow, BgOrange, BgBrown, BgCyan, BgMagenta, BgDarkGray, BgDarkRed, BgDarkPink, BgDarkGreen, BgDarkBlue, BgDarkYellow, BgDarkOrange, BgDarkBrown, BgDarkCyan, BgDarkMagenta, SkyDarkRed, SkyDarkBlue, SkyDarkGray, BgLightIndigo, BgLightCrimson, BgLightFadeBlue, BgLightPineapple, BgLightSoftPink, BgIndigo, BgCrimson, BgFadeBlue, BgPineapple, BgSoftPink, BgDarkIndigo, BgDarkCrimson, BgDarkFadeBlue, BgDarkPineapple, BgDarkSoftPink, BgLightEmerald, BgEmerald, BgDarkEmerald, Black, White;
+	colors2 = LightYellow, LightOrange, LightBlue, LightRed, LightGreen, LightLightBlue, LightEmerald, LightPineapple, White, Black;
+}

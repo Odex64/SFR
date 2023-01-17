@@ -1,0 +1,361 @@
+Material(default)
+{
+	density = 30.0kg;
+	friction = 0.5;
+	restitution = 0.2;
+	flammable = false;
+	hit.projectile.sound = BulletHitDefault;
+	hit.projectile.effect = BulletHitDefault;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.melee.Prio = 10;
+	resistance.fire.modifier = 1.0;
+	resistance.fire.threshold = 0.0;
+	resistance.explosion.modifier = 1.0;
+	resistance.explosion.threshold = 0.0;
+	resistance.projectile.modifier = 1.0;
+	resistance.projectile.threshold = 0.0;
+	resistance.impact.modifier = 1.0;
+	resistance.impact.threshold = 0.0;
+	destroyEffect = DestroyDefault;
+	destroySound = DestroyDefault;
+	stepSound = none;
+}
+
+Material(air)
+{
+	density = 0.001kg;
+	friction = 0.0;
+	restitution = 0.0;
+	flammable = false;
+	transparent = true;
+	blockExplosions = false;
+	resistance.fire.modifier = 0;
+	resistance.explosion.modifier = 0;
+	resistance.projectile.modifier = 0;
+	resistance.impact.modifier = 0;
+	resistance.playerImpact.modifier = 0;
+}
+
+Material(balloon)
+{
+	density = 0.1kg;
+	friction = 0.5;
+	restitution = 0.9;
+	flammable = true;
+	transparent = true;
+	blockExplosions = false;
+	resistance.fire.modifier = 1;
+	resistance.explosion.modifier = 1;
+	resistance.projectile.modifier = 1;
+	resistance.impact.modifier = 1;
+	resistance.impact.threshold = 2;
+	resistance.playerImpact.modifier = 1;
+	hit.projectile.sound = none;
+	hit.projectile.effect = none;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.melee.Prio = 100;
+	destroySound = BalloonPop;
+	destroyEffect = none;
+}
+
+Material(pillow)
+{
+	density = 20kg;
+	friction = 0.5;
+	restitution = 0.2;
+	flammable = true;
+	blockExplosions = false;
+	hit.projectile.sound = BulletHitCloth;
+	hit.projectile.effect = BulletHitPaper;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = BulletHitPaper;
+	hit.Melee.Prio = 100;
+	resistance.impact.threshold = 0.1;
+	resistance.impact.modifier = 1;
+	resistance.projectile.modifier = 1;
+	destroyEffect = BulletHitPaper;
+	destroySound = DestroyCloth;
+	stepSound = none;
+}
+
+Material(cardboard)
+{
+	density = 5kg;
+	flammable = true;
+	blockExplosions = false;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.Melee.Prio = 10;
+	resistance.impact.threshold = 0.1;
+	resistance.impact.modifier = 1;
+	resistance.projectile.modifier = 1;
+	destroyEffect = BulletHitPaper;
+	destroySound = DestroyPaper;
+	stepSound = PlayerFootstep;
+}
+
+Material(concrete)
+{
+	density = 200kg;
+	friction = 0.5;
+	restitution = 0.2;
+	flammable = false;
+	hit.projectile.sound = BulletHitDefault;
+	hit.projectile.effect = BulletHitDefault;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.melee.Prio = 10;
+	resistance.fire.modifier = 1.0;
+	resistance.fire.threshold = 0.0;
+	resistance.explosion.modifier = 1.0;
+	resistance.explosion.threshold = 0.0;
+	resistance.projectile.modifier = 1.0;
+	resistance.projectile.threshold = 0.0;
+	resistance.impact.modifier = 0.25;
+	resistance.impact.threshold = 5.0;
+	resistance.playerImpact.threshold = 0;
+	resistance.playerImpact.modifier = 12;
+	destroyEffect = DestroyDefault;
+	destroySound = DestroyDefault;
+	stepSound = FootstepConcrete;
+}
+
+Material(snow)
+{
+	density = 10.0kg;
+	friction = 0.5;
+	restitution = 0.2;
+	flammable = false;
+	hit.projectile.sound = BulletHitDefault;
+	hit.projectile.effect = BulletHitDefault;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.melee.Prio = 10;
+	resistance.fire.modifier = 1.0;
+	resistance.fire.threshold = 0.0;
+	resistance.explosion.modifier = 1.0;
+	resistance.explosion.threshold = 0.0;
+	resistance.projectile.modifier = 1.0;
+	resistance.projectile.threshold = 0.0;
+	resistance.impact.modifier = 1.0;
+	resistance.impact.threshold = 0.0;
+	resistance.playerImpact.threshold = 0;
+	resistance.playerImpact.modifier = 12;
+	destroyEffect = DestroyDefault;
+	destroySound = FootstepSnow;
+	stepSound = FootstepSnow;
+}
+
+Material(stone)
+{
+	density = 200kg;
+	friction = 0.5;
+	restitution = 0.2;
+	flammable = false;
+	hit.projectile.sound = BulletHitStone;
+	hit.projectile.effect = BulletHitDefault;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.melee.Prio = 10;
+	resistance.fire.modifier = 1.0;
+	resistance.fire.threshold = 0.0;
+	resistance.explosion.modifier = 1.0;
+	resistance.explosion.threshold = 0.0;
+	resistance.projectile.modifier = 1.0;
+	resistance.projectile.threshold = 0.0;
+	resistance.impact.modifier = 1.0;
+	resistance.impact.threshold = 0.0;
+	resistance.playerImpact.threshold = 0;
+	resistance.playerImpact.modifier = 12;
+	destroyEffect = DestroyDefault;
+	destroySound = DestroyStone;
+	stepSound = FootstepConcrete;
+}
+
+Material(wood)
+{
+	density = 200kg;
+	friction = 1;
+	restitution = 0.2;
+	flammable = false;
+	hit.Melee.Prio = 10;
+	hit.projectile.sound = BulletHitWood;
+	hit.projectile.effect = BulletHitWood;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = BulletHitWood;
+	resistance.impact.threshold = 0;
+	resistance.explosion.modifier = 1;
+	resistance.explosion.modifier = 1;
+	resistance.playerImpact.threshold = 0;
+	resistance.playerImpact.modifier = 24;
+	destroyEffect = DestroyWood;
+	destroySound = DestroyWood;
+	stepSound = FootstepWood;
+}
+
+Material(metal){
+	density = 200kg;
+	friction = 0.5;
+	restitution = 0.1;
+	flammable = false;
+	hit.Melee.Prio = 5;
+	hit.projectile.sound = BulletHitMetal;
+	hit.projectile.effect = BulletHitMetal;
+	hit.melee.sound = BulletHitMetal;
+	hit.melee.effect = BulletHitMetal;
+	resistance.playerImpact.threshold = 10;
+	resistance.playerImpact.modifier = 14;
+	destroyEffect = DestroyMetal;
+	destroySound = DestroyMetal;
+	stepSound = FootstepMetal;
+}
+
+Material(metalplayer)
+{
+	hit.Melee.Prio = 15;
+	hit.projectile.sound = MetalMelee;
+	hit.projectile.effect = BulletHitMetal;
+	hit.melee.sound = MetalMelee;
+	hit.melee.effect = BulletHitMetal;
+}
+
+Material(flesh)
+{
+	density = 25kg;
+	friction = 1;
+	restitution = 0.2;
+	flammable = true;
+	hit.Melee.Prio = 10;
+	hit.projectile.sound = BulletHitFlesh;
+	hit.projectile.effect = BLD;
+	hit.melee.sound = MeleePunch;
+	hit.melee.effect = HIT;
+	resistance.impact.threshold = 0.1;
+	resistance.explosion.modifier = 1.5;
+	stepSound = PlayerFootstep;
+	destroyEffect = BLD;
+}
+
+Material(paper)
+{
+	density = 1kg;
+	friction = 0.5;
+	restitution = 0.2;
+	flammable = true;
+	blockExplosions = false;
+	hit.projectile.sound = BulletHitPaper;
+	hit.projectile.effect = BulletHitPaper;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.Melee.Prio = 10;
+	resistance.impact.threshold = 0.1;
+	resistance.impact.modifier = 0.1;
+	resistance.projectile.modifier = 0.1;
+	destroyEffect = DestroyPaper;
+	destroySound = DestroyPaper;
+	stepSound = none;
+}
+
+Material(dirt)
+{
+	density = 50kg;
+	hit.projectile.sound = BulletHitDefault;
+	hit.projectile.effect = BulletHitDirt;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	stepSound = FootstepDirt;
+}
+
+Material(glass)
+{
+	density = 80kg;
+	friction = 0.5;
+	restitution = 0.2;
+	transparent = true;
+	flammable = false;
+	hit.projectile.sound = BulletHitGlass;
+	hit.projectile.effect = BulletHitDefault;
+	hit.melee.sound = BulletHitGlass;
+	hit.melee.effect = HIT;
+	hit.Melee.Prio = 10;
+	resistance.projectile.threshold = 0.0;
+	resistance.projectile.modifier = 99.0;
+	resistance.impact.threshold = 1.0;
+	resistance.impact.modifier = 99.0;
+	resistance.playerImpact.modifier = 99.0;
+	destroyEffect = DestroyGlass;
+	destroySound = DestroyGlass;
+	stepSound = FootstepTile;
+}
+
+Material(ice)
+{
+	density = 40kg;
+	friction = 0.5;
+	restitution = 0.2;
+	transparent = true;
+	flammable = false;
+	hit.projectile.sound = BulletHitGlass;
+	hit.projectile.effect = BulletHitDefault;
+	hit.melee.sound = BulletHitGlass;
+	hit.melee.effect = HIT;
+	hit.Melee.Prio = 10;
+	resistance.projectile.threshold = 0.0;
+	resistance.projectile.modifier = 99.0;
+	resistance.impact.threshold = 1.0;
+	resistance.impact.modifier = 99.0;
+	resistance.playerImpact.modifier = 99.0;
+	destroyEffect = DestroyGlass;
+	destroySound = DestroyGlass;
+	stepSound = FootstepTile;
+}
+
+Material(ceramic)
+{
+	density = 80kg;
+	friction = 0.5;
+	restitution = 0.2;
+	transparent = false;
+	flammable = false;
+	hit.projectile.sound = BulletHitGlass;
+	hit.projectile.effect = BulletHitDefault;
+	hit.melee.sound = BulletHitGlass;
+	hit.melee.effect = HIT;
+	hit.Melee.Prio = 10;
+	resistance.projectile.threshold = 0.0;
+	resistance.projectile.modifier = 99.0;
+	resistance.impact.threshold = 1.0;
+	resistance.impact.modifier = 99.0;
+	resistance.playerImpact.modifier = 99.0;
+	destroyEffect = DestroyGlass;
+	destroySound = DestroyGlass;
+	stepSound = FootstepTile;
+}
+
+Material(cloth)
+{
+	density = 20kg;
+	friction = 0.5;
+	restitution = 0.2;
+	flammable = true;
+	blockExplosions = false;
+	hit.projectile.sound = BulletHitCloth;
+	hit.projectile.effect = BulletHitCloth;
+	hit.melee.sound = MeleeBlock;
+	hit.melee.effect = HIT;
+	hit.Melee.Prio = 10;
+	resistance.impact.threshold = 0.1;
+	resistance.impact.modifier = 1;
+	resistance.projectile.modifier = 1;
+	destroyEffect = DestroyCloth;
+	destroySound = DestroyCloth;
+	stepSound = none;
+}
+
+Material(water)
+{
+	density = 200kg;
+	stepSound = FootstepSplash;
+}

@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33209.295
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFR", "SFR\SFR.csproj", "{907E970D-7E11-4461-AC55-999E0E6CF42A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{79381ECC-95ED-495E-91F0-6066F2654587}"
+	ProjectSection(SolutionItems) = preProject
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFDX", "SFDX\SFDX.csproj", "{C63865DF-9C65-4BD0-AE3F-61964CC2890C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{907E970D-7E11-4461-AC55-999E0E6CF42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{907E970D-7E11-4461-AC55-999E0E6CF42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{907E970D-7E11-4461-AC55-999E0E6CF42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{907E970D-7E11-4461-AC55-999E0E6CF42A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FA93E997-54CE-4B96-850F-29A2CF2E2BDB}
+	EndGlobalSection
+EndGlobal
