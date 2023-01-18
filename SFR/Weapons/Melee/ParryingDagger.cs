@@ -8,7 +8,7 @@ using SFD.Weapons;
 
 namespace SFR.Weapons.Melee;
 
-internal sealed class ParryingDagger : MWeapon, IMedievalMelee
+internal sealed class ParryingDagger : MWeapon
 {
     internal ParryingDagger()
     {
@@ -67,10 +67,6 @@ internal sealed class ParryingDagger : MWeapon, IMedievalMelee
     {
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
-
-    public float GetPoise() => 0.2f;
-
-    public bool CanParry() => true;
 
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {

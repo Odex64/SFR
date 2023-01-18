@@ -44,6 +44,7 @@ internal sealed class Flintlock : RWeapon
         weaponVisuals.AnimFullLand = "FullLandHandgun";
         weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
         weaponProperties.VisualText = "Flintlock";
+
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
         CacheDrawnTextures(new[] { "Reload" });
     }

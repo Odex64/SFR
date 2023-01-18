@@ -4,6 +4,9 @@ using SFR.Fighter;
 
 namespace SFR.Helper;
 
+/// <summary>
+///     Class that contains extension methods regarding players.
+/// </summary>
 internal static class Fighter
 {
     internal static Team GetActualTeam(this Player player)

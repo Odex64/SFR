@@ -21,6 +21,9 @@ internal static class Database
 {
     private static List<WeaponItem> _weapons;
 
+    /// <summary>
+    ///     Fix an issue that prevents new weapons from spawning correctly.
+    /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ObjectData), nameof(ObjectData.CreateNew))]
     private static bool FixDrop(ObjectDataStartParams startParams, ref ObjectData __result)
@@ -183,35 +186,35 @@ internal static class Database
             // 71, Brick
             // 72, Broom
             // 73, Cannon ball
-            { 74, 21 }, // Blade
-            { 75, 6 }, // Caber
+            { 74, 19 }, // Blade
+            { 75, 8 }, // Caber
             { 76, 24 }, // Crowbar
-            { 77, 9 }, // GreatSword
-            { 78, 10 }, // Morningstar
-            { 79, 11 }, //ParryingDagger
-            { 80, 17 }, // Poleaxe
-            { 81, 29 }, // Rapier
+            { 77, 5 }, // GreatSword
+            { 78, 19 }, // Morningstar
+            { 79, 7 }, //ParryingDagger
+            { 80, 9 }, // Poleaxe
+            { 81, 19 }, // Rapier
             // { 82, 16 }, // RiotShield,
-            { 83, 22 }, // Sledgehammer
-            { 84, 21 }, // Switchblade
-            { 85, 6 }, // UnkemptHarold
-            { 86, 9 }, // StickyLauncher
-            { 87, 15 }, // Claymore
-            { 88, 19 }, // Frag grenade
-            { 89, 16 }, // Impact grenade
+            { 83, 20 }, // Sledgehammer
+            { 84, 20 }, // Switchblade
+            { 85, 4 }, // UnkemptHarold
+            { 86, 7 }, // StickyLauncher
+            { 87, 23 }, // Claymore
+            { 88, 21 }, // Frag grenade
+            { 89, 14 }, // Impact grenade
             // { 90, 1 }, // Snowball
-            { 91, 7 }, // Sticky bomb
-            { 92, 11 }, // Health pouch
-            { 93, 17 }, // AA12
-            { 94, 14 }, // Barrett
-            { 95, 22 }, // Blunderbuss
-            { 96, 28 }, // Crossbow
+            { 91, 9 }, // Sticky bomb
+            { 92, 34 }, // Health pouch
+            { 93, 9 }, // AA12
+            { 94, 11 }, // Barrett
+            { 95, 9 }, // Blunderbuss
+            { 96, 24 }, // Crossbow
             { 97, 11 }, // Double barrel
             { 98, 23 }, // Musket
-            { 99, 8 }, // Quad launcher
-            { 100, 6 }, // RCM
-            { 101, 19 }, // Winchester
-            { 102, 11 } // Minigun
+            { 99, 6 }, // Quad launcher
+            { 100, 5 }, // RCM
+            { 101, 16 }, // Winchester
+            { 102, 4 } // Minigun
         };
 
         __result = WeaponItem.ID.m_wpns;

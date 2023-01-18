@@ -1,8 +1,6 @@
 ﻿using HarmonyLib;
-using Microsoft.Xna.Framework;
 using SFD;
 using SFD.Weapons;
-using SFR.Helper;
 using SFR.Objects;
 using SFR.Weapons.Rifles;
 

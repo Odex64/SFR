@@ -68,6 +68,11 @@ internal static class SyncHandler
         return instructions;
     }
 
+    /// <summary>
+    ///     When spawning new objects clients will take a while to save them in their GameWorld.
+    ///     Therefore we check if given objects has been spawned yet with some attempts.
+    ///     TODO: Find a better way to sync newly spawned objects between clients / server.
+    /// </summary>
     private static ObjectData[] SyncGameWorldObject(GameWorld gameWorld, GenericData genericData, params int[] objectsID)
     {
         List<ObjectData> receivedData = new();

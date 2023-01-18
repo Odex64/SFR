@@ -2,7 +2,6 @@
 using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
-using SFD.Weapons;
 using SFR.Fighter;
 using SFR.Helper;
 

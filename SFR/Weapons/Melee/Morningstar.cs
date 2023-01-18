@@ -8,7 +8,7 @@ using SFD.Weapons;
 
 namespace SFR.Weapons.Melee;
 
-internal sealed class Morningstar : MWeapon, IMedievalMelee
+internal sealed class Morningstar : MWeapon
 {
     internal Morningstar()
     {
@@ -65,10 +65,6 @@ internal sealed class Morningstar : MWeapon, IMedievalMelee
     {
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
-
-    public float GetPoise() => 1.2f;
-
-    public bool CanParry() => false;
 
     public override MWeapon Copy() => new Morningstar(Properties, Visuals)
     {

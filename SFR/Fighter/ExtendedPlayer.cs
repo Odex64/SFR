@@ -5,6 +5,10 @@ using SFD.Sounds;
 
 namespace SFR.Fighter;
 
+/// <summary>
+///     Since we need to save additional data into the player instance
+///     we use this file to "extend" the player class.
+/// </summary>
 internal sealed class ExtendedPlayer : IEquatable<Player>
 {
     internal static readonly List<ExtendedPlayer> ExtendedPlayers = new();
@@ -12,10 +16,9 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
 
     internal bool Stickied;
 
-    internal ExtendedPlayer(Player player)
-    {
-        _player = player;
-    }
+    internal ExtendedPlayer(Player player) => _player = player;
+
+    public bool Equals(Player other) => other?.ObjectID == _player.ObjectID;
 
     internal void ApplyStickiedBoost()
     {
@@ -36,6 +39,4 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         _player.SetModifiers(modifiers);
         Stickied = false;
     }
-
-    public bool Equals(Player other) => other?.ObjectID == _player.ObjectID;
 }
