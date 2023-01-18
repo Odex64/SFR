@@ -16,8 +16,8 @@ internal sealed class Musket : RWeapon
         {
             MaxMagsInWeapon = 1,
             MaxRoundsInMag = 1,
-            MaxCarriedSpareMags = 15,
-            StartMags = 8,
+            MaxCarriedSpareMags = 7,
+            StartMags = 3,
             CooldownBeforePostAction = 400,
             CooldownAfterPostAction = 0,
             ExtraAutomaticCooldown = 200,

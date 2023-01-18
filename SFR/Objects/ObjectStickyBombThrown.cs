@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Box2D.XNA;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -93,6 +94,13 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
             {
                 m_timeBeforeEnablePlayerHit = 0f;
                 DisableUpdateObject();
+                
+                if (_stickiedPlayer is { IsRemoved: false })
+                {
+                    var extendedPlayer = _stickiedPlayer.GetExtension();
+                    extendedPlayer.DisableStickiedBoost();
+                }
+                
                 if (Constants.Random.NextFloat() < GetDudChance())
                 {
                     EffectHandler.PlayEffect("GR_D", GetWorldPosition(), GameWorld);
@@ -237,6 +245,9 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
             _stickiedOffset = new Vector2(x, y);
             _stickiedAngle = angle;
             Stickied = true;
+            
+            var extendedPlayer = player.GetExtension();
+            extendedPlayer.ApplyStickiedBoost();
         }
     }
 }

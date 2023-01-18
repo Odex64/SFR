@@ -13,7 +13,7 @@ internal sealed class Switchblade : MWeapon
 {
     internal Switchblade()
     {
-        MWeaponProperties weaponProperties = new(84, "Switchblade", 9f, 16f, "MeleeSlash", "MeleeHitSharp", "HIT_S", "MeleeBlock", "HIT", "MeleeDrawMetal", "WpnSwitchblade", true, WeaponCategory.Melee, false)
+        MWeaponProperties weaponProperties = new(84, "Switchblade", 7f, 13f, "MeleeSlash", "MeleeHitSharp", "HIT_S", "MeleeBlock", "HIT", "MeleeDrawMetal", "WpnSwitchblade", true, WeaponCategory.Melee, false)
         {
             MeleeWeaponType = MeleeWeaponTypeEnum.OneHanded,
             WeaponMaterial = MaterialDatabase.Get("metal"),

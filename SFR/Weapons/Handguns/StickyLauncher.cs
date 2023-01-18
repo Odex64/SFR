@@ -21,10 +21,10 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
     {
         RWeaponProperties weaponProperties = new(86, "Sticky_Launcher", "WpnStickyLauncher", false, WeaponCategory.Secondary)
         {
-            MaxMagsInWeapon = 8,
-            MaxRoundsInMag = 1,
-            MaxCarriedSpareMags = 24,
-            StartMags = 32,
+            MaxMagsInWeapon = 1,
+            MaxRoundsInMag = 3,
+            MaxCarriedSpareMags = 3,
+            StartMags = 2,
             CooldownBeforePostAction = 600,
             CooldownAfterPostAction = 0,
             ExtraAutomaticCooldown = 0,

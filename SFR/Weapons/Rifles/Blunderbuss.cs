@@ -16,9 +16,9 @@ internal sealed class Blunderbuss : RWeapon
         {
             MaxMagsInWeapon = 1,
             MaxRoundsInMag = 1,
-            MaxCarriedSpareMags = 7,
-            StartMags = 4,
-            ProjectilesEachBlast = 10,
+            MaxCarriedSpareMags = 5,
+            StartMags = 2,
+            ProjectilesEachBlast = 8,
             CooldownBeforePostAction = 1500,
             CooldownAfterPostAction = 0,
             ExtraAutomaticCooldown = 200,

@@ -1,7 +1,9 @@
 using HarmonyLib;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
+using SFR.Helper;
 
 namespace SFR.Fighter;
 
@@ -11,13 +13,13 @@ namespace SFR.Fighter;
 [HarmonyPatch]
 internal static class GadgetHandler
 {
-    private static DevIcon _devIcon;
+    internal static DevIcon DevIcon;
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ObjectStreetsweeper), nameof(ObjectStreetsweeper.GetOwnerTeam))]
     private static bool FixDroneTeam(ref Team __result)
     {
-        __result = _devIcon.Team;
+        __result = DevIcon.Team;
         return false;
     }
 
@@ -26,27 +28,13 @@ internal static class GadgetHandler
     private static bool DrawDevIcon(Team team, ref Texture2D __result)
     {
         int num = (int)team;
-        if (num == -1 && _devIcon.Account != null)
+        if (num == -1 && DevIcon.Account != null)
         {
-            __result = NameIconHandler.GetDeveloperIcon(_devIcon.Account);
+            __result = NameIconHandler.GetDeveloperIcon(DevIcon.Account);
             return false;
         }
 
         return true;
-    }
-
-    internal static Team GetActualTeam(this Player player)
-    {
-        if (!player.IsBot)
-        {
-            var user = player.GetGameUser();
-            if (user != null && _devIcon.Account == user.Account)
-            {
-                return _devIcon.Team;
-            }
-        }
-
-        return player.CurrentTeam;
     }
 
     [HarmonyPrefix]
@@ -58,21 +46,35 @@ internal static class GadgetHandler
             var user = __instance.GetGameUser();
             if (user != null && NameIconHandler.IsDeveloper(user.Account))
             {
-                if (_devIcon.Account == null)
+                if (DevIcon.Account == null)
                 {
-                    _devIcon = new DevIcon(__instance.CurrentTeam, user.Account);
+                    DevIcon = new DevIcon(__instance.CurrentTeam, user.Account);
                 }
-                else if (_devIcon.Account != user.Account)
+                else if (DevIcon.Account != user.Account)
                 {
-                    _devIcon.Account = user.Account;
+                    DevIcon.Account = user.Account;
                 }
                 else if (__instance.CurrentTeam >= 0)
                 {
-                    _devIcon.Team = __instance.CurrentTeam;
+                    DevIcon.Team = __instance.CurrentTeam;
                 }
 
                 __instance.m_currentTeam = (Team)(-1);
             }
+        }
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.DrawColor), MethodType.Getter)]
+    private static bool CustomDrawColor(Player __instance, ref Color __result)
+    {
+        var extendedPlayer = __instance.GetExtension();
+        if (extendedPlayer.Stickied)
+        {
+            __result = ColorCorrection.CreateCustom(Constants.COLORS.YELLOW);
+            return false;
         }
 
         return true;
