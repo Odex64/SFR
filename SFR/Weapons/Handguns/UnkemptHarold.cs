@@ -14,8 +14,8 @@ internal sealed class UnkemptHarold : RWeapon
         RWeaponProperties weaponProperties = new(85, "Unkempt_Harold", "WpnUnkemptHarold", false, WeaponCategory.Secondary)
         {
             MaxMagsInWeapon = 1,
-            MaxRoundsInMag = 6,
-            MaxCarriedSpareMags = 4,
+            MaxRoundsInMag = 1,
+            MaxCarriedSpareMags = 5,
             StartMags = 2,
             CooldownBeforePostAction = 1000,
             CooldownAfterPostAction = 0,

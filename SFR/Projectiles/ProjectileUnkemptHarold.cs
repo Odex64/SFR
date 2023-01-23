@@ -12,12 +12,12 @@ internal sealed class ProjectileUnkemptHarold : Projectile
 {
     private const float FrameTime = 30f;
     private const int AnimationFrames = 6;
-    private const float ExplosionPower = 20f;
+    private const float ExplosionPower = 35f;
     private const float SplitDistance = 64;
     private float _animationTimer;
     private int _currentFrame = 1;
     private float _effectTimer;
-    private int _splits = 2;
+    private int _splits = 1;
 
     internal ProjectileUnkemptHarold()
     {
