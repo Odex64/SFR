@@ -11,10 +11,17 @@ We add new (regular) objects through `.sfdx` files. We also patch or add game co
 Yes, we do. However read the [license](https://github.com/Odex64/SFR/blob/master/LICENSE.txt) for some clarification.
 
 ### Can I contribute or create my own mods?
-Yes. Everyone with intermetiade coding knowledge can create his own mods or even contribute to the main mod branch if authorized, however you **must** read and include the same license as in this repository. You're advised to change SFR version in your own mods, to avoid conflicts with other servers.<br><br>
+Yes. Everyone with intermetiade coding knowledge can create his own mods or even contribute to the main mod branch if authorized, however you **must** read and include the same license as in this repository.<br>
+**You're advised to change SFR version in your own mods, to avoid conflicts with other servers.**<br><br>
 
-## Download
-You can download this mod [here](https://github.com/Odex64/SFR/releases).<br><br><br>
+# How to install
+### Download
+You can download this mod [here](https://github.com/Odex64/SFR/releases).
+
+### Installation
+Extract the downloaded archive in your `Superfighters Deluxe` folder (if you have a previous SFR installation, make sure to delete that).<br>
+Open steam and change `Superfighters Deluxe` launch options to `cmd /k "%command%\..\SFR.exe"`.
+<img src="https://cdn.discordapp.com/attachments/978693874094600202/1011759586719563776/how2installsfr.gif"><br><br>
 
 # Developing your own mods
 Here's some instructions for contributing or developing your own mods.
@@ -31,7 +38,7 @@ In the `Debug` section change your working directory to your SFD installation (b
 <img src="https://i.imgur.com/CalS6n4.png"><br>
 **NOTE:** if you don't have a `SFR.exe` to select, create a dummy file and chose that as external program.<br>
 
-If you have installed SFD in a another directory or drive, you must modify `build.bat` as well. You need to change `SFD` variable with your actual installation path.<br>
+If you have installed SFD in another directory or drive, you must modify `build.bat` as well. You need to change `SFD` variable with your actual installation path.<br>
 
 One last step is to create a `SFR` folder inside your Superfighters Deluxe installation, and manually copy `Core.dll` and `Content` folder from Superfighters Redux solution to the newly created folder.
 Now in Visual Studio try to build the solution, if you don't see any errors you're good to go!<br>
