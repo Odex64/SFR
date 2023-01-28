@@ -1,4 +1,4 @@
-<p align="center"><img src="https://superfightersredux.tk/assets/LogoBig.png" align="center"><br><br></p>
+<p align="center"><img src="https://i.imgur.com/PBDDBx0.png" align="center"></p><br>
 
 # F.A.Q.
 ### What is it?
