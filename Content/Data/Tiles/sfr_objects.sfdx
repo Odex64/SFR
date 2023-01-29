@@ -1,0 +1,432 @@
+defaultTile(default_tile)
+{
+	uniqueId = 0;
+	drawCategory = OBJ;
+	mainLayer = 1;
+	type = Dynamic;
+	material = default;
+	material.blockExplosions = false;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		collisionPoints = null;
+		blockFire = false;
+	}
+	colorPalette = palNone;
+	projectileHit = true;
+	absorbProjectile = true;
+	objectStrength = 0.0;
+	isCloud = false;
+	life = 0.0;
+	editorEnabled = true;
+	kickable = true;
+	punchable = true;
+	doTakeDamage.fire = false;
+}
+Tile(StreetLamp01)
+{
+	type = static;
+	doTakeDamage.fire = true;
+	life = 1;
+	material = glass;
+	Material.Resistance.Impact.Threshold = 20;
+	Material.BlockExplosions = false;
+	material.destroySound = DestroyGlass;
+	ImpactSound = GlassShard;
+
+	fixture()
+	{
+		circle = (0, 0, 8);
+		blockFire = true;
+	}
+}
+Tile(StreetLamp01_D)
+{
+	type = static;
+	doTakeDamage.fire = true;
+	material = glass;
+	Material.BlockExplosions = false;
+	material.destroySound = DestroyGlass;
+
+	fixture()
+	{
+		circle = (0, 0, 8);
+		collisionGroup = none;
+	}
+}
+Tile(TrafficCone)
+{
+	life = 50;
+	material.flammable = true;
+	absorbProjectile = false;
+	material.destroySound = DestroySmall;
+
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		collisionPoints = (0, 6), (-5, -6), (5, -6);
+	}
+}
+Tile(DinoBone00A)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	instaGibPlayer = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (0, -10), (3, -10), (1, 1), (-4, 1);
+		mass = 50 kg;
+	}
+	fixture(spine)
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (-5, 1.5), (2, 1.5), (2, 7.5), (-1.5, 10.5), (-5, 7.5);
+		mass = 50 kg;
+	}
+}
+Tile(DinoBone00B)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	instaGibPlayer = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (0, -13), (3, -13), (1, 3), (-4, 3);
+		mass = 50 kg;
+	}
+	fixture(spine)
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (-5, 2.5), (1, 2.5), (1, 9.5), (-2, 12.5), (-5, 9.5);
+		mass = 50 kg;
+	}
+}
+Tile(DinoBone00C)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	instaGibPlayer = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (0, -13.5), (3, -13.5), (1, 5), (-4, 5);
+		mass = 50 kg;
+	}
+	fixture(spine)
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (-5, 4.5), (1, 4.5), (1, 10.5), (-1.5, 13.5), (-5, 10.5);
+		mass = 50 kg;
+	}
+}
+Tile(DinoBone00D)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	instaGibPlayer = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		mass = 150 kg;
+	}
+}
+Tile(DinoBone00E)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		mass = 50 kg;
+	}
+}
+Tile(DinoBone00F)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	instaGibPlayer = true;
+	drawCategory = FG;
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		blockFire = true;
+		mass = 200 kg;
+	}
+}
+Tile(DinoSkull00A)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	instaGibPlayer = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (-19, -4), (19, -1), (19, 7), (-14.5, 18.5), (-19, 9);
+		mass = 150 kg;
+	}
+}
+Tile(DinoSkull00B)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	instaGibPlayer = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		collisionPoints = (-10, -15), (17.5, -9.5), (-7, -1.5), (-19, -2.5);
+		mass = 150 kg;
+	}
+}
+Tile(DinoSpine00A)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		mass = 20 kg;
+	}
+}
+Tile(DinoSpine00B)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		mass = 20 kg;
+	}
+}
+Tile(DinoSpine00C)
+{
+	life = 200;
+	material = stone;
+	material.flammable = false;
+	type = Dynamic;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		blockFire = true;
+		mass = 20 kg;
+	}
+}
+Tile(AtlasStatueOld00)
+{
+	drawCategory = SLD;
+	material = Stone;
+	type = Static;
+	life = 125;
+	material.blockExplosions = true;
+	clientSync.ECODBPI = true;
+	fixture()
+	{
+		collisionGroup = static_ground;
+		blockFire = true;
+		collisionPoints = (-20, -4), (-16, -8), (16, -8), (20, -4), (16, 4), (-16, 4);
+	}
+	fixture(a)
+	{
+		collisionGroup = static_ground;
+		blockFire = true;
+		circle = (0, 16, 20);
+	}
+}
+Tile(AtlasStatueOld_D)
+{
+	drawCategory = SLD;
+	material = Stone;
+	type = Static;
+	projectileHit = false;
+	material.blockExplosions = false;
+	clientSync.ECODBPI = true;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+}
+Tile(AtlasStatueOldGlobe)
+{
+	material = Stone;
+	type = Dynamic;
+	clientSync.ECODBPI = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		circle = (0, 0, 20);
+		mass = 300 kg;
+		blockFire = true;
+	}
+}
+Tile(PirateLifeboat00)
+{
+	material = wood;
+	material.flammable = true;
+	drawCategory = FG;
+	kickableTop = false;
+	fixture()
+	{
+		collisionPoints = (-35, 0), (35, 0), (35, 4), (-35, 4);
+	}
+	fixture(hull)
+	{
+		collisionGroup = dynamics_g1;
+		collisionPoints = (-8, -12), (8, -12), (28, -6), (35, 0), (-35, 0), (-28, -6);
+	}
+	fixture(l)
+	{
+		collisionGroup = dynamics_g1;
+		collisionPoints = (-35, 4), (-31, 4), (-31, 12), (-35, 12);
+	}
+	fixture(r)
+	{
+		collisionGroup = dynamics_g1;
+		collisionPoints = (31, 4), (35, 4), (35, 12), (31, 12);
+	}
+}
+Tile(Cannon00)
+{
+	material = metal;
+	life = 400;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = false;
+	doTakeDamage.fire = false;
+	fixture()
+	{
+		mass = 200 kg;
+		collisionGroup = dynamics_g2;
+	}
+}
+Tile(CannonHolder00)
+{
+	material = wood;
+	life = 200;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = false;
+	doTakeDamage.fire = false;
+	fixture()
+	{
+		mass = 100 kg;
+		collisionGroup = dynamics_g2;
+	}
+}
+Tile(WoodBarrel02)
+{
+	material = wood;
+	life = 75;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = true;
+	doTakeDamage.fire = true;
+	fixture()
+	{
+		mass = 75 kg;
+		collisionGroup = dynamics_g1;
+		collisionPoints = (-5.5, 7.5), (-7.5, 4.5), (-7.5, -4.5), (-5.5, -7.5), (5.5, -7.5), (7.5, -4.5), (7.5, 4.5), (5.5, 7.5);
+
+	}
+}
+Tile(WoodBarrelExplosive00)
+{
+	material = wood;
+	life = 75;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = true;
+	doTakeDamage.fire = true;
+	fixture()
+	{
+		mass = 75 kg;
+		collisionPoints = (-5.5, 7.5), (-7.5, 4.5), (-7.5, -4.5), (-5.5, -7.5), (5.5, -7.5), (7.5, -4.5), (7.5, 4.5), (5.5, 7.5);
+	}
+}
+Tile(Parrot00)
+{
+	life = 1;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material = flesh;
+	material.hit.melee.effect = HIT_S;
+	material.resistance.impact.threshold = 5.0;
+	objectStrength = 10;
+	material.destroyEffect = BulletHitPaper;
+	material.blockExplosions = false;
+	material.flammable = false;
+	material.friction = 0.0;
+	doTakeDamage.fire = true;
+	animation(Parrot00)
+	{
+		width = 16;
+		frameTime = 50;
+	}
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		circle = (0, 0.5, 4);
+	}
+}
+Tile(Parrot01)
+{
+	life = 1;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material = flesh;
+	material.hit.melee.effect = HIT_S;
+	material.resistance.impact.threshold = 5.0;
+	objectStrength = 10;
+	material.destroyEffect = BulletHitPaper;
+	material.blockExplosions = false;
+	material.flammable = false;
+	material.friction = 0.0;
+	doTakeDamage.fire = true;
+	animation(Parrot01)
+	{
+		width = 16;
+		frameTime = 50;
+	}
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		circle = (0, 0.5, 4);
+	}
+}

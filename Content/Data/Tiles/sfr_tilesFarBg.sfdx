@@ -1,0 +1,164 @@
+defaultTile(d_t)
+{
+	drawCategory = FBG;
+	mainLayer = 0;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	material.blockExplosions = false;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+	colorPalette = BG;
+	sizeable = A;
+	kickable = false;
+	punchable = false;
+	projectileHit = false;
+	doTakeDamage.Fire = false;
+	type = Static;
+	material.resistance.fire.modifier = 0;
+}
+
+Tile(FarBgBlimp00B)
+{
+	sizeable = N;
+}
+Tile(FarBgBridge00) {}
+Tile(FarBgBuilding03A) {}
+Tile(FarBgBuilding03B) {}
+Tile(FarBgBuilding03C) {}
+Tile(FarBgBuilding03D) {}
+Tile(FarBgBuilding03E) {}
+Tile(FarBgBuilding03F) {}
+Tile(FarBgBuilding03G) {}
+Tile(FarBgBuilding03H) {}
+Tile(FarBgBuilding03I) {}
+Tile(FarBgBuilding03J) {}
+Tile(FarBgBuilding03K) {}
+Tile(FarBgBuilding03L) {}
+Tile(FarBgMountains01A) {}
+Tile(FarBgMountains01B) {}
+Tile(FarBgMountains01C) {}
+Tile(FarBgMountains01D) {}
+Tile(FarBgFog00) {}
+Tile(FbgGradientBlue00A) {}
+Tile(FbgGradientBlue01A) {}
+Tile(FbgGradientBlue02A) {}
+Tile(FbgGradientCrimson00A) {}
+Tile(FbgGradientCrimson01A) {}
+Tile(FbgGradientCrimson02A) {}
+Tile(FbgGradientGreen00A) {}
+Tile(FbgGradientGreen01A) {}
+Tile(FbgGradientGreen02A) {}
+Tile(FbgGradientNavy00A) {}
+Tile(FbgGradientNavy01A) {}
+Tile(FbgGradientNavy02A) {}
+Tile(FbgGradientPink00A) {}
+Tile(FbgGradientPink01A) {}
+Tile(FbgGradientPink02A) {}
+Tile(FbgGradientPurple00A) {}
+Tile(FbgGradientPurple01A) {}
+Tile(FbgGradientPurple02A) {}
+Tile(FbgGradientShadow00A) {}
+Tile(FbgGradientShadow01A) {}
+Tile(FbgGradientShadow02A) {}
+Tile(FbgGradientWhite00A) {}
+Tile(FbgGradientWhite01A) {}
+Tile(FbgGradientWhite02A) {}
+Tile(FbgGradientYellow00A) {}
+Tile(FbgGradientYellow01A) {}
+Tile(FbgGradientYellow02A) {}
+Tile(FbgLightRadiusBlue00A) {}
+Tile(FbgLightRadiusBlue01A) {}
+Tile(FbgLightRadiusBlue02A) {}
+Tile(FbgLightRadiusBlue03A) {}
+Tile(FbgLightRadiusCrimson00A) {}
+Tile(FbgLightRadiusCrimson01A) {}
+Tile(FbgLightRadiusCrimson02A) {}
+Tile(FbgLightRadiusCrimson03A) {}
+Tile(FbgLightRadiusGreen00A) {}
+Tile(FbgLightRadiusGreen01A) {}
+Tile(FbgLightRadiusGreen02A) {}
+Tile(FbgLightRadiusGreen03A) {}
+Tile(FbgLightRadiusNavy00A) {}
+Tile(FbgLightRadiusNavy01A) {}
+Tile(FbgLightRadiusNavy02A) {}
+Tile(FbgLightRadiusNavy03A) {}
+Tile(FbgLightRadiusPink00A) {}
+Tile(FbgLightRadiusPink01A) {}
+Tile(FbgLightRadiusPink02A) {}
+Tile(FbgLightRadiusPink03A) {}
+Tile(FbgLightRadiusPurple00A) {}
+Tile(FbgLightRadiusPurple01A) {}
+Tile(FbgLightRadiusPurple02A) {}
+Tile(FbgLightRadiusPurple03A) {}
+Tile(FbgLightRadiusShadow00A) {}
+Tile(FbgLightRadiusShadow01A) {}
+Tile(FbgLightRadiusShadow02A) {}
+Tile(FbgLightRadiusShadow03A) {}
+Tile(FbgLightRadiusWhite00A) {}
+Tile(FbgLightRadiusWhite01A) {}
+Tile(FbgLightRadiusWhite02A) {}
+Tile(FbgLightRadiusWhite03A) {}
+Tile(FbgLightRadiusYellow00A) {}
+Tile(FbgLightRadiusYellow01A) {}
+Tile(FbgLightRadiusYellow02A) {}
+Tile(FbgLightRadiusYellow03A) {}
+Tile(FbgWallDarkBigRound00A) {}
+Tile(FbgWallDarkOutline00A) {}
+Tile(FbgWallDarkPixel00A) {}
+Tile(FbgWallDarkRound00A) {}
+Tile(FbgWallDarkShade00A) {}
+Tile(FbgWallDarkShade00B) {}
+Tile(FbgWallDarkShade00C) {}
+Tile(FbgWallDarkShade00D) {}
+Tile(FbgWallDarkShade00E) {}
+Tile(FbgWallDarkShade00F) {}
+Tile(FbgWallDarkShade00G) {}
+Tile(FbgWallDarkShade00H) {}
+Tile(FbgWallDarkShade00I) {}
+Tile(FbgWallDarkShadeOutline00A) {}
+Tile(FbgWallDarkShadeOutline00B) {}
+Tile(FbgWallDarkShadeOutline00C) {}
+Tile(FbgWallDarkShadeOutline00E) {}
+Tile(FbgWallDarkShadeOutline00F) {}
+Tile(FbgWallDarkShadeOutline00G) {}
+Tile(FbgWallLightBigRound00A) {}
+Tile(FbgWallLightOutline00A) {}
+Tile(FbgWallLightPixel00A) {}
+Tile(FbgWallLightRound00A) {}
+Tile(FbgWallLightShade00A) {}
+Tile(FbgWallLightShade00B) {}
+Tile(FbgWallLightShade00C) {}
+Tile(FbgWallLightShade00D) {}
+Tile(FbgWallLightShade00E) {}
+Tile(FbgWallLightShade00F) {}
+Tile(FbgWallLightShade00G) {}
+Tile(FbgWallLightShade00H) {}
+Tile(FbgWallLightShade00I) {}
+Tile(FbgWallLightShadeOutline00A) {}
+Tile(FbgWallLightShadeOutline00B) {}
+Tile(FbgWallLightShadeOutline00C) {}
+Tile(FbgWallLightShadeOutline00E) {}
+Tile(FbgWallLightShadeOutline00F) {}
+Tile(FbgWallLightShadeOutline00G) {}
+Tile(FbgWallMidBigRound00A) {}
+Tile(FbgWallMidOutline00A) {}
+Tile(FbgWallMidPixel00A) {}
+Tile(FbgWallMidRound00A) {}
+Tile(FbgWallMidShade00A) {}
+Tile(FbgWallMidShade00B) {}
+Tile(FbgWallMidShade00C) {}
+Tile(FbgWallMidShade00D) {}
+Tile(FbgWallMidShade00E) {}
+Tile(FbgWallMidShade00F) {}
+Tile(FbgWallMidShade00G) {}
+Tile(FbgWallMidShade00H) {}
+Tile(FbgWallMidShade00I) {}
+Tile(FbgWallMidShadeOutline00A) {}
+Tile(FbgWallMidShadeOutline00B) {}
+Tile(FbgWallMidShadeOutline00C) {}
+Tile(FbgWallMidShadeOutline00E) {}
+Tile(FbgWallMidShadeOutline00F) {}
+Tile(FbgWallMidShadeOutline00G) {}

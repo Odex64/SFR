@@ -1,0 +1,229 @@
+defaultTile(d_t)
+{
+	drawCategory = BG;
+	mainLayer = 0;
+	material.flammable = false;
+	material.blockExplosions = false;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	material.resistance.fire.modifier = 0;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+	colorPalette = BG;
+	sizeable = A;
+	kickable = false;
+	punchable = false;
+	projectileHit = false;
+	doTakeDamage.Fire = false;
+	type = Static;
+	material.resistance.fire.modifier = 0;
+}
+
+Tile(BgBarShelf00A){}
+Tile(BgBarShelf00B){}
+Tile(BgBarShelf00C){}
+Tile(BgBarShelf00D){}
+Tile(BgWoodenWallPanel00A){}
+Tile(BgWoodenWallPanel00B){}
+Tile(BgWoodenWallPanel00C){}
+Tile(BgWoodenWallPanel00D){}
+Tile(BgWoodenWallPanel00E){}
+Tile(BgWoodenWallPanel00F){}
+Tile(BgWoodenWallPanel00G){}
+Tile(BgWoodenWallPanel00H){}
+Tile(BgWoodenWallPanel00I){}
+Tile(BgNeonArrow00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonBar00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonBeer00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonClosed00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonExit00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonOpen00)
+{
+	colorPalette = Neon;
+}
+Tile(BgFan02A){}
+Tile(BgFan02B){}
+Tile(BgFan03A){}
+Tile(BgFan03B){}
+Tile(BgFireExtinguisher00){}
+Tile(BgGradientBlue00A){}
+Tile(BgGradientBlue01A){}
+Tile(BgGradientBlue02A){}
+Tile(BgGradientCrimson00A){}
+Tile(BgGradientCrimson01A){}
+Tile(BgGradientCrimson02A){}
+Tile(BgGradientGreen00A){}
+Tile(BgGradientGreen01A){}
+Tile(BgGradientGreen02A){}
+Tile(BgGradientNavy00A){}
+Tile(BgGradientNavy01A){}
+Tile(BgGradientNavy02A){}
+Tile(BgGradientPink00A){}
+Tile(BgGradientPink01A){}
+Tile(BgGradientPink02A){}
+Tile(BgGradientPurple00A){}
+Tile(BgGradientPurple01A){}
+Tile(BgGradientPurple02A){}
+Tile(BgGradientShadow00A){}
+Tile(BgGradientShadow01A){}
+Tile(BgGradientShadow02A){}
+Tile(BgGradientWhite00A){}
+Tile(BgGradientWhite01A){}
+Tile(BgGradientWhite02A){}
+Tile(BgGradientYellow00A){}
+Tile(BgGradientYellow01A){}
+Tile(BgGradientYellow02A){}
+Tile(BgLightRadiusBlue00A){}
+Tile(BgLightRadiusBlue01A){}
+Tile(BgLightRadiusBlue02A){}
+Tile(BgLightRadiusBlue03A){}
+Tile(BgLightRadiusCrimson00A){}
+Tile(BgLightRadiusCrimson01A){}
+Tile(BgLightRadiusCrimson02A){}
+Tile(BgLightRadiusCrimson03A){}
+Tile(BgLightRadiusGreen00A){}
+Tile(BgLightRadiusGreen01A){}
+Tile(BgLightRadiusGreen02A){}
+Tile(BgLightRadiusGreen03A){}
+Tile(BgLightRadiusNavy00A){}
+Tile(BgLightRadiusNavy01A){}
+Tile(BgLightRadiusNavy02A){}
+Tile(BgLightRadiusNavy03A){}
+Tile(BgLightRadiusPink00A){}
+Tile(BgLightRadiusPink01A){}
+Tile(BgLightRadiusPink02A){}
+Tile(BgLightRadiusPink03A){}
+Tile(BgLightRadiusPurple00A){}
+Tile(BgLightRadiusPurple01A){}
+Tile(BgLightRadiusPurple02A){}
+Tile(BgLightRadiusPurple03A){}
+Tile(BgLightRadiusShadow00A){}
+Tile(BgLightRadiusShadow01A){}
+Tile(BgLightRadiusShadow02A){}
+Tile(BgLightRadiusShadow03A){}
+Tile(BgLightRadiusWhite00A){}
+Tile(BgLightRadiusWhite01A){}
+Tile(BgLightRadiusWhite02A){}
+Tile(BgLightRadiusWhite03A){}
+Tile(BgLightRadiusYellow00A){}
+Tile(BgLightRadiusYellow01A){}
+Tile(BgLightRadiusYellow02A){}
+Tile(BgLightRadiusYellow03A){}
+Tile(BgWallDarkBigRound00A){}
+Tile(BgWallDarkOutline00A){}
+Tile(BgWallDarkPixel00A){}
+Tile(BgWallDarkRound00A){}
+Tile(BgWallDarkShade00A){}
+Tile(BgWallDarkShade00B){}
+Tile(BgWallDarkShade00C){}
+Tile(BgWallDarkShade00D){}
+Tile(BgWallDarkShade00E){}
+Tile(BgWallDarkShade00F){}
+Tile(BgWallDarkShade00G){}
+Tile(BgWallDarkShade00H){}
+Tile(BgWallDarkShade00I){}
+Tile(BgWallDarkShadeOutline00A){}
+Tile(BgWallDarkShadeOutline00B){}
+Tile(BgWallDarkShadeOutline00C){}
+Tile(BgWallDarkShadeOutline00E){}
+Tile(BgWallDarkShadeOutline00F){}
+Tile(BgWallDarkShadeOutline00G){}
+Tile(BgWallLightBigRound00A){}
+Tile(BgWallLightOutline00A){}
+Tile(BgWallLightPixel00A){}
+Tile(BgWallLightRound00A){}
+Tile(BgWallLightShade00A){}
+Tile(BgWallLightShade00B){}
+Tile(BgWallLightShade00C){}
+Tile(BgWallLightShade00D){}
+Tile(BgWallLightShade00E){}
+Tile(BgWallLightShade00F){}
+Tile(BgWallLightShade00G){}
+Tile(BgWallLightShade00H){}
+Tile(BgWallLightShade00I){}
+Tile(BgWallLightShadeOutline00A){}
+Tile(BgWallLightShadeOutline00B){}
+Tile(BgWallLightShadeOutline00C){}
+Tile(BgWallLightShadeOutline00E){}
+Tile(BgWallLightShadeOutline00F){}
+Tile(BgWallLightShadeOutline00G){}
+Tile(BgWallMidBigRound00A){}
+Tile(BgWallMidOutline00A){}
+Tile(BgWallMidPixel00A){}
+Tile(BgWallMidRound00A){}
+Tile(BgWallMidShade00A){}
+Tile(BgWallMidShade00B){}
+Tile(BgWallMidShade00C){}
+Tile(BgWallMidShade00D){}
+Tile(BgWallMidShade00E){}
+Tile(BgWallMidShade00F){}
+Tile(BgWallMidShade00G){}
+Tile(BgWallMidShade00H){}
+Tile(BgWallMidShade00I){}
+Tile(BgWallMidShadeOutline00A){}
+Tile(BgWallMidShadeOutline00B){}
+Tile(BgWallMidShadeOutline00C){}
+Tile(BgWallMidShadeOutline00E){}
+Tile(BgWallMidShadeOutline00F){}
+Tile(BgWallMidShadeOutline00G){}
+Tile(BgArcadeMachine00A){}
+Tile(BgClockCabinet00A){}
+Tile(BgCog00A){}
+Tile(BgCog00B){}
+Tile(BgCog00C){}
+Tile(BgCog00D){}
+Tile(BgGasStove00A){}
+Tile(BgKitchenWardrobe00A){}
+Tile(BgMirror00A){}
+Tile(BgPot00A){}
+Tile(BgPot00B){}
+Tile(BgSofa00A){}
+Tile(BgStreetLamp00A){}
+Tile(BgTreeWood00A){}
+Tile(BgArmChair00A){}
+Tile(BgDurableBamboo00A){}
+Tile(BgDurableBamboo00B){}
+Tile(BgDurableBamboo00C){}
+Tile(BgHugeBanner00A){}
+Tile(BgMicrowaveOven00A){}
+Tile(BgMirror00B){}
+Tile(BgSpeaker01A){}
+Tile(BgStreetLamp00B){}
+Tile(BgPirateShip01A){}
+Tile(BgPirateShip01B){}
+Tile(BgPirateShip01C){}
+Tile(BgPirateShip02A){}
+Tile(BgPirateShip03A){}
+Tile(BgPirateShip03B){}
+Tile(BgPirateShip03C){}
+Tile(BgPirateShip03D){}
+Tile(BgPirateShip03E){}
+Tile(BgPirateShip03F){}
+Tile(BgPirateShip04A){}
+Tile(BgPirateShip04B){}
+Tile(BgPirateShip04C){}
+Tile(BgPirateShip05A){}
+Tile(BgPirateShip05B){}
+Tile(BgPirateShip05C){}
+Tile(BgPirateShip05D){}
+Tile(PirateBrig00){ drawCategory = FG; }
+Tile(BgPirateShipSmall00){}
+Tile(BgPirateWheelHolder00){}
