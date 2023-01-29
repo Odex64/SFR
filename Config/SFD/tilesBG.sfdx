@@ -1,0 +1,1637 @@
+// BACKGROUND
+defaultTile(d_t)
+{
+    drawCategory = BG;
+    mainLayer = 0;
+    material.flammable = false;
+    material.blockExplosions = false;
+    material.destroyEffect = none;
+    material.destroySound = none;
+    material.resistance.fire.modifier = 0;
+    fixture()
+    {
+        collisionGroup = none;
+        blockFire = false;
+    }
+    colorPalette = BG;
+    sizeable = A;
+    kickable = false;
+    punchable = false;
+    projectileHit = false;
+    doTakeDamage.Fire = false;
+    material.resistance.fire.modifier = 0;
+}
+Tile(BgAcid00A){}
+Tile(BgAcid00B)
+{
+    animation(BgAcid00B)
+    {
+        width = 8;
+        frameTime = 50;
+    }
+}
+Tile(BgAdobe00A)
+{
+    tileTexture = Adobe00A;
+}
+Tile(BgAdobe00B)
+{
+    tileTexture = Adobe00B;
+}
+Tile(BgAdobe00C)
+{
+    tileTexture = Adobe00C;
+}
+Tile(BgAdobe00D)
+{
+    tileTexture = Adobe00D;
+}
+Tile(BgAdobe00E)
+{
+    tileTexture = Adobe00E;
+}
+Tile(BgAdobe00F)
+{
+    tileTexture = Adobe00F;
+}
+Tile(BgAdobe00G)
+{
+    tileTexture = Adobe00G;
+}
+Tile(BgAdobe00H)
+{
+    tileTexture = Adobe00H;
+}
+Tile(BgAdobe00I)
+{
+    tileTexture = Adobe00I;
+}
+Tile(BgAdobe00J)
+{
+    tileTexture = Adobe00J;
+}
+Tile(BgAdobe00K)
+{
+    tileTexture = Adobe00K;
+}
+Tile(BgAdobe00L)
+{
+    tileTexture = Adobe00L;
+}
+Tile(BgAdobeArch00A)
+{
+    tileTexture = AdobeArch00A;
+}
+Tile(BgAdobeArch00B)
+{
+    tileTexture = AdobeArch00B;
+}
+Tile(BgAntenna00A){}
+Tile(BgAntenna00B){}
+Tile(BgAwning00A){}
+Tile(BgBarberPole00)
+{
+    animation(BgBarberPole00)
+    {
+        width = 8;
+        frameTime = 50;
+    }
+}
+Tile(BgBeam00A){}
+Tile(BgBeam00B){}
+Tile(BgBeam00C){}
+Tile(BgBeam00D){}
+Tile(BgBeam00E){}
+Tile(BgBeam00F){}
+Tile(BgBeam00G){}
+Tile(BgBeam00H){}
+Tile(BgBeam00I){}
+Tile(BgBeam00J){}
+Tile(BgBeam00K){}
+Tile(BgBeam00L){}
+Tile(BgBeam01A){}
+Tile(BgBeam01B){}
+Tile(BgBeam01C){}
+Tile(BgBeam01D){}
+Tile(BgBeam02A){}
+Tile(BgBeam02B){}
+Tile(BgBeam02C){}
+Tile(BgBeam03A){}
+Tile(BgBeam03B){}
+Tile(BgBed00A){}
+Tile(BgBillboard00A){}
+Tile(BgBillboard00B){}
+Tile(BgBillboard00C){}
+Tile(BgBillboard00D){}
+Tile(BgBillboard00E){}
+Tile(BgBillboard00F){}
+Tile(BgBillboard00G){}
+Tile(BgBillboard00H){}
+Tile(BgBillboard00I){}
+Tile(BgBillboard00J){}
+Tile(BgBillboardPole00A){}
+Tile(BgBillboardPole00B){}
+Tile(BgBottle00A){}
+Tile(BgBottle00B){}
+Tile(BgBottle00C){}
+Tile(BgBottle00D){}
+Tile(BgBricks00A){}
+Tile(BgBricks00B){}
+Tile(BgBricks00C){}
+Tile(BgBricks00D){}
+Tile(BgBricks00E){}
+Tile(BgBricks00F){}
+Tile(BgBricks00G){}
+Tile(BgBricks00H){}
+Tile(BgBricks00I){}
+Tile(BgBricks00J){}
+Tile(BgBricks00K){}
+Tile(BgBrokenWindow00A){}
+Tile(BgBrokenWindow00B){}
+Tile(BgBrokenWindow00C){}
+Tile(BgBuddhaStatue00A){}
+Tile(BgBullsSkull00){}
+Tile(BgBurningBarrel00)
+{
+    animation(BgBurningBarrel00)
+    {
+        width = 16;
+        frameTimes = 100;
+    }
+}
+Tile(BgCamera00A){}
+Tile(BgCar00A){}
+Tile(BgCarnivalLight00A)
+{
+    animation(BgCarnivalLight00A)
+    {
+        width = 4;
+        frameTime = 200;
+    }
+}
+Tile(BgCarnivalLight00B)
+{
+    animation(BgCarnivalLight00B)
+    {
+        width = 4;
+        frameTime = 200;
+    }
+}
+Tile(BgCarnivalLight00C)
+{
+    animation(BgCarnivalLight00C)
+    {
+        width = 16;
+        frameTime = 200;
+    }
+}
+Tile(BgCarnivalLight01A){}
+Tile(BgCarnivalLight01B){}
+Tile(BgCarnivalLight01C){}
+Tile(BgCarnivalLight01D){}
+Tile(BgCarnivalLight02A){}
+Tile(BgCarnivalLight03A)
+{
+    sizeable = V;
+    animation(BgCarnivalLight03A)
+    {
+        width = 4;
+        frameTime = 200;
+    }
+}
+Tile(BgCarnivalLight03B)
+{
+    sizeable = N;
+    animation(BgCarnivalLight03B)
+    {
+        width = 4;
+        frameTime = 200;
+    }
+}
+Tile(BgCarnivalSign00){}
+Tile(BgCarnivalTent01A){}
+Tile(BgCarnivalTent01B){}
+Tile(BgCarnivalTent01C){}
+Tile(BgCarnivalTent01D){}
+Tile(BgChain00A){}
+Tile(BgChimney00A){}
+Tile(BgChimney00B){}
+Tile(BgChimney00C){}
+Tile(BgChimney00D){}
+Tile(BgChimney00E){}
+Tile(BgChurchWindow00A){}
+Tile(BgClock00)
+{
+    sizeable = N;
+}
+Tile(BgClock01)
+{
+    sizeable = N;
+}
+Tile(BgCistern00A)
+{
+    tileTexture = Metal06A;
+}
+Tile(BgCistern00B)
+{
+    tileTexture = Metal06B;
+}
+Tile(BgCistern00C)
+{
+    tileTexture = Metal06C;
+}
+Tile(BgCistern00D)
+{
+    tileTexture = Metal06D;
+}
+Tile(BgCistern00E)
+{
+    tileTexture = Metal06E;
+}
+Tile(BgCistern00F)
+{
+    tileTexture = Metal06F;
+}
+Tile(BgCoffin00A){}
+Tile(BgCog00A){}
+Tile(BgComputer00A)
+{
+    animation(BgComputer00A)
+    {
+        width = 24;
+        frameTimes = 500, 100, 500, 100;
+    }
+}
+Tile(BgComputer00B)
+{
+    animation(BgComputer00B)
+    {
+        width = 24;
+        frameTimes = 100;
+    }
+}
+Tile(BgComputer00C)
+{
+    animation(BgComputer00C)
+    {
+        width = 16;
+        frameTimes = 500, 100, 500, 100;
+    }
+}
+Tile(BgComputer00D)
+{
+    animation(BgComputer00D)
+    {
+        width = 16;
+        frameTimes = 100;
+    }
+}
+Tile(BgComputer01A)
+{
+    animation(BgComputer01A)
+    {
+        width = 16;
+        frameTimes = 250;
+    }
+}
+Tile(BgControlPanel00A){}
+Tile(BgControlPanel00B){}
+Tile(BgControlPanel00C){}
+Tile(BgCrane00A){}
+Tile(BgCrane01A){}
+Tile(BgCrane01B){}
+Tile(BgCrane02A){}
+Tile(BgCrane02B){}
+Tile(BgCrate00A){}
+Tile(BgCurtain00A){}
+Tile(BgCurtain00B){}
+Tile(BgDamage00A)
+{
+    sizeable = N;
+}
+Tile(BgDamage00B)
+{
+    sizeable = N;
+}
+Tile(BgDamage00C)
+{
+    sizeable = N;
+}
+Tile(BgDamage00D)
+{
+    sizeable = N;
+}
+Tile(BgDeco00A){}
+Tile(BgDeco00B){}
+Tile(BgDeco00C){}
+Tile(BgDeco01A){}
+Tile(BgDeco01B){}
+Tile(BgDecoDoor00A){}
+Tile(BgDecoDoors00A){}
+Tile(BgDecoSunburst01A){}
+Tile(BgDeadTree01A){}
+Tile(BgDeadTree01B){}
+Tile(BgDeadTree01C){}
+Tile(BgDeadTree01D){}
+Tile(BgDirt00A){}
+Tile(BgDirt00B){}
+Tile(BgDirt00C){}
+Tile(BgDirt00D){}
+Tile(BgDirt00E){}
+Tile(BgDirt00F){}
+Tile(BgDirt00G){}
+Tile(BgDirt00H){}
+Tile(BgDirt01A)
+{
+    tileTexture = Dirt01A;
+}
+Tile(BgDirt01B)
+{
+    tileTexture = Dirt01B;
+}
+Tile(BgDirt01C)
+{
+    tileTexture = Dirt01C;
+}
+Tile(BgDirt01D)
+{
+    tileTexture = Dirt01D;
+}
+Tile(BgDirt02A){}
+Tile(BgDirt02B){}
+Tile(BgDirt02C){}
+Tile(BgDirt02D){}
+Tile(BgDirt02E){}
+Tile(BgDirt02F){}
+Tile(BgDoor00A){}
+Tile(BgDoor00B){}
+Tile(BgDoor01A){}
+Tile(BgDoor02A){}
+Tile(BgDoor03A){}
+Tile(BgDuct00A){}
+Tile(BgDrop00A)
+{
+    animation(BgDrop00A)
+    {
+        frameTimes = 20;
+        width = 8;
+    }
+}
+Tile(BgDrop00B)
+{
+    animation(BgDrop00B)
+    {
+        frameTimes = 20;
+        width = 8;
+    }
+}
+Tile(BgElectric00A){}
+Tile(BgElectric00B){}
+Tile(BgElectric00C){}
+Tile(BgElectric00D){}
+Tile(BgElectric00E){}
+Tile(BgElectric00F){}
+Tile(BgElectric01A){}
+Tile(BgElectric02A){}
+Tile(BgElectric02C){}
+Tile(BgElectric02E){}
+Tile(BgElectric03A){}
+Tile(BgElevatorDoor00){}
+Tile(BgEscalator00A){}
+Tile(BgEscalator00B){}
+Tile(BgFan00A){}
+Tile(BgFan00B)
+{
+    type = Dynamic;
+    sizeable = N;
+    fixture()
+    {
+        collisionPoints = (-2, -2), (2, -2), (2, 2), -2, 2);
+	}
+}
+Tile(BgFan01A){}
+Tile(BgFan01B)
+{
+    type = Dynamic;
+    sizeable = N;
+    fixture()
+    {
+        collisionPoints = (-4, -4), (4, -4), (4, 4), -4, 4);
+	}
+}
+Tile(BgFence00A){}
+Tile(BgFence00B){}
+Tile(BgFence00C){}
+Tile(BgFence00D){}
+Tile(BgFence00E){}
+Tile(BgFence00F){}
+Tile(BgFence00G){}
+Tile(BgFence01A){}
+Tile(BgFence01B){}
+Tile(BgFence01C){}
+Tile(BgFence01D){}
+Tile(BgFence01E){}
+Tile(BgFence01F){}
+Tile(BgFence01G){}
+Tile(BgFence03A){}
+Tile(BgFence03B){}
+Tile(BgFence03C){}
+Tile(BgFence03D){}
+Tile(BgFileCab00A){}
+Tile(BgFileCab01A){}
+Tile(BgFlagpole00A){}
+Tile(BgFlagpole00B){}
+Tile(BgFrame00A){}
+Tile(BgFrame00B){}
+Tile(BgFrame00C){}
+Tile(BgFrame00D){}
+Tile(BgFrame00E){}
+Tile(BgFrame00F){}
+Tile(BgFrame00G){}
+Tile(BgFrame00H){}
+Tile(BgFrame00I){}
+Tile(BgFrame00J){}
+Tile(BgFrame00K){}
+Tile(BgFrame01A){}
+Tile(BgFrame01B){}
+Tile(BgFramework00A){}
+Tile(BgFramework00B){}
+Tile(BgFramework00C){}
+Tile(BgFramework00D){}
+Tile(BgFramework00E){}
+Tile(BgFurnace00A)
+{
+    animation(BgFurnace00A)
+    {
+        width = 16;
+        frameTimes = 100;
+    }
+}
+Tile(BgGauge00A)
+{
+    animation(BgGauge00A)
+    {
+        width = 8;
+        frameTimes = 100, 50;
+    }
+}
+Tile(BgGauge00B)
+{
+    animation(BgGauge00B)
+    {
+        width = 8;
+        frameTimes = 100, 50;
+    }
+}
+Tile(BgGauge00C)
+{
+    animation(BgGauge00C)
+    {
+        width = 8;
+        frameTimes = 100, 50;
+    }
+}
+Tile(BgGauge00D)
+{
+    animation(BgGauge00D)
+    {
+        width = 16;
+        frameTime = 100, 50;
+    }
+}
+Tile(BgGauge00E)
+{
+    animation(BgGauge00E)
+    {
+        width = 8;
+        frameTimes = 100, 150;
+    }
+}
+Tile(BgGauge00F)
+{
+    animation(BgGauge00F)
+    {
+        width = 8;
+        frameTimes = 200, 200;
+    }
+}
+Tile(BgGauge00G){}
+Tile(BgGauge00H){}
+Tile(BgGauge01A){}
+Tile(BgGauge01B){}
+Tile(BgGauges00A){}
+Tile(BgGlass00A){}
+Tile(BgGlass00B){}
+Tile(BgGlass00C){}
+Tile(BgGlass00D){}
+Tile(BgGraffiti00A){}
+Tile(BgHook00A){}
+Tile(BgJusticeStatue00A){}
+Tile(BgJusticeStatue00B){}
+Tile(BgLamp00A){}
+Tile(BgLamp01A){}
+Tile(BgLattice00A){}
+Tile(BgLeaves00A){}
+Tile(BgLeaves00B){}
+Tile(BgLeaves00C){}
+Tile(BgLifeBuoy00A){}
+Tile(BgLocker00A){}
+Tile(BgMachine00A){}
+Tile(BgMachine01A){}
+Tile(BgMachine01B){}
+Tile(BgMachine01C){}
+Tile(BgMachine01D){}
+Tile(BgMachine01E){}
+Tile(BgMachine01F){}
+Tile(BgMachine01G){}
+Tile(BgMachine02A){}
+Tile(BgMachine02B){}
+Tile(BgMachine02C){}
+Tile(BgMachine02D){}
+Tile(BgMachine02E){}
+Tile(BgMachine03A){}
+Tile(BgMachine03B){}
+Tile(BgMachine03C){}
+Tile(BgMachine03D){}
+Tile(BgMachine03E){}
+Tile(BgMachine04A){}
+Tile(BgMachine04B){}
+Tile(BgMachine05A){}
+Tile(BgMachineFrame00A){}
+Tile(BgMachineFrame00B){}
+Tile(BgMachineFrame00C){}
+Tile(BgMachineFrame00D){}
+Tile(BgMachineFrame00E){}
+Tile(BgMachineFrame00F){}
+Tile(BgMachineFrame00G){}
+Tile(BgMachineFrame00H){}
+Tile(BgMachineFrame00I){}
+Tile(BgMallSign00A){}
+Tile(BgMallSign01A){}
+Tile(BgMallSign02A){}
+Tile(BgMallSign03A){}
+Tile(BgMallSign04A){}
+Tile(BgMetal00A)
+{
+    tileTexture = Metal00A;
+}
+Tile(BgMetal00B)
+{
+    tileTexture = Metal00B;
+}
+Tile(BgMetal00C)
+{
+    tileTexture = Metal00C;
+}
+Tile(BgMetal00D)
+{
+    tileTexture = Metal00D;
+}
+Tile(BgMetal00E)
+{
+    tileTexture = Metal00E;
+}
+Tile(BgMetal00F)
+{
+    tileTexture = Metal00F;
+}
+Tile(BgMetal01A){}
+Tile(BgMetal01B){}
+Tile(BgMetal01C){}
+Tile(BgMetal02A){}
+Tile(BgMetal02B){}
+Tile(BgMetal02C){}
+Tile(BgMetal02D){}
+Tile(BgMetal03A){}
+Tile(BgMetal03B){}
+Tile(BgMetal03C){}
+Tile(BgMetal03D){}
+Tile(BgMetal03E){}
+Tile(BgMetal03F){}
+Tile(BgMetal03G){}
+Tile(BgMetal03H){}
+Tile(BgMetal04A){}
+Tile(BgMetal04B){}
+Tile(BgMetal04C){}
+Tile(BgMetal04D){}
+Tile(BgMetal04E){}
+Tile(BgMetal04F){}
+Tile(BgMetal04G){}
+Tile(BgMetal04H){}
+Tile(BgMetal04I){}
+Tile(BgMetal04J){}
+Tile(BgMetal04K){}
+Tile(BgMetal04L){}
+Tile(BgMetal05A){}
+Tile(BgMetal05B){}
+Tile(BgMetal05C){}
+Tile(BgMetal05D){}
+Tile(BgMetal05E){}
+Tile(BgMetal06A){}
+Tile(BgMetal06B){}
+Tile(BgMetal06C){}
+Tile(BgMetal07A){}
+Tile(BgMetal07B){}
+Tile(BgMetal07C){}
+Tile(BgMetal07D){}
+Tile(BgMetal07E){}
+Tile(BgMetal07F){}
+Tile(BgMetal07G){}
+Tile(BgMetal07H){}
+Tile(BgMetal07I){}
+Tile(BgMetal08B){}
+Tile(BgMetal08D){}
+Tile(BgMetal08E){}
+Tile(BgMetal08F){}
+Tile(BgMetal08G){}
+Tile(BgMetal08H){}
+Tile(BgMetal08I){}
+Tile(BgMetal08J){}
+Tile(BgMetal08K){}
+Tile(BgMetal08L){}
+Tile(BgMetal08M){}
+Tile(BgMetal09A){}
+Tile(BgMetal09B){}
+
+
+Tile(BgMetal11A){}
+Tile(BgMetal11B){}
+Tile(BgMetalBars00A){}
+Tile(BgMetalBars00B){}
+Tile(BgMetalBars00C){}
+Tile(BgMetalBars00D){}
+Tile(BgMetalBeam00A){}
+Tile(BgMetalBeam00B){}
+Tile(BgMetalBeam00C){}
+Tile(BgMetalBeam01A){}
+Tile(BgMetalBeam01B){}
+Tile(BgMetalBeam01C){}
+Tile(BgMetalBeam01D){}
+Tile(BgMetalBeam01E){}
+Tile(BgMetalBeam01F){}
+Tile(BgMetalBeam02A){}
+Tile(BgMetalBeam02B){}
+Tile(BgMetalBeam02C){}
+Tile(BgMetalDoor00A){}
+Tile(BgMetalFramework00A){}
+Tile(BgMetalFramework00B){}
+Tile(BgMetalFramework00C){}
+Tile(BgMetalFramework00D){}
+Tile(BgMetalFramework00E){}
+Tile(BgMetalFramework00F){}
+Tile(BgMetalFramework01A){}
+Tile(BgMetalFramework01B){}
+Tile(BgMetalFramework01C){}
+Tile(BgMetalFramework01D){}
+Tile(BgMetalFramework02A){}
+Tile(BgMetalFramework02B){}
+Tile(BgMetalFramework02C){}
+Tile(BgMetalRoof00A){tileTexture=MetalRoof00A;}
+Tile(BgMetalRoof00B){tileTexture=MetalRoof00B;}
+Tile(BgMetalRoof00C){tileTexture=MetalRoof00C;}
+Tile(BgMetalRoof00D){tileTexture=MetalRoof00D;}
+Tile(BgMetalRoof00DormerA){ tileTexture=MetalRoof00DormerA; }
+Tile(BgMetalRoof00E){ tileTexture=MetalRoof00E; fixture(){ collisionPoints=(-8,-8),(8,-8),(8,8),(-8,0); } }
+Tile(BgMetalRoof00F){ tileTexture=MetalRoof00F; fixture(){ collisionPoints=(-8,-8),(8,-8),(8,0),(-8,8); } }
+Tile(BgMetalTrain00A)
+{
+    tileTexture = MetalTrain00A;
+}
+Tile(BgMetalTrain00B)
+{
+    tileTexture = MetalTrain00B;
+}
+Tile(BgMetalTrain00C)
+{
+    tileTexture = MetalTrain00C;
+}
+Tile(BgMetalTrain00D)
+{
+    tileTexture = MetalTrain00D;
+}
+Tile(BgMetalTrain00E)
+{
+    tileTexture = MetalTrain00E;
+}
+Tile(BgMetalTrain00F)
+{
+    tileTexture = MetalTrain00F;
+}
+Tile(BgMetalTrain00G)
+{
+    tileTexture = MetalTrain00G;
+}
+Tile(BgMetalTrain00H)
+{
+    tileTexture = MetalTrain00H;
+}
+Tile(BgMetalTrain00I)
+{
+    tileTexture = MetalTrain00I;
+}
+Tile(BgMetalTrain00J)
+{
+    tileTexture = MetalTrain00J;
+}
+Tile(BgMetalTrain00K)
+{
+    tileTexture = MetalTrain00K;
+}
+Tile(BgMetalTrain00L)
+{
+    tileTexture = MetalTrain00L;
+}
+Tile(BgMetalTrain00M)
+{
+    tileTexture = MetalTrain00M;
+}
+Tile(BgMetalTrain00N)
+{
+    tileTexture = MetalTrain00N;
+}
+Tile(BgMetalTrain00O)
+{
+    tileTexture = MetalTrain00O;
+}
+Tile(BgMetalTrain00P)
+{
+    tileTexture = MetalTrain00P;
+}
+Tile(BgMetalWall00A){}
+Tile(BgMetalWall00B){}
+Tile(BgMetalWall00C){}
+Tile(BgMetalWall00D){}
+Tile(BgMilitary01A){}
+Tile(BgMilitary01B){}
+Tile(BgMilitary01C){}
+Tile(BgMilitary01D){}
+Tile(BgMilitary01E){}
+Tile(BgMist00){}
+Tile(BgMooringRing00A){}
+Tile(BgNeon00A)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon00B)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon00C)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon00D)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon00E)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon00F)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon00G)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon01A)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon01B)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon01C)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon01D)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon01E)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon01F)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon01G)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon02A)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon02B)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeon02C)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeonChinese00)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeonChinese01)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeonJos00)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeonJos01)
+{
+    colorPalette = Neon;
+}
+Tile(BgNeonSale00)
+{
+    colorPalette = Neon;
+}
+Tile(BgOnAirSign00){}
+Tile(BgPayphone00){}
+Tile(BgPennant00A){}
+Tile(BgPennant00B){}
+Tile(BgPipe00A)
+{
+    tileTexture = Metal04A;
+}
+Tile(BgPipe00B)
+{
+    tileTexture = Metal04B;
+}
+Tile(BgPipe00C)
+{
+    tileTexture = Metal04C;
+}
+Tile(BgPipe00D)
+{
+    tileTexture = Metal04D;
+}
+Tile(BgPipe00E)
+{
+    tileTexture = Metal04E;
+}
+Tile(BgPipe00F)
+{
+    tileTexture = Metal04F;
+}
+Tile(BgPipe00G)
+{
+    tileTexture = Metal04G;
+}
+Tile(BgPipe00H)
+{
+    tileTexture = Metal04H;
+}
+Tile(BgPipe00I)
+{
+    tileTexture = Metal04I;
+}
+Tile(BgPipe00J)
+{
+	tileTexture = Metal04J;
+	sizeable = N;
+	fixture()
+	{
+		collisionPoints = (-6, -6), (6, -6, (6, 6), (-6, 6);
+	}
+}
+
+   Tile(BgPipe01A)
+{
+    tileTexture = Metal05A;
+}
+Tile(BgPipe01B)
+{
+    tileTexture = Metal05B;
+}
+Tile(BgPipe01C)
+{
+    tileTexture = Metal05C;
+}
+Tile(BgPipe01D)
+{
+    tileTexture = Metal05D;
+}
+Tile(BgPipe01E)
+{
+    tileTexture = Metal05E;
+}
+Tile(BgPipe01F)
+{
+    tileTexture = Metal05F;
+}
+Tile(BgPipe01G)
+{
+    tileTexture = Metal05G;
+}
+Tile(BgPipe01H)
+{
+    tileTexture = Metal05H;
+}
+Tile(BgPipe01I)
+{
+    tileTexture = Metal05I;
+}
+Tile(BgPipe01J)
+{
+	tileTexture = Metal05J;
+	sizeable = N;
+	fixture()
+	{
+		collisionPoints = (-12, -12), (12, -12, (12, 12), (-12, 12);
+	}
+}
+Tile(BgPipe01K)
+{
+    tileTexture = Metal05K;
+}
+Tile(BgPipe02A){}
+Tile(BgPipe02B){}
+Tile(BgPipe02C){}
+Tile(BgPipe02D){}
+Tile(BgPipe02E){}
+Tile(BgPipe02F){}
+Tile(BgPipe02G){}
+Tile(BgPipe03A){}
+Tile(BgPipe03B){}
+Tile(BgPipe03C){}
+Tile(BgPipe03D){}
+Tile(BgPipe03E){}
+Tile(BgPipe03F){}
+Tile(BgPipe03G){}
+Tile(BgPipe04A){}
+Tile(BgPipe04B){}
+Tile(BgPipe04C){}
+Tile(BgPipe04D){}
+Tile(BgPipe04E){}
+Tile(BgPipe04F){}
+Tile(BgPipe04G){}
+Tile(BgPipe04H){}
+Tile(BgPipe05A){}
+Tile(BgPipe05B){}
+Tile(BgPipe05C){}
+Tile(BgPipe05D){}
+Tile(BgPipe05E){}
+Tile(BgPipe05F){}
+Tile(BgPipe05G){}
+Tile(BgPipe06A){}
+Tile(BgPipe06B){}
+Tile(BgPipe06C){}
+Tile(BgPipe06D){}
+Tile(BgPipe06E){}
+Tile(BgPipe06F){}
+Tile(BgPipe06G){}
+Tile(BgPipes00A){}
+Tile(BgPipes00B){}
+Tile(BgPipes00C){}
+Tile(BgPoliceCar00A){}
+Tile(BgPoliceCar00B){}
+Tile(BgPoliceCarLights00A)
+{
+    animation(BgPoliceCarLights00A)
+    {
+        width = 16;
+        frameTimes = 50;
+    }
+}
+Tile(BgPoliceCarLights00B)
+{
+    animation(BgPoliceCarLights00B)
+    {
+        width = 16;
+        frameTimes = 50;
+    }
+}
+Tile(BgPlayerPortrait00)
+{
+    tileTexture = PlayerProfileInfo;
+    sizeable = N;
+    freeRotation = false;
+    fixture()
+    {
+        collisionPoints = (-8, -12), (8, -12), (8, 8), (-8, 8);
+    }
+}
+Tile(BgPoster00){}
+Tile(BgPoster01){}
+Tile(BgPottedPlant00){}
+Tile(BgRadar00A)
+{
+    animation(BgRadar00A)
+    {
+        width = 16;
+        frameTime = 100;
+    }
+}
+Tile(BgRadio00A){}
+Tile(BgRail00A){}
+Tile(BgRail00B){}
+Tile(BgRail00C){}
+Tile(BgRail00D){}
+Tile(BgRail00E){}
+Tile(BgRail00F){}
+Tile(BgRail00G){}
+Tile(BgRail00H){}
+Tile(BgRailing00A){}
+Tile(BgRailing00B){}
+Tile(BgRailing00C){}
+Tile(BgRailing00D){}
+Tile(BgRailing00E){}
+Tile(BgRailing00F){}
+Tile(BgRailing00G){}
+Tile(BgRailing00H){}
+Tile(BgRailing00I){}
+Tile(BgRailing01A){}
+Tile(BgRailing01B){}
+Tile(BgRailing01C){}
+Tile(BgRailing01D){}
+Tile(BgRailing01E){}
+Tile(BgRailing01F){}
+Tile(BgRailing02A){}
+Tile(BgRailing02B){}
+Tile(BgScpdSign00){}
+Tile(BgScpdSymbol00A){}
+Tile(BgSewagePipe00A){}
+Tile(BgSewagePipe00B){}
+Tile(BgSewagePipe01A)
+{
+    animation(BgSewagePipe01A)
+    {
+        width = 32;
+        frameTimes = 25;
+    }
+}
+Tile(BgSewagePipe01B)
+{
+    animation(BgSewagePipe01B)
+    {
+        width = 16;
+        frameTimes = 25;
+    }
+}
+Tile(BgSewagePipe01C)
+{
+    animation(BgSewagePipe01C)
+    {
+        width = 48;
+        frameTimes = 25;
+    }
+}
+Tile(BgSewagePipe02A){}
+Tile(BgSftvLogo00A){}
+Tile(BgShadow00A)
+{
+    tileTexture = Shadow00A;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow00B)
+{
+    tileTexture = Shadow00B;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow00C)
+{
+    tileTexture = Shadow00C;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow00D)
+{
+    tileTexture = Shadow00D;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow00E)
+{
+    tileTexture = Shadow00E;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow02A)
+{
+    tileTexture = Shadow02A;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow02B)
+{
+    tileTexture = Shadow02B;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow03A)
+{
+    tileTexture = Shadow03A;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShadow03B)
+{
+    tileTexture = Shadow03B;
+    sizeable = D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(BgShelf00A){}
+Tile(BgShelf00B){}
+Tile(BgShelf00C){}
+Tile(BgSign00A)
+{
+    sizeable = N;
+}
+Tile(BgSign00B)
+{
+    sizeable = N;
+}
+Tile(BgSign00C)
+{
+    sizeable = N;
+}
+Tile(BgSign00D)
+{
+    sizeable = N;
+}
+Tile(BgSign00E)
+{
+    sizeable = N;
+}
+Tile(BgSign00F)
+{
+    sizeable = N;
+}
+Tile(BgSign00G)
+{
+    sizeable = N;
+}
+Tile(BgSign01A){}
+Tile(BgSign01B){}
+Tile(BgSign01C){}
+Tile(BgSign01D){}
+Tile(BgSign01E){}
+Tile(BgSign02A){}
+Tile(BgSign02B){}
+Tile(BgSign02C){}
+Tile(BgSmallCrate00A){}
+Tile(BgSmallCrate01A){}
+Tile(BgSmallCrate02A){}
+Tile(BgSmokestack01A){}
+Tile(BgSmokestack01B){}
+Tile(BgSmokestack01C){}
+Tile(BgSmokestack01D){}
+Tile(BgSmokestack01E){}
+Tile(BgSmokestack01F){}
+Tile(BgSmokestack01G){}
+Tile(BgSmokestack01H){}
+Tile(BgSmokestack01I){}
+Tile(BgSpeaker00A){}
+Tile(BgSpeaker00B){}
+Tile(BgSpectator00)
+{
+    animation(BgSpectator00)
+    {
+        frameTimes = 100;
+        width = 16;
+    }
+}
+Tile(BgSpectators00)
+{
+    animation(BgSpectators00)
+    {
+        frameTimes = 250;
+        width = 64;
+    }
+}
+Tile(BgStone00A){}
+Tile(BgStone00B){}
+Tile(BgStone01A){}
+Tile(BgStone01B){}
+Tile(BgStone01C){}
+Tile(BgStone02A){}
+Tile(BgStone02B){}
+Tile(BgStone02C){}
+Tile(BgStone02D){}
+Tile(BgStone03A){}
+Tile(BgStone03B){}
+Tile(BgStone03C){}
+Tile(BgStone03D){}
+Tile(BgStone03E){}
+Tile(BgStone04A)
+{
+    tileTexture = Stone04A;
+}
+Tile(BgStone04B)
+{
+    tileTexture = Stone04B;
+}
+Tile(BgStone04C)
+{
+    tileTexture = Stone04C;
+}
+Tile(BgStonePillar00A){}
+Tile(BgStonePillar00B){}
+Tile(BgStonePillar00C){}
+Tile(BgStonePillar00D){}
+Tile(BgStonePillar00E){}
+Tile(BgStonePillar00F){}
+Tile(BgStonePillarFoundation00A){}
+Tile(BgStonePillarFoundation00B){}
+Tile(BgStonePillarFoundation00C){}
+Tile(BgStonePillarFoundation00D){}
+Tile(BgStonePillarFoundation00E){}
+Tile(BgStonePillarFoundation00F){}
+Tile(BgStove00A){}
+Tile(BgStoreShelf00A){}
+Tile(BgStoreShelf00B){}
+Tile(BgStoreShelf00C){}
+Tile(BgSubwayTrain00){}
+Tile(BgSuperfighterTank00A)
+{
+    animation(BgSuperfighterTank00A)
+    {
+        frameTimes = 100;
+        width = 24;
+    }
+}
+Tile(BgSuperfighterTank00B){}
+Tile(BgSuperfighterTank00BrokenA){}
+Tile(BgSuperfighterTank00BrokenB){}
+Tile(BgSuperfighterTank00BrokenC){}
+Tile(BgSymbol00A){}
+Tile(BgSymbol00B){}
+Tile(BgSymbol00C){}
+Tile(BgSymbol00D){}
+Tile(BgSymbol00E){}
+Tile(BgSymbol00F){}
+Tile(BgSymbol00G){}
+Tile(BgSymbol00H){}
+Tile(BgSymbol00I){}
+Tile(BgSymbol00J){}
+Tile(BgSymbol00K){}
+Tile(BgSymbol00L){}
+Tile(BgSymbol00M){}
+Tile(BgSymbol00N){}
+Tile(BgSymbol00O){}
+Tile(BgSymbol00P){}
+Tile(BgSymbol00Q){}
+Tile(BgSymbol00R){}
+Tile(BgSymbol00S){}
+Tile(BgSymbol00T){}
+Tile(BgSymbol00U){}
+Tile(BgSymbol00V){}
+Tile(BgSymbol00W){}
+Tile(BgSymbol00X){}
+Tile(BgSymbol00Y){}
+Tile(BgSymbol00Z){}
+Tile(BgSymbol00One){}
+Tile(BgSymbol00Two){}
+Tile(BgSymbol00Three){}
+Tile(BgSymbol00Four){}
+Tile(BgSymbol00Five){}
+Tile(BgSymbol00Six){}
+Tile(BgSymbol00Seven){}
+Tile(BgSymbol00Eight){}
+Tile(BgSymbol00Nine){}
+Tile(BgSymbol00Zero){}
+Tile(BgSymbol00Dot){}
+Tile(BgSymbol00Comma){}
+Tile(BgSymbol00Excl){}
+Tile(BgSymbol00Question){}
+Tile(BgSymbol00Plus){}
+Tile(BgSymbol00Minus){}
+Tile(BgSymbol00Star){}
+Tile(BgSymbol00Arrow){}
+Tile(BgTable00A){}
+Tile(BgTelescreen00)
+{
+	sizeable=D;
+	animation(BgTelescreen00)
+	{
+		width = 48;
+		frameTime = 50;
+	}
+}
+Tile(BgTelevision00A)
+{
+    sizeable = D;
+    animation(BgTelevision00A)
+    {
+        width = 16;
+        frameTime = 25;
+    }
+}
+Tile(BgTelevision00B)
+{
+    sizeable = D;
+}
+Tile(BgTincan00A){}
+Tile(BgTower00A){}
+Tile(BgTower00B){}
+Tile(BgTower00C){}
+Tile(BgTower00D){}
+Tile(BgTowerTop00A){}
+Tile(BgTowerTop00B){}
+Tile(BgTree00A){}
+Tile(BgTree00B){}
+Tile(BgTree00C){}
+Tile(BgTree00D){}
+Tile(BgTree00E){}
+Tile(BgTree01A){}
+Tile(BgTree01AXmas){}
+Tile(BgTree01B){}
+Tile(BgTree01BXmas){}
+Tile(BgTree01C){}
+Tile(BgTree01CXmas){}
+Tile(BgTree01D){}
+Tile(BgTree01E){}
+Tile(BgTree02A){}
+Tile(BgTree02B){}
+Tile(BgTree02C){}
+Tile(BgTree02D){}
+Tile(BgTree02E){}
+Tile(BgTree02F){}
+Tile(BgTruck00A){}
+Tile(BgTube00A){}
+Tile(BgTube00B){}
+Tile(BgTube00C){}
+Tile(BgTube00D){}
+Tile(BgTube00E){}
+Tile(BgTube00F){}
+Tile(BgUSFlag00A)
+{
+    animation(BgUSFlag00A)
+    {
+        width = 48;
+        frameTime = 75;
+    }
+}
+Tile(BgValve00A){}
+Tile(BgValve00B){}
+Tile(BgValve00C){}
+Tile(BgValve00D){}
+Tile(BgValve00E){}
+Tile(BgVent00A){}
+Tile(BgVent00B){}
+Tile(BgVent00C){}
+Tile(BgVent00D){}
+Tile(BgVent00E){}
+Tile(BgVent00F){}
+Tile(BgVent00G){}
+Tile(BgVent00H){}
+Tile(BgVent00I){}
+Tile(BgVent01A){}
+Tile(BgVent01B){}
+Tile(BgVent01C){}
+Tile(BgPlatSupport00)
+{
+	sizeable = V;
+}
+Tile(BgPlatSupport00S){}
+Tile(BgPlatSupport01){}
+Tile(BgVendingMachine00){}
+Tile(BgVendingMachine01A){}
+Tile(BgVendingMachine01A_D){}
+Tile(BgVendingMachine01B){}
+Tile(BgVendingMachine01B_D){}
+Tile(BgWall00A){}
+Tile(BgWall00B){}
+Tile(BgWall00C){}
+Tile(BgWall00D){}
+Tile(BgWall00E)
+{
+    sizeable = N;
+}
+Tile(BgWall00F)
+{
+    sizeable = N;
+}
+Tile(BgWall00G)
+{
+    sizeable = N;
+}
+Tile(BgWall00H){}
+Tile(BgWall00I){}
+Tile(BgWall00J){}
+Tile(BgWall00K){}
+Tile(BgWall00L){}
+Tile(BgWall01A){}
+Tile(BgWall01B){}
+Tile(BgWall01C){}
+Tile(BgWall01D){}
+Tile(BgWall01E){}
+Tile(BgWall01F){}
+Tile(BgWall01G){}
+Tile(BgWall01H){}
+Tile(BgWall01I){}
+Tile(BgWall02A){}
+Tile(BgWall02B){}
+Tile(BgWall02C){}
+Tile(BgWall02D){}
+Tile(BgWall02E){}
+Tile(BgWall02F){}
+Tile(BgWall02G){}
+Tile(BgWall02H){}
+Tile(BgWall02I){}
+Tile(BgWall02L){}
+Tile(BgWall02M){}
+Tile(BgWall02N){}
+Tile(BgWall02O){}
+Tile(BgWall02P){}
+Tile(BgWall02Q){}
+Tile(BgWall02WireA){}
+Tile(BgWall02WireB){}
+Tile(BgWall02WireC){}
+Tile(BgWall02WireD){}
+Tile(BgWall02WireE){}
+Tile(BgWall02WireF){}
+Tile(BgWall02WireM){}
+Tile(BgWall02WireN){}
+Tile(BgWall03A){}
+Tile(BgWall03B){}
+Tile(BgWall04A){}
+Tile(BgWall04B){}
+Tile(BgWall05A){}
+Tile(BgWall05B){}
+Tile(BgWall05C){}
+Tile(BgWall06A){}
+Tile(BgWall06B){}
+Tile(BgWall06C){}
+Tile(BgWall06D){}
+Tile(BgWall07A){}
+Tile(BgWall07B){}
+Tile(BgWall07C){}
+Tile(BgWall07D){}
+Tile(BgWall07E){}
+Tile(BgWall08A){}
+Tile(BgWall08B){}
+Tile(BgWall08C){}
+Tile(BgWall08D){}
+Tile(BgWall08E){}
+Tile(BgWall08F){}
+Tile(BgWall09A){}
+Tile(BgWall09B){}
+Tile(BgWall09C){}
+Tile(BgWall09D){}
+Tile(BgWall10A){}
+Tile(BgWall10B){}
+Tile(BgWall11A){}
+Tile(BgWall11B){}
+Tile(BgWallPanel00A){}
+Tile(BgWallPanel00B){}
+Tile(BgWallPanel00C){}
+Tile(BgWallPanel00D){}
+Tile(BgWallPanel00E){}
+Tile(BgWallPanel00F){}
+Tile(BgWallPanel01A){}
+Tile(BgWallPanel01B){}
+Tile(BgWallPanel01C){}
+Tile(BgWallPanel01D){}
+Tile(BgWallPanel01E){}
+Tile(BgWantedPoster00){}
+Tile(BgWardrobe00A){}
+Tile(BgWater00A){}
+Tile(BgWater00B)
+{
+    animation(BgWater00B)
+    {
+        width = 8;
+        frameTime = 50;
+    }
+}
+Tile(BgWaterCooler00A){}
+Tile(BgWindow00A){}
+Tile(BgWindow00B){}
+Tile(BgWindow00C){}
+Tile(BgWindow00D){}
+Tile(BgWindow00E){}
+Tile(BgWindow00F){}
+Tile(BgWindow00G){}
+Tile(BgWindow00H){}
+Tile(BgWindow00I){}
+Tile(BgWindow01A){}
+Tile(BgWindow01B){}
+Tile(BgWindow01C){}
+Tile(BgWindow01D){}
+Tile(BgWindow01E){}
+Tile(BgWindow01F){}
+Tile(BgWindow01G){}
+Tile(BgWindow01H){}
+Tile(BgWindow01I){}
+Tile(BgWindow02A){}
+Tile(BgWindow02B){}
+Tile(BgWindow02C){}
+Tile(BgWindow03A){}
+Tile(BgWindow03B){}
+Tile(BgWindow04A){}
+Tile(BgWindow04B){}
+Tile(BgWindow04C){}
+Tile(BgWindow04D){}
+Tile(BgWindow05A){}
+Tile(BgWindow05B){}
+Tile(BgWindow06A){}
+Tile(BgWindow06B){}
+Tile(BgWindow07A){}
+Tile(BgWindow07B){}
+Tile(BgWindow08A){}
+Tile(BgWindowBlind00A){}
+Tile(BgWindowBlind00B){}
+Tile(BgWindowBlind00C){}
+Tile(BgWiring00A)
+{
+    animation(BgWiring00A)
+    {
+        width = 16;
+        frameTimes = 250;
+    }
+}
+Tile(BgWiring00B)
+{
+    animation(BgWiring00B)
+    {
+        width = 16;
+        frameTimes = 250;
+    }
+}
+Tile(BgWiring01A){}
+Tile(BgWiring01B){}
+Tile(BgWiring01C){}
+Tile(BgWiring01D){}
+Tile(BgWiring01E){}
+Tile(BgWiring01F){}
+Tile(BgWiring01G){}
+Tile(BgWiring02A){}
+Tile(BgWiring02B){}
+Tile(BgWiring02C){}
+Tile(BgWiring02D){}
+Tile(BgWood01A)
+{
+    tileTexture = Wood01A;
+}
+Tile(BgWood01B)
+{
+    tileTexture = Wood01B;
+}
+Tile(BgWood01C)
+{
+    tileTexture = Wood01C;
+}
+Tile(BgWood02A)
+{
+    tileTexture = Wood03A;
+}
+Tile(BgWood02B)
+{
+    tileTexture = Wood03B;
+}
+Tile(BgWood02C)
+{
+    tileTexture = Wood03C;
+}
+Tile(BgWoodBeam00A){}
+Tile(BgWoodBeam00B){}
+Tile(BgWoodBeam00C){}
+Tile(BgWoodBeam01A){}
+Tile(BgWoodBeam01B){}
+Tile(BgWoodBeam01C){}
+Tile(BgWoodPlank00A){}
+Tile(BgWoodPlank00B){}
+Tile(BgWoodPlank00C){}
+Tile(BgWoodPlank00D){}
+Tile(BgWoodShutters00A){}

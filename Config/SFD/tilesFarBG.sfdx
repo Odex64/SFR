@@ -1,0 +1,258 @@
+// FAR BACKGROUND
+defaultTile(d_t)
+{
+    drawCategory = FBG;
+    mainLayer = 0;
+    material.destroyEffect = none;
+    material.destroySound = none;
+    material.blockExplosions = false;
+    fixture()
+    {
+        collisionGroup = none;
+        blockFire = false;
+    }
+    colorPalette = BG;
+    sizeable = A;
+    kickable = false;
+    punchable = false;
+    projectileHit = false;
+    doTakeDamage.Fire = false;
+    material.resistance.fire.modifier = 0;
+}
+Tile(FarBgBlimp00)
+{
+    animation(FarBgBlimp00)
+    {
+        width = 32;
+        frameTimes = 200;
+    }
+}
+Tile(FarBgBuilding00A){}
+Tile(FarBgBuilding01A){}
+Tile(FarBgBuilding01B){}
+Tile(FarBgBuilding01C){}
+Tile(FarBgBuilding01D){}
+Tile(FarBgBuilding01E){}
+Tile(FarBgBuilding01F){}
+Tile(FarBgBuilding01G){}
+Tile(FarBgBuilding01H){}
+Tile(FarBgBuilding01I){}
+Tile(FarBgBuilding01J){}
+Tile(FarBgBuilding01K){}
+Tile(FarBgBuilding01L){}
+Tile(FarBgBuilding01M){}
+Tile(FarBgBuilding01WindowA){}
+Tile(FarBgBuilding01WindowB){}
+Tile(FarBgBuilding01WindowC){}
+Tile(FarBgBuilding02A){}
+Tile(FarBgBuilding02B){}
+Tile(FarBgBuilding02C){}
+Tile(FarBgBuilding02G){}
+Tile(FarBgBeam00A){}
+Tile(FarBgBeam00B){}
+Tile(FarBgClock00){}
+Tile(FarBgClouds00A)
+{
+    colorPalette = Sky;
+}
+Tile(FarBgClouds00B)
+{
+    colorPalette = Sky;
+}
+Tile(FarBgClouds00C)
+{
+    sizeable = H;
+    colorPalette = Sky;
+}
+Tile(FarBgClouds01A)
+{
+    colorPalette = Sky;
+}
+Tile(FarBgClouds01B)
+{
+    sizeable = H;
+    colorPalette = Sky;
+}
+Tile(FarBgClouds01C)
+{
+    sizeable = H;
+    colorPalette = Sky;
+}
+Tile(FarBgClouds01D)
+{
+    sizeable = H;
+    colorPalette = Sky;
+}
+Tile(FarBgLight00A){}
+Tile(FarBgLight01A){}
+Tile(FarBgMast00A){}
+Tile(FarBgMast00B){}
+Tile(FarBgMountains00A){}
+Tile(FarBgPipe00A){}
+Tile(FarBgPipe00B){}
+Tile(FarBgPipe01A){}
+Tile(FarBgPipe01B){}
+Tile(FarBgSilo00A){}
+Tile(FarBgSilo00B){}
+Tile(FarBgSilo00C){}
+Tile(FarBgSpire00A){}
+Tile(FarBgSpire01A){}
+Tile(FarBgStack00A){}
+Tile(FarBgStack00B){}
+Tile(FarBgStack00C){}
+Tile(FarBgStack01A){}
+Tile(FarBgStack01B){}
+Tile(FarBgStack01C){}
+Tile(FarBgStack01D){}
+Tile(FarBgWatertank00A){}
+Tile(FarBgWatertank00B){}
+Tile(FarBgWindow00A){}
+Tile(FarBgWindow01A){}
+Tile(FarBgWindow01B){}
+Tile(FarBgWindow01C){}
+Tile(FarBgWindow01D){}
+Tile(FarBgWindow02A){}
+Tile(FarBgWindow03A){}
+Tile(FarBgWindow03B){}
+Tile(FarBgSearchlight00){}
+Tile(FarBgShadow00A)
+{
+    tileTexture = Shadow00A;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(FarBgShadow00B)
+{
+    tileTexture = Shadow00B;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(FarBgShadow00C)
+{
+    tileTexture = Shadow00C;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(FarBgShadow00D)
+{
+    tileTexture = Shadow00D;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(FarBgShadow00E)
+{
+    tileTexture = Shadow00E;
+    fixture()
+    {
+        mass = 0.5 kg;
+    }
+}
+Tile(FarBgSkylineCity00A){}
+Tile(FarBgSkylineCity00B){}
+Tile(FarBgSkylineCity00C){}
+Tile(FarBgSkylineCity01A){}
+Tile(FarBgSkylineCity01B){}
+Tile(FarBgSkylineCity01C){}
+Tile(FarBgSkylineCity02A){}
+Tile(FarBgSkylineCity02B){}
+Tile(FarBgSkylineCity02C){}
+Tile(FarBgSkylineCity03A){}
+Tile(FarBgSkylineCity03B){}
+Tile(FarBgSkylineCity03C){}
+Tile(FarBgSkylineCity04A){}
+Tile(FarBgSkylineCity04B){}
+Tile(FarBgSkylineCity04C){}
+Tile(FarBgSkylineCity04D)
+{
+    animation(FarBgSkylineCity04D)
+    {
+        width = 8;
+        frameTimes = 500, 250;
+    }
+}
+Tile(FarBgSkylineCity04E)
+{
+    animation(FarBgSkylineCity04E)
+    {
+        width = 8;
+        frameTimes = 250, 500;
+    }
+}
+Tile(FarBgSkylineCity04F){}
+Tile(FarBgSkylineCity04G){}
+Tile(FarBgSkylineCity05A){}
+Tile(FarBgSkylineCity05B){}
+Tile(FarBgSkylineCity06A){}
+Tile(FarBgSkylineCity06B){}
+Tile(FarBgSkylineCity06C){}
+Tile(FarBgSkylineCity06D){}
+Tile(FarBgSkylineCity06E){}
+Tile(FarBgSkylineCity06F){}
+Tile(FarBgSkylineHills00A){}
+Tile(FarBgSkylineHills00B){}
+Tile(FarBgSkylineHills00C){}
+Tile(FarBgSkylineHills01A){}
+Tile(FarBgSkylineHills01B){}
+Tile(FarBgSkylineSearchLight00){}
+Tile(FarBgSkylineWater00A)
+{
+    sizeable = D;
+    animation(FarBgSkylineWater00A)
+    {
+        width = 8;
+        frameTimes = 250, 250;
+    }
+}
+Tile(FarBgSkylineWater01A)
+{
+    sizeable = D;
+    animation(FarBgSkylineWater01A)
+    {
+        width = 16;
+        frameTimes = 100;
+    }
+}
+Tile(FarBgStar00A)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgStar00B)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgStar00C)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgStar00D)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgMoon00A)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgMoon00B)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgMoon01A)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgMoon01B)
+{
+    colorPalette = Moon;
+}
+Tile(FarBgMoon02A)
+{
+    colorPalette = Moon;
+}
