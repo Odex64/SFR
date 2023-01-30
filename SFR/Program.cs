@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 using System.Net;
 using System.Reflection;
 using HarmonyLib;
@@ -17,13 +18,13 @@ internal static class Program
     private const string VersionURI = "https://raw.githubusercontent.com/Odex64/SFR/master/version";
     private static string _gameURI = "https://github.com/Odex64/SFR/releases/download/GAMEVERSION/SFR.zip";
     internal static readonly string GameDirectory = Directory.GetCurrentDirectory();
-    private static readonly Harmony Harmony = new("superfightersredux.tk");
+    private static readonly Harmony Harmony = new("github.com/Odex64/SFR");
     private static WebClient _webClient;
 
     private static int Main(string[] args)
     {
 #if (!DEBUG)
-        if (Choice("Check for updates? (Y/n)"))
+        if (!(args.Length > 0 && args.Contains("-SKIP", StringComparer.OrdinalIgnoreCase)) && Choice("Check for updates? (Y/n)"))
         {
             if (CheckUpdate())
             {
@@ -70,7 +71,7 @@ internal static class Program
     private static bool Choice(string message)
     {
         Logger.LogWarn(message, false);
-        return Console.ReadLine() is "y" or "Y";
+        return (Console.ReadLine() ?? string.Empty).Equals("Y", StringComparison.OrdinalIgnoreCase);
     }
 
     private static void ReplaceOldFile(string file)
