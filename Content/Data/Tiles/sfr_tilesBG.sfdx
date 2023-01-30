@@ -224,6 +224,76 @@ Tile(BgPirateShip05A){}
 Tile(BgPirateShip05B){}
 Tile(BgPirateShip05C){}
 Tile(BgPirateShip05D){}
-Tile(PirateBrig00){ drawCategory = FG; }
+Tile(PirateBrig00)
+{
+	drawCategory = FG;
+}
 Tile(BgPirateShipSmall00){}
 Tile(BgPirateWheelHolder00){}
+Tile(BgPainting00)
+{
+	type = Static;
+	life = 50;
+	material = cloth;
+	material.flammable = true;
+	material.blockExplosions = false;
+	absorbProjecTile = false;
+	doTakeDamage.fire = true;
+	kickable = true;
+	punchable = true;
+}
+Tile(BgPainting00_D)
+{
+	type = Static;
+	projecTileHit = false;
+	punchable = false;
+	kickable = false;
+}
+Tile(BgPainting01)
+{
+	type = Static;
+	life = 50;
+	material = cloth;
+	material.flammable = true;
+	material.blockExplosions = false;
+	absorbProjecTile = false;
+	doTakeDamage.fire = true;
+	kickable = true;
+	punchable = true;
+}
+Tile(BgPainting02)
+{
+	type = Static;
+	life = 50;
+	material = cloth;
+	material.flammable = true;
+	material.blockExplosions = false;
+	absorbProjecTile = false;
+	doTakeDamage.fire = true;
+	kickable = true;
+	punchable = true;
+}
+Tile(BgPainting03)
+{
+	type = Static;
+	life = 50;
+	material = cloth;
+	material.flammable = true;
+	material.blockExplosions = false;
+	absorbProjecTile = false;
+	doTakeDamage.fire = true;
+	kickable = true;
+	punchable = true;
+}
+Tile(BgPainting04)
+{
+	type = Static;
+	life = 50;
+	material = cloth;
+	material.flammable = true;
+	material.blockExplosions = false;
+	absorbProjecTile = false;
+	doTakeDamage.fire = true;
+	kickable = true;
+	punchable = true;
+}
