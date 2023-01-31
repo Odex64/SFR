@@ -42,6 +42,7 @@ internal sealed class CreditsPanel : Panel
             new MenuItemSeparator("SPECIAL THANKS"),
             new MenuItemLabel("Odex64 - Founder & Project Leader", Align.Center, Color.Gold),
             new MenuItemLabel("Eiga, Heapons, Olv - Moderation", Align.Center, Color.Gold),
+            new MenuItemLabel("Mimyuu - For the special font ", Align.Center, Color.Gold),
             new MenuItemLabel("Motto73 - For his extensive work on the mod", Align.Center, Color.Gold),
             new MenuItemLabel("NearHuscarl - For his amazing items editor", Align.Center, Color.Gold)
         };
