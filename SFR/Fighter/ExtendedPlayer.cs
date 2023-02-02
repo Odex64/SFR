@@ -27,6 +27,10 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         modifiers.SprintSpeedModifier = 1.6f;
         modifiers.RunSpeedModifier = 1.6f;
         _player.SetModifiers(modifiers);
+
+        // avoid the server from reposition the player due to excessive speed.
+        // TODO: Implement a proper mechanics in Player.GetTopSpeed()
+        // _player.SpeedBoostActive = true;
         Stickied = true;
     }
 
@@ -37,6 +41,8 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         modifiers.SprintSpeedModifier = 1f;
         modifiers.RunSpeedModifier = 1f;
         _player.SetModifiers(modifiers);
+
+        // _player.SpeedBoostActive = false; // temp
         Stickied = false;
     }
 }

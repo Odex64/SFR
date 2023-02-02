@@ -15,13 +15,13 @@ internal static class GadgetHandler
 {
     internal static DevIcon DevIcon;
 
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(ObjectStreetsweeper), nameof(ObjectStreetsweeper.GetOwnerTeam))]
-    private static bool FixDroneTeam(ref Team __result)
-    {
-        __result = DevIcon.Team;
-        return false;
-    }
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(ObjectStreetsweeper), nameof(ObjectStreetsweeper.GetOwnerTeam))]
+    // private static bool FixDroneTeam(ref Team __result)
+    // {
+    //     __result = DevIcon.Team;
+    //     return false;
+    // }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Constants), nameof(Constants.GetTeamIcon))]
@@ -64,6 +64,20 @@ internal static class GadgetHandler
         }
 
         return true;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.DrawPlates))]
+    private static void AfterDrawPlates(Player __instance)
+    {
+        if (DevIcon.Account != null && __instance is { IsBot: false, IsDead: false })
+        {
+            var user = __instance.GetGameUser();
+            if (user != null && NameIconHandler.IsDeveloper(user.Account))
+            {
+                __instance.m_currentTeam = DevIcon.Team;
+            }
+        }
     }
 
     [HarmonyPrefix]

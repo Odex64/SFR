@@ -185,6 +185,17 @@ internal static class SyncHandler
 
                 ((ObjectHead)headData[0]).ReplaceTexture = ObjectHead.TextureFromString((string)data.Args[1]);
                 break;
+
+            case DataType.DisableStickyBoost:
+                var stickyBoostData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
+                if (stickyBoostData == null)
+                {
+                    return;
+                }
+
+                var extendedPlayer = ((Player)stickyBoostData[0].InternalData).GetExtension();
+                extendedPlayer.DisableStickiedBoost();
+                break;
         }
     }
 

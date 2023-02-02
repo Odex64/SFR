@@ -96,8 +96,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
 
                 if (_stickiedPlayer is { IsRemoved: false })
                 {
-                    var extendedPlayer = _stickiedPlayer.GetExtension();
-                    extendedPlayer.DisableStickiedBoost();
+                    GenericData.SendGenericDataToClients(new GenericData(DataType.DisableStickyBoost, _stickiedPlayer.ObjectID));
                 }
 
                 if (Constants.Random.NextFloat() < GetDudChance())
