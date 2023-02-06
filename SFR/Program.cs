@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -23,8 +24,50 @@ internal static class Program
 
     private static int Main(string[] args)
     {
+        if (args.Contains("-HELP", StringComparer.OrdinalIgnoreCase))
+        {
+            Logger.LogInfo("#Command-line parameters", false);
+            Logger.LogWarn("-HELP            Show help dialog.\n-SFD             Directly start SFD.\n-SFR             Directly start SFR.\n-SKIP            Skip 'check updates' dialog.\n-SLOTS <amount>  Set slots amount for dedicated server.\n", false);
+            Logger.LogInfo("Example command to skip updates and start SFR server with 16 slots", false);
+            Logger.LogWarn("SFR.exe -sfr -skip -server -slots 16", false);
+            return 0;
+        }
+
 #if (!DEBUG)
-        if (!(args.Length > 0 && args.Contains("-SKIP", StringComparer.OrdinalIgnoreCase)) && Choice("Check for updates? (Y/n)"))
+        if (args.Contains("-SFD", StringComparer.OrdinalIgnoreCase))
+        {
+            string gameFile = Path.Combine(GameDirectory, "Superfighters Deluxe.exe");
+            if (!File.Exists(gameFile))
+            {
+                Logger.LogError("Superfighters Deluxe.exe not found!");
+                return -1;
+            }
+
+            Process.Start(gameFile, string.Join(" ", args));
+            return 0;
+        }
+
+        if (!args.Contains("-SFR", StringComparer.OrdinalIgnoreCase))
+        {
+            Logger.LogWarn("Start SFR or SFD: \n1. SFR\n2. SFD", false);
+            Console.SetCursorPosition("Start SFD or SFD: ".Length, Console.CursorTop - 3);
+            var key = Console.ReadKey().Key;
+            Console.SetCursorPosition(0, Console.CursorTop + 4);
+            if (key == ConsoleKey.D2)
+            {
+                string gameFile = Path.Combine(GameDirectory, "Superfighters Deluxe.exe");
+                if (!File.Exists(gameFile))
+                {
+                    Logger.LogError("Superfighters Deluxe.exe not found!");
+                    return -1;
+                }
+
+                Process.Start(gameFile, string.Join(" ", args));
+                return 0;
+            }
+        }
+
+        if (!(args.Length > 0 && args.Contains("-SKIP", StringComparer.OrdinalIgnoreCase)) && !Constants.SFRVersion.EndsWith("_dev") && Choice("Check for updates? (Y/n)"))
         {
             if (CheckUpdate())
             {
@@ -32,6 +75,22 @@ internal static class Program
             }
         }
 #endif
+
+        bool isServer = false;
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (args[i] == "-server")
+            {
+                isServer = true;
+            }
+            else if (isServer && args[i].Equals("-SLOTS", StringComparison.OrdinalIgnoreCase))
+            {
+                if (i + 1 < args.Length && int.TryParse(args[i + 1], out int slots))
+                {
+                    Constants.Slots = slots;
+                }
+            }
+        }
 
         Logger.LogWarn("Patching");
         Harmony.PatchAll();
