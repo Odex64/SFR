@@ -427,6 +427,20 @@ Tile(Parrot01)
 		circle = (0, 0.5, 4);
 	}
 }
+Tile(Giblet05)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactWood;
+	fixture()
+	{
+		mass = 4 kg;
+		collisionPoints = (-1, -4), (1, -4), (1, 4), (-1, 4);
+	}
+}
 Tile(Organ00)
 {
 	drawCategory = DEB;
@@ -575,6 +589,21 @@ Tile(HeadDebris00C)
 		collisionGroup = debris;
 		mass = 4 kg;
 		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Head00)
+{
+	drawCategory = PLR;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	material.restitution = 1;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		mass = 4 kg;
+		collisionPoints = (-2.5, -2.5), (2.5, -2.5), (2.5, 2.5), (-2.5, 2.5);
 	}
 }
 Tile(Froggy00)
