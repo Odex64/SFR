@@ -26,7 +26,7 @@ internal sealed class Barrett : RWeapon
             ShellID = "ShellBig",
             AccuracyDeflection = 0.005f,
             ProjectileID = 94,
-            MuzzlePosition = new Vector2(19f, -1.5f),
+            MuzzlePosition = new Vector2(12f, -1.5f),
             CursorAimOffset = new Vector2(0f, 1.5f),
             LazerPosition = new Vector2(5f, -4.5f),
             MuzzleEffectTextureID = "MuzzleFlashShotgun",

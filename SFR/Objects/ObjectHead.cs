@@ -58,9 +58,7 @@ internal sealed class ObjectHead : ObjectGiblet
         var skin = equipment.m_parts[0][0]?.GetTexture(0);
         if (skin != null)
         {
-            var task = Task.Run(() =>
-                equipment.m_parts[0][0]?.GetTexture(0, equipment.GetItemColors(0))
-            );
+            var task = Task.Run(() => equipment.m_parts[0][0]?.GetTexture(0, equipment.GetItemColors(0)));
             if (task.Wait(5))
             {
                 skin = task.Result;
@@ -74,9 +72,7 @@ internal sealed class ObjectHead : ObjectGiblet
         var accessory = equipment.m_parts[6][0]?.GetTexture(0);
         if (accessory != null)
         {
-            var task1 = Task.Run(() =>
-                equipment.m_parts[6][0]?.GetTexture(0, equipment.GetItemColors(6))
-            );
+            var task1 = Task.Run(() => equipment.m_parts[6][0]?.GetTexture(0, equipment.GetItemColors(6)));
             if (task1.Wait(5))
             {
                 accessory = task1.Result;
@@ -103,7 +99,7 @@ internal sealed class ObjectHead : ObjectGiblet
         }
 
 
-        //Filter
+        // Filter
         if (equipment.GetItem(6) != null)
         {
             foreach (string str in DisallowedAccessories)
@@ -192,18 +188,17 @@ internal sealed class ObjectHead : ObjectGiblet
 
     internal static string EquipmentToString(Equipment eq)
     {
-        string str = "";
-        str += eq.GetItem(0) == null
-            ? "NONE:0,0,0"
+        string str = eq.GetItem(0) == null ? "NONE:0,0,0"
             : eq.GetItem(0).Filename + ":" + eq.GetItemColors(0)[0] + "," + eq.GetItemColors(0)[1] + "," + eq.GetItemColors(0)[2];
+       
         str += "|";
-        str += eq.GetItem(6) == null
-            ? "NONE:0,0,0"
+        str += eq.GetItem(6) == null ? "NONE:0,0,0"
             : eq.GetItem(6).Filename + ":" + eq.GetItemColors(6)[0] + "," + eq.GetItemColors(6)[1] + "," + eq.GetItemColors(6)[2];
+       
         str += "|";
-        str += eq.GetItem(8) == null
-            ? "NONE:0,0,0"
+        str += eq.GetItem(8) == null ? "NONE:0,0,0"
             : eq.GetItem(8).Filename + ":" + eq.GetItemColors(8)[0] + "," + eq.GetItemColors(8)[1] + "," + eq.GetItemColors(8)[2];
+      
         return str;
     }
 

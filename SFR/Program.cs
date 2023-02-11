@@ -115,9 +115,16 @@ internal static class Program
             return false;
         }
 
-        if (remoteVersion != Constants.SFRVersion)
+        string[] versionInfo = remoteVersion.Split('+');
+        _gameURI = _gameURI.Replace("GAMEVERSION", versionInfo[0]);
+
+        if (string.CompareOrdinal(Constants.SFRVersion, versionInfo[0]) == 1)
         {
-            _gameURI = _gameURI.Replace("GAMEVERSION", remoteVersion);
+            return Update();
+        }
+
+        if (int.TryParse(versionInfo[1], out int result) && result > Constants.Build)
+        {
             return Update();
         }
 

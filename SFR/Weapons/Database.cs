@@ -180,40 +180,40 @@ internal static class Database
             { 65, 8 }, // Whip
             { 66, 12 }, // Bouncing ammo
             { 67, 8 }, // Fire ammo
-            { 68, 14 }, // Drone
-            { 69, 14 }, // Flintlock
-            { 70, 15 }, // NailGun
+            { 68, 13 }, // Drone
+            { 69, 13 }, // Flintlock
+            { 70, 14 }, // NailGun
             // 71, Brick
             // 72, Broom
             // 73, Cannon ball
-            { 74, 19 }, // Blade
+            { 74, 12 }, // Blade
             { 75, 8 }, // Caber
-            { 76, 24 }, // Crowbar
+            { 76, 18 }, // Crowbar
             { 77, 5 }, // GreatSword
-            { 78, 19 }, // Morningstar
+            { 78, 11 }, // Morningstar
             { 79, 7 }, //ParryingDagger
-            { 80, 9 }, // Poleaxe
-            { 81, 19 }, // Rapier
+            { 80, 7 }, // Poleaxe
+            { 81, 15 }, // Rapier
             // { 82, 16 }, // RiotShield,
-            { 83, 20 }, // Sledgehammer
-            { 84, 20 }, // Switchblade
+            { 83, 16 }, // Sledgehammer
+            { 84, 19 }, // Switchblade
             { 85, 4 }, // UnkemptHarold
             { 86, 7 }, // StickyLauncher
-            { 87, 23 }, // Claymore
-            { 88, 21 }, // Frag grenade
-            { 89, 14 }, // Impact grenade
+            { 87, 15 }, // Claymore
+            { 88, 16 }, // Frag grenade
+            { 89, 12 }, // Impact grenade
             // { 90, 1 }, // Snowball
-            { 91, 9 }, // Sticky bomb
-            { 92, 34 }, // Health pouch
-            { 93, 9 }, // AA12
-            { 94, 11 }, // Barrett
-            { 95, 9 }, // Blunderbuss
-            { 96, 24 }, // Crossbow
-            { 97, 11 }, // Double barrel
-            { 98, 23 }, // Musket
-            { 99, 6 }, // Quad launcher
-            { 100, 5 }, // RCM
-            { 101, 16 }, // Winchester
+            { 91, 11 }, // Sticky bomb
+            { 92, 22 }, // Health pouch
+            { 93, 8 }, // AA12
+            { 94, 6 }, // Barrett
+            { 95, 7 }, // Blunderbuss
+            { 96, 15 }, // Crossbow
+            { 97, 8 }, // Double barrel
+            { 98, 18 }, // Musket
+            { 99, 5 }, // Quad launcher
+            { 100, 4 }, // RCM
+            { 101, 12 }, // Winchester
             { 102, 4 } // Minigun
         };
 

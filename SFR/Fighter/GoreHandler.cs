@@ -50,7 +50,7 @@ internal static class GoreHandler
 
     /// <summary>
     ///     Check the damage and where the player has been hit.
-    ///     The decapitate it accordingly.
+    ///     Decapitate it accordingly.
     /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(GameWorld), nameof(GameWorld.RunScriptOnProjectileHitCallbacks))]
