@@ -33,7 +33,6 @@ internal static class Program
             return 0;
         }
 
-#if (!DEBUG)
         if (args.Contains("-SFD", StringComparer.OrdinalIgnoreCase))
         {
             string gameFile = Path.Combine(GameDirectory, "Superfighters Deluxe.exe");
@@ -74,7 +73,6 @@ internal static class Program
                 return 0;
             }
         }
-#endif
 
         bool isServer = false;
         for (int i = 0; i < args.Length; i++)
@@ -118,14 +116,15 @@ internal static class Program
         string[] versionInfo = remoteVersion.Split('+');
         _gameURI = _gameURI.Replace("GAMEVERSION", versionInfo[0]);
 
-        if (string.CompareOrdinal(Constants.SFRVersion, versionInfo[0]) == 1)
+        switch (string.CompareOrdinal(Constants.SFRVersion, versionInfo[0]))
         {
-            return Update();
-        }
-
-        if (int.TryParse(versionInfo[1], out int result) && result > Constants.Build)
-        {
-            return Update();
+            // New version
+            case < 0:
+                return Update();
+            
+            // Same version but hotfix if present
+            case 0 when versionInfo.Length > 1 && int.TryParse(versionInfo[1], out int result) && result > Constants.Build:
+                return Update();
         }
 
         _webClient.Dispose();
