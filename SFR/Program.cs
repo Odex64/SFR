@@ -104,7 +104,7 @@ internal static class Program
         try
         {
             _webClient = new WebClient();
-            remoteVersion = _webClient.DownloadString(VersionURI);
+            remoteVersion = _webClient.DownloadString(VersionURI).Trim();
         }
         catch (WebException)
         {
@@ -135,7 +135,7 @@ internal static class Program
 
     private static bool Choice(string message)
     {
-        Logger.LogWarn(message, false);
+        Console.Write(message + ' ');
         return (Console.ReadLine() ?? string.Empty).Equals("Y", StringComparison.OrdinalIgnoreCase);
     }
 
