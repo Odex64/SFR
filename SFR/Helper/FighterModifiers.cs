@@ -25,13 +25,13 @@ internal static class FighterModifiers
         ExtendedModifiers result;
         if (ModifierExtensionsLink.TryGetValue(playerModifiers, out result))
         {
-            Logger.LogDebug($"Found Extended Modifiers!");
+            //Logger.LogDebug($"Found Extended Modifiers!");
             return result;
         }
         else
         {
             // If there is no matching ExtendedModifiers, make a new one and link it immediately.
-            Logger.LogDebug($"Could not find Extended Modifiers!");
+            //Logger.LogDebug($"Could not find Extended Modifiers!");
             var extendedModifiers = new ExtendedModifiers(playerModifiers);
             ExtendedModifiers.ExtendedModifiersList.Add(extendedModifiers);
             return extendedModifiers;
@@ -80,5 +80,23 @@ internal static class FighterModifiers
             return;
         }
         __instance.Properties.Get((ObjectPropertyID)370).Value = value.GetExtension().JumpHeightModifier;
+    }
+
+    // Apply modifiers to player.
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.SetModifiers))]
+    private static void SetExtendedModifiers(PlayerModifiers value, Player __instance)
+    {
+        if (value != null)
+        {
+            value.SanitizeInput();
+            value.DefaultValues();
+            
+            if (value.GetExtension().JumpHeightModifier != -1)
+            {
+                __instance.ModifiersUpdated |= __instance.m_modifiers.GetExtension().JumpHeightModifier != value.GetExtension().JumpHeightModifier;
+                __instance.m_modifiers.GetExtension().JumpHeightModifier = value.GetExtension().JumpHeightModifier;
+            }
+        }
     }
 }
