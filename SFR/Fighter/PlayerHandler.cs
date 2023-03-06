@@ -1,8 +1,11 @@
 ﻿using HarmonyLib;
 using SFD;
 using SFD.Weapons;
+using SFR.Game;
+using SFR.Helper;
 using SFR.Objects;
 using SFR.Weapons.Rifles;
+using System;
 
 namespace SFR.Fighter;
 
@@ -40,5 +43,14 @@ internal static class PlayerHandler
         }
 
         return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.Jump), new Type[] { })]
+    private static bool JumpModifier(Player __instance)
+    {
+        //Logger.LogDebug($"Returned ExtendedModifiers with value {__instance.m_modifiers.GetExtension().JumpHeightModifier} for JumpHeightModifier.");
+        __instance.Jump(7.55f * __instance.m_modifiers.GetExtension().JumpHeightModifier, false);
+        return false;
     }
 }
