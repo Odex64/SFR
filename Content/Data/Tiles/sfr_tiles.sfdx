@@ -2,8 +2,7 @@ defaultTile(DefaultTile)
 {
 	kickable = true;
 	uniqueId = 0;
-	material =
-		default;
+	material = default;
 	projectileHit = true;
 	absorbProjectile = true;
 	objectStrength = 0.0;
@@ -2140,4 +2139,148 @@ Tile(PirateLadder00C)
 		collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4);
 		blockFire = false;
 	}
+}
+Tile(Cobblestone00A)
+{
+	material = concrete;
+	colorPalette = Concrete;
+	sizeable = A;
+}
+Tile(DurableBamboo00B){}
+Tile(DurableBamboo00A){}
+Tile(Ground00A){}
+Tile(Ground00B){}
+Tile(Ground00C)
+{
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-4, -4), (4, -4), (4, 4);
+	}
+}
+Tile(Ground00D){}
+Tile(Ground00E)
+{
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (8, -4), (8, 4);
+	}
+}
+Tile(Ground00F){}
+Tile(Ground00G)
+{
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -4), (16, 4);
+	}
+}
+Tile(Ground00H){}
+Tile(Ground00I){}
+Tile(Ground00J){}
+Tile(Ground01A){}
+Tile(Ground02A){}
+Tile(Ground03A){}
+Tile(Ground04A){}
+Tile(Ice00G)
+{
+	material = ice;
+}
+Tile(Ice00I)
+{
+	material = ice;
+}
+Tile(Ice00J)
+{
+	material = ice;
+}
+Tile(Ice00H)
+{
+	sizeable = n;
+	material = ice;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -4), (16, 4);
+	}
+}
+Tile(Sand00A){}
+Tile(Sand00B){}
+Tile(Sand00C)
+{
+	fixture()
+	{
+		collisionPoints = (-4, -4), (4, -4), (4, 4);
+	}
+}
+Tile(Sand00D){}
+Tile(Sand00E)
+{
+	fixture()
+	{
+		collisionPoints = (-8, -4), (8, -4), (8, 4);
+	}
+}
+Tile(Sand00F){}
+Tile(Sand00G)
+{
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -4), (16, 4);
+	}
+}
+Tile(Sand00H){}
+Tile(Sand00I){}
+Tile(Sand00J){}
+Tile(Slab00A){}
+Tile(Slab00B){}
+Tile(Snow01A){}
+Tile(Snow01B){}
+Tile(Snow01C)
+{
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-4, -4), (4, -4), (4, 4);
+	}
+}
+Tile(Snow01D){}
+Tile(Snow01E)
+{
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (8, -4), (8, 4);
+	}
+}
+Tile(Snow01F){}
+Tile(Snow01G)
+{
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -4), (16, 4);
+	}
+}
+Tile(Snow01H){}
+Tile(Snow01I){}
+Tile(Snow01J){}
+Tile(Snow02A){}
+Tile(Wood00Weak)
+{
+	life = 50;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+}
+Tile(Wood01AWeak)
+{
+	life = 50;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+}
+Tile(Wood03Weak)
+{
+	life = 50;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
 }

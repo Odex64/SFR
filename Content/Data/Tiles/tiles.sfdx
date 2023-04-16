@@ -1098,8 +1098,8 @@ Tile(Ice00A){}
 Tile(Ice00B){}
 Tile(Ice00C){}
 Tile(Ice00D){}
-Tile(Ice00E){ sizeable=N; fixture(){ collisionPoints=(-8,-12),(8,-4),(8,12),(-8,4); } }
-Tile(Ice00F){ sizeable=N; fixture(){ collisionPoints=(-8,-4),(8,-12),(8,4),(-8,12); } }
+Tile(Ice00E){}
+Tile(Ice00F){}
 Tile(Ice01A){}
 
 

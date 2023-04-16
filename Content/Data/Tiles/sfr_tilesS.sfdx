@@ -1,0 +1,27 @@
+defaultTile(default_tile)
+{
+	drawCategory = MAR;
+	mainLayer = 0;
+	type = Static;
+	uniqueId = 0;
+	material = air;
+	fixture()
+	{
+		collisionGroup = none;
+		collisionPoints = null;
+		blockFire = false;
+	}
+	colorPalette = palNone;
+	editorEnabled = true;
+	sizeable = N;
+	kickable = false;
+	punchable = false;
+	projectileHit = false;
+	doTakeDamage.Fire = false;
+	material.resistance.fire.modifier = 0;
+}
+Tile(NukeTrigger)
+{
+	tileTexture = marker;
+	listTexture = NukeTrigger2X;
+}

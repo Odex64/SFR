@@ -655,6 +655,20 @@ Tile(Monkey00)
 		collisionPoints = (-6.5, -4.5), (6.5, -4.5), (6.5, 4.5), (-6.5, 4.5);
 	}
 }
+Tile(MarbleStatueBase00)
+{
+	drawCategory = SLD;
+	material = Stone;
+	type = Static;
+	projectileHit = false;
+	material.blockExplosions = false;
+	clientSync.ECODBPI = true;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+}
 Tile(MarbleStatue00)
 {
 	type=Static;
@@ -844,5 +858,104 @@ Tile(MarbleStatue02_DD)
 	{
 		collisionGroup=none;
 		collisionPoints = (-6, -16), (7, -16), (7, -6), (-6, -6);
+	}
+}
+Tile(Beachball00)
+{
+	life=10;
+	absorbProjectile = false;
+	projectileHit = true;
+	material = balloon;
+	material.blockExplosions = false;
+	material.hit.melee.sound = Baseball;
+	material.hit.melee.effect = Smack;
+	material.resistance.impact.modifier = 0.0;
+	material.resistance.impact.threshold = 9;
+	material.restitution = 4;
+	gibpressure.total = 250 kg;
+	gibpressure.spike = 1600 kg;
+	kickable = true;
+	punchable = true;
+	impactSound = Baseball;
+	type = Dynamic;
+	fixture()
+	{
+		mass = 3 kg;
+		collisionGroup = dynamics_thrown;
+		circle = (0.0, 0.0, 8);
+		blockFire = false;
+	}
+}
+Tile(Beachball00_D)
+{
+	life=15;
+	absorbProjectile = false;
+	projectileHit = true;
+	material = cloth;
+	material.blockExplosions = false;
+	material.hit.melee.sound = Baseball;
+	material.hit.melee.effect = Smack;
+	material.resistance.impact.modifier = 0.0;
+	material.restitution = 1;
+	gibpressure.total = 250 kg;
+	gibpressure.spike = 1600 kg;
+	kickable = true;
+	punchable = true;
+	impactSound = Baseball;
+	type = Dynamic;
+	fixture()
+	{
+		mass = 3 kg;
+		collisionGroup = dynamics_thrown;
+	}
+}
+Tile(Watermelon00)
+{
+	life = 20;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture(){ mass = 5kg; collisionGroup = dynamics_thrown; circle = (0.0, 0.0, 4); blockFire = false; }
+}
+Tile(Watermelon01)
+{
+	life = 10;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Watermelon02)
+{
+	life = 10;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(SnowPile00)
+{
+	type = Static;
+	drawCategory = SLD;
+	projectileHit = false;
+	colorPalette = BG;
+	punchable = false;
+	kickable = false;
+	fixture()
+	{
+		collisionGroup = none;
 	}
 }
