@@ -70,14 +70,16 @@ internal static class CommandHandler
 #endif
             }
 
-            // if (args.ModeratorPrivileges)
-            // {
-            //     if (args.IsCommand("NUKE"))
-            //     {
-            //         args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, args.SenderGameUser.GetProfileName() + " has set the world on fire", Color.Red));
-            //         NukeHandler.CreateNuke(__instance.GameWorld);
-            //     }
-            // }
+#if DEBUG
+            if (args.ModeratorPrivileges)
+            {
+                if (args.IsCommand("NUKE"))
+                {
+                    args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, args.SenderGameUser.GetProfileName() + " has set the world on fire", Color.Red));
+                    NukeHandler.CreateNuke(__instance.GameWorld);
+                }
+            }
+#endif
 
             if (args.IsCommand("HELP"))
             {

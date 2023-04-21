@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -106,122 +106,123 @@
         <Reference Include="System">
             <Private>False</Private>
         </Reference>
-        <Reference Include="System.IO.Compression" />
-        <Reference Include="System.IO.Compression.FileSystem" />
+        <Reference Include="System.IO.Compression"/>
+        <Reference Include="System.IO.Compression.FileSystem"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\SharedAssemblyInfo.cs">
             <Link>Properties\SharedAssemblyInfo.cs</Link>
         </Compile>
-        <Compile Include="Bootstrap\Assets.cs" />
-        <Compile Include="API\Sandbox.cs" />
-        <Compile Include="Fighter\AnimHandler.cs" />
-        <Compile Include="Fighter\ExtendedPlayer.cs" />
-        <Compile Include="Fighter\GadgetHandler.cs" />
-        <Compile Include="Fighter\GoreHandler.cs" />
-        <Compile Include="Fighter\DevHandler.cs" />
-        <Compile Include="Fighter\PlayerHandler.cs" />
-        <Compile Include="Game\CommandHandler.cs" />
-        <Compile Include="Game\NukeHandler.cs" />
-        <Compile Include="Game\World.cs" />
-        <Compile Include="Helper\Fighter.cs" />
-        <Compile Include="Helper\Logger.cs" />
-        <Compile Include="Helper\Math.cs" />
-        <Compile Include="Helper\Randomizer.cs" />
-        <Compile Include="Helper\Vector.cs" />
-        <Compile Include="Editor\MapData.cs" />
-        <Compile Include="Misc\Tweaks.cs" />
-        <Compile Include="Objects\Animal\ObjectAnimal.cs" />
-        <Compile Include="Objects\Animal\ObjectFroggy.cs" />
-        <Compile Include="Objects\Animal\ObjectMonkey.cs" />
-        <Compile Include="Objects\ObjectNuke.cs" />
-        <Compile Include="Objects\ObjectNukeTrigger.cs" />
-        <Compile Include="Objects\ObjectsHandler.cs" />
-        <Compile Include="Objects\ObjectCannon.cs" />
-        <Compile Include="Objects\ObjectClaymoreThrown.cs" />
-        <Compile Include="Objects\ObjectCrossbowBolt.cs" />
-        <Compile Include="Objects\ObjectDoor.cs" />
-        <Compile Include="Objects\ObjectFragGrenadeThrown.cs" />
-        <Compile Include="Objects\ObjectHead.cs" />
-        <Compile Include="Objects\ObjectImpactGrenadeThrown.cs" />
-        <Compile Include="Objects\ObjectInvisibleBlockWeak.cs" />
-        <Compile Include="Objects\ObjectPirateItemGiver.cs" />
-        <Compile Include="Objects\ObjectPirateShip.cs" />
-        <Compile Include="Objects\ObjectSnowballThrown.cs" />
-        <Compile Include="Objects\ObjectStickyBombThrown.cs" />
-        <Compile Include="Objects\ObjectStickyProjectile.cs" />
-        <Compile Include="OnlineServices\Browser.cs" />
-        <Compile Include="OnlineServices\Host.cs" />
-        <Compile Include="Projectiles\Database.cs" />
-        <Compile Include="Projectiles\IExtendedProjectile.cs" />
-        <Compile Include="Projectiles\ProjectileBarrett.cs" />
-        <Compile Include="Projectiles\ProjectileBlunderbuss.cs" />
-        <Compile Include="Projectiles\ProjectileCrossbow.cs" />
-        <Compile Include="Projectiles\ProjectileDoubleBarrel.cs" />
-        <Compile Include="Projectiles\ProjectileFlintlock.cs" />
-        <Compile Include="Projectiles\ProjectileMinigun.cs" />
-        <Compile Include="Projectiles\ProjectileQuad.cs" />
-        <Compile Include="Projectiles\ProjectileUnkemptHarold.cs" />
-        <Compile Include="Projectiles\ProjectileMusket.cs" />
-        <Compile Include="Projectiles\ProjectileNailGun.cs" />
-        <Compile Include="Projectiles\ProjectileRCM.cs" />
-        <Compile Include="Projectiles\ProjectileWinchester.cs" />
+        <Compile Include="Bootstrap\Assets.cs"/>
+        <Compile Include="API\Sandbox.cs"/>
+        <Compile Include="Fighter\AnimHandler.cs"/>
+        <Compile Include="Fighter\ExtendedPlayer.cs"/>
+        <Compile Include="Fighter\GadgetHandler.cs"/>
+        <Compile Include="Fighter\GoreHandler.cs"/>
+        <Compile Include="Fighter\DevHandler.cs"/>
+        <Compile Include="Fighter\PlayerHandler.cs"/>
+        <Compile Include="Game\CommandHandler.cs"/>
+        <Compile Include="Game\NukeHandler.cs"/>
+        <Compile Include="Game\World.cs"/>
+        <Compile Include="Helper\Fighter.cs"/>
+        <Compile Include="Helper\Logger.cs"/>
+        <Compile Include="Helper\Math.cs"/>
+        <Compile Include="Helper\Randomizer.cs"/>
+        <Compile Include="Helper\Vector.cs"/>
+        <Compile Include="Editor\MapData.cs"/>
+        <Compile Include="Misc\Tweaks.cs"/>
+        <Compile Include="Objects\Animal\ObjectAnimal.cs"/>
+        <Compile Include="Objects\Animal\ObjectFroggy.cs"/>
+        <Compile Include="Objects\Animal\ObjectMonkey.cs"/>
+        <Compile Include="Objects\ObjectNuke.cs"/>
+        <Compile Include="Objects\ObjectNukeTrigger.cs"/>
+        <Compile Include="Objects\ObjectsHandler.cs"/>
+        <Compile Include="Objects\ObjectCannon.cs"/>
+        <Compile Include="Objects\ObjectClaymoreThrown.cs"/>
+        <Compile Include="Objects\ObjectCrossbowBolt.cs"/>
+        <Compile Include="Objects\ObjectDoor.cs"/>
+        <Compile Include="Objects\ObjectFragGrenadeThrown.cs"/>
+        <Compile Include="Objects\ObjectHead.cs"/>
+        <Compile Include="Objects\ObjectImpactGrenadeThrown.cs"/>
+        <Compile Include="Objects\ObjectInvisibleBlockWeak.cs"/>
+        <Compile Include="Objects\ObjectPirateItemGiver.cs"/>
+        <Compile Include="Objects\ObjectPirateShip.cs"/>
+        <Compile Include="Objects\ObjectSnowballThrown.cs"/>
+        <Compile Include="Objects\ObjectStickyBombThrown.cs"/>
+        <Compile Include="Objects\ObjectStickyProjectile.cs"/>
+        <Compile Include="OnlineServices\Browser.cs"/>
+        <Compile Include="OnlineServices\Host.cs"/>
+        <Compile Include="Projectiles\Database.cs"/>
+        <Compile Include="Projectiles\IExtendedProjectile.cs"/>
+        <Compile Include="Projectiles\ProjectileBarrett.cs"/>
+        <Compile Include="Projectiles\ProjectileBlunderbuss.cs"/>
+        <Compile Include="Projectiles\ProjectileCrossbow.cs"/>
+        <Compile Include="Projectiles\ProjectileDoubleBarrel.cs"/>
+        <Compile Include="Projectiles\ProjectileFlintlock.cs"/>
+        <Compile Include="Projectiles\ProjectileMinigun.cs"/>
+        <Compile Include="Projectiles\ProjectileQuad.cs"/>
+        <Compile Include="Projectiles\ProjectileUnkemptHarold.cs"/>
+        <Compile Include="Projectiles\ProjectileMusket.cs"/>
+        <Compile Include="Projectiles\ProjectileNailGun.cs"/>
+        <Compile Include="Projectiles\ProjectileRCM.cs"/>
+        <Compile Include="Projectiles\ProjectileWinchester.cs"/>
         <Compile Include="Properties\Resources.Designer.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
-        <Compile Include="Sync\Generic\DataType.cs" />
-        <Compile Include="Sync\Generic\GenericData.cs" />
-        <Compile Include="Sync\Generic\GenericServerData.cs" />
-        <Compile Include="Sync\SyncHandler.cs" />
-        <Compile Include="UI\CreditsPanel.cs" />
-        <Compile Include="UI\Game.cs" />
-        <Compile Include="UI\MainMenu.cs" />
-        <Compile Include="Misc\Constants.cs" />
-        <Compile Include="Program.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="UI\MenuItemLabel.cs" />
-        <Compile Include="Weapons\Database.cs" />
-        <Compile Include="Weapons\Handguns\Flintlock.cs" />
-        <Compile Include="Weapons\Handguns\NailGun.cs" />
-        <Compile Include="Weapons\Handguns\StickyLauncher.cs" />
-        <Compile Include="Weapons\Handguns\UnkemptHarold.cs" />
-        <Compile Include="Weapons\IExtendedWeapon.cs" />
-        <Compile Include="Weapons\ISharpMelee.cs" />
-        <Compile Include="Weapons\Makeshift\Brick.cs" />
-        <Compile Include="Weapons\Makeshift\Broom.cs" />
-        <Compile Include="Weapons\Makeshift\CannonBall.cs" />
-        <Compile Include="Weapons\Melee\Blade.cs" />
-        <Compile Include="Weapons\Melee\Caber.cs" />
-        <Compile Include="Weapons\Melee\Crowbar.cs" />
-        <Compile Include="Weapons\Melee\Greatsword.cs" />
-        <Compile Include="Weapons\Melee\Morningstar.cs" />
-        <Compile Include="Weapons\Melee\ParryingDagger.cs" />
-        <Compile Include="Weapons\Melee\Poleaxe.cs" />
-        <Compile Include="Weapons\Melee\Rapier.cs" />
-        <Compile Include="Weapons\Melee\Sledgehammer.cs" />
-        <Compile Include="Weapons\Melee\Switchblade.cs" />
-        <Compile Include="Weapons\Others\HealthPouch.cs" />
-        <Compile Include="Weapons\Rifles\AA12.cs" />
-        <Compile Include="Weapons\Rifles\Barrett.cs" />
-        <Compile Include="Weapons\Rifles\Blunderbuss.cs" />
-        <Compile Include="Weapons\Rifles\Crossbow.cs" />
-        <Compile Include="Weapons\Rifles\DoubleBarrel.cs" />
-        <Compile Include="Weapons\Rifles\Minigun.cs" />
-        <Compile Include="Weapons\Rifles\Musket.cs" />
-        <Compile Include="Weapons\Rifles\QuadLauncher.cs" />
-        <Compile Include="Weapons\Rifles\RCM.cs" />
-        <Compile Include="Weapons\Rifles\Winchester.cs" />
-        <Compile Include="Weapons\Thrown\Claymore.cs" />
-        <Compile Include="Weapons\Thrown\FragGrenade.cs" />
-        <Compile Include="Weapons\Thrown\ImpactGrenade.cs" />
-        <Compile Include="Weapons\Thrown\Snowball.cs" />
-        <Compile Include="Weapons\Thrown\StickyBomb.cs" />
+        <Compile Include="Sync\Generic\DataType.cs"/>
+        <Compile Include="Sync\Generic\GenericData.cs"/>
+        <Compile Include="Sync\Generic\GenericServerData.cs"/>
+        <Compile Include="Sync\SyncHandler.cs"/>
+        <Compile Include="UI\CreditsPanel.cs"/>
+        <Compile Include="UI\Game.cs"/>
+        <Compile Include="UI\MainMenu.cs"/>
+        <Compile Include="Misc\Constants.cs"/>
+        <Compile Include="Program.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="UI\MenuItemLabel.cs"/>
+        <Compile Include="Weapons\Database.cs"/>
+        <Compile Include="Weapons\Handguns\Flintlock.cs"/>
+        <Compile Include="Weapons\Handguns\NailGun.cs"/>
+        <Compile Include="Weapons\Handguns\StickyLauncher.cs"/>
+        <Compile Include="Weapons\Handguns\UnkemptHarold.cs"/>
+        <Compile Include="Weapons\IExtendedWeapon.cs"/>
+        <Compile Include="Weapons\ISharpMelee.cs"/>
+        <Compile Include="Weapons\Makeshift\Brick.cs"/>
+        <Compile Include="Weapons\Makeshift\Broom.cs"/>
+        <Compile Include="Weapons\Makeshift\CannonBall.cs"/>
+        <Compile Include="Weapons\Melee\Blade.cs"/>
+        <Compile Include="Weapons\Melee\Caber.cs"/>
+        <Compile Include="Weapons\Melee\Crowbar.cs"/>
+        <Compile Include="Weapons\Melee\Greatsword.cs"/>
+        <Compile Include="Weapons\Melee\Morningstar.cs"/>
+        <Compile Include="Weapons\Melee\ParryingDagger.cs"/>
+        <Compile Include="Weapons\Melee\Poleaxe.cs"/>
+        <Compile Include="Weapons\Melee\Rapier.cs"/>
+        <Compile Include="Weapons\Melee\Sledgehammer.cs"/>
+        <Compile Include="Weapons\Melee\Switchblade.cs"/>
+        <Compile Include="Weapons\Others\HealthPouch.cs"/>
+        <Compile Include="Weapons\Others\RageBoost.cs"/>
+        <Compile Include="Weapons\Rifles\AA12.cs"/>
+        <Compile Include="Weapons\Rifles\Barrett.cs"/>
+        <Compile Include="Weapons\Rifles\Blunderbuss.cs"/>
+        <Compile Include="Weapons\Rifles\Crossbow.cs"/>
+        <Compile Include="Weapons\Rifles\DoubleBarrel.cs"/>
+        <Compile Include="Weapons\Rifles\Minigun.cs"/>
+        <Compile Include="Weapons\Rifles\Musket.cs"/>
+        <Compile Include="Weapons\Rifles\QuadLauncher.cs"/>
+        <Compile Include="Weapons\Rifles\RCM.cs"/>
+        <Compile Include="Weapons\Rifles\Winchester.cs"/>
+        <Compile Include="Weapons\Thrown\Claymore.cs"/>
+        <Compile Include="Weapons\Thrown\FragGrenade.cs"/>
+        <Compile Include="Weapons\Thrown\ImpactGrenade.cs"/>
+        <Compile Include="Weapons\Thrown\Snowball.cs"/>
+        <Compile Include="Weapons\Thrown\StickyBomb.cs"/>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config" />
-        <None Include="packages.config" />
+        <None Include="App.config"/>
+        <None Include="packages.config"/>
     </ItemGroup>
     <ItemGroup>
         <BootstrapperPackage Include=".NETFramework,Version=v4.8.1">
@@ -235,9 +236,9 @@
             <Install>false</Install>
         </BootstrapperPackage>
     </ItemGroup>
-    <ItemGroup />
+    <ItemGroup/>
     <ItemGroup>
-        <Content Include="icon.ico" />
+        <Content Include="icon.ico"/>
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Properties\Resources.resx">
@@ -245,7 +246,7 @@
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
         </EmbeddedResource>
     </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <PropertyGroup>
         <PostBuildEvent>call "$(SolutionDir)build.bat" $(Configuration)</PostBuildEvent>
     </PropertyGroup>

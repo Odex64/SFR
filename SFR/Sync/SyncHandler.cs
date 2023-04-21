@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using HarmonyLib;
 using Lidgren.Network;
 using SFD;
+using SFD.GUI;
 using SFR.Game;
 using SFR.Helper;
 using SFR.Objects;
@@ -11,15 +14,17 @@ using SFR.Weapons.Rifles;
 namespace SFR.Sync;
 
 /// <summary>
-///     This class handles the sync between clients & server.
-///     <para>
-///         Here's the list of custom message types.
-///         <list type="bullet">
-///             <item>
-///                 <description>63: Generic Server Data.</description>
-///             </item>
-///         </list>
-///     </para>
+///     This class handles the sync between clients &amp; server.
+///     <list type="table">
+///         <listheader>
+///             <term>Sync</term>
+///             <description>Data to sync</description>
+///         </listheader>
+///         <item>
+///             <term>63</term>
+///             <description>Generic Server Data.</description>
+///         </item>
+///     </list>
 /// </summary>
 [HarmonyPatch]
 internal static class SyncHandler
@@ -111,6 +116,39 @@ internal static class SyncHandler
         return receivedData.ToArray();
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Server), nameof(Server.updateRun))]
+    private static void SendDataToClients(bool isLast, bool isFirst, Server __instance)
+    {
+        if (__instance.m_server == null || __instance.CurrentState != ServerClientState.Game || __instance.WaitingForUsers || __instance.GameInfo.TotalGameUserCount == 0 || __instance.m_waitingForUserRestartInProgress)
+        {
+            return;
+        }
+
+        if (isLast)
+        {
+            // SendExtraPlayerStatesToClients(__instance);
+            
+            foreach (var genericServerData in GenericData.ServerData)
+            {
+                __instance.m_server.SendToAll(genericServerData, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
+            }
+
+            GenericData.ServerData.Clear();
+        }
+    }
+
+    private static void SendExtraPlayerStatesToClients(Server server)
+    {
+        foreach (var player in server.GameWorld.Players)
+        {
+            var extendedPlayer = player.GetExtension();
+            var data = new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates());
+            var outgoingMessage =  GenericServerData.Write(data, server.m_server.CreateMessage());
+            server.m_server.SendToAll(outgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
+        }
+    }
+
     #region Server
 
     // [HarmonyPrefix]
@@ -145,6 +183,7 @@ internal static class SyncHandler
                     (ObjectNuke)nukeData[0],
                     (ObjectNuke)nukeData[1]
                 };
+                
                 NukeHandler.Begin(nukes);
                 break;
 
@@ -167,8 +206,8 @@ internal static class SyncHandler
 
                 if (minigunData[0].IsPlayer)
                 {
-                    var player = (Player)minigunData[0].InternalData;
-                    if (player is { CurrentRifleWeapon: Minigun minigun })
+                    var minigunPlayer = (Player)minigunData[0].InternalData;
+                    if (minigunPlayer is { CurrentRifleWeapon: Minigun minigun })
                     {
                         minigun.ClientSyncRev(!((string)data.Args[1]).EndsWith("UNREV"));
                     }
@@ -193,8 +232,24 @@ internal static class SyncHandler
                     return;
                 }
 
-                var extendedPlayer = ((Player)stickyBoostData[0].InternalData).GetExtension();
-                extendedPlayer.DisableStickiedBoost();
+                var extendedStickyPlayer = ((Player)stickyBoostData[0].InternalData).GetExtension();
+                extendedStickyPlayer.DisableStickiedBoost();
+                break;
+            
+            case DataType.ExtraClientStates:
+                Logger.LogDebug("syncing player");
+                var player = client.GameWorld.GetPlayer((int)data.Args[0]);
+                if (player == null)
+                {
+                    Logger.LogError("Player is null!");
+                    return;
+                }
+
+                var extendedPlayer = player.GetExtension();
+                bool[] states = Array.ConvertAll(data.Args.Skip(1).ToArray(), o => (bool)o);
+                Logger.LogDebug("the rage boost is: " + states[0]);
+                extendedPlayer.RageBoost = states[0];
+                
                 break;
         }
     }

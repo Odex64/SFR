@@ -2,7 +2,6 @@ using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
-using SFD.Objects;
 using SFR.Helper;
 
 namespace SFR.Fighter;
@@ -88,6 +87,12 @@ internal static class GadgetHandler
         if (extendedPlayer.Stickied)
         {
             __result = ColorCorrection.CreateCustom(Constants.COLORS.YELLOW);
+            return false;
+        }
+
+        if (extendedPlayer.RageBoost)
+        {
+            __result = ColorCorrection.CreateCustom(Misc.Constants.RageBoost);
             return false;
         }
 

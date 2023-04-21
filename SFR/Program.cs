@@ -121,7 +121,7 @@ internal static class Program
             // New version
             case < 0:
                 return Update();
-            
+
             // Same version but hotfix if present
             case 0 when versionInfo.Length > 1 && int.TryParse(versionInfo[1], out int result) && result > Constants.Build:
                 return Update();

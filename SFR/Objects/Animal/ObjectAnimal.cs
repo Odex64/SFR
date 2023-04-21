@@ -8,7 +8,7 @@ using Math = System.Math;
 namespace SFR.Objects.Animal;
 
 /// <summary>
-///     Every animal must inherit from this class.
+///     Every animal must inherits from this class.
 /// </summary>
 internal abstract class ObjectAnimal : ObjectData
 {

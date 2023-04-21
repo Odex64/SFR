@@ -6,5 +6,6 @@ internal enum DataType
     StickyGrenade,
     Minigun,
     Head,
-    DisableStickyBoost
+    DisableStickyBoost,
+    ExtraClientStates
 }

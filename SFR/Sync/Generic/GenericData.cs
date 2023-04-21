@@ -1,4 +1,6 @@
-﻿using SFD;
+﻿using System.Collections.Generic;
+using Lidgren.Network;
+using SFD;
 
 namespace SFR.Sync.Generic;
 
@@ -8,6 +10,8 @@ namespace SFR.Sync.Generic;
 /// </summary>
 internal sealed class GenericData
 {
+    internal static readonly List<NetOutgoingMessage> ServerData = new();
+    
     internal readonly object[] Args;
 
     internal readonly DataType Type;
@@ -22,8 +26,9 @@ internal sealed class GenericData
     {
         if (GameSFD.Handle.Server is { NetServer: { } })
         {
-            var netOutgoingMessage = GenericServerData.Write(data, GameSFD.Handle.Server.NetServer.CreateMessage());
-            GameSFD.Handle.Server.NetServer.SendToAll(netOutgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
+            ServerData.Add(GenericServerData.Write(data, GameSFD.Handle.Server.NetServer.CreateMessage()));
+            // var netOutgoingMessage = GenericServerData.Write(data, GameSFD.Handle.Server.NetServer.CreateMessage());
+            // GameSFD.Handle.Server.NetServer.SendToAll(netOutgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
         }
     }
 }

@@ -188,17 +188,20 @@ internal sealed class ObjectHead : ObjectGiblet
 
     internal static string EquipmentToString(Equipment eq)
     {
-        string str = eq.GetItem(0) == null ? "NONE:0,0,0"
+        string str = eq.GetItem(0) == null
+            ? "NONE:0,0,0"
             : eq.GetItem(0).Filename + ":" + eq.GetItemColors(0)[0] + "," + eq.GetItemColors(0)[1] + "," + eq.GetItemColors(0)[2];
-       
+
         str += "|";
-        str += eq.GetItem(6) == null ? "NONE:0,0,0"
+        str += eq.GetItem(6) == null
+            ? "NONE:0,0,0"
             : eq.GetItem(6).Filename + ":" + eq.GetItemColors(6)[0] + "," + eq.GetItemColors(6)[1] + "," + eq.GetItemColors(6)[2];
-       
+
         str += "|";
-        str += eq.GetItem(8) == null ? "NONE:0,0,0"
+        str += eq.GetItem(8) == null
+            ? "NONE:0,0,0"
             : eq.GetItem(8).Filename + ":" + eq.GetItemColors(8)[0] + "," + eq.GetItemColors(8)[1] + "," + eq.GetItemColors(8)[2];
-      
+
         return str;
     }
 

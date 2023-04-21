@@ -63,31 +63,31 @@ internal static class NukeHandler
         }
 
         _gameWorld = gameWorld;
-        if (gameWorld.GameOwner != GameOwnerEnum.Client) // == Client
+        if (gameWorld.GameOwner == GameOwnerEnum.Server) // == Client
         {
             var bgNuke = (ObjectNuke)ObjectData.CreateNew(new ObjectDataStartParams(gameWorld.IDCounter.NextID(), 1, 0, "BgNuke", gameWorld.GameOwner));
             gameWorld.CreateTile(new SpawnObjectInformation(bgNuke, new Vector2(0, 0)));
             var fgNuke = (ObjectNuke)ObjectData.CreateNew(new ObjectDataStartParams(gameWorld.IDCounter.NextID(), 2, 0, "FgNuke", gameWorld.GameOwner));
             gameWorld.CreateTile(new SpawnObjectInformation(fgNuke, new Vector2(0, 0)));
 
-            if (gameWorld.GameOwner == GameOwnerEnum.Server)
-            {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, fgNuke.ObjectID, bgNuke.ObjectID));
-            }
+            // if (gameWorld.GameOwner == GameOwnerEnum.Server)
+            // {
+            GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, fgNuke.ObjectID, bgNuke.ObjectID));
+            // }
 
-            List<ObjectNuke> nukeObjects = new()
-            {
-                fgNuke,
-                bgNuke
-            };
+            // List<ObjectNuke> nukeObjects = new()
+            // {
+            //     fgNuke,
+            //     bgNuke
+            // };
 
             _terminateType = terminateType;
             _terminateObjects = objectType;
             _gameOverText = gameOverText;
 
-            Begin(nukeObjects);
-            gameWorld.SlowmotionHandler.Reset();
-            gameWorld.SlowmotionHandler.AddSlowmotion(new Slowmotion(ScreenWipeTime * 0.25f, ScreenWipeTime * 0.8f, ScreenWipeTime * 0.2f, 0.2f, 0));
+            // Begin(nukeObjects);
+            // gameWorld.SlowmotionHandler.Reset();
+            // gameWorld.SlowmotionHandler.AddSlowmotion(new Slowmotion(ScreenWipeTime * 0.25f, ScreenWipeTime * 0.8f, ScreenWipeTime * 0.2f, 0.2f, 0));
         }
     }
 
@@ -117,7 +117,6 @@ internal static class NukeHandler
                 // Logger.LogDebug("2");
                 if (_nukeObjects[i] is { Tile: { } })
                 {
-                    // Logger.LogDebug("3");
                     _nukeObjects[i].IsActive = true;
                     if (_nukeObjects[i].Tile.Name == "BgNuke")
                     {
@@ -139,7 +138,7 @@ internal static class NukeHandler
             }
 
             // Logger.LogDebug("6");
-            BurnPlayers();
+            // BurnPlayers(); // Error?
 
             if (relativeProgress > KillTime && !_death)
             {

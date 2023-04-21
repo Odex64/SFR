@@ -1,11 +1,18 @@
 ﻿using System.Collections.Generic;
+using HarmonyLib;
 using SFD;
+using SFD.MenuControls;
+using SFD.Weapons;
+using SFR.Helper;
+using SFR.Weapons.Others;
+using Constants = SFR.Misc.Constants;
 
 namespace SFR.Fighter;
 
 /// <summary>
 ///     Here we load or programmatically create custom animations to be used in-game.
 /// </summary>
+[HarmonyPatch]
 internal static class AnimHandler
 {
     private static List<AnimationData> _animations;
@@ -59,5 +66,87 @@ internal static class AnimHandler
         }
 
         return new AnimationData(frameData, newName);
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.GetAnimWalkUpper))]
+    private static bool WalkAnimation(Player __instance, ref string __result)
+    {
+        string animUpperOverride = __instance.GetAnimUpperOverride("UpperWalk", out bool flag);
+        if (flag)
+        {
+            __result = animUpperOverride;
+            return false;
+        }
+
+        var profile = __instance.GetProfile().ToSFDProfile();
+        if (profile.Skin.Name.Contains("Zombie"))
+        {
+            __result = "UpperWalkZombie";
+            return false;
+        }
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.GetAnimIdleUpper))]
+    private static bool IdleAnimation(Player __instance, ref string __result)
+    {
+        string animUpperOverride = __instance.GetAnimUpperOverride("UpperIdle", out bool flag);
+        if (flag)
+        {
+            __result = animUpperOverride;
+            return false;
+        }
+
+        var profile = __instance.GetProfile().ToSFDProfile();
+        if (profile.Skin.Name.Contains("Zombie"))
+        {
+            __result = "UpperIdleZombie";
+            return false;
+        }
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(PlayerUpperUseSyringeAnimation), nameof(PlayerUpperUseSyringeAnimation.OverrideUpperAnimationEnterFrame))]
+    private static bool OnSyringeAnimation(Player player, AnimationEvent animEvent, SubAnimationPlayer subAnim, PlayerUpperUseSyringeAnimation __instance)
+    {
+        if (__instance.CheckAbort(player))
+        {
+            return false;
+        }
+
+        if (!__instance.m_useFramePlayed && subAnim.GetCurrentFrameIndex() >= 3)
+        {
+            __instance.m_useFramePlayed = true;
+            switch (player.CurrentPowerupItem)
+            {
+                case WpnStrengthBoost strengthBoost:
+                    strengthBoost.OnEffectStart(player);
+                    break;
+                case WpnSpeedBoost speedBoost:
+                    speedBoost.OnEffectStart(player);
+                    break;
+                case RageBoost rageBoost:
+                    rageBoost.OnEffectStart(player);
+                    break;
+            }
+        }
+
+        return false;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ProfileGridItem), nameof(ProfileGridItem.RefreshPreviewPlayer))]
+    private static void RefreshAnimationMenu(ProfileGridItem __instance)
+    {
+        if (__instance.Profile != null)
+        {
+            bool walkingAnimation = Constants.Random.NextBool();
+            __instance.m_previewPlayer.SetAnimation(walkingAnimation ? Animation.Walk : Animation.Idle, PlayerAction.Disabled);
+        }
     }
 }

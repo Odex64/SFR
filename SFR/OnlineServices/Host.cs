@@ -22,7 +22,7 @@ internal class Host
 
         return instructions;
     }
-    
+
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(Server), nameof(Server.Start))]
     private static IEnumerable<CodeInstruction> AllowMoreConnections(IEnumerable<CodeInstruction> instructions)

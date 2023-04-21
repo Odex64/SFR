@@ -49,6 +49,13 @@ internal static class GenericServerData
                     netOutgoingMessage.WriteRangedInteger(0, 3, 0);
                     netOutgoingMessage.Write(parsedBool);
                     break;
+                case bool[] parsedBoolArray:
+                    foreach (bool value in parsedBoolArray)
+                    {
+                        netOutgoingMessage.WriteRangedInteger(0, 3, 0);
+                        netOutgoingMessage.Write(value);
+                    }
+                    break;
                 case int parsedInt:
                     netOutgoingMessage.WriteRangedInteger(0, 3, 1);
                     netOutgoingMessage.Write(parsedInt);
