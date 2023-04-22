@@ -115,12 +115,19 @@
         </Compile>
         <Compile Include="Bootstrap\Assets.cs"/>
         <Compile Include="API\Sandbox.cs"/>
+        <Compile Include="Debug\FastStart.cs"/>
         <Compile Include="Fighter\AnimHandler.cs"/>
         <Compile Include="Fighter\ExtendedPlayer.cs"/>
         <Compile Include="Fighter\GadgetHandler.cs"/>
         <Compile Include="Fighter\GoreHandler.cs"/>
         <Compile Include="Fighter\DevHandler.cs"/>
+        <Compile Include="Fighter\Jetpacks\GenericJetpack.cs"/>
+        <Compile Include="Fighter\Jetpacks\Jetpack.cs"/>
+        <Compile Include="Fighter\Jetpacks\JetpackHandler.cs"/>
+        <Compile Include="Fighter\Jetpacks\JetpackType.cs"/>
+        <Compile Include="Fighter\NameIconHandler.cs"/>
         <Compile Include="Fighter\PlayerHandler.cs"/>
+        <Compile Include="Fighter\StatusBarHandler.cs"/>
         <Compile Include="Game\CommandHandler.cs"/>
         <Compile Include="Game\NukeHandler.cs"/>
         <Compile Include="Game\World.cs"/>
@@ -202,7 +209,9 @@
         <Compile Include="Weapons\Melee\Rapier.cs"/>
         <Compile Include="Weapons\Melee\Sledgehammer.cs"/>
         <Compile Include="Weapons\Melee\Switchblade.cs"/>
+        <Compile Include="Weapons\Others\GunpackPickup.cs"/>
         <Compile Include="Weapons\Others\HealthPouch.cs"/>
+        <Compile Include="Weapons\Others\JetpackPickup.cs"/>
         <Compile Include="Weapons\Others\RageBoost.cs"/>
         <Compile Include="Weapons\Rifles\AA12.cs"/>
         <Compile Include="Weapons\Rifles\Barrett.cs"/>
@@ -236,7 +245,6 @@
             <Install>false</Install>
         </BootstrapperPackage>
     </ItemGroup>
-    <ItemGroup/>
     <ItemGroup>
         <Content Include="icon.ico"/>
     </ItemGroup>

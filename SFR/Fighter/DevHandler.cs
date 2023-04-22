@@ -7,7 +7,7 @@ namespace SFR.Fighter;
 /// <summary>
 ///     Official team members will have a special icon in-game.
 /// </summary>
-internal static class NameIconHandler
+internal static class DevHandler
 {
     private static readonly Dictionary<string, string> DeveloperIcons = new()
     {

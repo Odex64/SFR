@@ -198,6 +198,10 @@ namespace SFR.Fighter;
 ///             <term>SFR: 0</term>
 ///             <description>Rage boost</description>
 ///         </item>
+///         <item>
+///             <term>SFR: 1</term>
+///             <description>Jetpack type</description>
+///         </item>
 ///     </list>
 /// </summary>
 [HarmonyPatch]
@@ -247,7 +251,6 @@ internal static class PlayerHandler
     private static bool CanAttack(Player __instance, ref bool __result)
     {
         var extendedPlayer = __instance.GetExtension();
-        Logger.LogDebug(extendedPlayer.RageBoost);
         __result = !(__instance.Rolling || (__instance.Diving && !extendedPlayer.RageBoost) || __instance.Climbing || __instance.LedgeGrabbing || __instance.ThrowingModeToggleQueued || __instance.ClimbingClient || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
         return false;
     }

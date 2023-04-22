@@ -9,19 +9,19 @@ namespace SFR.Helper;
 /// </summary>
 internal static class Fighter
 {
-    internal static Team GetActualTeam(this Player player)
-    {
-        if (!player.IsBot)
-        {
-            var user = player.GetGameUser();
-            if (user != null && GadgetHandler.DevIcon.Account == user.Account)
-            {
-                return GadgetHandler.DevIcon.Team;
-            }
-        }
-
-        return player.CurrentTeam;
-    }
+    // internal static Team GetActualTeam(this Player player)
+    // {
+    //     if (!player.IsBot)
+    //     {
+    //         var user = player.GetGameUser();
+    //         if (user != null && GadgetHandler.DevIcon.Account == user.Account)
+    //         {
+    //             return GadgetHandler.DevIcon.Team;
+    //         }
+    //     }
+    //
+    //     return player.CurrentTeam;
+    // }
 
     /// <summary>
     ///     Helper method to return the current weapon in use

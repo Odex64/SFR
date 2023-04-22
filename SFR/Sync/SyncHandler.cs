@@ -4,7 +4,7 @@ using System.Linq;
 using HarmonyLib;
 using Lidgren.Network;
 using SFD;
-using SFD.GUI;
+using SFR.Fighter.Jetpacks;
 using SFR.Game;
 using SFR.Helper;
 using SFR.Objects;
@@ -128,7 +128,7 @@ internal static class SyncHandler
         if (isLast)
         {
             // SendExtraPlayerStatesToClients(__instance);
-            
+
             foreach (var genericServerData in GenericData.ServerData)
             {
                 __instance.m_server.SendToAll(genericServerData, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
@@ -144,7 +144,7 @@ internal static class SyncHandler
         {
             var extendedPlayer = player.GetExtension();
             var data = new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates());
-            var outgoingMessage =  GenericServerData.Write(data, server.m_server.CreateMessage());
+            var outgoingMessage = GenericServerData.Write(data, server.m_server.CreateMessage());
             server.m_server.SendToAll(outgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
         }
     }
@@ -183,7 +183,7 @@ internal static class SyncHandler
                     (ObjectNuke)nukeData[0],
                     (ObjectNuke)nukeData[1]
                 };
-                
+
                 NukeHandler.Begin(nukes);
                 break;
 
@@ -235,9 +235,8 @@ internal static class SyncHandler
                 var extendedStickyPlayer = ((Player)stickyBoostData[0].InternalData).GetExtension();
                 extendedStickyPlayer.DisableStickiedBoost();
                 break;
-            
+
             case DataType.ExtraClientStates:
-                Logger.LogDebug("syncing player");
                 var player = client.GameWorld.GetPlayer((int)data.Args[0]);
                 if (player == null)
                 {
@@ -246,10 +245,33 @@ internal static class SyncHandler
                 }
 
                 var extendedPlayer = player.GetExtension();
-                bool[] states = Array.ConvertAll(data.Args.Skip(1).ToArray(), o => (bool)o);
-                Logger.LogDebug("the rage boost is: " + states[0]);
+                bool[] states = Array.ConvertAll(data.Args.Skip(1).Take(2).ToArray(), o => (bool)o);
                 extendedPlayer.RageBoost = states[0];
-                
+                var jetpackType = (JetpackType)(int)data.Args[3];
+                if (extendedPlayer.GenericJetpack == null || jetpackType != extendedPlayer.JetpackType)
+                {
+                    extendedPlayer.JetpackType = jetpackType;
+                    Logger.LogDebug("Jetpack is: " + extendedPlayer.JetpackType);
+                    extendedPlayer.GenericJetpack = extendedPlayer.JetpackType switch
+                    {
+                        JetpackType.None => null,
+                        JetpackType.Jetpack => new Jetpack(),
+                        _ => extendedPlayer.GenericJetpack
+                    };
+                }
+                else if (states[1] && extendedPlayer.GenericJetpack != null)
+                {
+                    Logger.LogDebug("fill jetpack");
+                    extendedPlayer.GenericJetpack.Fuel.CurrentValue = 100;
+                    extendedPlayer.PrepareJetpack = false;
+                }
+
+                int jetPackFuel = (int)data.Args[4];
+                if (!states[1] && extendedPlayer.GenericJetpack != null && jetPackFuel != -1)
+                {
+                    extendedPlayer.GenericJetpack.Fuel.CurrentValue = jetPackFuel;
+                }
+
                 break;
         }
     }

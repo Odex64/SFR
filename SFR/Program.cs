@@ -77,7 +77,7 @@ internal static class Program
         bool isServer = false;
         for (int i = 0; i < args.Length; i++)
         {
-            if (args[i] == "-server")
+            if (args[i].Equals("-SERVER", StringComparison.OrdinalIgnoreCase))
             {
                 isServer = true;
             }
@@ -88,6 +88,13 @@ internal static class Program
                     Constants.Slots = slots;
                 }
             }
+#if DEBUG
+            else if (args[i].Equals("-DEBUG", StringComparison.OrdinalIgnoreCase))
+            {
+                Constants.FastStart = true;
+                Constants.DebugMap = args[i + 1] + ".sfdm";
+            }
+#endif
         }
 
         Logger.LogWarn("Patching");

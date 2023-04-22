@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using SFD;
 using SFD.Sounds;
 using SFDGameScriptInterface;
-using SFR.Helper;
+using SFR.Fighter.Jetpacks;
 using SFR.Sync.Generic;
 
 namespace SFR.Fighter;
@@ -15,12 +15,16 @@ namespace SFR.Fighter;
 internal sealed class ExtendedPlayer : IEquatable<Player>
 {
     internal static readonly List<ExtendedPlayer> ExtendedPlayers = new();
-    private readonly Player _player;
+    internal readonly Player Player;
     internal readonly TimeSequence Time = new();
+    internal GenericJetpack GenericJetpack;
+
+    internal JetpackType JetpackType = JetpackType.None;
+    internal bool PrepareJetpack = false;
 
     internal bool Stickied;
 
-    internal ExtendedPlayer(Player player) => _player = player;
+    internal ExtendedPlayer(Player player) => Player = player;
 
     internal bool RageBoost
     {
@@ -28,15 +32,15 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         set => Time.RageBoost = value ? TimeSequence.RageBoostTime : 0f;
     }
 
-    public bool Equals(Player other) => other?.ObjectID == _player.ObjectID;
+    public bool Equals(Player other) => other?.ObjectID == Player.ObjectID;
 
     internal void ApplyStickiedBoost()
     {
-        SoundHandler.PlaySound("StrengthBoostStart", _player.Position, _player.GameWorld);
-        var modifiers = _player.GetModifiers();
+        SoundHandler.PlaySound("StrengthBoostStart", Player.Position, Player.GameWorld);
+        var modifiers = Player.GetModifiers();
         modifiers.SprintSpeedModifier = 1.6f;
         modifiers.RunSpeedModifier = 1.6f;
-        _player.SetModifiers(modifiers);
+        Player.SetModifiers(modifiers);
 
         // avoid the server from reposition the player due to excessive speed.
         // TODO: Implement a proper mechanics in Player.GetTopSpeed()
@@ -46,11 +50,11 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
 
     internal void DisableStickiedBoost()
     {
-        SoundHandler.PlaySound("StrengthBoostStop", _player.Position, _player.GameWorld);
-        var modifiers = _player.GetModifiers();
+        SoundHandler.PlaySound("StrengthBoostStop", Player.Position, Player.GameWorld);
+        var modifiers = Player.GetModifiers();
         modifiers.SprintSpeedModifier = 1f;
         modifiers.RunSpeedModifier = 1f;
-        _player.SetModifiers(modifiers);
+        Player.SetModifiers(modifiers);
 
         // _player.SpeedBoostActive = false; // temp
         Stickied = false;
@@ -67,15 +71,18 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
             SizeModifier = 1.05f,
             MeleeForceModifier = 1.2f
         };
-        _player.SetModifiers(modifiers);
+        Player.SetModifiers(modifiers);
         RageBoost = true;
-        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, _player.ObjectID, GetStates()));
+        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
     }
 
-    public bool[] GetStates()
+    public object[] GetStates()
     {
-        bool[] states = new bool[1];
+        object[] states = new object[4];
         states[0] = RageBoost;
+        states[1] = PrepareJetpack;
+        states[2] = (int)JetpackType;
+        states[3] = (int)(GenericJetpack?.Fuel?.CurrentValue ?? 100);
 
         return states;
     }
@@ -83,15 +90,15 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     // TODO: Change other methods instead of using modifiers, like strength boost & speed boost do
     internal void DisableRageBoost()
     {
-        SoundHandler.PlaySound("StrengthBoostStop", _player.Position, _player.GameWorld);
+        SoundHandler.PlaySound("StrengthBoostStop", Player.Position, Player.GameWorld);
         // var modifiers = _player.GetModifiers();
         // modifiers.SprintSpeedModifier = 1f;
         // modifiers.RunSpeedModifier = 1f;
         // modifiers.SizeModifier = 1f;
         // modifiers.MeleeForceModifier = 1f;
         var modifiers = new PlayerModifiers(true);
-        _player.SetModifiers(modifiers);
-        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, _player.ObjectID, GetStates()));
+        Player.SetModifiers(modifiers);
+        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
     }
 
     internal class TimeSequence

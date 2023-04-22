@@ -42,7 +42,7 @@ internal static class Database
     [HarmonyPatch(typeof(WeaponDatabase), nameof(WeaponDatabase.Load))]
     private static void LoadWeapons()
     {
-        WeaponDatabase.m_weapons = new WeaponItem[104];
+        WeaponDatabase.m_weapons = new WeaponItem[105];
 
         _weapons ??= new List<WeaponItem>
         {
@@ -91,7 +91,8 @@ internal static class Database
 
             // Pickup
             new(WeaponItemType.Powerup, new HealthPouch()), // 92
-            new(WeaponItemType.Powerup, new RageBoost()) // 103
+            new(WeaponItemType.Powerup, new RageBoost()), // 103
+            new(WeaponItemType.InstantPickup, new JetpackPickup()) // 104
         };
 
         foreach (var weapon in _weapons)
@@ -216,7 +217,8 @@ internal static class Database
             { 100, 4 }, // RCM
             { 101, 12 }, // Winchester
             { 102, 4 }, // Minigun
-            { 103, 11 } // Rage boost
+            { 103, 11 }, // Rage boost
+            { 104, 9 } // Jetpack
         };
 
         __result = WeaponItem.ID.m_wpns;

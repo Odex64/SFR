@@ -11,7 +11,7 @@ namespace SFR.Sync.Generic;
 internal sealed class GenericData
 {
     internal static readonly List<NetOutgoingMessage> ServerData = new();
-    
+
     internal readonly object[] Args;
 
     internal readonly DataType Type;
