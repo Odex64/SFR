@@ -7,7 +7,6 @@ namespace SFR.Fighter.Jetpacks;
 
 internal abstract class GenericJetpack
 {
-    // private readonly float _jetpackFuel;
     private readonly float _maxSpeed;
     internal readonly BarMeter Fuel;
     private float _airTime;
@@ -23,19 +22,7 @@ internal abstract class GenericJetpack
     protected GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
     {
         _maxSpeed = maxSpeed;
-        // _jetpackFuel = fuel;
         Fuel = new BarMeter(fuel, fuel);
-
-        // if (player.GameOwner == GameOwnerEnum.Server && sync)
-        // {
-        //     Logger.LogInfo("jetpack 3 " + player.GameOwner);
-        //     player.ObjectData.SyncedMethod(
-        //         new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame,
-        //             player.GameWorld.ElapsedTotalGameTime,
-        //             jetpackFuel,
-        //             (int)jetpackType)
-        //     );
-        // }
     }
 
     internal virtual void Update(float ms, ExtendedPlayer extendedPlayer)
@@ -51,7 +38,7 @@ internal abstract class GenericJetpack
             _landed = true;
         }
 
-        if (!player.Crouching && !player.Diving && !player.Climbing && !player.Staggering && !player.LayingOnGround)
+        if (!player.Crouching && !player.Diving && !player.Climbing && !player.Staggering && !player.LayingOnGround && !player.Falling)
         {
             if (_airTime > 250 && (player.VirtualKeyboard.PressingKey(0) || player.VirtualKeyboard.PressingKey(19)))
             {
@@ -78,7 +65,7 @@ internal abstract class GenericJetpack
 
                 if (!player.InfiniteAmmo && !player.InfiniteAmmo)
                 {
-                    Fuel.CurrentValue -= 0.8f;
+                    Fuel.CurrentValue -= 0.8f * player.SlowmotionFactor;
                     GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates()));
                 }
 

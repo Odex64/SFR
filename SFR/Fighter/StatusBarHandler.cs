@@ -43,17 +43,13 @@ internal static class StatusBarHandler
 
     internal static void Draw(Player player, Vector2 vec, float num)
     {
-        if ((player.DrawStatusInfo & Player.DrawStatusInfoFlags.StatusBars) != Player.DrawStatusInfoFlags.StatusBars)
+        if (player is { IsDead: true, IsRemoved: true })
         {
             return;
         }
 
-        if (player is not { IsDead: false, IsRemoved: false })
-        {
-            return;
-        }
-
-        // 11f to 10f
+        bool canDrawDefaultBar = (player.DrawStatusInfo & Player.DrawStatusInfoFlags.StatusBars) == Player.DrawStatusInfoFlags.StatusBars;
+        
         vec.Y -= 10f * num;
 
         var barColor = Constants.COLORS.LIFE_BAR;
@@ -71,36 +67,34 @@ internal static class StatusBarHandler
             flag = true;
         }
 
-        if (!(flag | player.Energy.CheckRecentlyModified(2000f)))
-        {
-            return;
-        }
-
         float f = 32f * num;
-
         Rectangle destinationRectangle = new((int)(vec.X - f / 2f), (int)vec.Y, (int)f, (int)(2f * num));
         float n4 = Math.Max(1f, Camera.Zoom * 0.5f);
 
-        // What's doing this?
-        for (float num5 = -n4; num5 <= n4; num5 += n4 * 2f)
-        {
-            for (float num6 = -n4; num6 <= n4; num6 += n4 * 2f)
-            {
-                player.m_spriteBatch.Draw(
-                    Constants.WhitePixel,
-                    new Rectangle(destinationRectangle.X + (int)num5, destinationRectangle.Y + (int)num6, destinationRectangle.Width, (int)(destinationRectangle.Height * 2f)),
-                    Color.Black
-                );
-            }
-        }
-
-        destinationRectangle.Y -= destinationRectangle.Height;
+        destinationRectangle.Y += 2;
         DrawFuel(player, destinationRectangle);
+        destinationRectangle.Y += destinationRectangle.Height * 2;
 
-        destinationRectangle.Y += destinationRectangle.Height;
-        DrawHealth(player, destinationRectangle, barMeter, barColor);
+        if ((flag || player.Energy.CheckRecentlyModified(2000f)) && canDrawDefaultBar)
+        {
+            // Health bar darker background color
+            for (float num5 = -n4; num5 <= n4; num5 += n4 * 2f)
+            {
+                for (float num6 = -n4; num6 <= n4; num6 += n4 * 2f)
+                {
+                    player.m_spriteBatch.Draw(
+                        Constants.WhitePixel,
+                        new Rectangle(destinationRectangle.X + (int)num5, destinationRectangle.Y + (int)num6, destinationRectangle.Width, (int)(destinationRectangle.Height * 2f)),
+                        Color.Black
+                    );
+                }
+            }
 
-        destinationRectangle.Y += destinationRectangle.Height;
-        DrawEnergy(player, destinationRectangle);
+            // destinationRectangle.Y += destinationRectangle.Height;
+            DrawHealth(player, destinationRectangle, barMeter, barColor);
+
+            destinationRectangle.Y += destinationRectangle.Height;
+            DrawEnergy(player, destinationRectangle);
+        }
     }
 }

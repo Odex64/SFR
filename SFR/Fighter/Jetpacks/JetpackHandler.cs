@@ -32,6 +32,11 @@ internal static class JetpackHandler
 
         if (!__instance.Climbing)
         {
+            if (__instance.Rolling || __instance.LayingOnGround || __instance.RocketRideProjectile != null)
+            {
+                return true;
+            }
+
             //Set angle and position according to current state
             var gamePos = __instance.Position + new Vector2(-4 * __instance.LastDirectionX, 12);
             var effect = __instance.LastDirectionX == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -78,9 +83,9 @@ internal static class JetpackHandler
                 gamePos -= new Vector2(0, 8);
             }
 
-            if (__instance.Rolling || __instance.LayingOnGround || __instance.RocketRideProjectile != null)
+            if (__instance.GrabbedByPlayer != null)
             {
-                return true;
+                gamePos -= new Vector2(0, 8);
             }
 
             // Draw

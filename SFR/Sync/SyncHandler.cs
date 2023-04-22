@@ -246,7 +246,11 @@ internal static class SyncHandler
 
                 var extendedPlayer = player.GetExtension();
                 bool[] states = Array.ConvertAll(data.Args.Skip(1).Take(2).ToArray(), o => (bool)o);
-                extendedPlayer.RageBoost = states[0];
+                if (!extendedPlayer.RageBoost && states[0])
+                {
+                    extendedPlayer.RageBoost = states[0];
+                }
+
                 var jetpackType = (JetpackType)(int)data.Args[3];
                 if (extendedPlayer.GenericJetpack == null || jetpackType != extendedPlayer.JetpackType)
                 {

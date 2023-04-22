@@ -63,13 +63,13 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     // TODO: Change other methods instead of using modifiers, like strength boost & speed boost do
     internal void ApplyRageBoost()
     {
-        // var modifiers = _player.GetModifiers();
         var modifiers = new PlayerModifiers(true)
         {
             SprintSpeedModifier = 1.3f,
             RunSpeedModifier = 1.3f,
             SizeModifier = 1.05f,
-            MeleeForceModifier = 1.2f
+            MeleeForceModifier = 1.2f,
+            CurrentHealth =  Player.Health.CurrentValue
         };
         Player.SetModifiers(modifiers);
         RageBoost = true;
@@ -91,19 +91,17 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     internal void DisableRageBoost()
     {
         SoundHandler.PlaySound("StrengthBoostStop", Player.Position, Player.GameWorld);
-        // var modifiers = _player.GetModifiers();
-        // modifiers.SprintSpeedModifier = 1f;
-        // modifiers.RunSpeedModifier = 1f;
-        // modifiers.SizeModifier = 1f;
-        // modifiers.MeleeForceModifier = 1f;
-        var modifiers = new PlayerModifiers(true);
+        var modifiers = new PlayerModifiers(true)
+        {
+            CurrentHealth = Player.Health.CurrentValue
+        };
         Player.SetModifiers(modifiers);
         GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
     }
 
     internal class TimeSequence
     {
-        internal const float RageBoostTime = 16000f;
+        internal const float RageBoostTime = 14000f;
         internal float RageBoost;
     }
 }

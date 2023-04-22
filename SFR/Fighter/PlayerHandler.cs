@@ -200,7 +200,15 @@ namespace SFR.Fighter;
 ///         </item>
 ///         <item>
 ///             <term>SFR: 1</term>
+///             <description>Preparing jetpack</description>
+///         </item>
+///         <item>
+///             <term>SFR: 2</term>
 ///             <description>Jetpack type</description>
+///         </item>
+///         <item>
+///             <term>SFR: 3</term>
+///             <description>Jetpack fuel</description>
 ///         </item>
 ///     </list>
 /// </summary>

@@ -23,7 +23,6 @@ internal static class GadgetHandler
         NameIconHandler.Draw(__instance, vector, num);
 
         // Handle message icons.
-        // TODO: Create new file for this.
         if (__instance is { IsDead: false, IsRemoved: false, ChatActive: true })
         {
             if (__instance.m_chatIconTimer > 250f)
@@ -135,15 +134,3 @@ internal static class GadgetHandler
         return true;
     }
 }
-
-// internal struct DevIcon
-// {
-//     internal Team Team;
-//     internal string Account;
-//
-//     internal DevIcon(Team team, string account)
-//     {
-//         Team = team;
-//         Account = account;
-//     }
-// }
