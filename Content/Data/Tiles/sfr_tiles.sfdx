@@ -25,44 +25,6 @@ defaultTile(DefaultTile)
 	material.flammable = false;
 	doTakeDamage.Fire = false;
 }
-Tile(Transparent_Water00A)
-{
-	isCloud = true;
-	cloudRotation = 0;
-	drawCategory = FG;
-	material = water;
-	sizeable = H;
-	projectileHit = false;
-	fixture()
-	{
-		collisionGroup = none;
-		blockFire = false;
-	}
-	animation(Transparent_Water00A)
-	{
-		frameTimes = 100;
-		width = 16;
-		isSynced = true;
-	}
-}
-Tile(Transparent_Water00B)
-{
-	drawCategory = FG;
-	material = water;
-	sizeable = D;
-	projectileHit = false;
-	fixture()
-	{
-		collisionGroup = none;
-		blockFire = false;
-	}
-	animation(Transparent_Water00B)
-	{
-		frameTimes = 100;
-		width = 16;
-		isSynced = true;
-	}
-}
 Tile(WallDarkPixel00A)
 {
 	colorPalette = BG;

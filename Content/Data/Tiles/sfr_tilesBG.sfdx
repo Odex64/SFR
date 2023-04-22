@@ -380,7 +380,14 @@ Tile(BgFountain00A){}
 Tile(BgGlobe00A){}
 Tile(BgGuitar00A){}
 Tile(BgHangedLamp00A){}
-Tile(BgHeartMonitor00A){}
+Tile(BgHeartMonitor00A)
+{
+	animation(BgHeartMonitor00A)
+	{
+		width = 16;
+		frameTime = 180;
+	}
+}
 Tile(BgHeartMonitor00B){}
 Tile(BgHourglass00){}
 Tile(BgHourglass00A){}
@@ -390,20 +397,65 @@ Tile(BgLampPost01A){}
 Tile(BgLampPost01B){}
 Tile(BgLampPost02A){}
 Tile(BgLampStand00A){}
-Tile(BgLavalamp00A){}
-Tile(BgLavalamp01A){}
+Tile(BgLavalamp00A)
+{
+	animation(BgLavalamp00A)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
+Tile(BgLavalamp01A)
+{
+	animation(BgLavalamp01A)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
 Tile(BgLeaves01A){}
 Tile(BgLeaves01B){}
 Tile(BgLeaves01C){}
-Tile(BgLightRadiusGreen3A){}
-Tile(BgLightRadiusNavy3A){}
-Tile(BgLightRadiusPurple3A){}
-Tile(BgLightRadiusShadow3A){}
-Tile(BgLitCandle00A){}
-Tile(BgLitCandle00B){}
-Tile(BgLitCandle00C){}
-Tile(BgLitCandle01A){}
-Tile(BgLitCandle01B){}
+Tile(BgLitCandle00A)
+{
+	animation(BgLitCandle00A)
+	{
+		width = 5;
+		frameTime = 140;
+	}
+}
+Tile(BgLitCandle00B)
+{
+	animation(BgLitCandle00B)
+	{
+		width = 5;
+		frameTime = 140;
+	}
+}
+Tile(BgLitCandle00C)
+{
+	animation(BgLitCandle00C)
+	{
+		width = 10;
+		frameTime = 140;
+	}
+}
+Tile(BgLitCandle01A)
+{
+	animation(BgLitCandle01A)
+	{
+		width = 8;
+		frameTime = 140;
+	}
+}
+Tile(BgLitCandle01B)
+{
+	animation(BgLitCandle01B)
+	{
+		width = 8;
+		frameTime = 140;
+	}
+}
 Tile(BgLittleShip00A){}
 Tile(BgLock00A){}
 Tile(BgLongPainting_D){}
@@ -445,12 +497,54 @@ Tile(BgPoster15){}
 Tile(BgPoster16){}
 Tile(BgPoster17){}
 Tile(BgPoster18){}
-Tile(BgProtestor00A){}
-Tile(BgProtestor00B){}
-Tile(BgProtestor00C){}
-Tile(BgProtestor01A){}
-Tile(BgProtestor01B){}
-Tile(BgProtestor01C){}
+Tile(BgProtestor00A)
+{
+	animation(BgProtestor00A)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
+Tile(BgProtestor00B)
+{
+	animation(BgProtestor00B)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
+Tile(BgProtestor00C)
+{
+	animation(BgProtestor00C)
+	{
+		width = 16;
+		frameTime = 210;
+	}
+}
+Tile(BgProtestor01A)
+{
+	animation(BgProtestor01A)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
+Tile(BgProtestor01B)
+{
+	animation(BgProtestor01B)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
+Tile(BgProtestor01C)
+{
+	animation(BgProtestor01C)
+	{
+		width = 16;
+		frameTime = 210;
+	}
+}
 Tile(BgRailing03A){}
 Tile(BgRailing03B){}
 Tile(BgRailing03C){}
@@ -469,7 +563,14 @@ Tile(BgRailing05A){}
 Tile(BgRoadSign00){}
 Tile(BgRoadSign01){}
 Tile(BgScreen00A){}
-Tile(BgSgtIrinaStatue00A){}
+Tile(BgSgtIrinaStatue00A)
+{
+	animation(BgSgtIrinaStatue00A)
+	{
+		width = 32;
+		frameTime = 260;
+	}
+}
 Tile(BgSign03A){}
 Tile(BgSign091B){}
 Tile(BgSiren00A){}
@@ -549,12 +650,68 @@ Tile(BgFan04B){}
 Tile(BgLeaves00){}
 Tile(BgLeaves01){}
 Tile(BgLeaves02){}
-Tile(BgSpectator01){}
-Tile(BgSpectator02){}
-Tile(BgSpectator03){}
-Tile(BgSpectator04){}
-Tile(BgSpectator05){}
-Tile(BgSpectator06){}
-Tile(BgSpectator07){}
-Tile(BgSpectator08){}
+Tile(BgSpectator01)
+{
+	animation(BgSpectator01)
+	{
+		width = 16;
+		frameTime = 210;
+	}
+}
+Tile(BgSpectator02)
+{
+	animation(BgSpectator02)
+	{
+		width = 16;
+		frameTime = 210;
+	}
+}
+Tile(BgSpectator03)
+{
+	animation(BgSpectator03)
+	{
+		width = 18;
+		frameTime = 210;
+	}
+}
+Tile(BgSpectator04)
+{
+	animation(BgSpectator04)
+	{
+		width = 20;
+		frameTime = 210;
+	}
+}
+Tile(BgSpectator05)
+{
+	animation(BgSpectator05)
+	{
+		width = 16;
+		frameTime = 210;
+	}
+}
+Tile(BgSpectator06)
+{
+	animation(BgSpectator06)
+	{
+		width = 16;
+		frameTime = 210;
+	}
+}
+Tile(BgSpectator07)
+{
+	animation(BgSpectator07)
+	{
+		width = 20;
+		frameTime = 210;
+	}
+}
+Tile(BgSpectator08)
+{
+	animation(BgSpectator08)
+	{
+		width = 20;
+		frameTime = 210;
+	}
+}
 Tile(BgWarnPoster00){}

@@ -1,4 +1,3 @@
-// default for RGBA is 255
 color(White)			{ c = (255, 255, 255), (255, 255, 255), (255, 255, 255); }
 color(Black)			{ c = (0, 0, 0), (0, 0, 0), (0, 0, 0); }
 color(Transparent)		{ c = (0, 0, 0, 0), (0, 0, 0, 0), (0, 0, 0, 0); }
@@ -154,8 +153,8 @@ color(BgBlackMagenta)	{ c = (32, 0, 32), (0, 0, 0), (0, 0, 0), (0, 0, 0); }
 color(BgBlackIndigo)    { c = (27, 10, 53), (0, 0, 0), (0, 0, 0), (0, 0, 0); }
 color(BgBlackCrimson)   { c = (17, 1, 4), (0, 0, 0), (0, 0, 0), (0, 0, 0);  }
 color(BgBlackFadeBlue)  { c = (55, 15, 61), (0, 0, 0), (0, 0, 0); }
-color(BgBlackPineapple)  { c = (61, 33, 21), (0, 0, 0), (0, 0, 0); }
-color(BgBlackSoftPink)   { c = (45, 20, 40), (0, 0, 0), (0, 0, 0); }
+color(BgBlackPineapple) { c = (61, 33, 21), (0, 0, 0), (0, 0, 0); }
+color(BgBlackSoftPink)  { c = (45, 20, 40), (0, 0, 0), (0, 0, 0); }
 color(BgBlackEmerald)   { c = (0, 25, 13), (0, 0, 0), (0, 0, 0); }
 
 color(LightYellow)		{ c = (255, 216, 32), (208, 160, 16), (208, 140, 8), (192, 128, 4); }
