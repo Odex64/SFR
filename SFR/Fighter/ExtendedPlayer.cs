@@ -53,7 +53,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         states[0] = RageBoost;
         states[1] = PrepareJetpack;
         states[2] = (int)JetpackType;
-        states[3] = (int)(GenericJetpack?.Fuel?.CurrentValue ?? 100);
+        states[3] = GenericJetpack?.Fuel?.CurrentValue ?? 100f;
 
         return states;
     }
@@ -72,7 +72,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
 
     internal class TimeSequence
     {
-        internal const float RageBoostTime = 14000f;
+        internal const float RageBoostTime = 16000f;
         internal float RageBoost;
     }
 }

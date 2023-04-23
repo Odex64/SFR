@@ -2315,6 +2315,15 @@ Tile(ItemJetpack)
 	impactSound = WeaponBounce;
 	fixture(){mass = 5kg; collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4); blockFire = false; }
 }
+Tile(ItemJetpackEditor)
+{
+	tileTexture = ItemJetpack;
+	pickupType = instant;
+	pickupRange = 10.0;
+	impactEffect = ImpactDefault;
+	impactSound = WeaponBounce;
+	fixture(){mass = 5kg; collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4); blockFire = false; }
+}
 Tile(JetpackDebris1){ editorEnabled = false; punchable = true; kickable = true; material = metal; fixture(){ collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4); blockFire = false; } }
 
 //Tile(ItemGunpack)

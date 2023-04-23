@@ -38,10 +38,10 @@ internal static class Program
 
         if (args.Contains("-HELP", StringComparer.OrdinalIgnoreCase))
         {
-            Logger.LogInfo("#Command-line parameters", false);
-            Logger.LogWarn("-HELP            Show help dialog.\n-SFD             Directly start SFD.\n-SFR             Directly start SFR.\n-SKIP            Skip 'check updates' dialog.\n-SLOTS <amount>  Set slots amount for dedicated server.\n", false);
-            Logger.LogInfo("Example command to skip updates and start SFR server with 16 slots", false);
-            Logger.LogWarn("SFR.exe -sfr -skip -server -slots 16", false);
+            Logger.LogInfo("#Command-line parameters");
+            Logger.LogWarn("-HELP            Show help dialog.\n-SFD             Directly start SFD.\n-SFR             Directly start SFR.\n-SKIP            Skip 'check updates' dialog.\n-SLOTS <amount>  Set slots amount for dedicated server.\n");
+            Logger.LogInfo("Example command to skip updates and start SFR server with 16 slots");
+            Logger.LogWarn("SFR.exe -sfr -skip -server -slots 16");
             return 0;
         }
 

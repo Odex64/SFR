@@ -7,21 +7,22 @@ namespace SFR.Fighter.Jetpacks;
 
 internal abstract class GenericJetpack
 {
-    private readonly float _maxSpeed;
     internal readonly BarMeter Fuel;
-    private float _airTime;
-    private bool _landed;
+    protected readonly float MaxSpeed;
+
+    protected float AirTime;
     protected float EffectTimer;
 
     protected Texture2D Jetpack;
     protected Texture2D JetpackBack;
     protected Texture2D JetpackDiving;
+    protected bool Landed;
     internal bool Shake;
     protected float SoundTimer;
 
     protected GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
     {
-        _maxSpeed = maxSpeed;
+        MaxSpeed = maxSpeed;
         Fuel = new BarMeter(fuel, fuel);
     }
 
@@ -30,34 +31,34 @@ internal abstract class GenericJetpack
         var player = extendedPlayer.Player;
         if (player.InAir && !player.LedgeGrabbing && !player.Climbing)
         {
-            _airTime += ms;
+            AirTime += ms;
         }
         else
         {
-            _airTime = 0;
-            _landed = true;
+            AirTime = 0;
+            Landed = true;
         }
 
         if (!player.Crouching && !player.Diving && !player.Climbing && !player.Staggering && !player.LayingOnGround && !player.Falling)
         {
-            if (_airTime > 250 && (player.VirtualKeyboard.PressingKey(0) || player.VirtualKeyboard.PressingKey(19)))
+            if (AirTime > 250 && (player.VirtualKeyboard.PressingKey(0) || player.VirtualKeyboard.PressingKey(19)))
             {
-                if (_landed)
+                if (Landed)
                 {
-                    _landed = false;
+                    Landed = false;
                     SoundHandler.PlaySound("Bazooka", player.GameWorld);
                 }
 
                 var velocity = player.CurrentVelocity;
                 velocity.X *= player.SlowmotionFactor * 0.6f;
 
-                if (velocity.Y <= _maxSpeed)
+                if (velocity.Y <= MaxSpeed)
                 {
-                    velocity.Y = (velocity.Y > 1.96f ? velocity.Y : 1.96f) * player.SlowmotionFactor * 1.17f;
+                    velocity.Y = (velocity.Y > 1.94f ? velocity.Y : MaxSpeed > 1 ? 1.94f : 1.94f * MaxSpeed) * player.SlowmotionFactor * 1.17f;
                 }
                 else
                 {
-                    velocity.Y = _maxSpeed;
+                    velocity.Y = MaxSpeed;
                 }
 
                 player.SetNewLinearVelocity(velocity);
@@ -65,7 +66,7 @@ internal abstract class GenericJetpack
 
                 if (!player.InfiniteAmmo && !player.InfiniteAmmo)
                 {
-                    Fuel.CurrentValue -= 0.8f * player.SlowmotionFactor;
+                    Fuel.CurrentValue -= 0.03f * player.SlowmotionFactor * ms;
                     GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates()));
                 }
 

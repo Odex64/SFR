@@ -244,11 +244,11 @@ internal static class SyncHandler
                 if (extendedPlayer.GenericJetpack == null || jetpackType != extendedPlayer.JetpackType)
                 {
                     extendedPlayer.JetpackType = jetpackType;
-                    Logger.LogDebug("Jetpack is: " + extendedPlayer.JetpackType);
                     extendedPlayer.GenericJetpack = extendedPlayer.JetpackType switch
                     {
                         JetpackType.None => null,
                         JetpackType.Jetpack => new Jetpack(),
+                        JetpackType.JetpackEditor => new JetpackEditor(),
                         _ => extendedPlayer.GenericJetpack
                     };
                 }
@@ -259,8 +259,8 @@ internal static class SyncHandler
                     extendedPlayer.PrepareJetpack = false;
                 }
 
-                int jetPackFuel = (int)data.Args[4];
-                if (!states[1] && extendedPlayer.GenericJetpack != null && jetPackFuel != -1)
+                float jetPackFuel = (float)data.Args[4];
+                if (!states[1] && extendedPlayer.GenericJetpack != null)
                 {
                     extendedPlayer.GenericJetpack.Fuel.CurrentValue = jetPackFuel;
                 }

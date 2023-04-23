@@ -14,8 +14,5 @@ internal static class Constants
     internal static bool FastStart = false;
     internal static string DebugMap = string.Empty;
 
-    internal static bool IsDev()
-    {
-        return SFRVersion.EndsWith("_dev");
-    }
+    internal static bool IsDev() => SFRVersion.EndsWith("_dev");
 }

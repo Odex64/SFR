@@ -123,6 +123,7 @@
         <Compile Include="Fighter\DevHandler.cs"/>
         <Compile Include="Fighter\Jetpacks\GenericJetpack.cs"/>
         <Compile Include="Fighter\Jetpacks\Jetpack.cs"/>
+        <Compile Include="Fighter\Jetpacks\JetpackEditor.cs"/>
         <Compile Include="Fighter\Jetpacks\JetpackHandler.cs"/>
         <Compile Include="Fighter\Jetpacks\JetpackType.cs"/>
         <Compile Include="Fighter\NameIconHandler.cs"/>
@@ -209,9 +210,9 @@
         <Compile Include="Weapons\Melee\Rapier.cs"/>
         <Compile Include="Weapons\Melee\Sledgehammer.cs"/>
         <Compile Include="Weapons\Melee\Switchblade.cs"/>
-        <Compile Include="Weapons\Others\GunpackPickup.cs"/>
+        <Compile Include="Weapons\Others\JetpackEditor.cs"/>
         <Compile Include="Weapons\Others\HealthPouch.cs"/>
-        <Compile Include="Weapons\Others\JetpackPickup.cs"/>
+        <Compile Include="Weapons\Others\Jetpack.cs"/>
         <Compile Include="Weapons\Others\AdrenalineBoost.cs"/>
         <Compile Include="Weapons\Rifles\AA12.cs"/>
         <Compile Include="Weapons\Rifles\Barrett.cs"/>
