@@ -76,7 +76,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
     }
 
-    public object[] GetStates()
+    internal object[] GetStates()
     {
         object[] states = new object[4];
         states[0] = RageBoost;

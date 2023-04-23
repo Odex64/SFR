@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 
 namespace SFR.Misc;
 
-public static class Constants
+internal static class Constants
 {
     internal const string SFRVersion = "v.1.0.4_dev";
     internal const int Build = 0;

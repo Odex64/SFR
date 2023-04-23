@@ -93,14 +93,9 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
     }
 
     public void GetDealtDamage(Player player, float damage) { }
-
     public void OnHit(Player player, Player target) { }
-
     public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj) { }
-
     public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
-
-    public void BeforeHit(Player player, Player target) { }
 
     public override RWeapon Copy()
     {
@@ -229,7 +224,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         return base.GetDrawnTexture(ref args);
     }
 
-    public void ClientSyncRev(bool value)
+    internal void ClientSyncRev(bool value)
     {
         _clientRevUp = value;
     }

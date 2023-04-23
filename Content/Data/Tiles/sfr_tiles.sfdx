@@ -2277,38 +2277,84 @@ Tile(Slab00B)
 	colorPalette = Stone;
 	sizeable = A;
 }
-Tile(Snow01A){}
-Tile(Snow01B){}
+Tile(Snow01A)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Snow01B)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Snow01C)
 {
+	material = snow;
+	colorPalette = Ground;
 	sizeable = n;
 	fixture()
 	{
 		collisionPoints = (-4, -4), (4, -4), (4, 4);
 	}
 }
-Tile(Snow01D){}
+Tile(Snow01D)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Snow01E)
 {
+	material = snow;
+	colorPalette = Ground;
 	sizeable = n;
 	fixture()
 	{
 		collisionPoints = (-8, -4), (8, -4), (8, 4);
 	}
 }
-Tile(Snow01F){}
+Tile(Snow01F)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Snow01G)
 {
+	material = snow;
+	colorPalette = Ground;
 	sizeable = n;
 	fixture()
 	{
 		collisionPoints = (-16, -4), (16, -4), (16, 4);
 	}
 }
-Tile(Snow01H){}
-Tile(Snow01I){}
-Tile(Snow01J){}
-Tile(Snow02A){}
+Tile(Snow01H)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Snow01I)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Snow01J)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Snow02A)
+{
+	material = snow;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Wood00Weak)
 {
 	material = wood;
