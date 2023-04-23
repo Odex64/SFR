@@ -49,7 +49,7 @@ internal static class StatusBarHandler
         }
 
         bool canDrawDefaultBar = (player.DrawStatusInfo & Player.DrawStatusInfoFlags.StatusBars) == Player.DrawStatusInfoFlags.StatusBars;
-        
+
         vec.Y -= 10f * num;
 
         var barColor = Constants.COLORS.LIFE_BAR;

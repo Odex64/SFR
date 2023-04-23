@@ -18,11 +18,8 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     internal readonly Player Player;
     internal readonly TimeSequence Time = new();
     internal GenericJetpack GenericJetpack;
-
     internal JetpackType JetpackType = JetpackType.None;
     internal bool PrepareJetpack = false;
-
-    internal bool Stickied;
 
     internal ExtendedPlayer(Player player) => Player = player;
 
@@ -34,32 +31,6 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
 
     public bool Equals(Player other) => other?.ObjectID == Player.ObjectID;
 
-    internal void ApplyStickiedBoost()
-    {
-        SoundHandler.PlaySound("StrengthBoostStart", Player.Position, Player.GameWorld);
-        var modifiers = Player.GetModifiers();
-        modifiers.SprintSpeedModifier = 1.6f;
-        modifiers.RunSpeedModifier = 1.6f;
-        Player.SetModifiers(modifiers);
-
-        // avoid the server from reposition the player due to excessive speed.
-        // TODO: Implement a proper mechanics in Player.GetTopSpeed()
-        // _player.SpeedBoostActive = true;
-        Stickied = true;
-    }
-
-    internal void DisableStickiedBoost()
-    {
-        SoundHandler.PlaySound("StrengthBoostStop", Player.Position, Player.GameWorld);
-        var modifiers = Player.GetModifiers();
-        modifiers.SprintSpeedModifier = 1f;
-        modifiers.RunSpeedModifier = 1f;
-        Player.SetModifiers(modifiers);
-
-        // _player.SpeedBoostActive = false; // temp
-        Stickied = false;
-    }
-
     // TODO: Change other methods instead of using modifiers, like strength boost & speed boost do
     internal void ApplyRageBoost()
     {
@@ -69,7 +40,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
             RunSpeedModifier = 1.3f,
             SizeModifier = 1.05f,
             MeleeForceModifier = 1.2f,
-            CurrentHealth =  Player.Health.CurrentValue
+            CurrentHealth = Player.Health.CurrentValue
         };
         Player.SetModifiers(modifiers);
         RageBoost = true;

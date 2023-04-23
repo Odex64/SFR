@@ -19,7 +19,6 @@ internal static class GadgetHandler
         var vector = Camera.ConvertWorldToScreen(__instance.Position + new Vector2(0f, 24f));
         float num = MathHelper.Max(Camera.Zoom * 0.4f, 1f);
 
-        // Handle name icons.
         NameIconHandler.Draw(__instance, vector, num);
 
         // Handle message icons.
@@ -119,11 +118,6 @@ internal static class GadgetHandler
     private static bool CustomDrawColor(Player __instance, ref Color __result)
     {
         var extendedPlayer = __instance.GetExtension();
-        if (extendedPlayer.Stickied)
-        {
-            __result = ColorCorrection.CreateCustom(Constants.COLORS.YELLOW);
-            return false;
-        }
 
         if (extendedPlayer.RageBoost)
         {

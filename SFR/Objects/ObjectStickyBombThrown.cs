@@ -94,11 +94,6 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
                 m_timeBeforeEnablePlayerHit = 0f;
                 DisableUpdateObject();
 
-                if (_stickiedPlayer is { IsRemoved: false })
-                {
-                    GenericData.SendGenericDataToClients(new GenericData(DataType.DisableStickyBoost, _stickiedPlayer.ObjectID));
-                }
-
                 if (Constants.Random.NextFloat() < GetDudChance())
                 {
                     EffectHandler.PlayEffect("GR_D", GetWorldPosition(), GameWorld);
@@ -234,18 +229,15 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
         }
     }
 
-    internal void ApplyStickyPlayer(int playerID, float x, float y, float angle)
+    internal void ApplyStickyPlayer(int playerId, float x, float y, float angle)
     {
-        var player = GameWorld.GetPlayer(playerID);
+        var player = GameWorld.GetPlayer(playerId);
         if (player != null)
         {
             _stickiedPlayer = player;
             _stickiedOffset = new Vector2(x, y);
             _stickiedAngle = angle;
             Stickied = true;
-
-            var extendedPlayer = player.GetExtension();
-            extendedPlayer.ApplyStickiedBoost();
         }
     }
 }
