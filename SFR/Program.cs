@@ -25,6 +25,17 @@ internal static class Program
 
     private static int Main(string[] args)
     {
+        // Remove .old files after update
+        foreach (string file in Directory.GetFiles(GameDirectory, "*.old", SearchOption.TopDirectoryOnly))
+        {
+            File.Delete(file);
+        }
+
+        foreach (string file in Directory.GetFiles(Path.Combine(GameDirectory, "SFR"), "*.old", SearchOption.TopDirectoryOnly))
+        {
+            File.Delete(file);
+        }
+
         if (args.Contains("-HELP", StringComparer.OrdinalIgnoreCase))
         {
             Logger.LogInfo("#Command-line parameters", false);
@@ -49,7 +60,7 @@ internal static class Program
 
         if (!args.Contains("-SFR", StringComparer.OrdinalIgnoreCase))
         {
-            Logger.LogWarn("Start SFR or SFD: \n1. SFR\n2. SFD", false);
+            Logger.LogWarn("Start SFR or SFD: \n1. SFR\n2. SFD", false, false);
             Console.SetCursorPosition("Start SFD or SFD: ".Length, Console.CursorTop - 3);
             var key = Console.ReadKey().Key;
             Console.SetCursorPosition(0, Console.CursorTop + 4);
@@ -143,8 +154,7 @@ internal static class Program
 
     private static bool Choice(string message)
     {
-        Logger.LogWarn(message + ": ");
-        Console.SetCursorPosition(message.Length + 13, Console.CursorTop - 1);
+        Logger.LogWarn(message + ": ", true, false);
         return (Console.ReadLine() ?? string.Empty).Equals("Y", StringComparison.OrdinalIgnoreCase);
     }
 
@@ -161,8 +171,8 @@ internal static class Program
 
     private static bool Update()
     {
-        string contentDirectory = Path.Combine(GameDirectory, @"SFR");
-        if (Choice($"All files in {contentDirectory} will be erased. Proceed? (Y/n):"))
+        string contentDirectory = Path.Combine(GameDirectory, "SFR");
+        if (Choice($"All files in {contentDirectory} will be erased. Proceed? (Y/n)"))
         {
             Logger.LogInfo("Downloading files...");
             string archivePath = Path.Combine(GameDirectory, "SFR.zip");
