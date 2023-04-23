@@ -212,7 +212,7 @@
         <Compile Include="Weapons\Others\GunpackPickup.cs" />
         <Compile Include="Weapons\Others\HealthPouch.cs" />
         <Compile Include="Weapons\Others\JetpackPickup.cs" />
-        <Compile Include="Weapons\Others\RageBoost.cs" />
+        <Compile Include="Weapons\Others\AdrenalineBoost.cs" />
         <Compile Include="Weapons\Rifles\AA12.cs" />
         <Compile Include="Weapons\Rifles\Barrett.cs" />
         <Compile Include="Weapons\Rifles\Blunderbuss.cs" />

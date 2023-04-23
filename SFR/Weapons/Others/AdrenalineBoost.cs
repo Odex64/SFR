@@ -6,23 +6,23 @@ using SFR.Helper;
 
 namespace SFR.Weapons.Others;
 
-internal class RageBoost : PItem
+internal class AdrenalineBoost : PItem
 {
-    internal RageBoost()
+    internal AdrenalineBoost()
     {
-        var itemProperties = new PItemProperties(103, "RageBoost", "ItemRageBoost", false, WeaponCategory.Supply)
+        var itemProperties = new PItemProperties(103, "Adrenaline_Boost", "ItemAdrenalineBoost", false, WeaponCategory.Supply)
         {
             PickupSoundID = "GetSlomo",
             ActivateSoundID = ""
         };
 
-        var itemVisuals = new PItemVisuals(Textures.GetTexture("RageBoost"), Textures.GetTexture("RageBoostD"));
-        itemProperties.VisualText = "Rage Boost";
+        var itemVisuals = new PItemVisuals(Textures.GetTexture("AdrenalineBoost"), Textures.GetTexture("AdrenalineBoostD"));
+        itemProperties.VisualText = "Adrenaline Boost";
 
         SetPropertiesAndVisuals(itemProperties, itemVisuals);
     }
 
-    private RageBoost(PItemProperties properties, PItemVisuals visuals)
+    private AdrenalineBoost(PItemProperties properties, PItemVisuals visuals)
     {
         SetPropertiesAndVisuals(properties, visuals);
     }
@@ -51,5 +51,5 @@ internal class RageBoost : PItem
         }
     }
 
-    public override PItem Copy() => new RageBoost(Properties, Visuals);
+    public override PItem Copy() => new AdrenalineBoost(Properties, Visuals);
 }

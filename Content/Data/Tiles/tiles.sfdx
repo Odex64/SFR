@@ -442,22 +442,24 @@ Tile(Shadow00A)
 }
 Tile(Shadow00B)
 {
-	sizeable = D;
+	sizeable = n;
 	material.destroyEffect = none;
 	material.destroySound = none;
 	fixture()
 	{
 		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
 	}
 }
 Tile(Shadow00C)
 {
-	sizeable = D;
+	sizeable = n;
 	material.destroyEffect = none;
 	material.destroySound = none;
 	fixture()
 	{
 		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
 	}
 }
 Tile(Shadow00D)
@@ -472,32 +474,35 @@ Tile(Shadow00D)
 }
 Tile(Shadow00E)
 {
-	sizeable = D;
+	sizeable = n;
 	material.destroyEffect = none;
 	material.destroySound = none;
 	fixture()
 	{
 		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
 	}
 }
 Tile(Shadow02A)
 {
-	sizeable = D;
+	sizeable = n;
 	material.destroyEffect = none;
 	material.destroySound = none;
 	fixture()
 	{
 		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
 	}
 }
 Tile(Shadow02B)
 {
-	sizeable = D;
+	sizeable = n;
 	material.destroyEffect = none;
 	material.destroySound = none;
 	fixture()
 	{
 		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
 	}
 }
 Tile(Shadow03A)
@@ -512,12 +517,13 @@ Tile(Shadow03A)
 }
 Tile(Shadow03B)
 {
-	sizeable = D;
+	sizeable = n;
 	material.destroyEffect = none;
 	material.destroySound = none;
 	fixture()
 	{
 		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
 	}
 }
 Tile(TankTread00A)

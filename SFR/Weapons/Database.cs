@@ -91,7 +91,7 @@ internal static class Database
 
             // Pickup
             new(WeaponItemType.Powerup, new HealthPouch()), // 92
-            new(WeaponItemType.Powerup, new RageBoost()), // 103
+            new(WeaponItemType.Powerup, new AdrenalineBoost()), // 103
             new(WeaponItemType.InstantPickup, new JetpackPickup()) // 104
         };
 

@@ -1219,9 +1219,9 @@ Tile(ItemSlomo10)
 		blockFire = false;
 	}
 }
-Tile(ItemRageBoost)
+Tile(ItemAdrenalineBoost)
 {
-	tileTexture = RageBoost;
+	tileTexture = AdrenalineBoost;
 	pickupType = instant;
 	pickupRange = 10.0;
 	fixture()

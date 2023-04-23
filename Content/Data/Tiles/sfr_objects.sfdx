@@ -594,7 +594,7 @@ Tile(HeadDebris00C)
 Tile(Head00)
 {
 	drawCategory = PLR;
-	life = 100;
+	life = 5;
 	material = flesh;
 	material.blockExplosions = false;
 	material.flammable = false;

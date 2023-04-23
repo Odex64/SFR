@@ -162,3 +162,108 @@ Tile(FarBgWallMidShadeOutline00C){}
 Tile(FarBgWallMidShadeOutline00E){}
 Tile(FarBgWallMidShadeOutline00F){}
 Tile(FarBgWallMidShadeOutline00G){}
+
+// Foreground
+defaultTile(d_t)
+{
+	drawCategory = FG;
+}
+Tile(FgGradientBlue00A){}
+Tile(FgGradientBlue01A){}
+Tile(FgGradientBlue02A){}
+Tile(FgGradientCrimson00A){}
+Tile(FgGradientCrimson01A){}
+Tile(FgGradientCrimson02A){}
+Tile(FgGradientGreen00A){}
+Tile(FgGradientGreen01A){}
+Tile(FgGradientGreen02A){}
+Tile(FgGradientNavy00A){}
+Tile(FgGradientNavy01A){}
+Tile(FgGradientNavy02A){}
+Tile(FgGradientPink00A){}
+Tile(FgGradientPink01A){}
+Tile(FgGradientPink02A){}
+Tile(FgGradientPurple00A){}
+Tile(FgGradientPurple01A){}
+Tile(FgGradientPurple02A){}
+Tile(FgGradientShadow00A){}
+Tile(FgGradientShadow01A){}
+Tile(FgGradientShadow02A){}
+Tile(FgGradientWhite00A){}
+Tile(FgGradientWhite01A){}
+Tile(FgGradientWhite02A){}
+Tile(FgGradientYellow00A){}
+Tile(FgGradientYellow01A){}
+Tile(FgGradientYellow02A){}
+Tile(FgLightRadiusBlue00A){}
+Tile(FgLightRadiusBlue01A){}
+Tile(FgLightRadiusBlue02A){}
+Tile(FgLightRadiusBlue03A){}
+Tile(FgLightRadiusCrimson00A){}
+Tile(FgLightRadiusCrimson01A){}
+Tile(FgLightRadiusCrimson02A){}
+Tile(FgLightRadiusCrimson03A){}
+Tile(FgLightRadiusGreen00A){}
+Tile(FgLightRadiusGreen01A){}
+Tile(FgLightRadiusGreen02A){}
+Tile(FgLightRadiusGreen03A){}
+Tile(FgLightRadiusNavy00A){}
+Tile(FgLightRadiusNavy01A){}
+Tile(FgLightRadiusNavy02A){}
+Tile(FgLightRadiusNavy03A){}
+Tile(FgLightRadiusPink00A){}
+Tile(FgLightRadiusPink01A){}
+Tile(FgLightRadiusPink02A){}
+Tile(FgLightRadiusPink03A){}
+Tile(FgLightRadiusPurple00A){}
+Tile(FgLightRadiusPurple01A){}
+Tile(FgLightRadiusPurple02A){}
+Tile(FgLightRadiusPurple03A){}
+Tile(FgLightRadiusShadow00A){}
+Tile(FgLightRadiusShadow01A){}
+Tile(FgLightRadiusShadow02A){}
+Tile(FgLightRadiusShadow03A){}
+Tile(FgLightRadiusWhite00A){}
+Tile(FgLightRadiusWhite01A){}
+Tile(FgLightRadiusWhite02A){}
+Tile(FgLightRadiusWhite03A){}
+Tile(FgLightRadiusYellow00A){}
+Tile(FgLightRadiusYellow01A){}
+Tile(FgLightRadiusYellow02A){}
+Tile(FgLightRadiusYellow03A){}
+Tile(TransparentWater00A)
+{
+	isCloud = true;
+	cloudRotation = 0;
+	material = water;
+	sizeable = H;
+	projectileHit = false;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+	animation(TransparentWater00A)
+	{
+		frameTimes = 100;
+		width = 16;
+		isSynced = true;
+	}
+}
+Tile(TransparentWater00B)
+{
+	material = water;
+	sizeable = D;
+	projectileHit = false;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+	animation(TransparentWater00B)
+	{
+		frameTimes = 100;
+		width = 16;
+		isSynced = true;
+	}
+}

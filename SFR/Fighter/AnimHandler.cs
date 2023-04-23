@@ -130,7 +130,7 @@ internal static class AnimHandler
                 case WpnSpeedBoost speedBoost:
                     speedBoost.OnEffectStart(player);
                     break;
-                case RageBoost rageBoost:
+                case AdrenalineBoost rageBoost:
                     rageBoost.OnEffectStart(player);
                     break;
             }

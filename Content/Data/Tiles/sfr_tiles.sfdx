@@ -2108,43 +2108,114 @@ Tile(Cobblestone00A)
 	colorPalette = Concrete;
 	sizeable = A;
 }
-Tile(DurableBamboo00B){}
-Tile(DurableBamboo00A){}
-Tile(Ground00A){}
-Tile(Ground00B){}
+Tile(DurableBamboo00B)
+{
+	material = dirt;
+	colorPalette = BambooBlock;
+	sizeable = A;
+}
+Tile(DurableBamboo00A)
+{
+	material = dirt;
+	colorPalette = BambooBlock;
+	sizeable = A;
+}
+Tile(Ground00A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00B)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Ground00C)
 {
+	material = dirt;
+	colorPalette = Ground;
 	sizeable = n;
 	fixture()
 	{
 		collisionPoints = (-4, -4), (4, -4), (4, 4);
 	}
 }
-Tile(Ground00D){}
+Tile(Ground00D)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Ground00E)
 {
+	material = dirt;
+	colorPalette = Ground;
 	sizeable = n;
 	fixture()
 	{
 		collisionPoints = (-8, -4), (8, -4), (8, 4);
 	}
 }
-Tile(Ground00F){}
+Tile(Ground00F)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Ground00G)
 {
+	material = dirt;
+	colorPalette = Ground;
 	sizeable = n;
 	fixture()
 	{
 		collisionPoints = (-16, -4), (16, -4), (16, 4);
 	}
 }
-Tile(Ground00H){}
-Tile(Ground00I){}
-Tile(Ground00J){}
-Tile(Ground01A){}
-Tile(Ground02A){}
-Tile(Ground03A){}
-Tile(Ground04A){}
+Tile(Ground00H)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00I)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00J)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground01A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground02A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground03A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground04A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
 Tile(Ice00G)
 {
 	material = ice;
@@ -2194,8 +2265,18 @@ Tile(Sand00G)
 Tile(Sand00H){}
 Tile(Sand00I){}
 Tile(Sand00J){}
-Tile(Slab00A){}
-Tile(Slab00B){}
+Tile(Slab00A)
+{
+	material = concrete;
+	colorPalette = Stone;
+	sizeable = A;
+}
+Tile(Slab00B)
+{
+	material = concrete;
+	colorPalette = Stone;
+	sizeable = A;
+}
 Tile(Snow01A){}
 Tile(Snow01B){}
 Tile(Snow01C)
@@ -2230,18 +2311,27 @@ Tile(Snow01J){}
 Tile(Snow02A){}
 Tile(Wood00Weak)
 {
+	material = wood;
+	colorPalette = Wood;
+	sizeable = D;
 	life = 50;
 	material.flammable = true;
 	doTakeDamage.Fire = true;
 }
 Tile(Wood01AWeak)
 {
+	material = wood;
+	colorPalette = Wood;
+	sizeable = D;
 	life = 50;
 	material.flammable = true;
 	doTakeDamage.Fire = true;
 }
 Tile(Wood03Weak)
 {
+	material = wood;
+	colorPalette = Wood;
+	sizeable = D;
 	life = 50;
 	material.flammable = true;
 	doTakeDamage.Fire = true;
