@@ -35,17 +35,17 @@ internal static class DevHandler
         { "294075097", string.Empty } // Argon (Coder)
     };
 
-    internal static bool IsDeveloper(string accountID) => DeveloperIcons.ContainsKey(accountID.Substring(1));
+    internal static bool IsDeveloper(string accountId) => accountId.Length > 1 && DeveloperIcons.ContainsKey(accountId.Substring(1));
 
-    internal static Texture2D GetDeveloperIcon(string accountID)
+    internal static Texture2D GetDeveloperIcon(string accountId)
     {
-        if (!IsDeveloper(accountID))
+        if (!IsDeveloper(accountId))
         {
             return null;
         }
 
         // User accounts start with S. Remove it before checking it's a dev.
-        string iconName = DeveloperIcons[accountID.Substring(1)];
+        string iconName = DeveloperIcons[accountId.Substring(1)];
         return Textures.GetTexture(iconName == string.Empty ? "developer" : iconName);
     }
 }

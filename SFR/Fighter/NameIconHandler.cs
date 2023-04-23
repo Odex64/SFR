@@ -61,7 +61,7 @@ internal static class NameIconHandler
 
     internal static void Draw(Player player, Vector2 vec, float num)
     {
-        if (player is not { IsDead: false, IsRemoved: false })
+        if (player.IsDead || player.IsRemoved)
         {
             return;
         }
