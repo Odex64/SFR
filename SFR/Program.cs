@@ -16,8 +16,9 @@ namespace SFR;
 /// </summary>
 internal static class Program
 {
-    private const string VersionURI = "https://raw.githubusercontent.com/Odex64/SFR/master/version";
-    private static string _gameURI = "https://github.com/Odex64/SFR/releases/download/GAMEVERSION/SFR.zip";
+    private const string VersionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/version";
+    private const string PreviewVersionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/preview";
+    private static string _gameUri = "https://github.com/Odex64/SFR/releases/download/GAMEVERSION/SFR.zip";
     internal static readonly string GameDirectory = Directory.GetCurrentDirectory();
     private static readonly Harmony Harmony = new("github.com/Odex64/SFR");
     private static WebClient _webClient;
@@ -66,7 +67,7 @@ internal static class Program
             }
         }
 
-        if (!(args.Length > 0 && args.Contains("-SKIP", StringComparer.OrdinalIgnoreCase)) && !Constants.SFRVersion.EndsWith("_dev") && Choice("Check for updates? (Y/n)"))
+        if (!(args.Length > 0 && args.Contains("-SKIP", StringComparer.OrdinalIgnoreCase)) && Choice("Check for updates? (Y/n)"))
         {
             if (CheckUpdate())
             {
@@ -111,7 +112,7 @@ internal static class Program
         try
         {
             _webClient = new WebClient();
-            remoteVersion = _webClient.DownloadString(VersionURI).Trim();
+            remoteVersion = Constants.IsDev() ? _webClient.DownloadString(PreviewVersionUri).Trim() : _webClient.DownloadString(VersionUri).Trim();
         }
         catch (WebException)
         {
@@ -121,7 +122,7 @@ internal static class Program
         }
 
         string[] versionInfo = remoteVersion.Split('+');
-        _gameURI = _gameURI.Replace("GAMEVERSION", versionInfo[0]);
+        _gameUri = _gameUri.Replace("GAMEVERSION", versionInfo[0]);
 
         switch (string.CompareOrdinal(Constants.SFRVersion, versionInfo[0]))
         {
@@ -142,7 +143,7 @@ internal static class Program
 
     private static bool Choice(string message)
     {
-        Console.Write(message + ' ');
+        Logger.LogWarn(message + ' ');
         return (Console.ReadLine() ?? string.Empty).Equals("Y", StringComparison.OrdinalIgnoreCase);
     }
 
@@ -167,7 +168,7 @@ internal static class Program
 
             try
             {
-                _webClient.DownloadFile(_gameURI, archivePath);
+                _webClient.DownloadFile(_gameUri, archivePath);
             }
             catch (WebException)
             {
