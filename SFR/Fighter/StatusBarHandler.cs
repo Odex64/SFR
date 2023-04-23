@@ -43,7 +43,7 @@ internal static class StatusBarHandler
 
     internal static void Draw(Player player, Vector2 vec, float num)
     {
-        if (player is { IsDead: true, IsRemoved: true })
+        if (player.IsDead || player.IsRemoved)
         {
             return;
         }
