@@ -143,7 +143,8 @@ internal static class Program
 
     private static bool Choice(string message)
     {
-        Logger.LogWarn(message + ' ');
+        Logger.LogWarn(message + ": ");
+        Console.SetCursorPosition(message.Length + 13, Console.CursorTop - 1);
         return (Console.ReadLine() ?? string.Empty).Equals("Y", StringComparison.OrdinalIgnoreCase);
     }
 
