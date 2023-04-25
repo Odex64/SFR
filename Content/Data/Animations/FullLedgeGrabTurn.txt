@@ -1,0 +1,27 @@
+frame
+time 300
+event 
+part 150 -8 0 0 0 1 1 
+part 100 -10 -1 0 0 1 1 
+part 220 -3 0 0 0 1 1 
+part 0 -3 -7 0 1 1 1 
+part 50 -2 -1 0 0 1 1 
+part 150 4 -3 0 0 1 1 
+part 110 4 -1 0 0 1 1 
+part -4 -2 4 0 0 1 1 
+part -8 -7 0 0 0 1 1 
+part -9 -5 0 0 0 1 1 
+frame
+time 300
+event 
+part 150 -8 1 0 0 1 1 
+part 100 -10 0 0 0 1 1 
+part 220 -3 0 0 0 1 1 
+part 0 -3 -6 0 1 1 1 
+part 51 -2 0 0 0 1 1 
+part 150 4 -3 0 0 1 1 
+part 110 4 0 0 0 1 1 
+part -4 -2 5 0 0 1 1 
+part -8 -7 1 0 0 1 1 
+part -9 -5 1 0 0 1 1 
+

@@ -1,0 +1,15 @@
+frame
+time 30
+event 
+part 154 7 -0,5 0 0 1 1 
+part 105 -2 1,5 0 0 1 1 
+part 3 -1 -2,5 0 0 1 1 
+part -6 9 -0,5 0 0 1 1 
+frame
+time 25
+event DRAWBACK
+part 154 7 -0,5 0 0 1 1 
+part 105 -2 1,5 0 0 1 1 
+part 3 -1 -2,5 0 0 1 1 
+part -6 9 -0,5 0 0 1 1 
+

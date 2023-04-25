@@ -1,0 +1,23 @@
+frame
+time 25
+event 
+part 155 -8 -5 0 1 1 1 
+part 109 -4 -3 0 0 1 1 
+part 212 1 -2 0 0 1 1 
+part 0 -2 -8 0 0 1 1 
+part 50 0 -2 0 0 1 1 
+part 151 4 -4 0 0 1 1 
+part -4 0 3 0 0 1 1 
+part -8 -5 -1 0 0 1 1 
+frame
+time 25
+event 
+part 155 -8 -3 0 1 1 1 
+part 110 -4 -2 0 0 1 1 
+part 212 1 -2 0 0 1 1 
+part 0 -2 -8 0 0 1 1 
+part 50 0 -2 0 0 1 1 
+part 151 4 -2 0 0 1 1 
+part -4 0 3 0 0 1 1 
+part -8 -5 -1 0 0 1 1 
+

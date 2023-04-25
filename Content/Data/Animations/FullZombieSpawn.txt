@@ -1,0 +1,102 @@
+frame
+time 100
+event DIG
+part 150 0 -9 4,712389 0 1 1 
+part 115 3 -6 4,712389 0 1 1 
+frame
+time 250
+event 
+part 150 0 -8 4,712389 0 1 1 
+part 115 3 -6 4,712389 0 1 1 
+frame
+time 100
+event 
+part 151 3 0 1,570796 0 1 1 
+part 104 1 -4 3,141593 1 1 1 
+frame
+time 100
+event 
+part 151 3 0 1,570796 0 1 1 
+part 104 1 -5 3,141593 1 1 1 
+frame
+time 100
+event DIG
+part 150 -1 -2 0 0 1 1 
+part 101 -5 -5 0 0 1 1 
+part 4 -1 -11 0 0 1 1 
+part 151 4 -1 1,570796 0 1 1 
+part 50 1 -5 0 0 1 1 
+frame
+time 100
+event 
+part 150 -1 -2 0 0 1 1 
+part 101 -5 -5 0 0 1 1 
+part 4 -2 -11 0 0 1 1 
+part 151 4 -1 1,570796 0 1 1 
+part 52 0 -5 0 0 1 1 
+frame
+time 100
+event 
+part 150 -1 -2 0 0 1 1 
+part 101 -5 -5 0 0 1 1 
+part 4 1 -11 0 1 1 1 
+part 151 4 -1 1,570796 0 1 1 
+part 50 1 -5 0 0 1 1 
+frame
+time 100
+event 
+part 4 0 -10 0 0 1 1 
+part 150 -1 -2 0 0 1 1 
+part 101 -5 -4 0 0 1 1 
+part 151 4 -1 1,570796 0 1 1 
+part 51 1 -4 0 0 1 1 
+frame
+time 100
+event 
+part 150 -1 -2 0 0 1 1 
+part 101 -5 -4 0 0 1 1 
+part 1 0 -10 0 0 1 1 
+part 151 4 -1 1,570796 0 1 1 
+part 51 1 -4 0 0 1 1 
+frame
+time 100
+event 
+part 150 -1 -2 0 0 1 1 
+part 101 -5 -4 0 0 1 1 
+part 1 0 -9 0 0 1 1 
+part 151 4 -1 1,570796 0 1 1 
+part 51 1 -4 0 0 1 1 
+frame
+time 100
+event DIG
+part 150 -3 -1 1,570796 0 1 1 
+part 106 -2 -7 4,712389 1 1 1 
+part 206 -1 -8 0 0 1 1 
+part 4 -1 -13 0 0 1 1 
+part 52 1 -7 0 0 1 1 
+part -9 0 -6,2 0,8 0 1 1 
+part 150 3 -2 1,570796 0 1 1 
+part -8 -3 -7,2 5,683186 0 1 1 
+frame
+time 250
+event 
+part 150 -3 -1 1,570796 0 1 1 
+part 106 -2 -7 4,712389 1 1 1 
+part 206 -1 -8 0 0 1 1 
+part 1 1 -12 0 0 1 1 
+part 51 1 -6 0 0 1 1 
+part -9 0 -6 0,8 0 1 1 
+part 150 3 -2 1,570796 0 1 1 
+part -8 -3 -7 5,683186 0 1 1 
+frame
+time 100
+event STOP
+part 150 -3 -1 1,570796 0 1 1 
+part 106 -2 -6 4,712389 1 1 1 
+part 206 -1 -8 0 0 1 1 
+part 1 1 -11 0 0 1 1 
+part 51 1 -5 0 0 1 1 
+part -9 0 -5,8 0,8 0 1 1 
+part 150 3 -2 1,570796 0 1 1 
+part -8 -3 -6,2 5,683186 0 1 1 
+

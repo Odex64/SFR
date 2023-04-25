@@ -1,0 +1,34 @@
+frame
+time 100
+event STOP
+part 152 6 -8 0 0 1 1 
+part -6 8 -8 0 0 1 1 
+part 105 -3 -6 0 0 1 1 
+part 3 -2 -11 0 0 1 1 
+part 52 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -6 -5 0 0 1 1 
+part -9 0 -5 0,4 0 1 1 
+frame
+time 25
+event RECOIL
+part 152 5 -8 0 0 1 1 
+part -6 7 -8 0 0 1 1 
+part 105 -4 -6 0 0 1 1 
+part 3 -2,5 -11 0 0 1 1 
+part 52 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -6 -5 0 0 1 1 
+part -9 0 -5 0,4 0 1 1 
+frame
+time 50
+event STOP
+part 152 5,5 -8 0 0 1 1 
+part -6 7,5 -8 0 0 1 1 
+part 105 -3,5 -6 0 0 1 1 
+part 3 -2 -11 0 0 1 1 
+part 52 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -6 -5 0 0 1 1 
+part -9 0 -5 0,4 0 1 1 
+

@@ -1,0 +1,6 @@
+frame
+time 300
+event 
+part 206 -1,192093E-07 -8 0 0 1 1 
+part -10 0 -2 0 0 1 1 
+

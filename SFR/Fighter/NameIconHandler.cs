@@ -73,10 +73,13 @@ internal static class NameIconHandler
 
         DrawName(player, vec, num);
 
-        var user = player.GetGameUser();
-        if (user != null && DevHandler.IsDeveloper(user.Account))
+        if (!player.IsBot)
         {
-            DrawDeveloperIcon(player, vec, num);
+            var user = player.GetGameUser();
+            if (user != null && DevHandler.IsDeveloper(user.Account))
+            {
+                DrawDeveloperIcon(player, vec, num);
+            }
         }
         else
         {

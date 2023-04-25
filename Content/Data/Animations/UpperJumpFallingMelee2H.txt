@@ -1,0 +1,25 @@
+frame
+time 50
+event 
+part 154 -4 -6 0 1 1 1 
+part -6 -6 -6 0 1 1 1 
+part 108 2 -6 0 1 1 1 
+part 5 -2 -11 0 0 1 1 
+part 100 -6 -6 0 0 1 1 
+part 50 0 -5 0 0 1 1 
+part -4 -5,960464E-08 0 0 0 1 1 
+part -8 -5 -5 0 0 1 1 
+part -9 1 -4 0,6 0 1 1 
+frame
+time 50
+event STOP
+part 154 -4 -6 0 1 1 1 
+part -6 -6 -6 0 1 1 1 
+part 108 2 -6 0 1 1 1 
+part 5 -2 -11 0 0 1 1 
+part 100 -6 -6 0 0 1 1 
+part 50 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -5 -5 0 0 1 1 
+part -9 1 -4 0,6 0 1 1 
+

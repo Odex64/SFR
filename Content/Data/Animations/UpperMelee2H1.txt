@@ -1,0 +1,60 @@
+frame
+time 100
+event 
+part 113 -1 -9 0 1 1 1 
+part 104 -6 -6 0 0 1 1 
+part 2 -2 -11 0 0 1 1 
+part 50 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -6 -6 -10 4,712389 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 -2 -5 0 0 1 1 
+frame
+time 50
+event 
+part 154 4 -8 0 0 1 1 
+part -6 6 -7 0 0 1 1 
+part 113 -1 -7 0 0 1 1 
+part 2 0 -11 0 0 1 1 
+part 59 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 -2 -5 0 0 1 1 
+frame
+time 25
+event MELEESWING
+part 160 8 -8 0 0 1 1 
+part 154 6 -7 0 0 1 1 
+part 105 -2 -5 0 0 1 1 
+part -6 7 -5 1,570796 0 1 1 
+part 2 -1 -10 0 0 1 1 
+part 53 0 -5 0 0 1 1 
+part 104 4 -4 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -5 -5 0 0 1 1 
+part -9 -3 -5 0 0 1 1 
+frame
+time 75
+event HIT
+part 154 5 -7 0 0 1 1 
+part 105 -3 -5 0 0 1 1 
+part -6 6 -5 1,570796 0 1 1 
+part 2 -1 -10 0 0 1 1 
+part 52 0 -5 0 0 1 1 
+part 104 4 -4 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -5 -5 0 0 1 1 
+part -9 -3 -5 0 0 1 1 
+frame
+time 250
+event STOP
+part 154 5 -7 0 0 1 1 
+part 105 -3 -5 0 0 1 1 
+part -6 6 -5 1,570796 0 1 1 
+part 2 -1 -10 0 0 1 1 
+part 52 0 -5 0 0 1 1 
+part 104 4 -4 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -5 -5 0 0 1 1 
+part -9 -3 -5 0 0 1 1 
+

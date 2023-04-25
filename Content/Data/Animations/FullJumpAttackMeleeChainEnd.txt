@@ -1,0 +1,15 @@
+frame
+time 500
+event STOP
+part 157 3 -5 3,141593 0 1 1 
+part 116 -2 -8 0 0 1 1 
+part -6 3 -4 1,570796 0 1 1 Curved
+part 154 5 -6 0 0 1 1 
+part 8 1 -14 0 0 1 1 
+part 212 1 -8 0 0 1 1 
+part 59 1 -8 0 0 1 1 
+part 117 3 -8 0 0 1 1 
+part -4 1 -4 0 0 1 1 
+part -8 -2 -8 0 0 1 1 
+part -9 0 -8 0 0 1 1 
+

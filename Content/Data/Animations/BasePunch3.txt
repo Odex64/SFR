@@ -1,0 +1,26 @@
+frame
+time 200
+event 
+part 210 0 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 50
+event 
+part 210 0 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 50
+event STEP
+part 209 1 -8 0 0 1 1 
+part -10 2 -6 0 0 1 1 
+frame
+time 250
+event 
+part 209 0 -8 0 0 1 1 
+part -10 1 -6 0 0 1 1 
+frame
+time 100
+event STOP
+part 209 0 -8 0 0 1 1 
+part -10 1 -6 0 0 1 1 
+

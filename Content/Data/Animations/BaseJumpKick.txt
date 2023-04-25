@@ -1,0 +1,22 @@
+frame
+time 50
+event 
+part 212 0 -10 0 0 1 1 
+part -10 -1 -6 0 1 1 1 
+frame
+time 50
+event MELEESWING
+part 160 3 -9 3,141593 1 1 1 
+part 211 2 -7 0 0 1 1 
+part -10 1 -6 0 0 1 1 
+frame
+time 50
+event KICK
+part 211 1 -7 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 100
+event STOP
+part 211 1 -7 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+

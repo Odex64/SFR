@@ -3,7 +3,9 @@ using SFD;
 using SFD.Weapons;
 using SFR.Helper;
 using SFR.Objects;
+using SFR.Sync.Generic;
 using SFR.Weapons.Rifles;
+using Constants = SFR.Misc.Constants;
 
 namespace SFR.Fighter;
 
@@ -204,10 +206,18 @@ namespace SFR.Fighter;
 ///         </item>
 ///         <item>
 ///             <term>SFR: 2</term>
-///             <description>Jetpack type</description>
+///             <description>Afraid</description>
 ///         </item>
 ///         <item>
 ///             <term>SFR: 3</term>
+///             <description>Afraid check</description>
+///         </item>
+///         <item>
+///             <term>SFR: 4</term>
+///             <description>Jetpack type</description>
+///         </item>
+///         <item>
+///             <term>SFR: 5</term>
 ///             <description>Jetpack fuel</description>
 ///         </item>
 ///     </list>
@@ -230,6 +240,47 @@ internal static class PlayerHandler
         }
 
         return true;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.DoTakeDamage))]
+    private static void DoTakeDamage(Player __instance)
+    {
+        // Logger.LogDebug(__instance.Name);
+        if (__instance == null || __instance.IsDead || __instance.IsRemoved)
+        {
+            return;
+        }
+
+        var extendedPlayer = __instance.GetExtension();
+        if (__instance.Health.CurrentValue <= 12f && !extendedPlayer.AfraidCheck)
+        {
+            extendedPlayer.Afraid = Constants.Random.NextBool();
+            extendedPlayer.AfraidCheck = true;
+            Logger.LogDebug("afraid: " + extendedPlayer.Afraid);
+            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
+        }
+        else if (__instance.Health.CurrentValue > 12f && extendedPlayer.AfraidCheck)
+        {
+            Logger.LogDebug("reset afraid");
+            extendedPlayer.AfraidCheck = false;
+            extendedPlayer.Afraid = false;
+            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.HealAmount))]
+    private static void OnHeal(Player __instance)
+    {
+        if (__instance.Health.CurrentValue > 12f)
+        {
+            Logger.LogDebug("reset afraid heal");
+            var extendedPlayer = __instance.GetExtension();
+            extendedPlayer.AfraidCheck = false;
+            extendedPlayer.Afraid = false;
+            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
+        }
     }
 
     [HarmonyPrefix]

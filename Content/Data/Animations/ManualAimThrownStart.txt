@@ -1,0 +1,13 @@
+frame
+time 10
+event 
+part 150 7 -0,5 0 0 1 1 
+part 105 -2 1,5 0 0 1 1 
+part 3 0 -3,5 0 0 1 1 
+frame
+time 15
+event 
+part 150 7 -1,5 0 0 1 1 
+part 105 -2 0,4999999 0 0 1 1 
+part 3 0 -3,5 0 0 1 1 
+

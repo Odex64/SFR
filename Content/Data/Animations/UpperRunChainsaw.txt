@@ -1,0 +1,49 @@
+frame
+time 100
+event 
+part 153 6 -4 3,141593 0 1 1 
+part 152 -2 -4 0 0 1 1 
+part -6 0 -4 0 0 1 1 
+part 2 -1 -11 0 0 1 1 
+part 102 -6 -5 0 0 1 1 
+part 59 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+frame
+time 100
+event 
+part 153 8 -5 3,141593 0 1 1 
+part 152 0 -5 0 0 1 1 
+part -6 2 -5 0 0 1 1 
+part 2 -1 -11 0 0 1 1 
+part 102 -5 -5 0 0 1 1 
+part 59 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+frame
+time 100
+event 
+part 153 6 -4 3,141593 0 1 1 
+part 152 -2 -4 0 0 1 1 
+part -6 0 -4 0 0 1 1 
+part 2 -1 -11 0 0 1 1 
+part 102 -6 -5 0 0 1 1 
+part 59 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+frame
+time 100
+event 
+part 153 5 -4 3,141593 0 1 1 
+part 152 -3 -4 0 0 1 1 
+part -6 -1 -4 0 0 1 1 
+part 2 -1 -11 0 0 1 1 
+part 102 -7 -5 0 0 1 1 
+part 59 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+

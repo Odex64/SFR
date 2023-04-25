@@ -234,13 +234,13 @@ internal static class SyncHandler
                 }
 
                 var extendedPlayer = player.GetExtension();
-                bool[] states = Array.ConvertAll(data.Args.Skip(1).Take(2).ToArray(), o => (bool)o);
+                bool[] states = Array.ConvertAll(data.Args.Skip(1).Take(4).ToArray(), o => (bool)o);
                 if (!extendedPlayer.RageBoost && states[0])
                 {
                     extendedPlayer.RageBoost = states[0];
                 }
 
-                var jetpackType = (JetpackType)(int)data.Args[3];
+                var jetpackType = (JetpackType)(int)data.Args[5];
                 if (extendedPlayer.GenericJetpack == null || jetpackType != extendedPlayer.JetpackType)
                 {
                     extendedPlayer.JetpackType = jetpackType;
@@ -259,11 +259,14 @@ internal static class SyncHandler
                     extendedPlayer.PrepareJetpack = false;
                 }
 
-                float jetPackFuel = (float)data.Args[4];
+                float jetPackFuel = (float)data.Args[6];
                 if (!states[1] && extendedPlayer.GenericJetpack != null)
                 {
                     extendedPlayer.GenericJetpack.Fuel.CurrentValue = jetPackFuel;
                 }
+
+                extendedPlayer.AfraidCheck = states[3];
+                extendedPlayer.Afraid = states[2];
 
                 break;
         }

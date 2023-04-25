@@ -1,0 +1,23 @@
+frame
+time 75
+event 
+part 157 6 -7 3,141593 0 1 1 
+part 105 -2 -6 0 0 1 1 
+part -6 6 -6 1,570796 0 1 1 
+part 2 0 -11 0 0 1 1 
+part 53 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 -2 -5 0 0 1 1 
+frame
+time 200
+event STOP
+part 157 6 -7 3,141593 0 1 1 
+part 105 -2 -6 0 0 1 1 
+part -6 6 -6 1,570796 0 1 1 
+part 2 0 -11 0 0 1 1 
+part 53 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -5 0 0 1 1 
+part -9 -2 -5 0 0 1 1 
+

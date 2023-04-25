@@ -1,0 +1,41 @@
+frame
+time 75
+event STEP
+part 202 1,788139E-07 -8 0 0 1 1 
+part -10 0 -5 0 0 1 1 
+frame
+time 75
+event 
+part 202 1,788139E-07 -8 0 0 1 1 
+part -10 0 -4 0 0 1 1 
+frame
+time 75
+event 
+part 218 1,788139E-07 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 75
+event 
+part 218 1,788139E-07 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 75
+event STEP
+part 202 1,788139E-07 -8 0 0 1 1 
+part -10 0 -5 0 0 1 1 
+frame
+time 75
+event 
+part 202 1,788139E-07 -8 0 0 1 1 
+part -10 0 -4 0 0 1 1 
+frame
+time 75
+event 
+part 219 1,788139E-07 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 75
+event 
+part 219 1,788139E-07 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+

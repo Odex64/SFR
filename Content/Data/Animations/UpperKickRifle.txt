@@ -1,0 +1,49 @@
+frame
+time 25
+event wadws
+part 151 2 -3 1,570796 1 1 1 
+part 152 -6 -3 0 0 1 1 
+part -6 -4 -3 0 0 1 1 
+part 2 -1 -11 0 0 1 1 
+part 102 -8 -4 0 0 1 1 
+part 56 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -4 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+frame
+time 100
+event 
+part 151 2 -3 1,570796 1 1 1 
+part 152 -6 -3 0 0 1 1 
+part -6 -4 -3 0 0 1 1 
+part 2 -1 -9 0 0 1 1 
+part 102 -8 -4 0 0 1 1 
+part 56 0 -4 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -4 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+frame
+time 150
+event 
+part 151 2 -3 1,570796 1 1 1 
+part 152 -6 -3 0 0 1 1 
+part -6 -4 -3 0 0 1 1 
+part 2 -3 -11 0 0 1 1 
+part 100 -8 -5 0 0 1 1 
+part 56 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -4 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+frame
+time 100
+event STOP
+part 151 2 -3 1,570796 1 1 1 
+part 152 -6 -3 0 0 1 1 
+part -6 -4 -3 0 0 1 1 
+part 2 -2 -11 0 0 1 1 
+part 102 -8 -4 0 0 1 1 
+part 56 0 -5 0 0 1 1 
+part -4 0 0 0 0 1 1 
+part -8 -4 -4 0 0 1 1 
+part -9 2 -3 0,6 0 1 1 
+

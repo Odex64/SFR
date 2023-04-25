@@ -1,0 +1,32 @@
+frame
+time 25
+event STEP
+part 207 0 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 50
+event 
+part 207 0 -8 0 0 1 1 
+part -10 0 -6 0 0 1 1 
+frame
+time 50
+event 
+part 207 -1 -8 0 0 1 1 
+part -10 -1 -6 0 0 1 1 
+frame
+time 50
+event MELEESWING
+part 159 1 -10 3,141593 1 1 1 
+part 208 1 -8 0 0 1 1 
+part -10 -1 -6 0 0 1 1 
+frame
+time 100
+event KICK
+part 208 0 -8 0 0 1 1 
+part -10 -2 -6 0 0 1 1 
+frame
+time 100
+event STOP
+part 207 0 -8 0 0 1 1 
+part -10 -3 -5 0 0 1 1 
+

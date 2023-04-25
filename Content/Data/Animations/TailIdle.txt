@@ -1,0 +1,5 @@
+frame
+time 100
+event 
+part 250 0 0 0 0 1 1 
+
