@@ -43,7 +43,7 @@ internal class AdrenalineBoost : PItem
             SoundHandler.PlaySound("StrengthBoostStart", player.Position, player.GameWorld);
             // player.StrengthBoostApply(15000f);
             var extendedPlayer = player.GetExtension();
-            extendedPlayer.ApplyRageBoost();
+            extendedPlayer.ApplyAdrenalineBoost();
             if (!player.InfiniteAmmo)
             {
                 player.RemovePowerup();

@@ -25,16 +25,16 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
 
     internal ExtendedPlayer(Player player) => Player = player;
 
-    internal bool RageBoost
+    internal bool AdrenalineBoost
     {
-        get => Time.RageBoost > 0f;
-        set => Time.RageBoost = value ? TimeSequence.RageBoostTime : 0f;
+        get => Time.AdrenalineBoost > 0f;
+        set => Time.AdrenalineBoost = value ? TimeSequence.AdrenalineBoostTime : 0f;
     }
 
     public bool Equals(Player other) => other?.ObjectID == Player.ObjectID;
 
     // TODO: Change other methods instead of using modifiers, like strength boost & speed boost do
-    internal void ApplyRageBoost()
+    internal void ApplyAdrenalineBoost()
     {
         var modifiers = new PlayerModifiers(true)
         {
@@ -45,14 +45,14 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
             CurrentHealth = Player.Health.CurrentValue
         };
         Player.SetModifiers(modifiers);
-        RageBoost = true;
+        AdrenalineBoost = true;
         GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
     }
 
     internal object[] GetStates()
     {
         object[] states = new object[6];
-        states[0] = RageBoost;
+        states[0] = AdrenalineBoost;
         states[1] = PrepareJetpack;
         states[2] = Afraid;
         states[3] = AfraidCheck;
@@ -63,7 +63,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     }
 
     // TODO: Change other methods instead of using modifiers, like strength boost & speed boost do
-    internal void DisableRageBoost()
+    internal void DisableAdrenalineBoost()
     {
         SoundHandler.PlaySound("StrengthBoostStop", Player.Position, Player.GameWorld);
         var modifiers = new PlayerModifiers(true)
@@ -71,12 +71,13 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
             CurrentHealth = Player.Health.CurrentValue
         };
         Player.SetModifiers(modifiers);
+        AdrenalineBoost = false;
         GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
     }
 
     internal class TimeSequence
     {
-        internal const float RageBoostTime = 16000f;
-        internal float RageBoost;
+        internal const float AdrenalineBoostTime = 16000f;
+        internal float AdrenalineBoost;
     }
 }

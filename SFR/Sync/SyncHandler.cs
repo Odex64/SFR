@@ -235,9 +235,9 @@ internal static class SyncHandler
 
                 var extendedPlayer = player.GetExtension();
                 bool[] states = Array.ConvertAll(data.Args.Skip(1).Take(4).ToArray(), o => (bool)o);
-                if (!extendedPlayer.RageBoost && states[0])
+                if (!extendedPlayer.AdrenalineBoost && states[0])
                 {
-                    extendedPlayer.RageBoost = states[0];
+                    extendedPlayer.AdrenalineBoost = states[0];
                 }
 
                 var jetpackType = (JetpackType)(int)data.Args[5];

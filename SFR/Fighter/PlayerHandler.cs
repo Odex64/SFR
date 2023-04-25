@@ -301,7 +301,7 @@ internal static class PlayerHandler
     private static bool CanKick(float timeOffset, Player __instance, ref bool __result)
     {
         var extendedPlayer = __instance.GetExtension();
-        __result = (__instance.CurrentAction == PlayerAction.Idle || (__instance.CurrentAction == PlayerAction.HipFire && __instance.ThrowableIsActivated)) && (!__instance.Diving || extendedPlayer.RageBoost) && !__instance.Rolling && !__instance.Falling && !__instance.Climbing && __instance.PreparingHipFire <= 0f && __instance.FireSequence.KickCooldownTimer <= 800f + timeOffset && !__instance.TimeSequence.PostDropClimbAttackCooldown && !__instance.StrengthBoostPreparing && !__instance.SpeedBoostPreparing;
+        __result = (__instance.CurrentAction == PlayerAction.Idle || (__instance.CurrentAction == PlayerAction.HipFire && __instance.ThrowableIsActivated)) && (!__instance.Diving || extendedPlayer.AdrenalineBoost) && !__instance.Rolling && !__instance.Falling && !__instance.Climbing && __instance.PreparingHipFire <= 0f && __instance.FireSequence.KickCooldownTimer <= 800f + timeOffset && !__instance.TimeSequence.PostDropClimbAttackCooldown && !__instance.StrengthBoostPreparing && !__instance.SpeedBoostPreparing;
         return false;
     }
 
@@ -310,7 +310,7 @@ internal static class PlayerHandler
     private static bool CanAttack(Player __instance, ref bool __result)
     {
         var extendedPlayer = __instance.GetExtension();
-        __result = !(__instance.Rolling || (__instance.Diving && !extendedPlayer.RageBoost) || __instance.Climbing || __instance.LedgeGrabbing || __instance.ThrowingModeToggleQueued || __instance.ClimbingClient || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
+        __result = !(__instance.Rolling || (__instance.Diving && !extendedPlayer.AdrenalineBoost) || __instance.Climbing || __instance.LedgeGrabbing || __instance.ThrowingModeToggleQueued || __instance.ClimbingClient || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
         return false;
     }
 
@@ -319,12 +319,12 @@ internal static class PlayerHandler
     private static void UpdateTimeSequence(float ms, float realMs, Player __instance)
     {
         var extendedPlayer = __instance.GetExtension();
-        if (extendedPlayer.RageBoost)
+        if (extendedPlayer.AdrenalineBoost)
         {
-            extendedPlayer.Time.RageBoost -= ms;
-            if (!extendedPlayer.RageBoost || __instance.IsDead)
+            extendedPlayer.Time.AdrenalineBoost -= ms;
+            if (!extendedPlayer.AdrenalineBoost || __instance.IsDead)
             {
-                extendedPlayer.DisableRageBoost();
+                extendedPlayer.DisableAdrenalineBoost();
             }
         }
     }

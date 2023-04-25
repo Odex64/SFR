@@ -119,7 +119,7 @@ internal static class GadgetHandler
     {
         var extendedPlayer = __instance.GetExtension();
 
-        if (extendedPlayer.RageBoost)
+        if (extendedPlayer.AdrenalineBoost)
         {
             __result = ColorCorrection.CreateCustom(Misc.Constants.RageBoost);
             return false;
