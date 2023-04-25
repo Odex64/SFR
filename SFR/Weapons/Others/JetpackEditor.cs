@@ -33,11 +33,8 @@ internal sealed class JetpackEditor : HItem
             var extendedPlayer = player.GetExtension();
             extendedPlayer.JetpackType = JetpackType.JetpackEditor;
             extendedPlayer.PrepareJetpack = true;
-            if (player.GameOwner == GameOwnerEnum.Local)
-            {
-                extendedPlayer.GenericJetpack = new Fighter.Jetpacks.JetpackEditor();
-            }
-            else
+            extendedPlayer.GenericJetpack = new Fighter.Jetpacks.JetpackEditor();
+            if (player.GameOwner == GameOwnerEnum.Server)
             {
                 GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates()));
             }
