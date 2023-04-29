@@ -9,7 +9,6 @@ using SFR.Game;
 using SFR.Helper;
 using SFR.Objects;
 using SFR.Sync.Generic;
-using SFR.Weapons.Rifles;
 
 namespace SFR.Sync;
 
@@ -138,16 +137,16 @@ internal static class SyncHandler
         }
     }
 
-    private static void SendExtraPlayerStatesToClients(Server server)
-    {
-        foreach (var player in server.GameWorld.Players)
-        {
-            var extendedPlayer = player.GetExtension();
-            var data = new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates());
-            var outgoingMessage = GenericServerData.Write(data, server.m_server.CreateMessage());
-            server.m_server.SendToAll(outgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
-        }
-    }
+    // private static void SendExtraPlayerStatesToClients(Server server)
+    // {
+    //     foreach (var player in server.GameWorld.Players)
+    //     {
+    //         var extendedPlayer = player.GetExtension();
+    //         var data = new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates());
+    //         var outgoingMessage = GenericServerData.Write(data, server.m_server.CreateMessage());
+    //         server.m_server.SendToAll(outgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
+    //     }
+    // }
 
     #region Server
 
@@ -195,24 +194,6 @@ internal static class SyncHandler
                 }
 
                 ((ObjectStickyBombThrown)stickyGrenadeData[0]).ApplyStickyPlayer(stickyGrenadeData[1].ObjectID, (float)data.Args[2], (float)data.Args[3], (float)data.Args[4]);
-                break;
-
-            case DataType.Minigun:
-                var minigunData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
-                if (minigunData == null)
-                {
-                    return;
-                }
-
-                if (minigunData[0].IsPlayer)
-                {
-                    var minigunPlayer = (Player)minigunData[0].InternalData;
-                    if (minigunPlayer is { CurrentRifleWeapon: Minigun minigun })
-                    {
-                        minigun.ClientSyncRev(!((string)data.Args[1]).EndsWith("UNREV"));
-                    }
-                }
-
                 break;
 
             case DataType.Head:
@@ -272,26 +253,35 @@ internal static class SyncHandler
         }
     }
 
-    [HarmonyPrefix]
+    [HarmonyPostfix]
     [HarmonyPatch(typeof(Client), nameof(Client.HandleDataMessage))]
-    private static bool ReceiveFromServer(NetMessage.MessageData messageData, NetIncomingMessage msg, ref bool processGameWorldDependentData, Client __instance)
+    private static void ReceiveDataFromServer(NetMessage.MessageData messageData, NetIncomingMessage msg, ref bool processGameWorldDependentData, Client __instance)
     {
-        if (processGameWorldDependentData)
-        {
-            __instance.ProcessGameWorldDependentMessages();
-            processGameWorldDependentData = false;
-        }
+        // if (processGameWorldDependentData)
+        // {
+        //     __instance.ProcessGameWorldDependentMessages();
+        //     processGameWorldDependentData = false;
+        // }
 
         switch ((int)messageData.MessageType)
         {
             case 63:
             {
-                HandleGenericData(__instance, GenericServerData.Read(msg));
-                return false;
+                var data = GenericServerData.Read(msg);
+                foreach (var syncFlags in data.Flags)
+                {
+                    switch (syncFlags)
+                    {
+                        case SyncFlags.MustSyncNewObjects:
+                            __instance.HandleNewObjects();
+                            break;
+                    }
+                }
+
+                HandleGenericData(__instance, data);
+                break;
             }
         }
-
-        return true;
     }
 
     #endregion

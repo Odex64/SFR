@@ -234,14 +234,14 @@ internal static class GoreHandler
 
         if (headshotType == "Melee_Sharp")
         {
-            var head = (ObjectHead)ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "Head00", player.GameWorld.GameOwner));
-            if (head.GameOwner != GameOwnerEnum.Client)
+            // var head = (ObjectHead)ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "Head00", player.GameWorld.GameOwner));
+            var head = (ObjectHead)player.GameWorld.CreateObjectData("Head00");
+            player.GameWorld.CreateTile(new SpawnObjectInformation(head, player.Position + new Vector2(0, 16), 0, (short)player.LastDirectionX, new Vector2(Constants.Random.NextFloat(-0.5f, 0.5f), Constants.Random.NextFloat(6, 10)), Constants.Random.NextFloat(-6f, 6f)));
+            if (player.GameOwner == GameOwnerEnum.Server) // != Client
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.Head, head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.Head, new[] { SyncFlags.MustSyncNewObjects }, head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
                 // head.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, player.GameWorld.ElapsedTotalGameTime, ObjectHead.EquipmentToString(player.Equipment)));
             }
-
-            player.GameWorld.CreateTile(new SpawnObjectInformation(head, player.Position + new Vector2(0, 16), 0, (short)player.LastDirectionX, new Vector2(Constants.Random.NextFloat(-0.5f, 0.5f), Constants.Random.NextFloat(6, 10)), Constants.Random.NextFloat(-6f, 6f)));
         }
 
         // Apply profile

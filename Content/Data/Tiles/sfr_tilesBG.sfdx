@@ -652,6 +652,7 @@ Tile(BgLeaves01){}
 Tile(BgLeaves02){}
 Tile(BgSpectator01)
 {
+	sizeable = D;
 	animation(BgSpectator01)
 	{
 		width = 16;
@@ -660,6 +661,7 @@ Tile(BgSpectator01)
 }
 Tile(BgSpectator02)
 {
+	sizeable = D;
 	animation(BgSpectator02)
 	{
 		width = 16;
@@ -668,22 +670,25 @@ Tile(BgSpectator02)
 }
 Tile(BgSpectator03)
 {
+	sizeable = D;
 	animation(BgSpectator03)
 	{
-		width = 18;
+		width = 24;
 		frameTime = 210;
 	}
 }
 Tile(BgSpectator04)
 {
+	sizeable = D;
 	animation(BgSpectator04)
 	{
-		width = 20;
+		width = 24;
 		frameTime = 210;
 	}
 }
 Tile(BgSpectator05)
 {
+	sizeable = D;
 	animation(BgSpectator05)
 	{
 		width = 16;
@@ -692,6 +697,7 @@ Tile(BgSpectator05)
 }
 Tile(BgSpectator06)
 {
+	sizeable = D;
 	animation(BgSpectator06)
 	{
 		width = 16;
@@ -700,18 +706,33 @@ Tile(BgSpectator06)
 }
 Tile(BgSpectator07)
 {
+	sizeable = D;
 	animation(BgSpectator07)
 	{
-		width = 20;
+		width = 24;
 		frameTime = 210;
 	}
 }
 Tile(BgSpectator08)
 {
+	sizeable = D;
 	animation(BgSpectator08)
 	{
-		width = 20;
+		width = 24;
 		frameTime = 210;
 	}
 }
 Tile(BgWarnPoster00){}
+Tile(BgCompetitionCup00A){}
+Tile(BgCompetitionCup00B){}
+Tile(BgCompetitionCup00C){}
+Tile(BgCompetitionCup00D){}
+Tile(BgGrasses00A){}
+Tile(BgGrasses00B){}
+Tile(BgLeaves03A){}
+Tile(BgTreeWood00B){}
+Tile(BgTreeWood00C){}
+Tile(BgTreeWood00D){}
+Tile(BgTreeWood00E){}
+Tile(BgTreeWood00F){}
+Tile(BgTreeWood00G){}

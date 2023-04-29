@@ -4,7 +4,6 @@ internal enum DataType
 {
     Nuke,
     StickyGrenade,
-    Minigun,
     Head,
     ExtraClientStates
 }

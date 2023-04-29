@@ -221,10 +221,11 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
             _stickiedPlayer = player;
             _stickiedOffset = GetWorldPosition() - player.Position;
             _stickiedAngle = player.LastDirectionX;
+            // ApplyStickyPlayer(player.ObjectID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle);
 
-            if (GameOwner != GameOwnerEnum.Client)
+            if (GameOwner == GameOwnerEnum.Server) // != Client
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, ObjectID, player.ObjectData.BodyID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, new SyncFlags[] { }, ObjectID, player.ObjectData.BodyID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
             }
         }
     }

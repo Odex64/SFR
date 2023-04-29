@@ -46,7 +46,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         };
         Player.SetModifiers(modifiers);
         AdrenalineBoost = true;
-        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
+        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlags[] { }, Player.ObjectID, GetStates()));
     }
 
     internal object[] GetStates()
@@ -72,7 +72,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         };
         Player.SetModifiers(modifiers);
         AdrenalineBoost = false;
-        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, Player.ObjectID, GetStates()));
+        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlags[] { }, Player.ObjectID, GetStates()));
     }
 
     internal class TimeSequence

@@ -19,6 +19,11 @@ internal static class AnimHandler
 {
     private static List<AnimationData> _animations;
 
+    private static readonly Dictionary<int, string> UpperGunCustomAnimation = new()
+    {
+        { (int)CustomAnimation.Cower, "Gesture_Cower" }
+    };
+
     internal static List<AnimationData> GetAnimations(AnimationsData data)
     {
         _animations ??= new List<AnimationData>
@@ -117,6 +122,15 @@ internal static class AnimHandler
         {
             __result = "UpperIdleZombie";
             return false;
+        }
+
+        if (!__instance.InThrowingMode)
+        {
+            if (UpperGunCustomAnimation.TryGetValue((int)__instance.m_currentAnimation, out string name))
+            {
+                __result = name;
+                return false;
+            }
         }
 
         return true;
@@ -800,8 +814,10 @@ internal static class AnimHandler
                 break;
             case (Animation)CustomAnimation.Cower:
                 __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation("Gesture_Cower"));
+                // __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation("BaseCrouch"));
                 __instance.m_subAnimations[1].SetAnimation(Animations.Data.GetAnimation(__instance.GetAnimIdleUpper()));
-                __instance.m_subAnimationsLength = 4;
+                __instance.m_subAnimationsLength = 2;
+                // __instance.m_subAnimationsLength = 4;
                 break;
             default:
                 __instance.m_subAnimationsLength = 0;

@@ -72,22 +72,22 @@ internal static class NukeHandler
 
             // if (gameWorld.GameOwner == GameOwnerEnum.Server)
             // {
-            GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, fgNuke.ObjectID, bgNuke.ObjectID));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, new[] { SyncFlags.MustSyncNewObjects }, fgNuke.ObjectID, bgNuke.ObjectID));
+            gameWorld.SlowmotionHandler.Reset();
+            gameWorld.SlowmotionHandler.AddSlowmotion(new Slowmotion(ScreenWipeTime * 0.25f, ScreenWipeTime * 0.8f, ScreenWipeTime * 0.2f, 0.2f, 0));
             // }
 
-            // List<ObjectNuke> nukeObjects = new()
-            // {
-            //     fgNuke,
-            //     bgNuke
-            // };
+            List<ObjectNuke> nukeObjects = new()
+            {
+                fgNuke,
+                bgNuke
+            };
 
             _terminateType = terminateType;
             _terminateObjects = objectType;
             _gameOverText = gameOverText;
 
-            // Begin(nukeObjects);
-            // gameWorld.SlowmotionHandler.Reset();
-            // gameWorld.SlowmotionHandler.AddSlowmotion(new Slowmotion(ScreenWipeTime * 0.25f, ScreenWipeTime * 0.8f, ScreenWipeTime * 0.2f, 0.2f, 0));
+            Begin(nukeObjects);
         }
     }
 

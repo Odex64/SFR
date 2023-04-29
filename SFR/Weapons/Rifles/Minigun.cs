@@ -4,19 +4,22 @@ using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
-using SFR.Sync.Generic;
 
 namespace SFR.Weapons.Rifles;
 
 internal sealed class Minigun : RWeapon, IExtendedWeapon
 {
     private const int RevUpRounds = 50;
+
     private const float AfterFireThreshold = 1000;
-    private bool _clientRevUp;
+
+    // private bool _clientRevUp;
     private string _revState;
     private int _revUpCurrent;
+
     private float _soundTimeStamp;
-    private bool _synced;
+
+    // private bool _synced;
     private float _timeStamp;
 
     internal Minigun()
@@ -159,19 +162,19 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         if (_timeStamp + AfterFireThreshold < args.Player.GameWorld.ElapsedTotalGameTime)
         {
             _revUpCurrent = 0;
-            _synced = false;
-            GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun, args.Player.ObjectID, "SYNC_MINIGUN_UNREV"));
+            // _synced = false;
+            // GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.Player.ObjectID, "SYNC_MINIGUN_UNREV"));
             // args.Player.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.Player.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_UNREV"));
         }
 
         if (_revUpCurrent >= RevUpRounds)
         {
-            if (!_synced)
-            {
-                _synced = true;
-                GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun, args.Player.ObjectID, "SYNC_MINIGUN_REVUP"));
-                // args.Player.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.Player.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_REVUP"));
-            }
+            // if (!_synced)
+            // {
+            //     _synced = true;
+            //     GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.Player.ObjectID, "SYNC_MINIGUN_REVUP"));
+            // args.Player.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.Player.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_REVUP"));
+            // }
 
             Properties.MuzzleEffectTextureID = "MuzzleFlashL";
             SoundHandler.PlaySound("M60", args.Player.GameWorld);
@@ -205,10 +208,10 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
             base.OnRecoilEvent(player);
         }
 
-        if (player.GameOwner == GameOwnerEnum.Client && _clientRevUp)
-        {
-            base.OnRecoilEvent(player);
-        }
+        // if (player.GameOwner == GameOwnerEnum.Client && _clientRevUp)
+        // {
+        //     base.OnRecoilEvent(player);
+        // }
     }
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
@@ -224,8 +227,8 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         return base.GetDrawnTexture(ref args);
     }
 
-    internal void ClientSyncRev(bool value)
-    {
-        _clientRevUp = value;
-    }
+    // internal void ClientSyncRev(bool value)
+    // {
+    //     _clientRevUp = value;
+    // }
 }

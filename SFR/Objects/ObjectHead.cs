@@ -5,7 +5,6 @@ using SFD;
 using SFD.Objects;
 using SFD.Tiles;
 using SFR.Helper;
-using SFR.Sync.Generic;
 
 namespace SFR.Objects;
 
@@ -30,7 +29,6 @@ internal sealed class ObjectHead : ObjectGiblet
             if (Properties.Get(290).Value != null)
             {
                 var targetPlayerProfileInfoObjects = GetObjectsFromProperty<ObjectPlayerProfileInfo>(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
-                Logger.LogDebug(targetPlayerProfileInfoObjects.Count);
                 if (targetPlayerProfileInfoObjects.Count > 0)
                 {
                     var profile = targetPlayerProfileInfoObjects[0].GetProfile();
@@ -38,7 +36,7 @@ internal sealed class ObjectHead : ObjectGiblet
                     equipment.Equip(profile.EquippedItems[0]);
                     equipment.Equip(profile.EquippedItems[6]);
                     equipment.Equip(profile.EquippedItems[8]);
-                    GenericData.SendGenericDataToClients(new GenericData(DataType.Head, ObjectID, EquipmentToString(equipment)));
+                    // GenericData.SendGenericDataToClients(new GenericData(DataType.Head, ObjectID, EquipmentToString(equipment)));
                     // SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, GameWorld.ElapsedTotalGameTime, EquipmentToString(equipment)));
                 }
             }
@@ -65,7 +63,7 @@ internal sealed class ObjectHead : ObjectGiblet
             }
             else
             {
-                Logger.LogDebug("Timed out for Skin!");
+                Logger.LogWarn("Timed out for Skin!");
             }
         }
 
@@ -79,12 +77,11 @@ internal sealed class ObjectHead : ObjectGiblet
             }
             else
             {
-                Logger.LogDebug("Timed out for Accessory!");
+                Logger.LogWarn("Timed out for Accessory!");
             }
         }
 
         var head = equipment.m_parts[8][0]?.GetTexture(0);
-        Logger.LogDebug("Getting head color: " + equipment.GetItemColors(8));
         if (head != null)
         {
             var task2 = Task.Run(() => equipment.m_parts[8][0]?.GetTexture(0, equipment.GetItemColors(8)));
@@ -94,7 +91,7 @@ internal sealed class ObjectHead : ObjectGiblet
             }
             else
             {
-                Logger.LogDebug("Timed out for Head!");
+                Logger.LogWarn("Timed out for Head!");
             }
         }
 

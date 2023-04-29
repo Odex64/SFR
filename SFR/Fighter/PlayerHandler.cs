@@ -5,7 +5,6 @@ using SFR.Helper;
 using SFR.Objects;
 using SFR.Sync.Generic;
 using SFR.Weapons.Rifles;
-using Constants = SFR.Misc.Constants;
 
 namespace SFR.Fighter;
 
@@ -242,32 +241,51 @@ internal static class PlayerHandler
         return true;
     }
 
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(Player), nameof(Player.DoTakeDamage))]
-    private static void DoTakeDamage(Player __instance)
-    {
-        // Logger.LogDebug(__instance.Name);
-        if (__instance == null || __instance.IsDead || __instance.IsRemoved)
-        {
-            return;
-        }
-
-        var extendedPlayer = __instance.GetExtension();
-        if (__instance.Health.CurrentValue <= 12f && !extendedPlayer.AfraidCheck)
-        {
-            extendedPlayer.Afraid = Constants.Random.NextBool();
-            extendedPlayer.AfraidCheck = true;
-            Logger.LogDebug("afraid: " + extendedPlayer.Afraid);
-            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
-        }
-        else if (__instance.Health.CurrentValue > 12f && extendedPlayer.AfraidCheck)
-        {
-            Logger.LogDebug("reset afraid");
-            extendedPlayer.AfraidCheck = false;
-            extendedPlayer.Afraid = false;
-            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
-        }
-    }
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(Player), nameof(Player.DoTakeDamage))]
+    // private static void DoTakeDamage(Player __instance)
+    // {
+    //     // Logger.LogDebug(__instance.Name);
+    //     if (__instance == null || __instance.IsDead || __instance.IsRemoved)
+    //     {
+    //         return;
+    //     }
+    //
+    //     var extendedPlayer = __instance.GetExtension();
+    //
+    //     if (!extendedPlayer.AfraidCheck)
+    //     {
+    //         extendedPlayer.Afraid = true;
+    //         extendedPlayer.AfraidCheck = true;
+    //         if (__instance.GameOwner == GameOwnerEnum.Server)
+    //         {
+    //             GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates,new SyncFlags[] { }, __instance.ObjectID, extendedPlayer.GetStates()));
+    //         }
+    //     }
+    //
+    //     return;
+    //
+    //     // if (__instance.Health.CurrentValue <= 12f && !extendedPlayer.AfraidCheck)
+    //     // {
+    //     //     extendedPlayer.Afraid = Constants.Random.NextBool();
+    //     //     extendedPlayer.AfraidCheck = true;
+    //     //     Logger.LogDebug("afraid: " + extendedPlayer.Afraid);
+    //     //     if (__instance.GameOwner == GameOwnerEnum.Server)
+    //     //     {
+    //     //         GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
+    //     //     }
+    //     // }
+    //     // else if (__instance.Health.CurrentValue > 12f && extendedPlayer.AfraidCheck)
+    //     // {
+    //     //     Logger.LogDebug("reset afraid");
+    //     //     extendedPlayer.AfraidCheck = false;
+    //     //     extendedPlayer.Afraid = false;
+    //     //     if (__instance.GameOwner == GameOwnerEnum.Server)
+    //     //     {
+    //     //         GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
+    //     //     }
+    //     // }
+    // }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Player), nameof(Player.HealAmount))]
@@ -279,7 +297,10 @@ internal static class PlayerHandler
             var extendedPlayer = __instance.GetExtension();
             extendedPlayer.AfraidCheck = false;
             extendedPlayer.Afraid = false;
-            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, __instance.ObjectID, extendedPlayer.GetStates()));
+            if (__instance.GameOwner == GameOwnerEnum.Server)
+            {
+                GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlags[] { }, __instance.ObjectID, extendedPlayer.GetStates()));
+            }
         }
     }
 
