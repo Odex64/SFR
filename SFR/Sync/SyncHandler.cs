@@ -272,7 +272,7 @@ internal static class SyncHandler
                 {
                     switch (syncFlags)
                     {
-                        case SyncFlags.MustSyncNewObjects:
+                        case SyncFlag.MustSyncNewObjects:
                             __instance.HandleNewObjects();
                             break;
                     }

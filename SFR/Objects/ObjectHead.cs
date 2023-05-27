@@ -36,7 +36,7 @@ internal sealed class ObjectHead : ObjectGiblet
                     equipment.Equip(profile.EquippedItems[0]);
                     equipment.Equip(profile.EquippedItems[6]);
                     equipment.Equip(profile.EquippedItems[8]);
-                    // GenericData.SendGenericDataToClients(new GenericData(DataType.Head, ObjectID, EquipmentToString(equipment)));
+                    // GenericData.SendGenericDataToClients(new GenericData(DataType.Head, new SyncFlags[] { }, ObjectID, EquipmentToString(equipment)));
                     // SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, GameWorld.ElapsedTotalGameTime, EquipmentToString(equipment)));
                 }
             }

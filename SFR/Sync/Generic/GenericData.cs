@@ -14,11 +14,11 @@ internal sealed class GenericData
 
     internal readonly object[] Args;
 
-    internal readonly SyncFlags[] Flags;
+    internal readonly SyncFlag[] Flags;
 
     internal readonly DataType Type;
 
-    internal GenericData(DataType type, SyncFlags[] flags, params object[] args)
+    internal GenericData(DataType type, SyncFlag[] flags, params object[] args)
     {
         Type = type;
         Flags = flags;

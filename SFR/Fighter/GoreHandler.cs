@@ -34,7 +34,7 @@ internal static class GoreHandler
     {
         if (!__instance.IsRemoved && !__instance.m_removalRunning && __instance.PlayerHitEffect == PlayerHitEffect.Default)
         {
-            string[] giblets = { "Organ00", "Organ01", "Organ02", "Organ03", "Organ04", "Organ05", "Brain00" };
+            string[] giblets = { "Organ00", "Organ01", "Organ02", "Organ03", "Organ04", "Organ05" };
             foreach (string giblet in giblets)
             {
                 var value = Converter.ConvertBox2DToWorld(__instance.WorldBody.GetPosition());
@@ -237,10 +237,15 @@ internal static class GoreHandler
             // var head = (ObjectHead)ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "Head00", player.GameWorld.GameOwner));
             var head = (ObjectHead)player.GameWorld.CreateObjectData("Head00");
             player.GameWorld.CreateTile(new SpawnObjectInformation(head, player.Position + new Vector2(0, 16), 0, (short)player.LastDirectionX, new Vector2(Constants.Random.NextFloat(-0.5f, 0.5f), Constants.Random.NextFloat(6, 10)), Constants.Random.NextFloat(-6f, 6f)));
-            if (player.GameOwner == GameOwnerEnum.Server) // != Client
+            switch (player.GameOwner)
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.Head, new[] { SyncFlags.MustSyncNewObjects }, head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
-                // head.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, player.GameWorld.ElapsedTotalGameTime, ObjectHead.EquipmentToString(player.Equipment)));
+                case GameOwnerEnum.Server:
+                    GenericData.SendGenericDataToClients(new GenericData(DataType.Head, new[] { SyncFlag.MustSyncNewObjects }, head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
+                    // head.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, player.GameWorld.ElapsedTotalGameTime, ObjectHead.EquipmentToString(player.Equipment)));
+                    break;
+                case GameOwnerEnum.Local:
+                    head.ReplaceTexture = ObjectHead.TextureFromString(ObjectHead.EquipmentToString(player.Equipment));
+                    break;
             }
         }
 

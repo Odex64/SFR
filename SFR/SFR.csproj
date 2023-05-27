@@ -201,7 +201,7 @@
         <Compile Include="Sync\Generic\DataType.cs"/>
         <Compile Include="Sync\Generic\GenericData.cs"/>
         <Compile Include="Sync\Generic\GenericServerData.cs"/>
-        <Compile Include="Sync\Generic\SyncFlags.cs"/>
+        <Compile Include="Sync\Generic\SyncFlag.cs"/>
         <Compile Include="Sync\SyncHandler.cs"/>
         <Compile Include="UI\CreditsPanel.cs"/>
         <Compile Include="UI\Game.cs"/>

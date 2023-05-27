@@ -225,7 +225,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
 
             if (GameOwner == GameOwnerEnum.Server) // != Client
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, new SyncFlags[] { }, ObjectID, player.ObjectData.BodyID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, new SyncFlag[] { }, ObjectID, player.ObjectData.BodyID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
             }
         }
     }

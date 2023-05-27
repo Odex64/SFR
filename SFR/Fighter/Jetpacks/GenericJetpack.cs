@@ -67,7 +67,7 @@ internal abstract class GenericJetpack
                 if (!player.InfiniteAmmo && !player.InfiniteAmmo)
                 {
                     Fuel.CurrentValue -= 0.03f * player.SlowmotionFactor * ms;
-                    GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlags[] { }, player.ObjectID, extendedPlayer.GetStates()));
+                    GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, player.ObjectID, extendedPlayer.GetStates()));
                 }
 
                 EffectTimer -= ms;
@@ -106,7 +106,7 @@ internal abstract class GenericJetpack
         extendedPlayer.GenericJetpack = null;
         if (extendedPlayer.Player.GameOwner == GameOwnerEnum.Server)
         {
-            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlags[] { }, extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
         }
     }
 

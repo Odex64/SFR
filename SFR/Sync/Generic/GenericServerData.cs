@@ -12,10 +12,10 @@ internal static class GenericServerData
         var type = (DataType)incomingMessage.ReadInt32();
 
         byte flagsLength = incomingMessage.ReadByte();
-        var flags = new SyncFlags[flagsLength];
+        var flags = new SyncFlag[flagsLength];
         for (int i = 0; i < flagsLength; i++)
         {
-            flags[i] = (SyncFlags)incomingMessage.ReadInt32();
+            flags[i] = (SyncFlag)incomingMessage.ReadInt32();
         }
 
         byte dataLength = incomingMessage.ReadByte();

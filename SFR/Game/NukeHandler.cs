@@ -72,7 +72,7 @@ internal static class NukeHandler
 
             // if (gameWorld.GameOwner == GameOwnerEnum.Server)
             // {
-            GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, new[] { SyncFlags.MustSyncNewObjects }, fgNuke.ObjectID, bgNuke.ObjectID));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, new[] { SyncFlag.MustSyncNewObjects }, fgNuke.ObjectID, bgNuke.ObjectID));
             gameWorld.SlowmotionHandler.Reset();
             gameWorld.SlowmotionHandler.AddSlowmotion(new Slowmotion(ScreenWipeTime * 0.25f, ScreenWipeTime * 0.8f, ScreenWipeTime * 0.2f, 0.2f, 0));
             // }

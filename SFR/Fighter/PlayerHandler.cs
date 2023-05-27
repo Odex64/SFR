@@ -299,7 +299,7 @@ internal static class PlayerHandler
             extendedPlayer.Afraid = false;
             if (__instance.GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlags[] { }, __instance.ObjectID, extendedPlayer.GetStates()));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, __instance.ObjectID, extendedPlayer.GetStates()));
             }
         }
     }
