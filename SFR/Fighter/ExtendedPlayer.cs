@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using SFD;
 using SFD.Sounds;
 using SFDGameScriptInterface;
@@ -14,7 +14,7 @@ namespace SFR.Fighter;
 /// </summary>
 internal sealed class ExtendedPlayer : IEquatable<Player>
 {
-    internal static readonly List<ExtendedPlayer> ExtendedPlayers = new();
+    internal static readonly ConditionalWeakTable<Player, ExtendedPlayer> ExtendedPlayers = new();
     internal readonly Player Player;
     internal readonly TimeSequence Time = new();
     internal bool Afraid = false;

@@ -13,7 +13,6 @@ namespace SFR.Projectiles;
 
 internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
 {
-    private ObjectCrossbowBolt _data;
     private float _gravity;
     private float _velocity;
 
@@ -89,10 +88,8 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
             SoundHandler.PlaySound(material.Hit.Projectile.HitSound, GameWorld);
             EffectHandler.PlayEffect(material.Hit.Projectile.HitEffect, Position, GameWorld);
             SoundHandler.PlaySound("MeleeHitSharp", GameWorld);
-        }
 
-        if (GameOwner != GameOwnerEnum.Server)
-        {
+            Remove();
             var data = (ObjectCrossbowBolt)GameWorld.IDCounter.NextLocalObjectData("CrossbowBolt01");
             SpawnObjectInformation spawnObject = new(data, Position, -GetAngle(), 1, Vector2.Zero, 0);
             GameWorld.CreateTile(spawnObject);
@@ -108,24 +105,17 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
         base.HitObject(objectData, e);
         if (GameOwner != GameOwnerEnum.Client && !PowerupBounceActive && !objectData.IsPlayer && objectData.GetCollisionFilter().AbsorbProjectile)
         {
-            _data = (ObjectCrossbowBolt)ObjectData.CreateNew(new ObjectDataStartParams(GameWorld.IDCounter.NextID(), 0, 0, "CrossbowBolt00", GameOwner));
-            GameWorld.CreateTile(new SpawnObjectInformation(_data, Position, -GetAngle(), 1, objectData.LocalRenderLayer, objectData.GetLinearVelocity(), 0));
-            _data.Timer = GameWorld.ElapsedTotalGameTime + 15000;
-            _data.EnableUpdateObject();
-            _data.FilterObjectId = objectData.BodyID;
+            Remove();
+            var data = (ObjectCrossbowBolt)ObjectData.CreateNew(new ObjectDataStartParams(GameWorld.IDCounter.NextID(), 0, 0, "CrossbowBolt00", GameOwner));
+            GameWorld.CreateTile(new SpawnObjectInformation(data, Position, -GetAngle(), 1, objectData.LocalRenderLayer, objectData.GetLinearVelocity(), 0));
+            data.Timer = GameWorld.ElapsedTotalGameTime + 15000;
+            data.EnableUpdateObject();
+            data.FilterObjectId = objectData.BodyID;
 
             if (objectData.IsStatic)
             {
-                _data.ChangeBodyType(BodyType.Static);
+                data.ChangeBodyType(BodyType.Static);
             }
-            // else 
-            // {
-            //     ObjectWeldJoint joint = (ObjectWeldJoint)ObjectData.CreateNew(new ObjectDataStartParams(GameWorld.IDCounter.NextID(), 0, 0, "WeldJoint", GameOwner));
-            //     GameWorld.CreateTile(new SpawnObjectInformation(joint, Position));
-            //     joint.AddObjectToProperty(_data, ObjectPropertyID.JointBodies);
-            //     joint.AddObjectToProperty(objectData, ObjectPropertyID.JointBodies);
-            //     joint.FinalizeProperties();
-            // }
         }
     }
 }

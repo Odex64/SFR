@@ -56,7 +56,7 @@ internal sealed class StickyBomb : TWeapon
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
     {
-        if (_primed && args.Player is { CurrentThrownWeapon: { } })
+        if (_primed && args.Player is { CurrentThrownWeapon: not null })
         {
             return Visuals.Throwing;
         }

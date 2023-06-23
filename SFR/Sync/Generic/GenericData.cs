@@ -27,7 +27,7 @@ internal sealed class GenericData
 
     internal static void SendGenericDataToClients(GenericData data)
     {
-        if (GameSFD.Handle.Server is { NetServer: { } })
+        if (GameSFD.Handle.Server is { NetServer: not null })
         {
             ServerData.Add(GenericServerData.Write(data, GameSFD.Handle.Server.NetServer.CreateMessage()));
             // var netOutgoingMessage = GenericServerData.Write(data, GameSFD.Handle.Server.NetServer.CreateMessage());

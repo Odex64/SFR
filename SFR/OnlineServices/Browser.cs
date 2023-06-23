@@ -26,7 +26,7 @@ internal static class Browser
             if (__instance.labels != null)
             {
                 var color = Color.Red;
-                if (__instance.m_game is { SFDGameServer: { } })
+                if (__instance.m_game is { SFDGameServer: not null })
                 {
                     if (__instance.m_game.SFDGameServer.Version == Constants.ServerVersion)
                     {

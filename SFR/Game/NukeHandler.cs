@@ -115,7 +115,7 @@ internal static class NukeHandler
             for (int i = _nukeObjects.Count - 1; i >= 0; i--)
             {
                 // Logger.LogDebug("2");
-                if (_nukeObjects[i] is { Tile: { } })
+                if (_nukeObjects[i] is { Tile: not null })
                 {
                     _nukeObjects[i].IsActive = true;
                     if (_nukeObjects[i].Tile.Name == "BgNuke")

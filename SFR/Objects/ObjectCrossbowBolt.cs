@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Xna.Framework;
+using System.Linq;
+using Box2D.XNA;
 using SFD;
+using SFDGameScriptInterface;
+using BodyType = Box2D.XNA.BodyType;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace SFR.Objects;
 
@@ -8,7 +12,6 @@ internal sealed class ObjectCrossbowBolt : ObjectData
 {
     private Player _boltPlayer;
     private float _playerAngle;
-    private bool _playerBolt;
     private int _playerFace;
     private Vector2 _playerOffset;
     internal int FilterObjectId = -1;
@@ -26,7 +29,18 @@ internal sealed class ObjectCrossbowBolt : ObjectData
             return;
         }
 
-        if (_playerBolt)
+        if (IsDynamic)
+        {
+            var pos = GetWorldPosition();
+            pos.Y -= 4;
+            AABB.Create(out var aabb, pos, 4);
+            if (GetLinearVelocity() == Vector2.Zero && GameWorld.GetObjectDataByArea(aabb, true, PhysicsLayer.All).Any(o => o.IsStatic && !o.Tile.Name.StartsWith("Bg")))
+            {
+                Body.SetType(BodyType.Static);
+            }
+        }
+
+        if (_boltPlayer != null)
         {
             if (_boltPlayer is { IsRemoved: false, IsDead: false, Rolling: false, Falling: false, Diving: false })
             {
@@ -74,7 +88,6 @@ internal sealed class ObjectCrossbowBolt : ObjectData
 
     internal void ApplyPlayerBolt(Player player)
     {
-        _playerBolt = true;
         _boltPlayer = player;
         _playerOffset = GetWorldPosition() - player.Position;
         _playerAngle = GetAngle();

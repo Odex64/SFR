@@ -41,14 +41,13 @@ internal static class Fighter
 
     internal static ExtendedPlayer GetExtension(this Player player)
     {
-        var result = ExtendedPlayer.ExtendedPlayers.Find(e => e.Equals(player));
-        if (result == null)
+        if (ExtendedPlayer.ExtendedPlayers.TryGetValue(player, out var existingExtendedPlayer))
         {
-            var extendedPlayer = new ExtendedPlayer(player);
-            ExtendedPlayer.ExtendedPlayers.Add(extendedPlayer);
-            return extendedPlayer;
+            return existingExtendedPlayer;
         }
 
-        return result;
+        var extendedPlayer = new ExtendedPlayer(player);
+        ExtendedPlayer.ExtendedPlayers.Add(player, extendedPlayer);
+        return extendedPlayer;
     }
 }

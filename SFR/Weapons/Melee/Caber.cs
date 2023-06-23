@@ -136,26 +136,26 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
         AABB.Create(out var area, ownerPlayer.Position, ownerPlayer.Position, CaberRadius);
         foreach (var obj in ownerPlayer.GameWorld.GetObjectDataByArea(area, false, PhysicsLayer.Active))
         {
-            //Damage objects
+            // Damage objects
             if (obj.InternalData is not Player && obj.Destructable)
             {
                 obj.DealScriptDamage(100);
             }
 
-            //What does this even mean
+            // Damage other players but attacker
             if (obj.InternalData is not Player player || player == ownerPlayer)
             {
                 continue;
             }
 
-            //Have to use TakeMiscDamage, to actually kill the players + attach a source id for scripters
+            // Have to use TakeMiscDamage, to actually kill the players + attach a source id for scripters
             player.TakeMiscDamage(CaberDamage, sourceID: ownerPlayer.ObjectID);
             var direction = player.Position - (position + new Vector2(0f, -12f));
             float distance = Vector2.Distance(player.Position, position);
             var boost = direction / distance * CaberBoost;
             player.Position += new Vector2(0f, 2f);
 
-            //Limit target velocity
+            // Limit target velocity
             if (boost.Length() > CaberMaxSpeed)
             {
                 boost.Normalize();
@@ -167,7 +167,7 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
                 boost *= CaberMinSpeed;
             }
 
-            //This will make them ragdoll
+            // This will make them ragdoll
             player.SimulateFallWithSpeed(boost + new Vector2(0f, 4f));
         }
     }
