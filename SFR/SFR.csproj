@@ -45,11 +45,11 @@
             <Private>true</Private>
         </Reference>
         <Reference Include="Box2D.XNA">
-            <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Superfighters Deluxe\Box2D.XNA.dll</HintPath>
+            <HintPath>..\SFD\Box2D.XNA.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="Lidgren.Network">
-            <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Superfighters Deluxe\Lidgren.Network.dll</HintPath>
+            <HintPath>>..\SFD\Lidgren.Network.dll</HintPath>
             <Private>false</Private>
         </Reference>
         <Reference Include="Microsoft.CodeAnalysis, Version=4.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
