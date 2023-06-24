@@ -17,16 +17,11 @@ namespace SFR.Fighter;
 [HarmonyPatch]
 internal static class AnimHandler
 {
-    private static List<AnimationData> _animations;
-
-    private static readonly Dictionary<int, string> UpperGunCustomAnimation = new()
-    {
-        { (int)CustomAnimation.Cower, "Gesture_Cower" }
-    };
+    private static List<AnimationData> _customAnimations;
 
     internal static List<AnimationData> GetAnimations(AnimationsData data)
     {
-        _animations ??= new List<AnimationData>
+        _customAnimations ??= new List<AnimationData>
         {
             ChangeAnimationTime(data.GetAnimation("UpperMelee2H1"), 1.75f, "UpperMelee2H1VerySlow"),
             ChangeAnimationTime(data.GetAnimation("UpperMelee2H2"), 1.75f, "UpperMelee2H2VerySlow"),
@@ -44,7 +39,7 @@ internal static class AnimHandler
             ChangeAnimationTime(data.GetAnimation("UpperBlockMelee"), 0.5f, "UpperBlockMeleeFast")
         };
 
-        return _animations;
+        return _customAnimations;
     }
 
     private static AnimationData ChangeAnimationTime(AnimationData data, float newTime, string newName)
@@ -92,8 +87,30 @@ internal static class AnimHandler
         }
 
         var profile = __instance.GetProfile().ToSFDProfile();
-        if (profile.Skin.Name.Contains("Zombie"))
+        if (profile.Skin.Name.Contains("Zombie") && (__instance.CurrentMeleeWeapon == null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
         {
+            switch (__instance.Equipment.WeaponDrawn)
+            {
+                case WeaponItemType.NONE:
+                    __result = "UpperWalkZombie";
+                    return false;
+                case WeaponItemType.Handgun:
+                    __result = "UpperWalkZombieHandgun";
+                    return false;
+
+                case WeaponItemType.Rifle:
+                    __result = "UpperWalkZombieRifle";
+                    return false;
+
+                case WeaponItemType.Thrown:
+                    __result = __instance.CurrentThrownWeapon.Visuals.AnimWalkUpper;
+                    return false;
+
+                case WeaponItemType.Melee:
+                    __result = __instance.CurrentVisualMeleeWeapon.Visuals.AnimWalkUpper.Insert(__instance.CurrentVisualMeleeWeapon.Visuals.AnimWalkUpper.IndexOf("Walk") + 4, "Zombie");
+                    return false;
+            }
+
             __result = "UpperWalkZombie";
             return false;
         }
@@ -118,17 +135,33 @@ internal static class AnimHandler
         }
 
         var profile = __instance.GetProfile().ToSFDProfile();
-        if (profile.Skin.Name.Contains("Zombie"))
+        if (!__instance.InThrowingMode && (__instance.CurrentMeleeWeapon == null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
         {
-            __result = "UpperIdleZombie";
-            return false;
-        }
-
-        if (!__instance.InThrowingMode)
-        {
-            if (UpperGunCustomAnimation.TryGetValue((int)__instance.m_currentAnimation, out string name))
+            if (profile.Skin.Name.Contains("Zombie") && !__instance.Crouching && !__instance.TakingCover)
             {
-                __result = name;
+                switch (__instance.Equipment.WeaponDrawn)
+                {
+                    case WeaponItemType.NONE:
+                        __result = "UpperIdleZombie";
+                        return false;
+                    case WeaponItemType.Handgun:
+                        __result = "UpperIdleZombieHandgun";
+                        return false;
+
+                    case WeaponItemType.Rifle:
+                        __result = "UpperIdleZombieRifle";
+                        return false;
+
+                    case WeaponItemType.Thrown:
+                        __result = __instance.CurrentThrownWeapon.Visuals.AnimIdleUpper;
+                        return false;
+
+                    case WeaponItemType.Melee:
+                        __result = __instance.CurrentVisualMeleeWeapon.Visuals.AnimIdleUpper.Insert(__instance.CurrentVisualMeleeWeapon.Visuals.AnimIdleUpper.IndexOf("Idle") + 4, "Zombie");
+                        return false;
+                }
+
+                __result = "UpperIdleZombie";
                 return false;
             }
         }
@@ -156,8 +189,8 @@ internal static class AnimHandler
                 case WpnSpeedBoost speedBoost:
                     speedBoost.OnEffectStart(player);
                     break;
-                case AdrenalineBoost rageBoost:
-                    rageBoost.OnEffectStart(player);
+                case AdrenalineBoost adrenalineBoost:
+                    adrenalineBoost.OnEffectStart(player);
                     break;
             }
         }
@@ -360,14 +393,7 @@ internal static class AnimHandler
             }
             else if (__instance.Crouching)
             {
-                if (extendedPlayer.Afraid)
-                {
-                    __instance.SetAnimation((Animation)CustomAnimation.Cower);
-                }
-                else
-                {
-                    __instance.SetAnimation(Animation.Crouch);
-                }
+                __instance.SetAnimation(Animation.Crouch);
             }
             else if (__instance.Climbing)
             {
@@ -571,7 +597,6 @@ internal static class AnimHandler
             __instance.SpawnAnimation = Player.PlayerSpawnAnimation.None;
         }
 
-        var extendedPlayer = __instance.GetExtension();
         switch (__instance.m_currentAnimation)
         {
             case Animation.Idle:
@@ -812,13 +837,6 @@ internal static class AnimHandler
                 __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation("FullChargeB"));
                 __instance.m_subAnimationsLength = 1;
                 break;
-            case (Animation)CustomAnimation.Cower:
-                __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation("Gesture_Cower"));
-                // __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation("BaseCrouch"));
-                __instance.m_subAnimations[1].SetAnimation(Animations.Data.GetAnimation(__instance.GetAnimIdleUpper()));
-                __instance.m_subAnimationsLength = 2;
-                // __instance.m_subAnimationsLength = 4;
-                break;
             default:
                 __instance.m_subAnimationsLength = 0;
                 break;
@@ -924,10 +942,5 @@ internal static class AnimHandler
             bool walkingAnimation = Constants.Random.NextBool();
             __instance.m_previewPlayer.SetAnimation(walkingAnimation ? Animation.Walk : Animation.Idle, PlayerAction.Disabled);
         }
-    }
-
-    internal enum CustomAnimation
-    {
-        Cower = 34
     }
 }

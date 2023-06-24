@@ -17,8 +17,6 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     internal static readonly ConditionalWeakTable<Player, ExtendedPlayer> ExtendedPlayers = new();
     internal readonly Player Player;
     internal readonly TimeSequence Time = new();
-    internal bool Afraid = false;
-    internal bool AfraidCheck = false;
     internal GenericJetpack GenericJetpack;
     internal JetpackType JetpackType = JetpackType.None;
     internal bool PrepareJetpack = false;
@@ -51,13 +49,11 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
 
     internal object[] GetStates()
     {
-        object[] states = new object[6];
+        object[] states = new object[4];
         states[0] = AdrenalineBoost;
         states[1] = PrepareJetpack;
-        states[2] = Afraid;
-        states[3] = AfraidCheck;
-        states[4] = (int)JetpackType;
-        states[5] = GenericJetpack?.Fuel?.CurrentValue ?? 100f;
+        states[2] = (int)JetpackType;
+        states[3] = GenericJetpack?.Fuel?.CurrentValue ?? 100f;
 
         return states;
     }

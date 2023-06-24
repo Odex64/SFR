@@ -210,18 +210,19 @@ internal static class SyncHandler
                 var player = client.GameWorld.GetPlayer((int)data.Args[0]);
                 if (player == null)
                 {
-                    Logger.LogError("Player is null!");
+                    Logger.LogError("Player is null while syncing states!");
                     return;
                 }
 
                 var extendedPlayer = player.GetExtension();
-                bool[] states = Array.ConvertAll(data.Args.Skip(1).Take(4).ToArray(), o => (bool)o);
-                if (!extendedPlayer.AdrenalineBoost && states[0])
+                bool adrenalineBoost = (bool)data.Args[1];
+                if (!extendedPlayer.AdrenalineBoost && adrenalineBoost)
                 {
-                    extendedPlayer.AdrenalineBoost = states[0];
+                    extendedPlayer.AdrenalineBoost = true;
                 }
 
-                var jetpackType = (JetpackType)(int)data.Args[5];
+                bool preparingJetpack = (bool)data.Args[2];
+                var jetpackType = (JetpackType)(int)data.Args[3];
                 if (extendedPlayer.GenericJetpack == null || jetpackType != extendedPlayer.JetpackType)
                 {
                     extendedPlayer.JetpackType = jetpackType;
@@ -233,21 +234,17 @@ internal static class SyncHandler
                         _ => extendedPlayer.GenericJetpack
                     };
                 }
-                else if (states[1] && extendedPlayer.GenericJetpack != null)
+                else if (preparingJetpack && extendedPlayer.GenericJetpack != null)
                 {
-                    Logger.LogDebug("fill jetpack");
                     extendedPlayer.GenericJetpack.Fuel.CurrentValue = 100;
                     extendedPlayer.PrepareJetpack = false;
                 }
 
-                float jetPackFuel = (float)data.Args[6];
-                if (!states[1] && extendedPlayer.GenericJetpack != null)
+                float jetPackFuel = (float)data.Args[4];
+                if (!preparingJetpack && extendedPlayer.GenericJetpack != null)
                 {
                     extendedPlayer.GenericJetpack.Fuel.CurrentValue = jetPackFuel;
                 }
-
-                extendedPlayer.AfraidCheck = states[3];
-                extendedPlayer.Afraid = states[2];
 
                 break;
         }
