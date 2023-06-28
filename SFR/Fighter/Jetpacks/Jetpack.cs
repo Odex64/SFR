@@ -44,7 +44,7 @@ internal sealed class Jetpack : GenericJetpack
     {
         base.Discard(extendedPlayer);
         var player = extendedPlayer.Player;
-        
+
         player.GameWorld.CreateTile("JetpackDebris1", player.Position, 0);
     }
 }
