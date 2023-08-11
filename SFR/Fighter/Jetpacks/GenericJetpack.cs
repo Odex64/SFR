@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using SFD;
+using SFD.Effects;
 using SFD.Sounds;
 using SFR.Sync.Generic;
+using Keyboard = SFD.Input.Keyboard;
 
 namespace SFR.Fighter.Jetpacks;
 
@@ -37,9 +40,16 @@ internal abstract class GenericJetpack
         {
             AirTime = 0;
             Landed = true;
+
+            if (Keyboard.IsKeyDown(Keys.Space))
+            {
+                SoundHandler.PlaySound("PistolDraw", player.GameWorld);
+                EffectHandler.PlayEffect("CFTXT", player.Position, player.GameWorld, "DISCARD");
+                Discard(extendedPlayer);
+            }
         }
 
-        if (!player.Crouching && !player.Diving && !player.Climbing && !player.Staggering && !player.LayingOnGround && !player.Falling)
+        if (!player.Crouching && !player.Climbing && !player.Staggering && !player.LayingOnGround && !player.Falling)
         {
             if (AirTime > 250 && (player.VirtualKeyboard.PressingKey(0) || player.VirtualKeyboard.PressingKey(19)))
             {
