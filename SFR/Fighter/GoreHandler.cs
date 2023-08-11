@@ -202,7 +202,7 @@ internal static class GoreHandler
         return false;
     }
 
-    private static void ApplyHeadshot(Player player, Vector2 position, string headshotType = "Normal")
+    internal static void ApplyHeadshot(Player player, Vector2 position, string headshotType = "Normal")
     {
         // Check for special skins
         if (player.GetProfile().ToSFDProfile().Skin.Name.Contains("Headless") || GetCorrespondingSkin(player.GetProfile().ToSFDProfile().Skin.Name) == null)
@@ -304,7 +304,7 @@ internal static class GoreHandler
         if (isZombie)
         {
             string[] zHats = { "Headless", "ExposedBrain", "HeadShot", "HeadShot2", "HeadShot3" };
-            hat = zHats[new Random().Next(zHats.Length)];
+            hat = zHats[Constants.Random.Next(zHats.Length)];
             if (hat.Contains("Brain"))
             {
                 color2 = "Brain";
@@ -313,7 +313,7 @@ internal static class GoreHandler
         else
         {
             string[] nHats = { "Headless", "HeadShot", "HeadShot2" };
-            hat = nHats[new Random().Next(nHats.Length)];
+            hat = nHats[Constants.Random.Next(nHats.Length)];
         }
 
         return headshotType switch

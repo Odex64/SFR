@@ -7,6 +7,9 @@ using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
 using SFDGameScriptInterface;
+using SFR.Fighter;
+using SFR.Helper;
+using Constants = SFR.Misc.Constants;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace SFR.Weapons.Melee;
@@ -95,9 +98,9 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
         {
             if (player.Position.Y >= target.Position.Y && target.IsDead)
             {
-                if (player.CurrentAction == PlayerAction.MeleeAttack3 || (player.CurrentAction == PlayerAction.JumpAttack && new Random().Next(2) == 0))
+                if (player.CurrentAction == PlayerAction.MeleeAttack3 || (player.CurrentAction == PlayerAction.JumpAttack && Constants.Random.Next(2) == 0))
                 {
-                    // GoreHandler.ApplyHeadshot(target, target.Position + new Vector2(0, 18));
+                    GoreHandler.ApplyHeadshot(target, target.Position + new Vector2(0, 18));
                 }
             }
         }
@@ -105,7 +108,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 
     public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj)
     {
-        //On heavy attack, detonate explosives
+        // On heavy attack, detonate explosives
         if (obj is ObjectExplosive or ObjectBarrelExplosive && player.CurrentAction == PlayerAction.MeleeAttack3)
         {
             ((ObjectDestructible)obj).Properties.Get(ObjectPropertyID.BarrelExplosive_Exploding).Value = true;
@@ -122,17 +125,6 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 
     public void Update(Player player, float ms, float realMs) { }
     public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
-
-    public void BeforeHit(Player player, Player target)
-    {
-        if (target != null && player != null)
-        {
-            if (target.CurrentAction == PlayerAction.Block && player.CurrentAction == PlayerAction.MeleeAttack3)
-            {
-                target.TakeMeleeDamage(PlayerDamageEventType.Melee, HeavyDamagePlayer / 2 * player.MeleeDamageDealtModifier, player.ObjectID);
-            }
-        }
-    }
 
     public override MWeapon Copy() => new Sledgehammer(Properties, Visuals)
     {
@@ -153,8 +145,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
     {
         if (_isCharging)
         {
-            if (player.Staggering || player.Rolling || player.MeleeHit || player.LedgeGrabbing || player.LayingOnGround || player.Diving ||
-                player.CurrentAction == PlayerAction.JumpKick)
+            if (player.Staggering || player.Rolling || player.MeleeHit || player.LedgeGrabbing || player.LayingOnGround || player.Diving || player.CurrentAction == PlayerAction.JumpKick)
             {
                 _isCharging = false;
                 _lastChargedTimer = _chargedTimer = -1f;
@@ -174,10 +165,9 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
         }
     }
 
-    //onKeyEvent: true = first frame, false = holding
     public override bool CustomHandlingOnAttackKey(Player player, bool onKeyEvent)
     {
-        if (onKeyEvent && (player.CurrentAction is PlayerAction.Idle || player.CurrentAction is PlayerAction.MeleeAttack2))
+        if (onKeyEvent && player.CurrentAction is PlayerAction.Idle or PlayerAction.MeleeAttack2)
         {
             if (!_isCharging)
             {

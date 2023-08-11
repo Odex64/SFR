@@ -25,9 +25,9 @@ internal sealed class Jetpack : GenericJetpack
 
     internal override Texture2D GetJetpackTexture(string postFix)
     {
-        Jetpack ??= Textures.GetTexture("JetpackNormal");
-        JetpackBack ??= Textures.GetTexture("JetpackNormalBack");
-        JetpackDiving ??= Textures.GetTexture("JetpackNormalDiving");
+        Jetpack ??= Textures.GetTexture("Jetpack");
+        JetpackBack ??= Textures.GetTexture("JetpackBack");
+        JetpackDiving ??= Textures.GetTexture("JetpackDiving");
 
         var texture = postFix switch
         {
@@ -45,6 +45,6 @@ internal sealed class Jetpack : GenericJetpack
         base.Discard(extendedPlayer);
         var player = extendedPlayer.Player;
 
-        player.GameWorld.CreateTile("JetpackDebris1", player.Position, 0);
+        player.GameWorld.CreateTile("JetpackDebris", player.Position, 0);
     }
 }

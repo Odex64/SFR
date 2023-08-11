@@ -144,6 +144,7 @@
     <Compile Include="Fighter\GoreHandler.cs" />
     <Compile Include="Fighter\DevHandler.cs" />
     <Compile Include="Fighter\Jetpacks\GenericJetpack.cs" />
+    <Compile Include="Fighter\Jetpacks\Gunpack.cs" />
     <Compile Include="Fighter\Jetpacks\Jetpack.cs" />
     <Compile Include="Fighter\Jetpacks\JetpackEditor.cs" />
     <Compile Include="Fighter\Jetpacks\JetpackHandler.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Weapons\Melee\Rapier.cs" />
     <Compile Include="Weapons\Melee\Sledgehammer.cs" />
     <Compile Include="Weapons\Melee\Switchblade.cs" />
+    <Compile Include="Weapons\Others\Gunpack.cs" />
     <Compile Include="Weapons\Others\JetpackEditor.cs" />
     <Compile Include="Weapons\Others\HealthPouch.cs" />
     <Compile Include="Weapons\Others\Jetpack.cs" />

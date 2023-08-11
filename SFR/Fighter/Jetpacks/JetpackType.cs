@@ -4,5 +4,6 @@ internal enum JetpackType
 {
     None,
     Jetpack,
-    JetpackEditor
+    JetpackEditor,
+    Gunpack
 }

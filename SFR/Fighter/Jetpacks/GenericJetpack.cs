@@ -51,7 +51,7 @@ internal abstract class GenericJetpack
 
         if (!player.Crouching && !player.Climbing && !player.Staggering && !player.LayingOnGround && !player.Falling)
         {
-            if (AirTime > 250 && (player.VirtualKeyboard.PressingKey(0) || player.VirtualKeyboard.PressingKey(19)))
+            if (AirTime > 250f && (player.VirtualKeyboard.PressingKey(0) || player.VirtualKeyboard.PressingKey(19)))
             {
                 if (Landed)
                 {

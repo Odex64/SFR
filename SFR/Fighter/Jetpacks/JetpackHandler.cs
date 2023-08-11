@@ -3,6 +3,7 @@ using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
+using SFD.Weapons;
 
 namespace SFR.Fighter.Jetpacks;
 
@@ -17,6 +18,18 @@ internal static class JetpackHandler
         {
             var extendedPlayer = Helper.Fighter.GetExtension(__instance);
             extendedPlayer.GenericJetpack?.Update(ms, extendedPlayer);
+        }
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(WpnFireAmmo), nameof(WpnFireAmmo.OnPickup))]
+    private static void ApplyFireUpgrade(Player player, HItem instantPickupItem)
+    {
+        var extendedPlayer = Helper.Fighter.GetExtension(player);
+
+        if (extendedPlayer.GenericJetpack is Gunpack gunpack)
+        {
+            gunpack.ApplyFireUpgrade();
         }
     }
 
