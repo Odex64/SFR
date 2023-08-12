@@ -154,7 +154,7 @@
     <Compile Include="Fighter\StatusBarHandler.cs" />
     <Compile Include="Game\CommandHandler.cs" />
     <Compile Include="Game\NukeHandler.cs" />
-    <Compile Include="Game\World.cs" />
+    <Compile Include="Game\WorldHandler.cs" />
     <Compile Include="Helper\Fighter.cs" />
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Helper\Math.cs" />
