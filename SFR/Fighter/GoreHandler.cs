@@ -1,5 +1,4 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using SFD;
 using SFD.Effects;
 using SFD.Objects;

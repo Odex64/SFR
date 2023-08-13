@@ -111,8 +111,9 @@ internal sealed class StickyBomb : TWeapon
         e.Action = TWeaponDeadlineAction.Drop;
     }
 
-    public override TWeapon Copy() => new StickyBomb(Properties, Visuals)
-    {
-        NumberOfThrowablesLeft = NumberOfThrowablesLeft
-    };
+    public override TWeapon Copy() =>
+        new StickyBomb(Properties, Visuals)
+        {
+            NumberOfThrowablesLeft = NumberOfThrowablesLeft
+        };
 }

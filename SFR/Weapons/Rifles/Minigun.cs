@@ -162,11 +162,11 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         if (_timeStamp + AfterFireThreshold < args.Player.GameWorld.ElapsedTotalGameTime)
         {
             _revUpCurrent = 0;
-            // _synced = false;
-            // GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.Player.ObjectID, "SYNC_MINIGUN_UNREV"));
-            // args.Player.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.Player.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_UNREV"));
         }
 
+        // _synced = false;
+        // GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.Player.ObjectID, "SYNC_MINIGUN_UNREV"));
+        // args.Player.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.Player.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_UNREV"));
         if (_revUpCurrent >= RevUpRounds)
         {
             // if (!_synced)

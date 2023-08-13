@@ -50,7 +50,7 @@ internal static class JetpackHandler
                 return true;
             }
 
-            //Set angle and position according to current state
+            // Set angle and position according to current state
             var gamePos = __instance.Position + new Vector2(-4 * __instance.LastDirectionX, 12);
             var effect = __instance.LastDirectionX == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
             var texture = extendedPlayer.GenericJetpack.GetJetpackTexture(string.Empty);
@@ -127,7 +127,7 @@ internal static class JetpackHandler
             return;
         }
 
-        if (__instance.Climbing) //TODO why jetpackActive == false?
+        if (__instance.Climbing)
         {
             var gamePos = __instance.Position + new Vector2(0, 12);
             gamePos = new Vector2(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));

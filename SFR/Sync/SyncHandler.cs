@@ -219,8 +219,7 @@ internal static class SyncHandler
                     extendedPlayer.AdrenalineBoost = true;
                 }
 
-                bool preparingJetpack = (bool)data.Args[2];
-                var jetpackType = (JetpackType)(int)data.Args[3];
+                var jetpackType = (JetpackType)(int)data.Args[2];
                 if (extendedPlayer.GenericJetpack == null || jetpackType != extendedPlayer.JetpackType)
                 {
                     extendedPlayer.JetpackType = jetpackType;
@@ -233,14 +232,9 @@ internal static class SyncHandler
                         _ => extendedPlayer.GenericJetpack
                     };
                 }
-                else if (preparingJetpack && extendedPlayer.GenericJetpack != null)
-                {
-                    extendedPlayer.GenericJetpack.Fuel.CurrentValue = 100;
-                    extendedPlayer.PrepareJetpack = false;
-                }
 
-                float jetPackFuel = (float)data.Args[4];
-                if (!preparingJetpack && extendedPlayer.GenericJetpack != null)
+                float jetPackFuel = (float)data.Args[3];
+                if (extendedPlayer.GenericJetpack != null)
                 {
                     extendedPlayer.GenericJetpack.Fuel.CurrentValue = jetPackFuel;
                 }

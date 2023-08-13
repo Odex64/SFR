@@ -41,7 +41,7 @@ internal abstract class GenericJetpack
             AirTime = 0;
             Landed = true;
 
-            if (Keyboard.IsKeyDown(Keys.Space))
+            if (!player.ChatActive && player.Crouching && Keyboard.IsKeyDown(Keys.Space))
             {
                 SoundHandler.PlaySound("PistolDraw", player.GameWorld);
                 EffectHandler.PlayEffect("CFTXT", player.Position, player.GameWorld, "DISCARD");
@@ -51,7 +51,7 @@ internal abstract class GenericJetpack
 
         if (!player.Crouching && !player.Climbing && !player.Staggering && !player.LayingOnGround && !player.Falling)
         {
-            if (AirTime > 250f && (player.VirtualKeyboard.PressingKey(0) || player.VirtualKeyboard.PressingKey(19)))
+            if (AirTime > 250f && player.VirtualKeyboard.PressingKey(19))
             {
                 if (Landed)
                 {
@@ -74,7 +74,7 @@ internal abstract class GenericJetpack
                 player.SetNewLinearVelocity(velocity);
                 // player.ImportantUpdate = true;
 
-                if (!player.InfiniteAmmo && !player.InfiniteAmmo)
+                if (!player.InfiniteAmmo)
                 {
                     Fuel.CurrentValue -= 0.03f * player.SlowmotionFactor * ms;
                     GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, player.ObjectID, extendedPlayer.GetStates()));

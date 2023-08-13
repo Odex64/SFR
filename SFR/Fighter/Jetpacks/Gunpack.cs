@@ -13,11 +13,11 @@ namespace SFR.Fighter.Jetpacks;
 
 internal sealed class Gunpack : GenericJetpack
 {
-    private float _projectileTimer;
     private ushort _fireProjectiles;
     private float _fireRate;
+    private float _projectileTimer;
 
-    internal Gunpack() : base(100, 1.2f) { }
+    internal Gunpack() : base(140, 1.2f) { }
 
     protected override void PlayEffect(Player player)
     {
@@ -47,7 +47,7 @@ internal sealed class Gunpack : GenericJetpack
             if (_projectileTimer - _fireRate <= 0f)
             {
                 var gameWorld = extendedPlayer.Player.GameWorld;
-                var position = extendedPlayer.Player.Position - new Vector2(0, 12);
+                var position = extendedPlayer.Player.Position - new Vector2(0, 8);
 
                 gameWorld.SpawnProjectile(40, position, new Vector2(Constants.Random.NextFloat(-0.1f, 0.1f), -1), extendedPlayer.Player.ObjectID, _fireProjectiles > 0 ? ProjectilePowerup.Fire : ProjectilePowerup.None);
                 if (_fireProjectiles > 0)

@@ -22,8 +22,8 @@ internal static class Program
                      .Where(d => TargetFolders.Any(e => Path.Combine(Data, Path.GetDirectoryName(d)!).Contains(e))))
         {
             if (!data.Contains(ToTile(file), StringComparison.OrdinalIgnoreCase))
-            {
                 // if (file.Contains("Bg"))
+            {
                 LogError("Tile(" + Path.GetFileNameWithoutExtension(file) + ")" + "{}");
             }
         }

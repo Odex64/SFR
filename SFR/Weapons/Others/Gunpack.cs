@@ -32,7 +32,6 @@ internal sealed class Gunpack : HItem
 
             var extendedPlayer = player.GetExtension();
             extendedPlayer.JetpackType = JetpackType.Gunpack;
-            extendedPlayer.PrepareJetpack = true;
             extendedPlayer.GenericJetpack = new Fighter.Jetpacks.Gunpack();
             if (player.GameOwner == GameOwnerEnum.Server)
             {

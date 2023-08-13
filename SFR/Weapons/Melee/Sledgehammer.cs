@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Effects;
@@ -6,11 +6,8 @@ using SFD.Materials;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
-using SFDGameScriptInterface;
 using SFR.Fighter;
-using SFR.Helper;
 using Constants = SFR.Misc.Constants;
-using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace SFR.Weapons.Melee;
 
@@ -126,13 +123,14 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
     public void Update(Player player, float ms, float realMs) { }
     public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
 
-    public override MWeapon Copy() => new Sledgehammer(Properties, Visuals)
-    {
-        Durability =
+    public override MWeapon Copy() =>
+        new Sledgehammer(Properties, Visuals)
         {
-            CurrentValue = Durability.CurrentValue
-        }
-    };
+            Durability =
+            {
+                CurrentValue = Durability.CurrentValue
+            }
+        };
 
     public override void Destroyed(Player ownerPlayer)
     {

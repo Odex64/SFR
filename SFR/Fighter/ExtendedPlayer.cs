@@ -19,7 +19,6 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     internal readonly TimeSequence Time = new();
     internal GenericJetpack GenericJetpack;
     internal JetpackType JetpackType = JetpackType.None;
-    internal bool PrepareJetpack = false;
 
     internal ExtendedPlayer(Player player) => Player = player;
 
@@ -49,11 +48,10 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
 
     internal object[] GetStates()
     {
-        object[] states = new object[4];
+        object[] states = new object[3];
         states[0] = AdrenalineBoost;
-        states[1] = PrepareJetpack;
-        states[2] = (int)JetpackType;
-        states[3] = GenericJetpack?.Fuel?.CurrentValue ?? 100f;
+        states[1] = (int)JetpackType;
+        states[2] = GenericJetpack?.Fuel?.CurrentValue ?? 0f;
 
         return states;
     }

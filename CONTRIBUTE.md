@@ -129,7 +129,7 @@ Sync/                         \ Clients & Server synchronization.
 UI/                           \ Custom UI elements like credits.
 Weapons/                      \ Contains new weapons
 ├─ Handgun/                     \ Self explanatory.
-├─ Makeshift/                   \ Weapons you find aroun the map like chairs, bottles and so on.
+├─ Makeshift/                   \ Weapons you find around the map like chairs, bottles and so on.
 ├─ Melee/                       \ Self explanatory.
 ├─ Others/                      \ Contains pick-up weapons like medkit or boosts. It can also contain special items like jetpacks.
 ├─ Rifles/                      \ Self explanatory.

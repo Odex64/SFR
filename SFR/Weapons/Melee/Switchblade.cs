@@ -78,13 +78,14 @@ internal sealed class Switchblade : MWeapon
         return base.GetDrawnTexture(ref args);
     }
 
-    public override MWeapon Copy() => new Switchblade(Properties, Visuals)
-    {
-        Durability =
+    public override MWeapon Copy() =>
+        new Switchblade(Properties, Visuals)
         {
-            CurrentValue = Durability.CurrentValue
-        }
-    };
+            Durability =
+            {
+                CurrentValue = Durability.CurrentValue
+            }
+        };
 
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {

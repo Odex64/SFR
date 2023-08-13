@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using HarmonyLib;
@@ -21,21 +20,6 @@ namespace SFR.API;
 [HarmonyPatch]
 internal static class ScriptHandler
 {
-    private static readonly string RuntimePath = RuntimeEnvironment.GetRuntimeDirectory();
-    // private static string runtimePath = @"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\{0}.dll";
-    //
-    // private static readonly IEnumerable<MetadataReference> DefaultReferences = new[]
-    // {
-    //     MetadataReference.CreateFromFile(string.Format(runtimePath, "mscorlib")),
-    //     MetadataReference.CreateFromFile(string.Format(runtimePath, "System")),
-    //     MetadataReference.CreateFromFile(string.Format(runtimePath, "System.Core"))
-    // };
-
-    // private static readonly CSharpCompilationOptions DefaultCompilationOptions =
-    //     new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
-    //         .WithOverflowChecks(true).WithOptimizationLevel(OptimizationLevel.Release)
-    //         .WithUsings(DefaultNamespaces);
-
     private static SyntaxTree Parse(string text, string filename = "", CSharpParseOptions options = null)
     {
         var stringText = SourceText.From(text, Encoding.UTF8);
