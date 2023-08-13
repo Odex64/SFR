@@ -7,26 +7,26 @@ using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
 using SFR.Fighter;
+using SFR.Helper;
+using SFR.Sync.Generic;
 using Constants = SFR.Misc.Constants;
 
 namespace SFR.Weapons.Melee;
 
 internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 {
-    private const int ChargeThreshold = 500;
     private const float HeavyDamagePlayer = 35f;
     private const float HeavyDamageObject = 100f;
-    private const float QuickDamagePlayer = 8f;
-    private const float QuickDamageObject = 50f;
-    private const int WeakThreshold = 50;
-    private const int BlinkTime = 200;
-    private const float GlobalCooldown = 300f;
-    private float _blinkTimer = -1f;
-    private float _chargedTimer = -1f;
-    private bool _comboCharged;
+    private const float WeakDamagePlayer = 8f;
+    private const float WeakDamageObject = 50f;
+    private const float HeavyChargeTime = 800f;
+    private const float AttackCooldown = 300f;
+    private const float WeakBlinkTime = 200f;
+    private const float HeavyBlinkTime = 450f;
+    internal float BlinkTimer;
+    private float _chargedTimer;
     private bool _isCharging;
-    private float _lastChargedTimer = -1f;
-    private float _lastSwungAttack = -1f;
+    private float _attackCooldown;
 
     internal Sledgehammer()
     {
@@ -123,14 +123,13 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
     public void Update(Player player, float ms, float realMs) { }
     public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
 
-    public override MWeapon Copy() =>
-        new Sledgehammer(Properties, Visuals)
+    public override MWeapon Copy() => new Sledgehammer(Properties, Visuals)
+    {
+        Durability =
         {
-            Durability =
-            {
-                CurrentValue = Durability.CurrentValue
-            }
-        };
+            CurrentValue = Durability.CurrentValue
+        }
+    };
 
     public override void Destroyed(Player ownerPlayer)
     {
@@ -141,88 +140,71 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 
     public override void CustomHandlingPostUpdate(Player player, float totalMs)
     {
+        if (player.GameOwner == GameOwnerEnum.Client) return;
+
         if (_isCharging)
         {
-            if (player.Staggering || player.Rolling || player.MeleeHit || player.LedgeGrabbing || player.LayingOnGround || player.Diving || player.CurrentAction == PlayerAction.JumpKick)
+            if (player.VirtualKeyboard.PressingKey(4, true))
             {
-                _isCharging = false;
-                _lastChargedTimer = _chargedTimer = -1f;
+                _chargedTimer -= totalMs;
+                if (_chargedTimer <= player.GameWorld.ElapsedTotalGameTime)
+                {
+                    SwingTheHammer(player, true);
+                }
             }
-            else if (_lastChargedTimer + WeakThreshold < player.GameWorld.ElapsedTotalGameTime)
+            else
             {
                 SwingTheHammer(player, false);
-            }
-        }
-
-        if (_comboCharged)
-        {
-            if (player.CurrentAction != PlayerAction.MeleeAttack2 && !_isCharging)
-            {
-                _comboCharged = false;
             }
         }
     }
 
     public override bool CustomHandlingOnAttackKey(Player player, bool onKeyEvent)
     {
-        if (onKeyEvent && player.CurrentAction is PlayerAction.Idle or PlayerAction.MeleeAttack2)
-        {
-            if (!_isCharging)
-            {
-                if (player.CurrentAction == PlayerAction.MeleeAttack2)
-                {
-                    if (!_comboCharged)
-                    {
-                        _comboCharged = true;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
+        if (player.GameOwner == GameOwnerEnum.Client) return true;
 
-                _chargedTimer = player.GameWorld.ElapsedTotalGameTime + ChargeThreshold;
-                _isCharging = true;
-                _blinkTimer = BlinkTime;
-                SoundHandler.PlaySound("LightCharge", player.Position, player.GameWorld);
-            }
-        }
-        else if (_isCharging)
+        if (_attackCooldown > player.GameWorld.ElapsedTotalGameTime) return true;
+
+        if (onKeyEvent && player.CurrentAction is PlayerAction.Idle && !_isCharging)
         {
-            _lastChargedTimer = player.GameWorld.ElapsedTotalGameTime;
-            if (_chargedTimer < player.GameWorld.ElapsedTotalGameTime)
-            {
-                SwingTheHammer(player, true);
-            }
+            _isCharging = true;
+            _chargedTimer = player.GameWorld.ElapsedTotalGameTime + HeavyChargeTime;
+            SyncBlinkTime(player, WeakBlinkTime);
+            SoundHandler.PlaySound("LightCharge", player.Position, player.GameWorld);
         }
 
         return true;
     }
 
+    private void SyncBlinkTime(Player player, float time)
+    {
+        if (player.GameOwner != GameOwnerEnum.Client)
+        {
+            BlinkTimer = time;
+            GenericData.SendGenericDataToClients(new GenericData(DataType.SledgehammerBlink, new SyncFlag[] { }, player.ObjectData.BodyID, time));
+        }
+    }
+
     private void SwingTheHammer(Player player, bool isHeavy)
     {
-        if (_lastSwungAttack < player.GameWorld.ElapsedTotalGameTime)
-        {
-            _isCharging = false;
-            _chargedTimer = _lastChargedTimer = -1f;
-            if (isHeavy)
-            {
-                Properties.DamagePlayers = HeavyDamagePlayer;
-                Properties.DamageObjects = HeavyDamageObject;
-                player.DrainEnergy(10);
-                player.CurrentAction = PlayerAction.MeleeAttack3;
-                _blinkTimer = BlinkTime;
-                EffectHandler.PlayEffect("GLM", player.Position + new Vector2(-22f * (player.AimVector().X > 0 ? 1 : -1), 13f), player.GameWorld);
-                SoundHandler.PlaySound("HeavyCharge", player.Position, player.GameWorld);
-            }
-            else
-            {
-                Properties.DamagePlayers = QuickDamagePlayer;
-                Properties.DamageObjects = QuickDamageObject;
-                player.CurrentAction = PlayerAction.MeleeAttack2;
-            }
+        _isCharging = false;
+        _attackCooldown = player.GameWorld.ElapsedTotalGameTime + AttackCooldown;
 
-            _lastSwungAttack = player.GameWorld.ElapsedTotalGameTime + GlobalCooldown;
+        if (isHeavy)
+        {
+            Properties.DamagePlayers = HeavyDamagePlayer;
+            Properties.DamageObjects = HeavyDamageObject;
+            player.DrainEnergy(10);
+            player.CurrentAction = PlayerAction.MeleeAttack3;
+            SyncBlinkTime(player, HeavyBlinkTime);
+            EffectHandler.PlayEffect("GLM", player.Position + new Vector2(-22f * (player.AimVector().X > 0 ? 1 : -1), 13f), player.GameWorld);
+            SoundHandler.PlaySound("HeavyCharge", player.Position, player.GameWorld);
+        }
+        else
+        {
+            Properties.DamagePlayers = WeakDamagePlayer;
+            Properties.DamageObjects = WeakDamageObject;
+            player.CurrentAction = PlayerAction.MeleeAttack2;
         }
     }
 
@@ -238,9 +220,9 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
     {
-        if (_blinkTimer > 0f)
+        if (BlinkTimer > args.TimeMs)
         {
-            _blinkTimer -= args.TimeMs;
+            BlinkTimer -= args.TimeMs;
             args.Postfix = "Blink";
         }
 

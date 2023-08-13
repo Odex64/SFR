@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Lidgren.Network;
 using SFD;
+using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Game;
 using SFR.Helper;
 using SFR.Objects;
 using SFR.Sync.Generic;
+using SFR.Weapons.Melee;
 
 namespace SFR.Sync;
 
@@ -182,6 +184,21 @@ internal static class SyncHandler
                 };
 
                 NukeHandler.Begin(nukes);
+                break;
+
+            case DataType.SledgehammerBlink:
+                var sledgehammerPlayer = client.GameWorld.GetPlayer((int)data.Args[0]);
+                if (sledgehammerPlayer == null)
+                {
+                    return;
+                }
+                
+                if (sledgehammerPlayer.GetCurrentWeapon() is Sledgehammer sledgehammer)
+                {
+                    float blinkTime = (float)data.Args[1];
+                    sledgehammer.BlinkTimer = blinkTime;
+                }
+
                 break;
 
             case DataType.StickyGrenade:
