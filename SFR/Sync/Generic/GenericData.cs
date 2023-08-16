@@ -31,7 +31,5 @@ internal sealed class GenericData
         {
             ServerData.Add(GenericServerData.Write(data, GameSFD.Handle.Server.NetServer.CreateMessage()));
         }
-        // var netOutgoingMessage = GenericServerData.Write(data, GameSFD.Handle.Server.NetServer.CreateMessage());
-        // GameSFD.Handle.Server.NetServer.SendToAll(netOutgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
     }
 }

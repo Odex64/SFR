@@ -10,8 +10,10 @@ namespace SFR.Fighter.Jetpacks;
 
 internal abstract class GenericJetpack
 {
-    internal readonly BarMeter Fuel;
-    protected readonly float MaxSpeed;
+    protected internal readonly BarMeter Fuel;
+    protected internal readonly float MaxSpeed;
+
+    protected const float FlyThreshold = 250f;
 
     protected float AirTime;
     protected float EffectTimer;
@@ -19,9 +21,10 @@ internal abstract class GenericJetpack
     protected Texture2D Jetpack;
     protected Texture2D JetpackBack;
     protected Texture2D JetpackDiving;
-    protected bool Landed;
     internal bool Shake;
     protected float SoundTimer;
+
+    protected internal JetpackState State;
 
     protected GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
     {
@@ -32,54 +35,59 @@ internal abstract class GenericJetpack
     internal virtual void Update(float ms, ExtendedPlayer extendedPlayer)
     {
         var player = extendedPlayer.Player;
-        if (player.InAir && !player.LedgeGrabbing && !player.Climbing)
+        if (player.InAir && !(player.LedgeGrabbing || player.Climbing || player.Crouching || player.Staggering || player.LayingOnGround || player.Falling || player.IsCaughtByPlayer))
         {
             AirTime += ms;
         }
         else
         {
-            AirTime = 0;
-            Landed = true;
-
-            if (!player.ChatActive && player.Crouching && Keyboard.IsKeyDown(Keys.Space))
-            {
-                SoundHandler.PlaySound("PistolDraw", player.GameWorld);
-                EffectHandler.PlayEffect("CFTXT", player.Position, player.GameWorld, "DISCARD");
-                Discard(extendedPlayer);
-            }
+            AirTime = 0f;
+            State = JetpackState.Idling;
         }
 
-        if (!player.Crouching && !player.Climbing && !player.Staggering && !player.LayingOnGround && !player.Falling)
+        if (AirTime > FlyThreshold && player.VirtualKeyboard.PressingKey(19))
         {
-            if (AirTime > 250f && player.VirtualKeyboard.PressingKey(19))
+            if (State is JetpackState.Idling or JetpackState.Falling)
             {
-                if (Landed)
+                State = JetpackState.Flying;
+
+                if (player.GameOwner != GameOwnerEnum.Client)
                 {
-                    Landed = false;
                     SoundHandler.PlaySound("Bazooka", player.GameWorld);
                 }
+            }
 
-                var velocity = player.CurrentVelocity;
-                velocity.X *= player.SlowmotionFactor * 0.6f;
+            var velocity = player.CurrentVelocity;
+            velocity.X *= player.SlowmotionFactor * 0.6f;
 
-                if (velocity.Y <= MaxSpeed)
+            if (velocity.Y <= MaxSpeed)
+            {
+                velocity.Y = (velocity.Y > 1.94f ? velocity.Y : MaxSpeed > 1 ? 1.94f : 1.94f * MaxSpeed) * player.SlowmotionFactor * 1.17f;
+            }
+            else
+            {
+                velocity.Y = MaxSpeed;
+            }
+
+            // player.SetNewLinearVelocity(velocity);
+            player.WorldBody.SetLinearVelocity(velocity);
+            player.m_preBox2DLinearVelocity = velocity;
+            player.AirControlBaseVelocity = velocity;
+            player.ForceServerPositionState();
+            player.ImportantUpdate = true;
+
+            if (!player.InfiniteAmmo && player.GameOwner != GameOwnerEnum.Client)
+            {
+                Fuel.CurrentValue -= 0.03f * player.SlowmotionFactor * ms;
+
+                if (player.GameOwner == GameOwnerEnum.Server)
                 {
-                    velocity.Y = (velocity.Y > 1.94f ? velocity.Y : MaxSpeed > 1 ? 1.94f : 1.94f * MaxSpeed) * player.SlowmotionFactor * 1.17f;
-                }
-                else
-                {
-                    velocity.Y = MaxSpeed;
-                }
-
-                player.SetNewLinearVelocity(velocity);
-                // player.ImportantUpdate = true;
-
-                if (!player.InfiniteAmmo)
-                {
-                    Fuel.CurrentValue -= 0.03f * player.SlowmotionFactor * ms;
                     GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, player.ObjectID, extendedPlayer.GetStates()));
                 }
+            }
 
+            if (player.GameOwner != GameOwnerEnum.Client)
+            {
                 EffectTimer -= ms;
                 if (EffectTimer <= 0f)
                 {
@@ -91,18 +99,23 @@ internal abstract class GenericJetpack
                 {
                     PlaySound(player);
                 }
-
-                Shake = true;
-            }
-            else
-            {
-                Shake = false;
             }
 
-            if (Fuel.CurrentValue <= 0 && extendedPlayer.JetpackType != JetpackType.None)
+            Shake = true;
+        }
+        else
+        {
+            if (State == JetpackState.Flying)
             {
-                Discard(extendedPlayer);
+                State = JetpackState.Falling;
             }
+
+            Shake = false;
+        }
+
+        if (Fuel.CurrentValue <= 0 && extendedPlayer.JetpackType != JetpackType.None)
+        {
+            Discard(extendedPlayer);
         }
     }
 
@@ -110,7 +123,7 @@ internal abstract class GenericJetpack
 
     protected abstract void PlaySound(Player player);
 
-    protected virtual void Discard(ExtendedPlayer extendedPlayer)
+    protected internal virtual void Discard(ExtendedPlayer extendedPlayer)
     {
         extendedPlayer.JetpackType = JetpackType.None;
         extendedPlayer.GenericJetpack = null;

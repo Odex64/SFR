@@ -40,7 +40,7 @@ internal sealed class Jetpack : GenericJetpack
         return texture;
     }
 
-    protected override void Discard(ExtendedPlayer extendedPlayer)
+    protected internal override void Discard(ExtendedPlayer extendedPlayer)
     {
         base.Discard(extendedPlayer);
         var player = extendedPlayer.Player;

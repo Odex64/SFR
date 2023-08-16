@@ -3,6 +3,8 @@ using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
+using SFD.Effects;
+using SFD.Sounds;
 using SFD.Weapons;
 
 namespace SFR.Fighter.Jetpacks;
@@ -14,10 +16,24 @@ internal static class JetpackHandler
     [HarmonyPatch(typeof(Player), nameof(Player.Update))]
     private static void RunJetpackUpdates(float ms, float realMs, Player __instance)
     {
-        if (__instance.GameOwner != GameOwnerEnum.Client)
+        var extendedPlayer = Helper.Fighter.GetExtension(__instance);
+        extendedPlayer.GenericJetpack?.Update(ms, extendedPlayer);
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.ActivateObject))]
+    private static void CheckDisposeKey(Player __instance)
+    {
+        var closedObject = __instance.GetClosestActivateableObject(true, false, 0f, 0f);
+        if (closedObject == null)
         {
             var extendedPlayer = Helper.Fighter.GetExtension(__instance);
-            extendedPlayer.GenericJetpack?.Update(ms, extendedPlayer);
+            if (extendedPlayer.GenericJetpack is { State: JetpackState.Idling } jetpack && __instance.Crouching)
+            {
+                SoundHandler.PlaySound("PistolDraw", __instance.GameWorld);
+                EffectHandler.PlayEffect("CFTXT", __instance.Position, __instance.GameWorld, "DISCARD");
+                jetpack.Discard(extendedPlayer);
+            }
         }
     }
 

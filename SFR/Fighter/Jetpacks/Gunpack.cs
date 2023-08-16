@@ -25,7 +25,7 @@ internal sealed class Gunpack : GenericJetpack
         EffectTimer = 20f;
     }
 
-    internal void ApplyFireUpgrade(ushort amount = 80)
+    internal void ApplyFireUpgrade(ushort amount = 30)
     {
         _fireProjectiles = amount;
     }
@@ -39,18 +39,21 @@ internal sealed class Gunpack : GenericJetpack
     internal override void Update(float ms, ExtendedPlayer extendedPlayer)
     {
         base.Update(ms, extendedPlayer);
-
         _projectileTimer -= ms;
 
-        if (!extendedPlayer.Player.Falling && extendedPlayer.Player.VirtualKeyboard.PressingKey(19) && AirTime > 300f)
+        if (State == JetpackState.Flying && AirTime > FlyThreshold * 2)
         {
             if (_projectileTimer - _fireRate <= 0f)
             {
                 var gameWorld = extendedPlayer.Player.GameWorld;
                 var position = extendedPlayer.Player.Position - new Vector2(0, 8);
 
-                gameWorld.SpawnProjectile(40, position, new Vector2(Constants.Random.NextFloat(-0.1f, 0.1f), -1), extendedPlayer.Player.ObjectID, _fireProjectiles > 0 ? ProjectilePowerup.Fire : ProjectilePowerup.None);
-                if (_fireProjectiles > 0)
+                if (extendedPlayer.Player.GameOwner != GameOwnerEnum.Client)
+                {
+                    gameWorld.SpawnProjectile(40, position, new Vector2(Constants.Random.NextFloat(-0.1f, 0.1f), -1), extendedPlayer.Player.ObjectID, _fireProjectiles > 0 ? ProjectilePowerup.Fire : ProjectilePowerup.None);
+                }
+
+                if (!extendedPlayer.Player.InfiniteAmmo && _fireProjectiles > 0)
                 {
                     _fireProjectiles--;
                 }
@@ -100,7 +103,7 @@ internal sealed class Gunpack : GenericJetpack
         return texture;
     }
 
-    protected override void Discard(ExtendedPlayer extendedPlayer)
+    protected internal override void Discard(ExtendedPlayer extendedPlayer)
     {
         base.Discard(extendedPlayer);
         var player = extendedPlayer.Player;

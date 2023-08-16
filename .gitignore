@@ -5,6 +5,7 @@
 
 # Custom
 .idea
+.run
 SFR/build.bat
 
 # User-specific files

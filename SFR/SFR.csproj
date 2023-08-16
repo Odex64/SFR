@@ -148,6 +148,7 @@
         <Compile Include="Fighter\Jetpacks\Jetpack.cs" />
         <Compile Include="Fighter\Jetpacks\JetpackEditor.cs" />
         <Compile Include="Fighter\Jetpacks\JetpackHandler.cs" />
+        <Compile Include="Fighter\Jetpacks\JetpackState.cs" />
         <Compile Include="Fighter\Jetpacks\JetpackType.cs" />
         <Compile Include="Fighter\NameIconHandler.cs" />
         <Compile Include="Fighter\PlayerHandler.cs" />
