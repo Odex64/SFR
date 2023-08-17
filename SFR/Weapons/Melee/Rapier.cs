@@ -11,9 +11,10 @@ namespace SFR.Weapons.Melee;
 internal sealed class Rapier : MWeapon
 {
     private const float LungeSpeed = 4f;
-    private const int LungeDuration = 200;
-    private bool _lungeDone;
+    private const float LungeDuration = 200f;
+
     private float _lungeTimer;
+    private bool _lungeDone;
 
     internal Rapier()
     {
@@ -101,15 +102,18 @@ internal sealed class Rapier : MWeapon
     {
         if (player.CurrentAction == PlayerAction.MeleeAttack3)
         {
-            if ((player.GetTopSpeed() == 2.25f || player.SpeedBoostActive) && !_lungeDone)
+            if (!_lungeDone)
             {
-                player.CurrentSpeed = new Vector2(player.AimVector().X > 0 ? LungeSpeed : -LungeSpeed, 0f);
-                _lungeTimer += totalMs;
-            }
-
-            if ((player.GetTopSpeed() == 1f || _lungeTimer >= LungeDuration) && !_lungeDone)
-            {
-                _lungeDone = true;
+                if (player.GetTopSpeed() == 1f || _lungeTimer >= LungeDuration)
+                {
+                    _lungeDone = true;
+                }
+                else if (player.GetTopSpeed() == 2.25f || player.SpeedBoostActive)
+                {
+                    player.CurrentSpeed = new Vector2(player.AimVector().X > 0 ? LungeSpeed : -LungeSpeed, 0f);
+                    player.ImportantUpdate = true;
+                    _lungeTimer += totalMs;
+                }
             }
         }
         else
@@ -128,6 +132,7 @@ internal sealed class Rapier : MWeapon
             if (player.CurrentAction == PlayerAction.JumpAttack)
             {
                 player.CurrentSpeed = new Vector2(player.AimVector().X > 0 ? LungeSpeed * 1.4f : -LungeSpeed * 1.4f, player.CurrentSpeed.Y);
+                player.ImportantUpdate = true;
             }
         }
 
