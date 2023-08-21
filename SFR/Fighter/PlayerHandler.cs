@@ -234,6 +234,411 @@ internal static class PlayerHandler
     }
 
     [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.Movement), MethodType.Setter)]
+    private static bool KeepMoving(PlayerMovement value, Player __instance)
+    {
+        var extendedPlayer = __instance.GetExtension();
+        if (extendedPlayer.AdrenalineBoost && __instance.CurrentAction is PlayerAction.MeleeAttack1 or PlayerAction.MeleeAttack2
+                                           && __instance.Movement != PlayerMovement.Idle && value == PlayerMovement.Idle)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.HandlePlayerKeyHoldingPreUpdateEvent))]
+    private static void UpdateKeyEvent(Player __instance)
+    {
+        var extendedPlayer = __instance.GetExtension();
+        if (__instance.CurrentAction is PlayerAction.MeleeAttack1 or PlayerAction.MeleeAttack2 && __instance.Movement != PlayerMovement.Idle && extendedPlayer.AdrenalineBoost)
+        {
+            if (__instance.VirtualKeyboard.PressingKey(2, true) || __instance.VirtualKeyboard.PressingKey(3, true))
+            {
+                __instance.CurrentTargetSpeed.X = __instance.LastDirectionX * __instance.GetTopSpeed();
+            }
+            else
+            {
+                __instance.m_movement = PlayerMovement.Idle;
+            }
+        }
+    }
+
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(Player), nameof(Player.CheckAttackKey))]
+    // private static void CheckAttackKey(bool onKeyEvent, Player __instance, out float __state)
+    // {
+    //     __state = __instance.CurrentSpeed.X;
+    // }
+    //
+    // [HarmonyPostfix]
+    // [HarmonyPatch(typeof(Player), nameof(Player.CheckAttackKey))]
+    // private static void CheckAttackKeyPost(bool onKeyEvent, Player __instance, float __state)
+    // {
+    //     var extendedPlayer = __instance.GetExtension();
+    //     if (__instance.CurrentAction is PlayerAction.MeleeAttack1 or PlayerAction.MeleeAttack2 && __instance.Movement != PlayerMovement.Idle && extendedPlayer.AdrenalineBoost)
+    //     {
+    //         __instance.CurrentSpeed.X = __instance.Movement == PlayerMovement.Left ? -__instance.GetTopSpeed() : __instance.GetTopSpeed();
+    //     }
+    // }
+
+
+    // [HarmonyPrefix]
+    // [HarmonyPatch(typeof(Player), nameof(Player.CheckAttackKey))]
+    // private static bool CheckAttackKey(bool onKeyEvent, Player __instance, ref bool __result)
+    // {
+    //     if (!__instance.CanAttack())
+    //     {
+    //         __result = false;
+    //         return false;
+    //     }
+    //
+    //     var extendedPlayer = __instance.GetExtension();
+    //
+    //     __instance.GetPlayerKeyActions(out bool playerAction, out bool serverAction);
+    //     if (__instance.InThrowingMode)
+    //     {
+    //         if (serverAction)
+    //         {
+    //             if (__instance.CanStartThrowCharge())
+    //             {
+    //                 __instance.DisableFireWhileHoldingAttackKey = true;
+    //                 __instance.BeginChargeThrow();
+    //                 __instance.TimeSequence.DisableQueuedKey(4);
+    //                 __result = true;
+    //                 return false;
+    //             }
+    //
+    //             if (__instance.ThrowableIsActivated)
+    //             {
+    //                 __result = true;
+    //                 return false;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             if (__instance.CanStartThrowCharge())
+    //             {
+    //                 __instance.DisableFireWhileHoldingAttackKey = true;
+    //                 __instance.TimeSequence.DisableQueuedKey(4);
+    //                 var currentAction = __instance.CurrentAction;
+    //                 if (currentAction != PlayerAction.Idle)
+    //                 {
+    //                     if (currentAction == PlayerAction.ManualAim)
+    //                     {
+    //                         if (!__instance.InAir)
+    //                         {
+    //                             __instance.Sprinting = false;
+    //                         }
+    //                     }
+    //                 }
+    //                 else if (!__instance.InAir)
+    //                 {
+    //                     __instance.Sprinting = false;
+    //                 }
+    //
+    //                 __result = true;
+    //                 return false;
+    //             }
+    //
+    //             if (__instance.ThrowableIsActivated)
+    //             {
+    //                 __result = true;
+    //                 return false;
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         if (playerAction)
+    //         {
+    //             switch (__instance.CurrentWeaponDrawn)
+    //             {
+    //                 case WeaponItemType.Handgun:
+    //                 case WeaponItemType.Rifle:
+    //                     if (!__instance.Reloading)
+    //                     {
+    //                         var currentAction2 = __instance.CurrentAction;
+    //                         if (currentAction2 == PlayerAction.Idle)
+    //                         {
+    //                             __instance.PreparingHipFire = __instance.GetAverageLatencyTime() + 50f;
+    //                         }
+    //                     }
+    //
+    //                     break;
+    //             }
+    //         }
+    //
+    //         if (serverAction)
+    //         {
+    //             switch (__instance.CurrentWeaponDrawn)
+    //             {
+    //                 case WeaponItemType.NONE:
+    //                 case WeaponItemType.Melee:
+    //                 {
+    //                     var currentMeleeWeaponInUse = __instance.GetCurrentMeleeWeaponInUse();
+    //                     if (currentMeleeWeaponInUse != null && currentMeleeWeaponInUse.Properties.Handling == MeleeHandlingType.Custom && currentMeleeWeaponInUse.CustomHandlingOnAttackKey(__instance, onKeyEvent))
+    //                     {
+    //                         __result = true;
+    //                         return false;
+    //                     }
+    //
+    //                     if (!onKeyEvent)
+    //                     {
+    //                         __result = false;
+    //                         return false;
+    //                     }
+    //
+    //                     var currentAction3 = __instance.CurrentAction;
+    //                     if (currentAction3 != PlayerAction.Idle)
+    //                     {
+    //                         switch (currentAction3)
+    //                         {
+    //                             case PlayerAction.MeleeAttack1:
+    //                                 if (__instance.GetSubAnimations()[1].IsLastFrame() && __instance.GetSubAnimations()[1].GetFrameActiveTime() > __instance.MinimumMeleeHitFrameTime)
+    //                                 {
+    //                                     __instance.Sprinting = false;
+    //                                     __instance.CurrentAction = PlayerAction.MeleeAttack2;
+    //                                     __instance.MinimumMeleeHitFrameTime = 85f;
+    //
+    //                                     if (!extendedPlayer.AdrenalineBoost)
+    //                                     {
+    //                                         __instance.Movement = PlayerMovement.Idle;
+    //                                         __instance.CurrentTargetSpeed.X = 0f;
+    //                                     }
+    //                                     
+    //                                     __instance.ImportantUpdate = true;
+    //                                     __instance.ClientMustInitiateMovement(false);
+    //                                     __result = true;
+    //                                     return false;
+    //                                 }
+    //
+    //                                 break;
+    //                             case PlayerAction.MeleeAttack2:
+    //                                 if (__instance.GetSubAnimations()[1].IsLastFrame() && __instance.GetSubAnimations()[1].GetFrameActiveTime() > __instance.MinimumMeleeHitFrameTime)
+    //                                 {
+    //                                     __instance.Sprinting = false;
+    //                                     __instance.CurrentAction = PlayerAction.MeleeAttack3;
+    //                                     __instance.MinimumMeleeHitFrameTime = 85f;
+    //
+    //                                     if (!extendedPlayer.AdrenalineBoost)
+    //                                     {
+    //                                         __instance.Movement = PlayerMovement.Idle;
+    //                                         __instance.CurrentTargetSpeed.X = 0f;
+    //                                     }
+    //                                     
+    //                                     __instance.ImportantUpdate = true;
+    //                                     __instance.ClientMustInitiateMovement(false);
+    //                                     __result = true;
+    //                                     return false;
+    //                                 }
+    //
+    //                                 break;
+    //                         }
+    //
+    //                         __result = false;
+    //                         return false;
+    //                     }
+    //
+    //                     if (__instance.InAir)
+    //                     {
+    //                         if (!__instance.TimeSequence.PostDropClimbAttackCooldown)
+    //                         {
+    //                             __instance.JumpAttack();
+    //                         }
+    //                     }
+    //                     else
+    //                     {
+    //                         __instance.MeleeAttack1();
+    //
+    //                         if (!extendedPlayer.AdrenalineBoost)
+    //                         {
+    //                             __instance.Movement = PlayerMovement.Idle;
+    //                             __instance.CurrentTargetSpeed.X = 0f;
+    //                         }
+    //
+    //                         __instance.ImportantUpdate = true;
+    //                     }
+    //
+    //                     __result = true;
+    //                     return false;
+    //                 }
+    //                 case WeaponItemType.Handgun:
+    //                 case WeaponItemType.Rifle:
+    //                     if (__instance.Reloading)
+    //                     {
+    //                         __instance.StopReloadWeapon();
+    //                         __result = false;
+    //                         return false;
+    //                     }
+    //
+    //                     if (!__instance.Reloading)
+    //                     {
+    //                         switch (__instance.CurrentAction)
+    //                         {
+    //                             case PlayerAction.Idle:
+    //                                 if (!__instance.InAir)
+    //                                 {
+    //                                     __instance.Sprinting = false;
+    //                                 }
+    //
+    //                                 __instance.CurrentAction = PlayerAction.HipFire;
+    //                                 __result = true;
+    //                                 return false;
+    //                             case PlayerAction.HipFire:
+    //                             case PlayerAction.ManualAim:
+    //                                 if (!__instance.InAir)
+    //                                 {
+    //                                     __instance.Sprinting = false;
+    //                                 }
+    //
+    //                                 if (__instance.FireSequence.CanShootInHipFire && __instance.CanFireWeapon())
+    //                                 {
+    //                                     __instance.FireWeapon();
+    //                                 }
+    //                                 else
+    //                                 {
+    //                                     __instance.FireSequence.HipFireAimTime = 250f;
+    //                                 }
+    //
+    //                                 __result = true;
+    //                                 return false;
+    //                         }
+    //                     }
+    //
+    //                     break;
+    //                 case WeaponItemType.Thrown:
+    //                     if (__instance.CanStartThrowCharge())
+    //                     {
+    //                         __instance.DisableFireWhileHoldingAttackKey = true;
+    //                         __instance.BeginChargeThrow();
+    //                         __instance.TimeSequence.DisableQueuedKey(4);
+    //                         __result = true;
+    //                         return false;
+    //                     }
+    //
+    //                     if (__instance.ThrowableIsActivated)
+    //                     {
+    //                         __result = true;
+    //                         return false;
+    //                     }
+    //
+    //                     break;
+    //             }
+    //         }
+    //         else
+    //         {
+    //             switch (__instance.CurrentWeaponDrawn)
+    //             {
+    //                 case WeaponItemType.NONE:
+    //                 case WeaponItemType.Melee:
+    //                 {
+    //                     var currentMeleeWeaponInUse2 = __instance.GetCurrentMeleeWeaponInUse();
+    //                     if (currentMeleeWeaponInUse2 != null && currentMeleeWeaponInUse2.Properties.Handling == MeleeHandlingType.Custom)
+    //                     {
+    //                         currentMeleeWeaponInUse2.CustomHandlingOnAttackKey(__instance, onKeyEvent);
+    //                         __result = true;
+    //                         return false;
+    //                     }
+    //
+    //                     if (!onKeyEvent)
+    //                     {
+    //                         __result = false;
+    //                         return false;
+    //                     }
+    //
+    //                     var currentAction4 = __instance.CurrentAction;
+    //                     if (currentAction4 == PlayerAction.Idle)
+    //                     {
+    //                         if (__instance.InAir)
+    //                         {
+    //                             if (!__instance.TimeSequence.PostDropClimbAttackCooldown)
+    //                             {
+    //                                 __instance.JumpAttack();
+    //                             }
+    //                         }
+    //                         else
+    //                         {
+    //                             __instance.MeleeAttack1();
+    //                         }
+    //
+    //                         __result = true;
+    //                         return false;
+    //                     }
+    //
+    //                     __result = false;
+    //                     return false;
+    //                 }
+    //                 case WeaponItemType.Handgun:
+    //                 case WeaponItemType.Rifle:
+    //                     if (!__instance.Reloading)
+    //                     {
+    //                         switch (__instance.CurrentAction)
+    //                         {
+    //                             case PlayerAction.Idle:
+    //                                 if (!__instance.InAir)
+    //                                 {
+    //                                     __instance.Sprinting = false;
+    //                                 }
+    //
+    //                                 __result = true;
+    //                                 return false;
+    //                             case PlayerAction.HipFire:
+    //                             case PlayerAction.ManualAim:
+    //                                 if (!__instance.InAir)
+    //                                 {
+    //                                     __instance.Sprinting = false;
+    //                                 }
+    //
+    //                                 __result = true;
+    //                                 return false;
+    //                         }
+    //                     }
+    //
+    //                     break;
+    //                 case WeaponItemType.Thrown:
+    //                     if (__instance.CanStartThrowCharge())
+    //                     {
+    //                         __instance.DisableFireWhileHoldingAttackKey = true;
+    //                         __instance.TimeSequence.DisableQueuedKey(4);
+    //                         var currentAction5 = __instance.CurrentAction;
+    //                         if (currentAction5 != PlayerAction.Idle)
+    //                         {
+    //                             if (currentAction5 == PlayerAction.ManualAim)
+    //                             {
+    //                                 if (!__instance.InAir)
+    //                                 {
+    //                                     __instance.Sprinting = false;
+    //                                 }
+    //                             }
+    //                         }
+    //                         else if (!__instance.InAir)
+    //                         {
+    //                             __instance.Sprinting = false;
+    //                         }
+    //
+    //                         __instance.TimeSequence.DisableQueuedKey(4);
+    //                         __result = true;
+    //                         return false;
+    //                     }
+    //
+    //                     if (__instance.ThrowableIsActivated)
+    //                     {
+    //                         __result = true;
+    //                         return false;
+    //                     }
+    //
+    //                     break;
+    //             }
+    //         }
+    //     }
+    //
+    //     __result = false;
+    //     return false;
+    // }
+
+    [HarmonyPrefix]
     [HarmonyPatch(typeof(Player), nameof(Player.CanActivateSprint))]
     private static bool ActivateSprint(Player __instance, ref bool __result)
     {
