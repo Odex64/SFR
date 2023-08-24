@@ -232,15 +232,26 @@ internal static class ObjectsHandler
     {
         switch (propertyItem.PropertyID)
         {
-            //Add more portals to portal filter
             case 5:
                 propertyItem.Filter = "targetSelf=false|targets=PortalD,PortalU,Portal,PortalWoodD,PortalWoodU";
                 ObjectProperties.m_allProperties.Add(propertyItem.PropertyID, propertyItem);
                 return false;
+
             case 81:
                 propertyItem.Filter += ",NukeTrigger";
                 ObjectProperties.m_allProperties.Add(propertyItem.PropertyID, propertyItem);
                 return false;
+
+            case 227:
+            case 228:
+            case 289:
+            case 345:
+                var allowedValues = propertyItem.AllowedValues;
+                allowedValues.Add(new ObjectPropertyValue(Constants.GetTeamString(5), 5));
+                allowedValues.Add(new ObjectPropertyValue(Constants.GetTeamString(6), 6));
+                propertyItem.SetAllowedValues(allowedValues, 0);
+                return true;
+
             default:
                 return true;
         }

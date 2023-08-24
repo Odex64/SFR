@@ -1,5 +1,10 @@
-﻿using HarmonyLib;
+﻿using System.Linq;
+using System.Reflection;
+using HarmonyLib;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SFD;
+using SFD.MenuControls;
 using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
@@ -276,6 +281,166 @@ internal static class PlayerHandler
         }
 
         return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.DrawDistanceArrow))]
+    private static bool DrawAdditionTeamDistanceArrow(Area boundsArrows, Player __instance)
+    {
+        if ((__instance.DrawStatusInfo & Player.DrawStatusInfoFlags.Name) != Player.DrawStatusInfoFlags.Name)
+        {
+            return false;
+        }
+
+        var playerPosition = __instance.Position + new Vector2(0f, 8f);
+        float distanceFromEdge = boundsArrows.GetDistanceFromEdge(playerPosition);
+        if (distanceFromEdge > 10f)
+        {
+            int num = (int)System.Math.Round(distanceFromEdge / 12f);
+            int num2 = 0;
+            int num3 = 0;
+            if (boundsArrows.Right < playerPosition.X)
+            {
+                num2 = 1;
+            }
+            else if (boundsArrows.Left > playerPosition.X)
+            {
+                num2 = -1;
+            }
+
+            if (boundsArrows.Top < playerPosition.Y)
+            {
+                num3 = 1;
+            }
+            else if (boundsArrows.Bottom > playerPosition.Y)
+            {
+                num3 = -1;
+            }
+
+            if (num2 != 0 || num3 != 0)
+            {
+                var vector2 = playerPosition;
+                if (vector2.X > boundsArrows.Right)
+                {
+                    vector2.X = boundsArrows.Right;
+                }
+                else if (vector2.X < boundsArrows.Left)
+                {
+                    vector2.X = boundsArrows.Left;
+                }
+
+                if (vector2.Y > boundsArrows.Top)
+                {
+                    vector2.Y = boundsArrows.Top;
+                }
+                else if (vector2.Y < boundsArrows.Bottom)
+                {
+                    vector2.Y = boundsArrows.Bottom;
+                }
+
+                vector2 = Camera.ConvertWorldToScreen(vector2);
+                vector2.X -= num2 * (Constants.DistanceArrow.Width + 10) / 2;
+                vector2.Y += num3 * (Constants.DistanceArrow.Height + 10) / 2;
+                float num4 = 0f;
+                Texture2D texture2D;
+                if (num2 != 0 && num3 != 0)
+                {
+                    texture2D = Constants.DistanceArrowD;
+                    if (num2 == 1)
+                    {
+                        if (num3 == 1)
+                        {
+                            num4 = -1.5707964f;
+                        }
+                        else if (num3 == -1)
+                        {
+                            num4 = 0f;
+                        }
+                    }
+                    else if (num3 == 1)
+                    {
+                        num4 = 3.1415927f;
+                    }
+                    else if (num3 == -1)
+                    {
+                        num4 = 1.5707964f;
+                    }
+                }
+                else
+                {
+                    texture2D = Constants.DistanceArrow;
+                    if (num2 == 1)
+                    {
+                        num4 = 0f;
+                    }
+                    else if (num2 == -1)
+                    {
+                        num4 = 3.1415927f;
+                    }
+                    else if (num3 == 1)
+                    {
+                        num4 = -1.5707964f;
+                    }
+                    else if (num3 == -1)
+                    {
+                        num4 = 1.5707964f;
+                    }
+                }
+
+                var vector3 = new Vector2(texture2D.Width / 2f, texture2D.Height / 2f);
+                float num5 = System.Math.Max(Camera.Zoom * 0.5f, 1f);
+                __instance.m_spriteBatch.Draw(texture2D, vector2, null, Color.Gray, num4, vector3, num5, SpriteEffects.None, 0f);
+                vector2.X -= num2 * (Constants.DistanceArrow.Width + 10) * num5;
+                vector2.Y += num3 * (Constants.DistanceArrow.Height + 10) * num5;
+                string text = $"{__instance.Name} ({num})";
+                if (Constants.Font1Outline != null)
+                {
+                    var texture2D2 = __instance.CurrentTeam switch
+                    {
+                        Team.Team1 => Constants.TeamIcon1,
+                        Team.Team2 => Constants.TeamIcon2,
+                        Team.Team3 => Constants.TeamIcon3,
+                        Team.Team4 => Constants.TeamIcon4,
+                        (Team)5 => Misc.Constants.TeamIcon5,
+                        (Team)6 => Misc.Constants.TeamIcon6,
+                        _ => null
+                    };
+
+                    var vector4 = Constants.MeasureString(Constants.Font1Outline, text);
+                    float num6 = Camera.ConvertWorldToScreenX(boundsArrows.Left);
+                    float num7 = Camera.ConvertWorldToScreenX(boundsArrows.Right);
+                    if (texture2D2 != null)
+                    {
+                        num6 += (texture2D2.Width + 4f) * num5;
+                    }
+
+                    if (num3 == 0)
+                    {
+                        num7 -= texture2D.Width;
+                        num6 += texture2D.Width;
+                    }
+
+                    if (vector2.X + vector4.X / 3f * num5 > num7)
+                    {
+                        vector2.X = num7 - vector4.X / 3f * num5;
+                    }
+
+                    if (vector2.X - vector4.X / 3f * num5 < num6)
+                    {
+                        vector2.X = num6 + vector4.X / 3f * num5;
+                    }
+
+                    float num8 = vector2.X - vector4.X * 0.5f * (num5 * 0.5f);
+                    Constants.DrawString(__instance.m_spriteBatch, Constants.Font1Outline, text, vector2, __instance.CurrentTeamColor, 0f, vector4 * 0.5f, num5 * 0.5f, SpriteEffects.None, 0);
+                    if (texture2D2 != null)
+                    {
+                        __instance.m_spriteBatch.Draw(texture2D2, new Vector2(num8 - texture2D2.Width * num5, vector2.Y - vector4.Y * 0.25f * num5), null, Color.Gray, 0f, Vector2.Zero, num5, SpriteEffects.None, 1f);
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     [HarmonyPrefix]

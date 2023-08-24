@@ -136,6 +136,7 @@
         <Compile Include="Debug\DebugStartup.cs" />
         <Compile Include="Fighter\AnimHandler.cs" />
         <Compile Include="Fighter\ExtendedPlayer.cs" />
+        <Compile Include="Fighter\ExtendedTeam.cs" />
         <Compile Include="Fighter\GadgetHandler.cs" />
         <Compile Include="Fighter\GoreHandler.cs" />
         <Compile Include="Fighter\DevHandler.cs" />
