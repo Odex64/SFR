@@ -1,5 +1,6 @@
 ﻿using SFD;
 using SFD.Weapons;
+using SFDGameScriptInterface;
 using SFR.Fighter;
 
 namespace SFR.Helper;
@@ -32,9 +33,9 @@ internal static class Fighter
     {
         return player.CurrentWeaponDrawn switch
         {
-            WeaponItemType.Melee => player.GetCurrentMeleeWeaponInUse(),
-            WeaponItemType.Handgun or WeaponItemType.Rifle => player.GetCurrentRangedWeaponInUse(),
-            WeaponItemType.Thrown => player.GetCurrentThrownWeaponInUse(),
+            SFD.Weapons.WeaponItemType.Melee => player.GetCurrentMeleeWeaponInUse(),
+            SFD.Weapons.WeaponItemType.Handgun or SFD.Weapons.WeaponItemType.Rifle => player.GetCurrentRangedWeaponInUse(),
+            SFD.Weapons.WeaponItemType.Thrown => player.GetCurrentThrownWeaponInUse(),
             _ => null
         };
     }
@@ -49,5 +50,17 @@ internal static class Fighter
         var extendedPlayer = new ExtendedPlayer(player);
         ExtendedPlayer.ExtendedPlayers.Add(player, extendedPlayer);
         return extendedPlayer;
+    }
+    
+    internal static ExtendedModifiers GetExtension(this PlayerModifiers modifiers)
+    {
+        if (ExtendedModifiers.ExtendedModifiersTable.TryGetValue(modifiers, out var existingExtendedModifiers))
+        {
+            return existingExtendedModifiers;
+        }
+
+        var extendedModifiers = new ExtendedModifiers(modifiers);
+        ExtendedModifiers.ExtendedModifiersTable.Add(modifiers, extendedModifiers);
+        return extendedModifiers;
     }
 }
