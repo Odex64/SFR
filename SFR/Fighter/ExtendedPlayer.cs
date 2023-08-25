@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 using SFD;
-using SFD.Sounds;
-using SFDGameScriptInterface;
 using SFR.Fighter.Jetpacks;
 using SFR.Sync.Generic;
 

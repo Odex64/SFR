@@ -1,15 +1,13 @@
-﻿using System.Linq;
-using System.Reflection;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
-using SFD.MenuControls;
 using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
 using SFR.Objects;
 using SFR.Weapons.Rifles;
+using Math = System.Math;
 
 namespace SFR.Fighter;
 
@@ -259,13 +257,17 @@ internal static class PlayerHandler
         var extendedPlayer = __instance.GetExtension();
         if (__instance.CurrentAction is PlayerAction.MeleeAttack1 or PlayerAction.MeleeAttack2 && __instance.Movement != PlayerMovement.Idle && extendedPlayer.AdrenalineBoost)
         {
+            // __instance.CurrentTargetSpeed.X = __instance.LastDirectionX * __instance.GetTopSpeed();
             if (__instance.VirtualKeyboard.PressingKey(2, true) || __instance.VirtualKeyboard.PressingKey(3, true))
             {
                 __instance.CurrentTargetSpeed.X = __instance.LastDirectionX * __instance.GetTopSpeed();
             }
             else
             {
-                __instance.m_movement = PlayerMovement.Idle;
+                if (__instance.GameOwner != GameOwnerEnum.Client)
+                {
+                    __instance.m_movement = PlayerMovement.Idle;
+                }
             }
         }
     }
@@ -296,7 +298,7 @@ internal static class PlayerHandler
         float distanceFromEdge = boundsArrows.GetDistanceFromEdge(playerPosition);
         if (distanceFromEdge > 10f)
         {
-            int num = (int)System.Math.Round(distanceFromEdge / 12f);
+            int num = (int)Math.Round(distanceFromEdge / 12f);
             int num2 = 0;
             int num3 = 0;
             if (boundsArrows.Right < playerPosition.X)
@@ -388,7 +390,7 @@ internal static class PlayerHandler
                 }
 
                 var vector3 = new Vector2(texture2D.Width / 2f, texture2D.Height / 2f);
-                float num5 = System.Math.Max(Camera.Zoom * 0.5f, 1f);
+                float num5 = Math.Max(Camera.Zoom * 0.5f, 1f);
                 __instance.m_spriteBatch.Draw(texture2D, vector2, null, Color.Gray, num4, vector3, num5, SpriteEffects.None, 0f);
                 vector2.X -= num2 * (Constants.DistanceArrow.Width + 10) * num5;
                 vector2.Y += num3 * (Constants.DistanceArrow.Height + 10) * num5;
