@@ -51,7 +51,7 @@ internal static class Fighter
         ExtendedPlayer.ExtendedPlayers.Add(player, extendedPlayer);
         return extendedPlayer;
     }
-    
+
     internal static ExtendedModifiers GetExtension(this PlayerModifiers modifiers)
     {
         if (ExtendedModifiers.ExtendedModifiersTable.TryGetValue(modifiers, out var existingExtendedModifiers))

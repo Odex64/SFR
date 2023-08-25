@@ -6,7 +6,7 @@ namespace SFDX;
 
 internal static class Program
 {
-    private const string Data = @"C:\Program Files (x86)\Steam\steamapps\common\Superfighters Deluxe\SFR\Content\Data";
+    private const string Data = @"C:\Steam\steamapps\common\Superfighters Deluxe\SFR\Content\Data";
     private static readonly string[] TargetFolders = { @"Images\Objects", @"Images\Tiles" };
 
     public static void Main(string[] args)

@@ -47,7 +47,6 @@ namespace SFR.Fighter
         [HarmonyPatch(typeof(PlayerModifiers), MethodType.Constructor)]
         private static void GenerateExtension(PlayerModifiers __instance, bool defaultValues = false)
         {
-            int num = defaultValues ? (-2) : (-1);
             ExtendedModifiers.ExtendedModifiersTable.Add(__instance, new ExtendedModifiers(__instance, defaultValues));
         }
 
