@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{907E970D-7E11-4461-AC55-999E0E6CF42A}</ProjectGuid>
+        <OutputType>exe</OutputType>
+        <RootNamespace>SFR</RootNamespace>
+        <AssemblyName>SFR</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <Deterministic>true</Deterministic>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup>
+        <StartupObject>SFR.Program</StartupObject>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ApplicationIcon>icon.ico</ApplicationIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+        <DebugSymbols>true</DebugSymbols>
+        <OutputPath>bin\x86\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <DebugType>full</DebugType>
+        <PlatformTarget>x86</PlatformTarget>
+        <LangVersion>default</LangVersion>
+        <ErrorReport>prompt</ErrorReport>
+        <Prefer32Bit>true</Prefer32Bit>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+        <OutputPath>bin\x86\Release\</OutputPath>
+        <Optimize>true</Optimize>
+        <DebugType>pdbonly</DebugType>
+        <PlatformTarget>x86</PlatformTarget>
+        <LangVersion>default</LangVersion>
+        <ErrorReport>prompt</ErrorReport>
+        <Prefer32Bit>true</Prefer32Bit>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Lib.Harmony.2.3.0-prerelease.2\lib\net472\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Box2D.XNA">
+            <HintPath>..\SFD\Box2D.XNA.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Lidgren.Network">
+            <HintPath>..\SFD\Lidgren.Network.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Microsoft.Xna.Framework">
+            <HintPath>..\XNA\Microsoft.Xna.Framework.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Microsoft.Xna.Framework.Game">
+            <HintPath>..\XNA\Microsoft.Xna.Framework.Game.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Microsoft.Xna.Framework.Graphics">
+            <HintPath>..\XNA\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Mono.Cecil, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.dll</HintPath>
+		  <Private>true</Private>
+        </Reference>
+        <Reference Include="Mono.Cecil.Mdb, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+		  <Private>false</Private>
+        </Reference>
+        <Reference Include="Mono.Cecil.Pdb, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+		  <Private>false</Private>
+        </Reference>
+        <Reference Include="Mono.Cecil.Rocks, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
+          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+		  <Private>false</Private>
+        </Reference>
+        <Reference Include="MonoMod.Backports, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\MonoMod.Backports.1.0.1\lib\net452\MonoMod.Backports.dll</HintPath>
+		  <Private>true</Private>
+        </Reference>
+        <Reference Include="MonoMod.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Core.dll</HintPath>
+		  <Private>true</Private>
+        </Reference>
+        <Reference Include="MonoMod.Iced, Version=1.17.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Iced.dll</HintPath>
+		  <Private>true</Private>
+        </Reference>
+        <Reference Include="MonoMod.ILHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\MonoMod.ILHelpers.1.0.0\lib\net452\MonoMod.ILHelpers.dll</HintPath>
+		  <Private>true</Private>
+        </Reference>
+        <Reference Include="MonoMod.Utils, Version=25.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\MonoMod.Utils.25.0.3\lib\net452\MonoMod.Utils.dll</HintPath>
+		  <Private>true</Private>
+        </Reference>
+        <Reference Include="mscorlib" />
+        <Reference Include="SFD.GameScriptInterface">
+            <HintPath>..\SFD\SFD.GameScriptInterface.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="SFD.Input">
+            <HintPath>..\SFD\SFD.Input.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="SFD.ScriptEngine">
+            <HintPath>..\SFD\SFD.ScriptEngine.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="Superfighters Deluxe">
+            <HintPath>..\SFD\Core.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System.IO.Compression">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System.IO.Compression.FileSystem">
+            <Private>false</Private>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\SharedAssemblyInfo.cs">
+            <Link>Properties\SharedAssemblyInfo.cs</Link>
+        </Compile>
+        <Compile Include="API\ScriptCompiler.cs" />
+        <Compile Include="Bootstrap\Assets.cs" />
+        <Compile Include="API\Sandbox.cs" />
+        <Compile Include="Debug\DebugStartup.cs" />
+        <Compile Include="Fighter\AnimHandler.cs" />
+        <Compile Include="Fighter\ExtendedPlayer.cs" />
+        <Compile Include="Fighter\ExtendedTeam.cs" />
+        <Compile Include="Fighter\GadgetHandler.cs" />
+        <Compile Include="Fighter\GoreHandler.cs" />
+        <Compile Include="Fighter\DevHandler.cs" />
+        <Compile Include="Fighter\Jetpacks\GenericJetpack.cs" />
+        <Compile Include="Fighter\Jetpacks\Gunpack.cs" />
+        <Compile Include="Fighter\Jetpacks\Jetpack.cs" />
+        <Compile Include="Fighter\Jetpacks\JetpackEditor.cs" />
+        <Compile Include="Fighter\Jetpacks\JetpackHandler.cs" />
+        <Compile Include="Fighter\Jetpacks\JetpackState.cs" />
+        <Compile Include="Fighter\Jetpacks\JetpackType.cs" />
+        <Compile Include="Fighter\NameIconHandler.cs" />
+        <Compile Include="Fighter\PlayerHandler.cs" />
+        <Compile Include="Fighter\StatusBarHandler.cs" />
+        <Compile Include="Game\CommandHandler.cs" />
+        <Compile Include="Game\NukeHandler.cs" />
+        <Compile Include="Game\WorldHandler.cs" />
+        <Compile Include="Helper\Fighter.cs" />
+        <Compile Include="Helper\Logger.cs" />
+        <Compile Include="Helper\Math.cs" />
+        <Compile Include="Helper\Randomizer.cs" />
+        <Compile Include="Helper\Vector.cs" />
+        <Compile Include="Editor\MapData.cs" />
+        <Compile Include="Misc\Tweaks.cs" />
+        <Compile Include="Objects\Animal\ObjectAnimal.cs" />
+        <Compile Include="Objects\Animal\ObjectFroggy.cs" />
+        <Compile Include="Objects\Animal\ObjectMonkey.cs" />
+        <Compile Include="Objects\ObjectNuke.cs" />
+        <Compile Include="Objects\ObjectNukeTrigger.cs" />
+        <Compile Include="Objects\ObjectsHandler.cs" />
+        <Compile Include="Objects\ObjectCannon.cs" />
+        <Compile Include="Objects\ObjectClaymoreThrown.cs" />
+        <Compile Include="Objects\ObjectCrossbowBolt.cs" />
+        <Compile Include="Objects\ObjectDoor.cs" />
+        <Compile Include="Objects\ObjectFragGrenadeThrown.cs" />
+        <Compile Include="Objects\ObjectHead.cs" />
+        <Compile Include="Objects\ObjectImpactGrenadeThrown.cs" />
+        <Compile Include="Objects\ObjectInvisibleBlockWeak.cs" />
+        <Compile Include="Objects\ObjectPirateItemGiver.cs" />
+        <Compile Include="Objects\ObjectPirateShip.cs" />
+        <Compile Include="Objects\ObjectSnowballThrown.cs" />
+        <Compile Include="Objects\ObjectStickyBombThrown.cs" />
+        <Compile Include="Objects\ObjectStickyProjectile.cs" />
+        <Compile Include="OnlineServices\Browser.cs" />
+        <Compile Include="OnlineServices\Host.cs" />
+        <Compile Include="Projectiles\Database.cs" />
+        <Compile Include="Projectiles\IExtendedProjectile.cs" />
+        <Compile Include="Projectiles\ProjectileBarrett.cs" />
+        <Compile Include="Projectiles\ProjectileBlunderbuss.cs" />
+        <Compile Include="Projectiles\ProjectileCrossbow.cs" />
+        <Compile Include="Projectiles\ProjectileDoubleBarrel.cs" />
+        <Compile Include="Projectiles\ProjectileFlintlock.cs" />
+        <Compile Include="Projectiles\ProjectileMinigun.cs" />
+        <Compile Include="Projectiles\ProjectileQuad.cs" />
+        <Compile Include="Projectiles\ProjectileUnkemptHarold.cs" />
+        <Compile Include="Projectiles\ProjectileMusket.cs" />
+        <Compile Include="Projectiles\ProjectileNailGun.cs" />
+        <Compile Include="Projectiles\ProjectileRCM.cs" />
+        <Compile Include="Projectiles\ProjectileWinchester.cs" />
+        <Compile Include="Properties\Resources.Designer.cs">
+            <AutoGen>true</AutoGen>
+            <DesignTime>true</DesignTime>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <Compile Include="Sync\Generic\DataType.cs" />
+        <Compile Include="Sync\Generic\GenericData.cs" />
+        <Compile Include="Sync\Generic\GenericServerData.cs" />
+        <Compile Include="Sync\Generic\SyncFlag.cs" />
+        <Compile Include="Sync\SyncHandler.cs" />
+        <Compile Include="UI\CreditsPanel.cs" />
+        <Compile Include="UI\Game.cs" />
+        <Compile Include="UI\MainMenu.cs" />
+        <Compile Include="Misc\Constants.cs" />
+        <Compile Include="Program.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="UI\MenuItemLabel.cs" />
+        <Compile Include="Weapons\Database.cs" />
+        <Compile Include="Weapons\Handguns\Flintlock.cs" />
+        <Compile Include="Weapons\Handguns\NailGun.cs" />
+        <Compile Include="Weapons\Handguns\StickyLauncher.cs" />
+        <Compile Include="Weapons\Handguns\UnkemptHarold.cs" />
+        <Compile Include="Weapons\IExtendedWeapon.cs" />
+        <Compile Include="Weapons\ISharpMelee.cs" />
+        <Compile Include="Weapons\Makeshift\Brick.cs" />
+        <Compile Include="Weapons\Makeshift\Broom.cs" />
+        <Compile Include="Weapons\Makeshift\CannonBall.cs" />
+        <Compile Include="Weapons\Melee\Blade.cs" />
+        <Compile Include="Weapons\Melee\Caber.cs" />
+        <Compile Include="Weapons\Melee\Crowbar.cs" />
+        <Compile Include="Weapons\Melee\Greatsword.cs" />
+        <Compile Include="Weapons\Melee\Morningstar.cs" />
+        <Compile Include="Weapons\Melee\ParryingDagger.cs" />
+        <Compile Include="Weapons\Melee\Poleaxe.cs" />
+        <Compile Include="Weapons\Melee\Rapier.cs" />
+        <Compile Include="Weapons\Melee\Sledgehammer.cs" />
+        <Compile Include="Weapons\Melee\Switchblade.cs" />
+        <Compile Include="Weapons\Others\Gunpack.cs" />
+        <Compile Include="Weapons\Others\JetpackEditor.cs" />
+        <Compile Include="Weapons\Others\HealthPouch.cs" />
+        <Compile Include="Weapons\Others\Jetpack.cs" />
+        <Compile Include="Weapons\Others\AdrenalineBoost.cs" />
+        <Compile Include="Weapons\Rifles\AA12.cs" />
+        <Compile Include="Weapons\Rifles\Barrett.cs" />
+        <Compile Include="Weapons\Rifles\Blunderbuss.cs" />
+        <Compile Include="Weapons\Rifles\Crossbow.cs" />
+        <Compile Include="Weapons\Rifles\DoubleBarrel.cs" />
+        <Compile Include="Weapons\Rifles\Minigun.cs" />
+        <Compile Include="Weapons\Rifles\Musket.cs" />
+        <Compile Include="Weapons\Rifles\QuadLauncher.cs" />
+        <Compile Include="Weapons\Rifles\RCM.cs" />
+        <Compile Include="Weapons\Rifles\Winchester.cs" />
+        <Compile Include="Weapons\Thrown\Claymore.cs" />
+        <Compile Include="Weapons\Thrown\FragGrenade.cs" />
+        <Compile Include="Weapons\Thrown\ImpactGrenade.cs" />
+        <Compile Include="Weapons\Thrown\Snowball.cs" />
+        <Compile Include="Weapons\Thrown\StickyBomb.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config" />
+        <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+        <Content Include="icon.ico" />
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <PropertyGroup>
+        <PostBuildEvent>call "$(ProjectDir)build.bat" $(Configuration)</PostBuildEvent>
+    </PropertyGroup>
+</Project>
