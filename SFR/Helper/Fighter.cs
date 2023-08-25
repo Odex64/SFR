@@ -52,15 +52,15 @@ internal static class Fighter
         return extendedPlayer;
     }
 
-    internal static ExtendedModifiers GetExtension(this PlayerModifiers modifiers)
-    {
-        if (ExtendedModifiers.ExtendedModifiersTable.TryGetValue(modifiers, out var existingExtendedModifiers))
-        {
-            return existingExtendedModifiers;
-        }
+    //internal static ExtendedModifiers GetExtension(this PlayerModifiers modifiers)
+    //{
+    //    if (ExtendedModifiers.ExtendedModifiersTable.TryGetValue(modifiers, out var existingExtendedModifiers))
+    //    {
+    //        return existingExtendedModifiers;
+    //    }
 
-        var extendedModifiers = new ExtendedModifiers(modifiers);
-        ExtendedModifiers.ExtendedModifiersTable.Add(modifiers, extendedModifiers);
-        return extendedModifiers;
-    }
+    //    var extendedModifiers = new ExtendedModifiers(modifiers);
+    //    ExtendedModifiers.ExtendedModifiersTable.Add(modifiers, extendedModifiers);
+    //    return extendedModifiers;
+    //}
 }
