@@ -12,9 +12,9 @@ internal sealed class Rapier : MWeapon
 {
     private const float LungeSpeed = 4f;
     private const float LungeDuration = 200f;
+    private bool _lungeDone;
 
     private float _lungeTimer;
-    private bool _lungeDone;
 
     internal Rapier()
     {

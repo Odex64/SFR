@@ -12,7 +12,7 @@ namespace SFR.Fighter;
 /// </summary>
 internal sealed class ExtendedPlayer : IEquatable<Player>
 {
-    internal static readonly ConditionalWeakTable<Player, ExtendedPlayer> ExtendedPlayers = new();
+    internal static readonly ConditionalWeakTable<Player, ExtendedPlayer> ExtendedPlayersTable = new();
     internal readonly Player Player;
     internal readonly TimeSequence Time = new();
     internal GenericJetpack GenericJetpack;

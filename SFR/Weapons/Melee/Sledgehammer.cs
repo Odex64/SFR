@@ -7,7 +7,6 @@ using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
 using SFR.Fighter;
-using SFR.Helper;
 using SFR.Sync.Generic;
 using Constants = SFR.Misc.Constants;
 
@@ -23,10 +22,10 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
     private const float AttackCooldown = 300f;
     private const float WeakBlinkTime = 200f;
     private const float HeavyBlinkTime = 450f;
-    internal float BlinkTimer;
+    private float _attackCooldown;
     private float _chargedTimer;
     private bool _isCharging;
-    private float _attackCooldown;
+    internal float BlinkTimer;
 
     internal Sledgehammer()
     {
@@ -140,7 +139,10 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 
     public override void CustomHandlingPostUpdate(Player player, float totalMs)
     {
-        if (player.GameOwner == GameOwnerEnum.Client) return;
+        if (player.GameOwner == GameOwnerEnum.Client)
+        {
+            return;
+        }
 
         if (_isCharging)
         {
@@ -161,9 +163,15 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 
     public override bool CustomHandlingOnAttackKey(Player player, bool onKeyEvent)
     {
-        if (player.GameOwner == GameOwnerEnum.Client) return true;
+        if (player.GameOwner == GameOwnerEnum.Client)
+        {
+            return true;
+        }
 
-        if (_attackCooldown > player.GameWorld.ElapsedTotalGameTime) return true;
+        if (_attackCooldown > player.GameWorld.ElapsedTotalGameTime)
+        {
+            return true;
+        }
 
         if (onKeyEvent && player.CurrentAction is PlayerAction.Idle && !_isCharging)
         {

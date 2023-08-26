@@ -1,7 +1,9 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
+using SFD.Projectiles;
 using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
@@ -248,6 +250,37 @@ internal static class PlayerHandler
         }
 
         return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.Jump), new Type[] { })]
+    private static bool CanJump(Player __instance)
+    {
+        var extendedModifiers = __instance.m_modifiers.GetExtension();
+        if (extendedModifiers.JumpHeightModifier != 1f)
+        {
+            float jumpForce = 7.55f * __instance.m_modifiers.GetExtension().JumpHeightModifier;
+            __instance.Jump(jumpForce);
+            return false;
+        }
+
+        return true;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.TestProjectileHit))]
+    private static void CanProjectileHit(ref bool __result, Player __instance, Projectile projectile)
+    {
+        if (!__result)
+        {
+            return;
+        }
+
+        var extendedModifiers = __instance.m_modifiers.GetExtension();
+        if (extendedModifiers.BulletDodgeChance > 0 && Misc.Constants.Random.NextDouble() < extendedModifiers.BulletDodgeChance)
+        {
+            __result = false;
+        }
     }
 
     [HarmonyPostfix]
