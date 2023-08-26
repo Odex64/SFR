@@ -1,19 +1,15 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using SFD;
-using SFD.Effects;
 using SFD.Sounds;
 using SFR.Sync.Generic;
-using Keyboard = SFD.Input.Keyboard;
 
 namespace SFR.Fighter.Jetpacks;
 
 internal abstract class GenericJetpack
 {
+    protected const float FlyThreshold = 250f;
     protected internal readonly BarMeter Fuel;
     protected internal readonly float MaxSpeed;
-
-    protected const float FlyThreshold = 250f;
 
     protected float AirTime;
     protected float EffectTimer;

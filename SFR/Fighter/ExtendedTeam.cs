@@ -11,6 +11,7 @@ using SFD.Objects;
 using SFD.UserProgression;
 using SFD.Weapons;
 using SFDGameScriptInterface;
+using Color = Microsoft.Xna.Framework.Color;
 
 namespace SFR.Fighter;
 
@@ -452,42 +453,42 @@ internal class ExtendedTeam
                     text = gameWorld.GameOverData.Text;
                     break;
                 case GameWorld.GameOverType.SurvivalVictory:
-                    text = LanguageHelper.GetText("statusText.wave", new string[] { gameWorld.GameInfo.MapSessionData.SurvivalWave.ToString() });
+                    text = LanguageHelper.GetText("statusText.wave", gameWorld.GameInfo.MapSessionData.SurvivalWave.ToString());
                     flag = true;
                     __instance.m_winText = LanguageHelper.GetText("statusText.victory");
                     break;
                 case GameWorld.GameOverType.SurvivalLoss:
                     if (gameWorld.GameInfo.MapSessionData.SurvivalExtraLives > 0)
                     {
-                        text = LanguageHelper.GetText("statusText.wave", new string[] { gameWorld.GameInfo.MapSessionData.SurvivalWave.ToString() });
+                        text = LanguageHelper.GetText("statusText.wave", gameWorld.GameInfo.MapSessionData.SurvivalWave.ToString());
                         flag = true;
                         __instance.m_winText = LanguageHelper.GetText("statusText.defeat");
                     }
                     else
                     {
-                        text = LanguageHelper.GetText("statusText.wavegameover", new string[] { gameWorld.GameInfo.MapSessionData.SurvivalWave.ToString() });
+                        text = LanguageHelper.GetText("statusText.wavegameover", gameWorld.GameInfo.MapSessionData.SurvivalWave.ToString());
                         flag = true;
-                        __instance.m_winText = LanguageHelper.GetText("statusText.survivalfinalscore", new string[] { gameWorld.GameInfo.TotalScore.ToString() });
+                        __instance.m_winText = LanguageHelper.GetText("statusText.survivalfinalscore", gameWorld.GameInfo.TotalScore.ToString());
                     }
 
                     break;
             }
         }
 
-        __instance.DrawWithOutline(text.ToUpperInvariant(), Constants.FontBig, spriteBatch, (float)(GameSFD.GAME_HEIGHT / 7), 2f, __instance.blink ? Microsoft.Xna.Framework.Color.White : Constants.COLORS.STATUS_TEXT);
+        __instance.DrawWithOutline(text.ToUpperInvariant(), Constants.FontBig, spriteBatch, GameSFD.GAME_HEIGHT / 7, 2f, __instance.blink ? Color.White : Constants.COLORS.STATUS_TEXT);
         if (flag)
         {
-            __instance.DrawWithOutline(__instance.m_winText, Constants.FontBig, spriteBatch, (float)(GameSFD.GAME_HEIGHT / 7) + Constants.MeasureString(Constants.FontBig, __instance.m_winText).Y * 2f, 2f, __instance.blink ? Microsoft.Xna.Framework.Color.White : Constants.COLORS.STATUS_TEXT);
+            __instance.DrawWithOutline(__instance.m_winText, Constants.FontBig, spriteBatch, GameSFD.GAME_HEIGHT / 7 + Constants.MeasureString(Constants.FontBig, __instance.m_winText).Y * 2f, 2f, __instance.blink ? Color.White : Constants.COLORS.STATUS_TEXT);
         }
 
         if (gameWorld.GameInfo.VoteInfo.MapVoteInitiated)
         {
-            __instance.DrawWithOutline(__instance.m_mapVoteText, Constants.Font1, spriteBatch, (float)(GameSFD.GAME_HEIGHT * 5 / 6 + 32), 1f, Constants.COLORS.MENU_ORANGE);
+            __instance.DrawWithOutline(__instance.m_mapVoteText, Constants.Font1, spriteBatch, GameSFD.GAME_HEIGHT * 5 / 6 + 32, 1f, Constants.COLORS.MENU_ORANGE);
             return false;
         }
 
-        __instance.DrawWithOutline(__instance.m_voteText, Constants.Font1, spriteBatch, (float)(GameSFD.GAME_HEIGHT * 5 / 6), 1f, Microsoft.Xna.Framework.Color.White);
-        __instance.DrawWithOutline(__instance.m_timerText, Constants.Font1, spriteBatch, (float)(GameSFD.GAME_HEIGHT * 5 / 6 + 32), 1f, Constants.COLORS.MENU_ORANGE);
+        __instance.DrawWithOutline(__instance.m_voteText, Constants.Font1, spriteBatch, GameSFD.GAME_HEIGHT * 5 / 6, 1f, Color.White);
+        __instance.DrawWithOutline(__instance.m_timerText, Constants.Font1, spriteBatch, GameSFD.GAME_HEIGHT * 5 / 6 + 32, 1f, Constants.COLORS.MENU_ORANGE);
 
         return false;
     }
@@ -503,24 +504,15 @@ internal class ExtendedTeam
 
         var eventDelegate = (MulticastDelegate)typeof(LobbySlotTeam).GetField(LobbySlotValueChangedEvent.Name, BindingFlags.Instance | BindingFlags.Public)?.GetValue(__instance);
 
-        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance, new MenuItemButton[]
+        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance, new(LanguageHelper.GetText("team.independent"), __instance.independent), new(LanguageHelper.GetText("team.1"), __instance.team1), new(LanguageHelper.GetText("team.2"), __instance.team2), new(LanguageHelper.GetText("team.3"), __instance.team3), new(LanguageHelper.GetText("team.4"), __instance.team4), new("Team 5", _ =>
         {
-            new(LanguageHelper.GetText("team.independent"), __instance.independent),
-            new(LanguageHelper.GetText("team.1"), __instance.team1),
-            new(LanguageHelper.GetText("team.2"), __instance.team2),
-            new(LanguageHelper.GetText("team.3"), __instance.team3),
-            new(LanguageHelper.GetText("team.4"), __instance.team4),
-            new("Team 5", _ =>
-            {
-                __instance.SetValue(5);
-                InvokeTeamDelegates(eventDelegate, __instance, 5);
-            }),
-            new("Team 6", _ =>
-            {
-                __instance.SetValue(6);
-                InvokeTeamDelegates(eventDelegate, __instance, 6);
-            })
-        });
+            __instance.SetValue(5);
+            InvokeTeamDelegates(eventDelegate, __instance, 5);
+        }), new("Team 6", _ =>
+        {
+            __instance.SetValue(6);
+            InvokeTeamDelegates(eventDelegate, __instance, 6);
+        }));
 
         __instance.ParentPanel.OpenSubPanel(lobbySlotDropdownPanel);
         return false;
@@ -528,7 +520,7 @@ internal class ExtendedTeam
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Constants.COLORS), nameof(Constants.COLORS.GetTeamColor), typeof(TeamIcon), typeof(Constants.COLORS.TeamColorType))]
-    private static bool GetAdditionalTeamColor(ref Microsoft.Xna.Framework.Color __result, TeamIcon team)
+    private static bool GetAdditionalTeamColor(ref Color __result, TeamIcon team)
     {
         switch ((int)team)
         {
@@ -546,7 +538,7 @@ internal class ExtendedTeam
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Constants), nameof(Constants.GetTeamColor), typeof(int))]
-    private static bool GetAdditionalTeamColor(int team, ref Microsoft.Xna.Framework.Color __result)
+    private static bool GetAdditionalTeamColor(int team, ref Color __result)
     {
         switch (team)
         {
