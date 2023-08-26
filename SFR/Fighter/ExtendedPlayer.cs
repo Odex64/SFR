@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using HarmonyLib;
 using SFD;
 using SFD.Sounds;
 using SFDGameScriptInterface;
 using SFR.Fighter.Jetpacks;
+using SFR.Helper;
 using SFR.Sync.Generic;
 
 namespace SFR.Fighter;
@@ -73,5 +75,22 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     {
         internal const float AdrenalineBoostTime = 20000f;
         internal float AdrenalineBoost;
+    }
+}
+
+[HarmonyPatch]
+internal static class ModifierApplication
+{
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.Jump), new Type[] { })]
+    private static bool JumpPatch(Player __instance)
+    {
+        if (__instance.m_modifiers.GetExtension().JumpHeightModifier != 1f)
+        {
+            float jumpForce = 7.55f * __instance.m_modifiers.GetExtension().JumpHeightModifier;
+            __instance.Jump(jumpForce, false);
+            return false;
+        }
+        return true;
     }
 }

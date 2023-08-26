@@ -10,6 +10,7 @@ using SFDGameScriptInterface;
 using SFD.MenuControls;
 using System.Runtime.CompilerServices;
 using SFR.Helper;
+using System.Management.Instrumentation;
 
 namespace SFR.Fighter
 {
@@ -17,89 +18,133 @@ namespace SFR.Fighter
     ///     This class is used to extend the Player modifiers and save new data to them.
     ///     Basically clones the base class and appends it as a modifier extension to them.
     /// </summary>
-    //public class ExtendedModifiers : IEquatable<ExtendedModifiers>
-    //{
-    //    internal static readonly ConditionalWeakTable<PlayerModifiers, ExtendedModifiers> ExtendedModifiersTable = new();
-    //    public PlayerModifiers parentModifiers;
-    //    public float JumpHeightModifier;
-    //    public float BulletDodgeChance;
+    public class ExtendedModifiers : IEquatable<ExtendedModifiers>
+    {
+        internal static readonly ConditionalWeakTable<PlayerModifiers, ExtendedModifiers> ExtendedModifiersTable = new();
+        public PlayerModifiers parentModifiers;
+        public float JumpHeightModifier;
+        public float BulletDodgeChance;
 
-    //    public ExtendedModifiers(PlayerModifiers parent, bool defaultValues = false)
-    //    {
-    //        parentModifiers = parent;
-    //        int num = defaultValues ? (-2) : (-1);
-    //        JumpHeightModifier = num;
-    //        BulletDodgeChance = num;
-    //    }
+        public ExtendedModifiers(PlayerModifiers parent, bool defaultValues = false)
+        {
+            parentModifiers = parent;
+            int num = defaultValues ? (-2) : (-1);
+            JumpHeightModifier = num;
+            BulletDodgeChance = num;
+        }
 
-    //    public bool Equals(ExtendedModifiers other)
-    //    {
-    //        return JumpHeightModifier == other.JumpHeightModifier &&
-    //            BulletDodgeChance == other.BulletDodgeChance &&
-    //            parentModifiers.Equals(other.parentModifiers);
-    //    }
-    //}
+        public bool Equals(ExtendedModifiers other)
+        {
+            return JumpHeightModifier == other.JumpHeightModifier &&
+                BulletDodgeChance == other.BulletDodgeChance &&
+                parentModifiers.Equals(other.parentModifiers);
+        }
+    }
 
-    //[HarmonyPatch]
-    //internal static class ModifierExtension
-    //{
-    //    [HarmonyPostfix]
-    //    [HarmonyPatch(typeof(PlayerModifiers), MethodType.Constructor)]
-    //    private static void GenerateExtension(PlayerModifiers __instance, bool defaultValues = false)
-    //    {
-    //        ExtendedModifiers.ExtendedModifiersTable.Add(__instance, new ExtendedModifiers(__instance, defaultValues));
-    //    }
+    [HarmonyPatch]
+    internal static class ModifierExtension
+    {
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(PlayerModifiers), MethodType.Constructor, new Type[] { typeof(bool) })]
+        private static void GenerateExtension(PlayerModifiers __instance, bool defaultValues = false)
+        {
+            ExtendedModifiers.ExtendedModifiersTable.Add(__instance, new ExtendedModifiers(__instance, defaultValues));
+        }
 
-    //    [HarmonyPostfix]
-    //    [HarmonyPatch(typeof(ObjectProperties), nameof(ObjectProperties.Load), new Type[] { })]
-    //    private static void AddExtraProperties()
-    //    {
-    //        foreach (ObjectPropertyID objectPropertyID in new ObjectPropertyID[]
-    //        {
-    //            (ObjectPropertyID)500, // Jump Height Modifier.
-    //            (ObjectPropertyID)501  // Bullet Dodge Chance.
-    //        })
-    //        {
-    //            string text = objectPropertyID.ToString();
-    //            text = "properties.script.playerModifier." + text.Substring(text.IndexOf("_") + 1);
-    //            ObjectProperties.AddProperty(new ObjectPropertyItem((int)objectPropertyID, LanguageHelper.GetText(text), -1f)
-    //            {
-    //                Description = LanguageHelper.GetText(text + ".description"),
-    //                SyncType = ObjectPropertySyncType.Unsynced,
-    //                LimitToMinValue = true,
-    //                MinValue = -2f
-    //            });
-    //        }
-    //    }
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(ObjectProperties), nameof(ObjectProperties.Load), new Type[] { })]
+        private static void AddExtraProperties()
+        {
+            foreach (ObjectPropertyID objectPropertyID in new ObjectPropertyID[]
+            {
+                (ObjectPropertyID)500, // Jump Height Modifier.
+                (ObjectPropertyID)501  // Bullet Dodge Chance.
+            })
+            {
+                string text = objectPropertyID.ToString();
+                text = "properties.script.playerModifier." + text.Substring(text.IndexOf("_") + 1);
+                ObjectProperties.AddProperty(new ObjectPropertyItem((int)objectPropertyID, LanguageHelper.GetText(text), -1f)
+                {
+                    Description = LanguageHelper.GetText(text + ".description"),
+                    SyncType = ObjectPropertySyncType.Unsynced,
+                    LimitToMinValue = true,
+                    MinValue = -2f
+                });
+            }
+        }
 
-    //    [HarmonyPrefix]
-    //    [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.SetProperties))]
-    //    private static bool LoadExtraModifiers(ObjectPlayerModifierInfo __instance)
-    //    {
-    //        __instance.Properties.Add(500, (int)ObjectPropertyID.NONE);
-    //        __instance.Properties.Add(501, (int)ObjectPropertyID.NONE);
-    //        return true;
-    //    }
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.SetProperties))]
+        private static bool LoadExtraModifiers(ObjectPlayerModifierInfo __instance)
+        {
+            __instance.Properties.Add(500, (int)ObjectPropertyID.NONE);
+            __instance.Properties.Add(501, (int)ObjectPropertyID.NONE);
+            return true;
+        }
 
-    //    [HarmonyPrefix]
-    //    [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.SetModifiers))]
-    //    private static bool SetExtraModifiers(ObjectPlayerModifierInfo __instance, PlayerModifiers value)
-    //    {
-    //        if (value == null)
-    //        {
-    //            return false;
-    //        }
-    //        __instance.Properties.Get(500).Value = value.GetExtension().JumpHeightModifier;
-    //        __instance.Properties.Get(501).Value = value.GetExtension().BulletDodgeChance;
-    //        return true;
-    //    }
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.SetModifiers))]
+        private static bool SetExtraModifiers(ObjectPlayerModifierInfo __instance, PlayerModifiers value)
+        {
+            if (value == null)
+            {
+                return false;
+            }
+            __instance.Properties.Get(500).Value = value.GetExtension().JumpHeightModifier;
+            __instance.Properties.Get(501).Value = value.GetExtension().BulletDodgeChance;
+            return true;
+        }
 
-    //    [HarmonyPostfix]
-    //    [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.GetModifiers))]
-    //    private static void GetExtraModifiers(ObjectPlayerModifierInfo __instance, ref PlayerModifiers __result)
-    //    {
-    //        __result.GetExtension().JumpHeightModifier = (float)__instance.Properties.Get(500).Value;
-    //        __result.GetExtension().BulletDodgeChance = (float)__instance.Properties.Get(501).Value;
-    //    }
-    //}
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.GetModifiers))]
+        private static void GetExtraModifiers(ObjectPlayerModifierInfo __instance, ref PlayerModifiers __result)
+        {
+            __result.GetExtension().JumpHeightModifier = (float)__instance.Properties.Get(500).Value;
+            __result.GetExtension().BulletDodgeChance = (float)__instance.Properties.Get(501).Value;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerModifiersExtension), nameof(PlayerModifiersExtension.SanitizeInput))]
+        private static bool SanitizeInputPatch(PlayerModifiers modifiers)
+        {
+            modifiers.GetExtension().JumpHeightModifier = PlayerModifiersExtension.ValidateFloatInput(modifiers.GetExtension().JumpHeightModifier, 0f, 2f);
+            modifiers.GetExtension().BulletDodgeChance = PlayerModifiersExtension.ValidateFloatInput(modifiers.GetExtension().BulletDodgeChance, 0f, 5f);
+            return true;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(PlayerModifiersExtension), nameof(PlayerModifiersExtension.DefaultValues))]
+        private static bool DefaultValuesPatch(PlayerModifiers modifiers)
+        {
+            if (modifiers.GetExtension().JumpHeightModifier == -2f)
+            {
+                modifiers.GetExtension().JumpHeightModifier = 1f;
+            }
+            if (modifiers.GetExtension().BulletDodgeChance == -2f)
+            {
+                modifiers.GetExtension().BulletDodgeChance = 1f;
+            }
+            return true;
+        }
+
+        [HarmonyPrefix]
+        [HarmonyPatch(typeof(Player), nameof(Player.SetModifiers))]
+        private static bool SetModifiersPatch(Player __instance, PlayerModifiers value)
+        {
+            if (value != null)
+            {
+                if (value.GetExtension().JumpHeightModifier != -1f)
+                {
+                    __instance.ModifiersUpdated |= __instance.m_modifiers.GetExtension().JumpHeightModifier != value.GetExtension().JumpHeightModifier;
+                    __instance.m_modifiers.GetExtension().JumpHeightModifier = value.GetExtension().JumpHeightModifier;
+                }
+                if (value.GetExtension().BulletDodgeChance != -1f)
+                {
+                    __instance.ModifiersUpdated |= __instance.m_modifiers.GetExtension().BulletDodgeChance != value.GetExtension().BulletDodgeChance;
+                    __instance.m_modifiers.GetExtension().BulletDodgeChance = value.GetExtension().BulletDodgeChance;
+                }
+            }
+            return true;
+        }
+    }
 }
