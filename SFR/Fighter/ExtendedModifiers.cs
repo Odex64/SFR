@@ -15,12 +15,11 @@ public class ExtendedModifiers : IEquatable<ExtendedModifiers>
     public float BulletDodgeChance;
     public float JumpHeightModifier;
 
-    public ExtendedModifiers(PlayerModifiers modifiers, bool defaultValues = false)
+    public ExtendedModifiers(PlayerModifiers modifiers)
     {
         Modifiers = modifiers;
-        int num = defaultValues ? -2 : -1;
-        JumpHeightModifier = num;
-        BulletDodgeChance = num;
+        JumpHeightModifier = -1;
+        BulletDodgeChance = -1;
     }
 
     public bool Equals(ExtendedModifiers other) => other != null && other.Modifiers.Equals(Modifiers) && other.JumpHeightModifier == JumpHeightModifier && other.BulletDodgeChance == BulletDodgeChance;

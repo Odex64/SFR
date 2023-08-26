@@ -39,10 +39,10 @@ internal static class Tweaks
             switch (objectProperty)
             {
                 case 500:
-                    __result = "Jump Height Modifier";
+                    __result = "JumpHeightModifier";
                     return false;
                 case 501:
-                    __result = "Bullet Dodge Chance";
+                    __result = "BulletDodgeChance";
                     return false;
             }
         }

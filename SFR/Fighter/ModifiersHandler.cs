@@ -90,12 +90,12 @@ internal class ModifiersHandler
     private static void DefaultValuesPatch(PlayerModifiers modifiers)
     {
         var extendedModifiers = modifiers.GetExtension();
-        if (extendedModifiers.JumpHeightModifier == -2f)
+        if (extendedModifiers.JumpHeightModifier == -1f)
         {
             extendedModifiers.JumpHeightModifier = 1f;
         }
 
-        if (extendedModifiers.BulletDodgeChance == -2f)
+        if (extendedModifiers.BulletDodgeChance == -1f)
         {
             extendedModifiers.BulletDodgeChance = 0f;
         }
