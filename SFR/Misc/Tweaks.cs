@@ -21,9 +21,9 @@ internal static class Tweaks
     [HarmonyPatch(typeof(Enum), "InternalFormat")]
     private static bool PatchEnums(Type eT, object value, ref string __result)
     {
-        if (eT == typeof(MusicHandler.MusicTrackID) && value is int num)
+        if (eT == typeof(MusicHandler.MusicTrackID) && value is int track)
         {
-            switch (num)
+            switch (track)
             {
                 case 42:
                     __result = "Metrolaw";
@@ -31,6 +31,18 @@ internal static class Tweaks
 
                 case 43:
                     __result = "FrozenBlood";
+                    return false;
+            }
+        }
+        else if (eT == typeof(ObjectPropertyID) && value is int objectProperty)
+        {
+            switch (objectProperty)
+            {
+                case 500:
+                    __result = "Jump Height Modifier";
+                    return false;
+                case 501:
+                    __result = "Bullet Dodge Chance";
                     return false;
             }
         }

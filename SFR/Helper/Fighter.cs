@@ -1,7 +1,7 @@
 ﻿using SFD;
-using SFD.Weapons;
 using SFDGameScriptInterface;
 using SFR.Fighter;
+using WeaponItemType = SFD.Weapons.WeaponItemType;
 
 namespace SFR.Helper;
 
@@ -10,20 +10,6 @@ namespace SFR.Helper;
 /// </summary>
 internal static class Fighter
 {
-    // internal static Team GetActualTeam(this Player player)
-    // {
-    //     if (!player.IsBot)
-    //     {
-    //         var user = player.GetGameUser();
-    //         if (user != null && GadgetHandler.DevIcon.Account == user.Account)
-    //         {
-    //             return GadgetHandler.DevIcon.Team;
-    //         }
-    //     }
-    //
-    //     return player.CurrentTeam;
-    // }
-
     /// <summary>
     ///     Helper method to return the current weapon in use
     /// </summary>
@@ -33,22 +19,22 @@ internal static class Fighter
     {
         return player.CurrentWeaponDrawn switch
         {
-            SFD.Weapons.WeaponItemType.Melee => player.GetCurrentMeleeWeaponInUse(),
-            SFD.Weapons.WeaponItemType.Handgun or SFD.Weapons.WeaponItemType.Rifle => player.GetCurrentRangedWeaponInUse(),
-            SFD.Weapons.WeaponItemType.Thrown => player.GetCurrentThrownWeaponInUse(),
+            WeaponItemType.Melee => player.GetCurrentMeleeWeaponInUse(),
+            WeaponItemType.Handgun or WeaponItemType.Rifle => player.GetCurrentRangedWeaponInUse(),
+            WeaponItemType.Thrown => player.GetCurrentThrownWeaponInUse(),
             _ => null
         };
     }
 
     internal static ExtendedPlayer GetExtension(this Player player)
     {
-        if (ExtendedPlayer.ExtendedPlayers.TryGetValue(player, out var existingExtendedPlayer))
+        if (ExtendedPlayer.ExtendedPlayersTable.TryGetValue(player, out var existingExtendedPlayer))
         {
             return existingExtendedPlayer;
         }
 
         var extendedPlayer = new ExtendedPlayer(player);
-        ExtendedPlayer.ExtendedPlayers.Add(player, extendedPlayer);
+        ExtendedPlayer.ExtendedPlayersTable.Add(player, extendedPlayer);
         return extendedPlayer;
     }
 

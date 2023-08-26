@@ -504,11 +504,11 @@ internal class ExtendedTeam
 
         var eventDelegate = (MulticastDelegate)typeof(LobbySlotTeam).GetField(LobbySlotValueChangedEvent.Name, BindingFlags.Instance | BindingFlags.Public)?.GetValue(__instance);
 
-        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance, new(LanguageHelper.GetText("team.independent"), __instance.independent), new(LanguageHelper.GetText("team.1"), __instance.team1), new(LanguageHelper.GetText("team.2"), __instance.team2), new(LanguageHelper.GetText("team.3"), __instance.team3), new(LanguageHelper.GetText("team.4"), __instance.team4), new("Team 5", _ =>
+        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance, new MenuItemButton(LanguageHelper.GetText("team.independent"), __instance.independent), new MenuItemButton(LanguageHelper.GetText("team.1"), __instance.team1), new MenuItemButton(LanguageHelper.GetText("team.2"), __instance.team2), new MenuItemButton(LanguageHelper.GetText("team.3"), __instance.team3), new MenuItemButton(LanguageHelper.GetText("team.4"), __instance.team4), new MenuItemButton("Team 5", _ =>
         {
             __instance.SetValue(5);
             InvokeTeamDelegates(eventDelegate, __instance, 5);
-        }), new("Team 6", _ =>
+        }), new MenuItemButton("Team 6", _ =>
         {
             __instance.SetValue(6);
             InvokeTeamDelegates(eventDelegate, __instance, 6);

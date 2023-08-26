@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Lidgren.Network;
 using SFD;
-using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Game;
 using SFR.Helper;
@@ -192,7 +191,7 @@ internal static class SyncHandler
                 {
                     return;
                 }
-                
+
                 if (sledgehammerPlayer.GetCurrentWeapon() is Sledgehammer sledgehammer)
                 {
                     float blinkTime = (float)data.Args[1];
