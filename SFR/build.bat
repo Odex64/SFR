@@ -1,4 +1,4 @@
-SET SFD="C:\Program Files (x86)\Steam\steamapps\common\Superfighters Deluxe"
+SET SFD="C:\Steam\steamapps\common\Superfighters Deluxe"
 cd ..
 
 copy %1\SFR.exe.config %SFD%

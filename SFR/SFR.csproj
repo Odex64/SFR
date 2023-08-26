@@ -41,7 +41,7 @@
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\Lib.Harmony.2.3.0-prerelease.2\lib\net472\0Harmony.dll</HintPath>
+            <HintPath>..\packages\Lib.Harmony.2.3.0-prerelease.2\lib\net472\0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="Box2D.XNA">
             <HintPath>..\SFD\Box2D.XNA.dll</HintPath>
@@ -64,40 +64,40 @@
             <Private>false</Private>
         </Reference>
         <Reference Include="Mono.Cecil, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.dll</HintPath>
-		  <Private>true</Private>
+            <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.dll</HintPath>
+            <Private>true</Private>
         </Reference>
         <Reference Include="Mono.Cecil.Mdb, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
-		  <Private>false</Private>
+            <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
+            <Private>false</Private>
         </Reference>
         <Reference Include="Mono.Cecil.Pdb, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
-		  <Private>false</Private>
+            <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
+            <Private>false</Private>
         </Reference>
         <Reference Include="Mono.Cecil.Rocks, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
-          <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
-		  <Private>false</Private>
+            <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
+            <Private>false</Private>
         </Reference>
         <Reference Include="MonoMod.Backports, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\MonoMod.Backports.1.0.1\lib\net452\MonoMod.Backports.dll</HintPath>
-		  <Private>true</Private>
+            <HintPath>..\packages\MonoMod.Backports.1.0.1\lib\net452\MonoMod.Backports.dll</HintPath>
+            <Private>true</Private>
         </Reference>
         <Reference Include="MonoMod.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Core.dll</HintPath>
-		  <Private>true</Private>
+            <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Core.dll</HintPath>
+            <Private>true</Private>
         </Reference>
         <Reference Include="MonoMod.Iced, Version=1.17.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Iced.dll</HintPath>
-		  <Private>true</Private>
+            <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Iced.dll</HintPath>
+            <Private>true</Private>
         </Reference>
         <Reference Include="MonoMod.ILHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\MonoMod.ILHelpers.1.0.0\lib\net452\MonoMod.ILHelpers.dll</HintPath>
-		  <Private>true</Private>
+            <HintPath>..\packages\MonoMod.ILHelpers.1.0.0\lib\net452\MonoMod.ILHelpers.dll</HintPath>
+            <Private>true</Private>
         </Reference>
         <Reference Include="MonoMod.Utils, Version=25.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-          <HintPath>..\packages\MonoMod.Utils.25.0.3\lib\net452\MonoMod.Utils.dll</HintPath>
-		  <Private>true</Private>
+            <HintPath>..\packages\MonoMod.Utils.25.0.3\lib\net452\MonoMod.Utils.dll</HintPath>
+            <Private>true</Private>
         </Reference>
         <Reference Include="mscorlib" />
         <Reference Include="SFD.GameScriptInterface">
@@ -137,6 +137,7 @@
         <Compile Include="Fighter\AnimHandler.cs" />
         <Compile Include="Fighter\ExtendedPlayer.cs" />
         <Compile Include="Fighter\ExtendedTeam.cs" />
+        <Compile Include="Fighter\ExtendedModifiers.cs" />
         <Compile Include="Fighter\GadgetHandler.cs" />
         <Compile Include="Fighter\GoreHandler.cs" />
         <Compile Include="Fighter\DevHandler.cs" />
