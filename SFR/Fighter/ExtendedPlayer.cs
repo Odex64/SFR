@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using HarmonyLib;
 using SFD;
+using SFD.Projectiles;
 using SFD.Sounds;
 using SFDGameScriptInterface;
 using SFR.Fighter.Jetpacks;
@@ -92,5 +95,22 @@ internal static class ModifierApplication
             return false;
         }
         return true;
+    }
+
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.TestProjectileHit))]
+    private static void PatchProjectileHit(ref bool __result, Player __instance, Projectile projectile)
+    {
+        if (!__result)
+        {
+            return;
+        }
+        else
+        {
+            if (Constants.RANDOM.NextDouble() < __instance.m_modifiers.GetExtension().BulletDodgeChance)
+            {
+                __result = false;
+            }
+        }
     }
 }
