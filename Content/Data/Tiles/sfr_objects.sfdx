@@ -1,4 +1,4 @@
-defaultTile(default_tile)
+defaultTile(DefaultTile)
 {
 	uniqueId = 0;
 	drawCategory = OBJ;
@@ -593,16 +593,16 @@ Tile(HeadDebris00C)
 }
 Tile(Head00)
 {
-	drawCategory = PLR;
+	drawCategory = DEB;
 	life = 5;
 	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
-	material.restitution = 1;
+	gibpressure.total = 30 kg;
+	gibpressure.spike = 150 kg;
 	ImpactSound = ImpactFlesh;
 	fixture()
 	{
 		mass = 4 kg;
+		collisionGroup = debris;
 		collisionPoints = (-2.5, -2.5), (2.5, -2.5), (2.5, 2.5), (-2.5, 2.5);
 	}
 }

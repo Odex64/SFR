@@ -1,4 +1,4 @@
-defaultTile(default_tile)
+defaultTile(DefaultTile)
 {
 	drawCategory = MAR;
 	mainLayer = 0;

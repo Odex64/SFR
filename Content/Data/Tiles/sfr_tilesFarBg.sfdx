@@ -1,4 +1,4 @@
-defaultTile(d_t)
+defaultTile(DefaultTile)
 {
 	drawCategory = FBG;
 	mainLayer = 0;
@@ -164,7 +164,7 @@ Tile(FarBgWallMidShadeOutline00F){}
 Tile(FarBgWallMidShadeOutline00G){}
 
 // Foreground
-defaultTile(d_t)
+defaultTile(DefaultTile)
 {
 	drawCategory = FG;
 }

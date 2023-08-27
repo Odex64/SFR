@@ -8,16 +8,30 @@ internal static class Program
 {
     private const string Data = @"C:\Program Files (x86)\Steam\steamapps\common\Superfighters Deluxe\SFR\Content\Data";
     private static readonly string[] TargetFolders = { @"Images\Objects", @"Images\Tiles" };
+    private static readonly string[] OriginalTiles = { "objects.sfdx", "tiles.sfdx", "tilesBG.sfdx", "tilesE.sfdx", "tilesFarBG.sfdx", "tilesS.sfdx" };
 
     public static void Main(string[] args)
     {
         string data = string.Empty;
 
-        foreach (string file in Directory.GetFiles(Path.Combine(Data, "Tiles"), "*.sfdx", SearchOption.TopDirectoryOnly))
+        foreach (string file in Directory.GetFiles(Path.Combine(Data, "Tiles"), "*.sfdx", SearchOption.TopDirectoryOnly).Where(d => !OriginalTiles.Contains(Path.GetFileName(d))))
         {
-            data += File.ReadAllText(file);
+            data += File.ReadAllText(file) + "\r\n";
         }
 
+        SortTiles(data);
+        // FindMissingTiles(data);
+    }
+
+    private static void SortTiles(string data)
+    {
+        string[] entries = data.Split(new[] { "defaultTile", "\r\nTile" }, StringSplitOptions.RemoveEmptyEntries);
+        Array.Sort(entries);
+        string sorted = string.Join("Tile", entries);
+    }
+
+    private static void FindMissingTiles(string data)
+    {
         foreach (string file in Directory.GetFiles(Data, "*.xnb", SearchOption.AllDirectories)
                      .Where(d => TargetFolders.Any(e => Path.Combine(Data, Path.GetDirectoryName(d)!).Contains(e))))
         {

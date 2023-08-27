@@ -56,7 +56,7 @@ internal static class ExtendedWeapon
     {
         GoreHandler.MeleeHit(hitBy, __instance);
 
-        var weapon = __instance.GetCurrentMeleeWeaponInUse();
+        var weapon = hitBy.GetCurrentMeleeWeaponInUse();
         if (weapon is IExtendedWeapon wep)
         {
             wep.OnHit(hitBy, __instance);

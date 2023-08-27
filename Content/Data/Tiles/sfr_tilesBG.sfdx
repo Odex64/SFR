@@ -1,4 +1,4 @@
-defaultTile(d_t)
+defaultTile(DefaultTile)
 {
 	drawCategory = BG;
 	mainLayer = 0;
