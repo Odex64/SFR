@@ -24,20 +24,11 @@ internal sealed class CreditsPanel : Panel
             new MenuItemLabel("Shock", Align.Center, Color.Lime),
             new MenuItemLabel("Dxse", Align.Center, Color.Lime),
             new MenuItemLabel("KL1", Align.Center, Color.Lime),
-            new MenuItemLabel("Casey", Align.Center, Color.Lime),
             new MenuItemLabel("Danila015", Align.Center, Color.Lime),
             new MenuItemLabel("Eiga", Align.Center, Color.Lime),
-            new MenuItemLabel("Tomfer", Align.Center, Color.Lime),
 
             new MenuItemSeparator("COMPOSERS"),
             new MenuItemLabel("Samwow", Align.Center, Color.Red),
-            new MenuItemLabel("Chickibo", Align.Center, Color.Red),
-
-            new MenuItemSeparator("TESTERS"),
-            new MenuItemLabel("Emmet Brown", Align.Center, Color.Coral),
-            new MenuItemLabel("Dark", Align.Center, Color.Coral),
-            new MenuItemLabel("Pricey", Align.Center, Color.Coral),
-            new MenuItemLabel("GoreDemon", Align.Center, Color.Coral),
 
             new MenuItemSeparator("SPECIAL THANKS"),
             new MenuItemLabel("Odex64 - Founder & Project Leader", Align.Center, Color.Gold),
