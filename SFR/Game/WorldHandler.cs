@@ -1,7 +1,9 @@
 ﻿using System.Linq;
+using System.Runtime.CompilerServices;
 using HarmonyLib;
 using SFD;
 using SFD.Objects;
+using SFR.Fighter;
 using SFR.Helper;
 using SFR.Sync;
 using Constants = SFR.Misc.Constants;
@@ -61,5 +63,7 @@ internal static class WorldHandler
     private static void DisposeData()
     {
         SyncHandler.Attempts.Clear();
+        ExtendedPlayer.ExtendedPlayersTable.Clear();
+        ExtendedModifiers.ExtendedModifiersTable.Clear();
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
 using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
@@ -491,6 +492,16 @@ internal class ExtendedTeam
         __instance.DrawWithOutline(__instance.m_timerText, Constants.Font1, spriteBatch, GameSFD.GAME_HEIGHT * 5 / 6 + 32, 1f, Constants.COLORS.MENU_ORANGE);
 
         return false;
+    }
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(Server), nameof(Server.GetTeamStatus))]
+    private static IEnumerable<CodeInstruction> AdditionTeamStatus(IEnumerable<CodeInstruction> instructions)
+    {
+        var teamsCount = instructions.ElementAt(15);
+        teamsCount.opcode = OpCodes.Ldc_I4_7;
+
+        return instructions;
     }
 
     [HarmonyPrefix]

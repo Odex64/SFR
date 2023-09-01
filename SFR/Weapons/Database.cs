@@ -190,38 +190,39 @@ internal static class Database
             // 71, Brick
             // 72, Broom
             // 73, Cannon ball
-            { 74, 12 }, // Blade
-            { 75, 8 }, // Caber
+            { 74, 13 }, // Blade
+            { 75, 10 }, // Caber
             { 76, 18 }, // Crowbar
-            { 77, 5 }, // GreatSword
-            { 78, 11 }, // Morningstar
-            { 79, 7 }, //ParryingDagger
-            { 80, 7 }, // Poleaxe
+            { 77, 6 }, // GreatSword
+            { 78, 10 }, // Morningstar
+            { 79, 8 }, //ParryingDagger
+            { 80, 8 }, // Poleaxe
             { 81, 15 }, // Rapier
             // { 82, 16 }, // RiotShield,
             { 83, 16 }, // Sledgehammer
-            { 84, 19 }, // Switchblade
-            { 85, 4 }, // UnkemptHarold
-            { 86, 7 }, // StickyLauncher
+            { 84, 18 }, // Switchblade
+            // { 85, 4 }, // UnkemptHarold
+            { 86, 9 }, // StickyLauncher
             { 87, 15 }, // Claymore
             { 88, 16 }, // Frag grenade
             { 89, 12 }, // Impact grenade
             // { 90, 1 }, // Snowball
             { 91, 11 }, // Sticky bomb
             { 92, 22 }, // Health pouch
-            { 93, 8 }, // AA12
-            { 94, 6 }, // Barrett
-            { 95, 7 }, // Blunderbuss
+            { 93, 12 }, // AA12
+            { 94, 8 }, // Barrett
+            { 95, 9 }, // Blunderbuss
             { 96, 15 }, // Crossbow
             { 97, 8 }, // Double barrel
             { 98, 18 }, // Musket
-            { 99, 5 }, // Quad launcher
-            { 100, 4 }, // RCM
+            { 99, 7 }, // Quad launcher
+            { 100, 8 }, // RCM
             { 101, 12 }, // Winchester
-            { 102, 4 }, // Minigun
-            { 103, 11 }, // Rage boost
-            { 104, 9 } // Jetpack
+            { 102, 6 }, // Minigun
+            { 103, 11 }, // Adrenaline boost
+            { 104, 17 } // Jetpack
             // 105, Jetpack editor
+            // 106, Gunpack
         };
 
         __result = WeaponItem.ID.m_wpns;
@@ -330,6 +331,9 @@ internal static class Database
         RCM,
         Winchester,
         Minigun,
-        AdrenalineBoost
+        AdrenalineBoost,
+        Jetpack,
+        JetpackEditor,
+        Gunpack
     }
 }
