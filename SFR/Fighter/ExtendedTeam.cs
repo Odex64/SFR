@@ -509,6 +509,16 @@ internal class ExtendedTeam
 
         return instructions;
     }
+    
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(ObjectPlayerSpawnTrigger), nameof(ObjectPlayerSpawnTrigger.GetSpawnTeam))]
+    private static IEnumerable<CodeInstruction> AdditionalPlayerSpawnTeam(IEnumerable<CodeInstruction> instructions)
+    {
+        var teamsCount = instructions.ElementAt(11);
+        teamsCount.opcode = OpCodes.Ldc_I4_6;
+
+        return instructions;
+    }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Constants), nameof(Constants.GetTeamColorString), typeof(int))]
@@ -835,11 +845,11 @@ internal class ExtendedTeam
         switch (team)
         {
             case 5:
-                __result = Misc.Constants.Team5;
+                __result = Misc.Constants.Team5 * 2;
                 return false;
 
             case 6:
-                __result = Misc.Constants.Team6;
+                __result = Misc.Constants.Team6 * 2;
                 return false;
         }
 
