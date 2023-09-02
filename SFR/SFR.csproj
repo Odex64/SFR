@@ -119,6 +119,9 @@
         <Reference Include="System">
             <Private>false</Private>
         </Reference>
+        <Reference Include="System.Drawing">
+            <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll</HintPath>
+        </Reference>
         <Reference Include="System.IO.Compression">
             <Private>false</Private>
         </Reference>
