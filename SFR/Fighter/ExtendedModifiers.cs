@@ -8,7 +8,7 @@ namespace SFR.Fighter;
 ///     This class is used to extend the Player modifiers and save new data to them.
 ///     Basically clones the base class and appends it as a modifier extension to them.
 /// </summary>
-public class ExtendedModifiers : IEquatable<ExtendedModifiers>
+internal class ExtendedModifiers : IEquatable<ExtendedModifiers>
 {
     internal static readonly ConditionalWeakTable<PlayerModifiers, ExtendedModifiers> ExtendedModifiersTable = new();
     internal readonly PlayerModifiers Modifiers;

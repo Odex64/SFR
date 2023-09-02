@@ -144,7 +144,12 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
             return;
         }
 
-        if (_isCharging)
+        if (player.LayingOnGround)
+        {
+            _chargedTimer = 0f;
+            _isCharging = false;
+        }
+        else if (_isCharging)
         {
             if (player.VirtualKeyboard.PressingKey(4, true))
             {

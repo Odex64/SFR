@@ -96,7 +96,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
 
     public override void UpdateObject(float ms)
     {
-        //Tripwire code
+        // Tripwire code
         if (GameOwner != GameOwnerEnum.Client && _status >= 2)
         {
             Vector2 theVector = new(1, 0);
@@ -104,7 +104,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             if (num != -1f)
             {
                 num += 16f;
-                var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, num, LazerRaycastCollision, _ => true);
+                var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, num, LazerRayCastCollision, _ => true);
                 if (rayCastResult.EndFixture != null)
                 {
                     var objectData = Read(rayCastResult.EndFixture);
@@ -116,7 +116,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             }
         }
 
-        //Sticky code
+        // Sticky code
         if (_stickied)
         {
             if (_stickiedObject is { RemovalInitiated: false })
@@ -143,7 +143,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             }
         }
 
-        //Mine code
+        // Mine code
         if (_status <= 1)
         {
             _armTimer -= ms;
@@ -236,7 +236,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
         if (GameOwner != GameOwnerEnum.Client)
         {
             Vector2 vec = new(10, 0);
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 18; i++)
             {
                 var dir = vec.GetRotatedVector(-GetAngle() + Constants.Random.NextFloat(-0.25f, 0.25f));
                 var projectile = GameWorld.SpawnProjectile(61, GetWorldPosition(), dir, BodyID);
@@ -301,7 +301,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             if (angle != -1f)
             {
                 angle += 16f;
-                var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, angle, LazerRaycastCollision, _ => true);
+                var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, angle, LazerRayCastCollision, _ => true);
                 GameWorld.DrawLazer(spriteBatch, _isTripped || (_blink && _status < 2), rayCastResult.StartPosition, rayCastResult.EndPosition, rayCastResult.Direction);
                 if (rayCastResult.EndFixture != null)
                 {
@@ -315,7 +315,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
         }
     }
 
-    private bool LazerRaycastCollision(Fixture fixture)
+    private bool LazerRayCastCollision(Fixture fixture)
     {
         if (!fixture.IsCloud())
         {

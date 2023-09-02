@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Windows.Forms;
 using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.GUI;
+using SFD.MapEditor;
 using SFD.MenuControls;
 using SFD.Objects;
 using SFD.UserProgression;
@@ -496,10 +498,41 @@ internal class ExtendedTeam
 
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(Server), nameof(Server.GetTeamStatus))]
-    private static IEnumerable<CodeInstruction> AdditionTeamStatus(IEnumerable<CodeInstruction> instructions)
+    private static IEnumerable<CodeInstruction> AdditionalTeamStatus(IEnumerable<CodeInstruction> instructions)
     {
         var teamsCount = instructions.ElementAt(15);
         teamsCount.opcode = OpCodes.Ldc_I4_7;
+
+        return instructions;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SFDMapTestOptions.GameUserGUI), "Init")]
+    private static bool AddAdditionalTeamsInTestOptions(SFDMapTestOptions.GameUserGUI __instance)
+    {
+        __instance.UserTeam.DropDownStyle = ComboBoxStyle.DropDownList;
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(null));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Independent));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team1));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team2));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team3));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team4));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem((Team)5));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem((Team)6));
+        __instance.SelectTeam(EditorMapTestData.Instance.TestUsers[__instance.Index].Team);
+        __instance.UserTeam.SelectedIndexChanged += __instance.UserTeam_SelectedIndexChanged;
+        __instance.UpdateNameLabel();
+        __instance.UpdatePreviewPicture();
+
+        return false;
+    }
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(GameInfo), nameof(GameInfo.HandleCommand), typeof(ProcessCommandArgs))]
+    private static IEnumerable<CodeInstruction> AdditionalTeamCommands(IEnumerable<CodeInstruction> instructions)
+    {
+        var teamsCount = instructions.ElementAt(4175);
+        teamsCount.opcode = OpCodes.Ldc_I4_6;
 
         return instructions;
     }
@@ -515,15 +548,22 @@ internal class ExtendedTeam
 
         var eventDelegate = (MulticastDelegate)typeof(LobbySlotTeam).GetField(LobbySlotValueChangedEvent.Name, BindingFlags.Instance | BindingFlags.Public)?.GetValue(__instance);
 
-        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance, new MenuItemButton(LanguageHelper.GetText("team.independent"), __instance.independent), new MenuItemButton(LanguageHelper.GetText("team.1"), __instance.team1), new MenuItemButton(LanguageHelper.GetText("team.2"), __instance.team2), new MenuItemButton(LanguageHelper.GetText("team.3"), __instance.team3), new MenuItemButton(LanguageHelper.GetText("team.4"), __instance.team4), new MenuItemButton("Team 5", _ =>
-        {
-            __instance.SetValue(5);
-            InvokeTeamDelegates(eventDelegate, __instance, 5);
-        }), new MenuItemButton("Team 6", _ =>
-        {
-            __instance.SetValue(6);
-            InvokeTeamDelegates(eventDelegate, __instance, 6);
-        }));
+        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance,
+            new MenuItemButton(LanguageHelper.GetText("team.independent"), __instance.independent),
+            new MenuItemButton(LanguageHelper.GetText("team.1"), __instance.team1),
+            new MenuItemButton(LanguageHelper.GetText("team.2"), __instance.team2),
+            new MenuItemButton(LanguageHelper.GetText("team.3"), __instance.team3),
+            new MenuItemButton(LanguageHelper.GetText("team.4"), __instance.team4),
+            new MenuItemButton("Team 5", _ =>
+            {
+                __instance.SetValue(5);
+                InvokeTeamDelegates(eventDelegate, __instance, 5);
+            }),
+            new MenuItemButton("Team 6", _ =>
+            {
+                __instance.SetValue(6);
+                InvokeTeamDelegates(eventDelegate, __instance, 6);
+            }));
 
         __instance.ParentPanel.OpenSubPanel(lobbySlotDropdownPanel);
         return false;
