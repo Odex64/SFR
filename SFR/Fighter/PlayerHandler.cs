@@ -259,7 +259,7 @@ internal static class PlayerHandler
         var extendedModifiers = __instance.m_modifiers.GetExtension();
         if (extendedModifiers.JumpHeightModifier != 1f)
         {
-            float jumpForce = 7.55f * __instance.m_modifiers.GetExtension().JumpHeightModifier;
+            float jumpForce = 7.55f * extendedModifiers.JumpHeightModifier;
             __instance.Jump(jumpForce);
             return false;
         }
