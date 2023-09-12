@@ -10,7 +10,7 @@ internal class AdrenalineBoost : PItem
 {
     internal AdrenalineBoost()
     {
-        var itemProperties = new PItemProperties(103, "Adrenaline_Boost", "ItemAdrenalineBoost", false, WeaponCategory.Supply)
+        var itemProperties = new PItemProperties(103, "AdrenalineBoost", "ItemAdrenalineBoost", false, WeaponCategory.Supply)
         {
             PickupSoundID = "GetSlomo",
             ActivateSoundID = ""

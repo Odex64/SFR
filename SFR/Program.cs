@@ -64,7 +64,7 @@ internal static class Program
             Console.SetCursorPosition("Start SFD or SFD: ".Length, Console.CursorTop - 3);
             var key = Console.ReadKey().Key;
             Console.SetCursorPosition(0, Console.CursorTop + 4);
-            if (key == ConsoleKey.D2)
+            if (key is ConsoleKey.D2 or ConsoleKey.NumPad2)
             {
                 string gameFile = Path.Combine(GameDirectory, "Superfighters Deluxe.exe");
                 if (!File.Exists(gameFile))

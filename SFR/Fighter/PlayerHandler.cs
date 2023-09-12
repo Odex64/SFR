@@ -9,6 +9,7 @@ using SFR.Fighter.Jetpacks;
 using SFR.Helper;
 using SFR.Objects;
 using SFR.Weapons.Rifles;
+using Constants = SFR.Misc.Constants;
 using Math = System.Math;
 
 namespace SFR.Fighter;
@@ -277,7 +278,7 @@ internal static class PlayerHandler
         }
 
         var extendedModifiers = __instance.m_modifiers.GetExtension();
-        if (extendedModifiers.BulletDodgeChance > 0 && Misc.Constants.Random.NextDouble() < extendedModifiers.BulletDodgeChance)
+        if (extendedModifiers.BulletDodgeChance > 0 && Constants.Random.NextDouble() < extendedModifiers.BulletDodgeChance)
         {
             __result = false;
         }
@@ -374,13 +375,13 @@ internal static class PlayerHandler
                 }
 
                 vector2 = Camera.ConvertWorldToScreen(vector2);
-                vector2.X -= num2 * (Constants.DistanceArrow.Width + 10) / 2;
-                vector2.Y += num3 * (Constants.DistanceArrow.Height + 10) / 2;
+                vector2.X -= num2 * (SFD.Constants.DistanceArrow.Width + 10) / 2;
+                vector2.Y += num3 * (SFD.Constants.DistanceArrow.Height + 10) / 2;
                 float num4 = 0f;
                 Texture2D texture2D;
                 if (num2 != 0 && num3 != 0)
                 {
-                    texture2D = Constants.DistanceArrowD;
+                    texture2D = SFD.Constants.DistanceArrowD;
                     if (num2 == 1)
                     {
                         if (num3 == 1)
@@ -403,7 +404,7 @@ internal static class PlayerHandler
                 }
                 else
                 {
-                    texture2D = Constants.DistanceArrow;
+                    texture2D = SFD.Constants.DistanceArrow;
                     if (num2 == 1)
                     {
                         num4 = 0f;
@@ -425,23 +426,23 @@ internal static class PlayerHandler
                 var vector3 = new Vector2(texture2D.Width / 2f, texture2D.Height / 2f);
                 float num5 = Math.Max(Camera.Zoom * 0.5f, 1f);
                 __instance.m_spriteBatch.Draw(texture2D, vector2, null, Color.Gray, num4, vector3, num5, SpriteEffects.None, 0f);
-                vector2.X -= num2 * (Constants.DistanceArrow.Width + 10) * num5;
-                vector2.Y += num3 * (Constants.DistanceArrow.Height + 10) * num5;
+                vector2.X -= num2 * (SFD.Constants.DistanceArrow.Width + 10) * num5;
+                vector2.Y += num3 * (SFD.Constants.DistanceArrow.Height + 10) * num5;
                 string text = $"{__instance.Name} ({num})";
-                if (Constants.Font1Outline != null)
+                if (SFD.Constants.Font1Outline != null)
                 {
                     var texture2D2 = __instance.CurrentTeam switch
                     {
-                        Team.Team1 => Constants.TeamIcon1,
-                        Team.Team2 => Constants.TeamIcon2,
-                        Team.Team3 => Constants.TeamIcon3,
-                        Team.Team4 => Constants.TeamIcon4,
-                        (Team)5 => Misc.Constants.TeamIcon5,
-                        (Team)6 => Misc.Constants.TeamIcon6,
+                        Team.Team1 => SFD.Constants.TeamIcon1,
+                        Team.Team2 => SFD.Constants.TeamIcon2,
+                        Team.Team3 => SFD.Constants.TeamIcon3,
+                        Team.Team4 => SFD.Constants.TeamIcon4,
+                        (Team)5 => Constants.TeamIcon5,
+                        (Team)6 => Constants.TeamIcon6,
                         _ => null
                     };
 
-                    var vector4 = Constants.MeasureString(Constants.Font1Outline, text);
+                    var vector4 = SFD.Constants.MeasureString(SFD.Constants.Font1Outline, text);
                     float num6 = Camera.ConvertWorldToScreenX(boundsArrows.Left);
                     float num7 = Camera.ConvertWorldToScreenX(boundsArrows.Right);
                     if (texture2D2 != null)
@@ -466,7 +467,7 @@ internal static class PlayerHandler
                     }
 
                     float num8 = vector2.X - vector4.X * 0.5f * (num5 * 0.5f);
-                    Constants.DrawString(__instance.m_spriteBatch, Constants.Font1Outline, text, vector2, __instance.CurrentTeamColor, 0f, vector4 * 0.5f, num5 * 0.5f, SpriteEffects.None, 0);
+                    SFD.Constants.DrawString(__instance.m_spriteBatch, SFD.Constants.Font1Outline, text, vector2, __instance.CurrentTeamColor, 0f, vector4 * 0.5f, num5 * 0.5f, SpriteEffects.None, 0);
                     if (texture2D2 != null)
                     {
                         __instance.m_spriteBatch.Draw(texture2D2, new Vector2(num8 - texture2D2.Width * num5, vector2.Y - vector4.Y * 0.25f * num5), null, Color.Gray, 0f, Vector2.Zero, num5, SpriteEffects.None, 1f);

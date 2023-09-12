@@ -2,16 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Emit;
+using System.Windows.Forms;
 using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
+using SFD.DedicatedServer;
 using SFD.GUI;
+using SFD.MapEditor;
 using SFD.MenuControls;
 using SFD.Objects;
 using SFD.UserProgression;
 using SFD.Weapons;
 using SFDGameScriptInterface;
 using Color = Microsoft.Xna.Framework.Color;
+using MenuItem = System.Windows.Forms.MenuItem;
+using Point = System.Drawing.Point;
 
 namespace SFR.Fighter;
 
@@ -55,7 +61,7 @@ internal class ExtendedTeam
             var gameUserSpawn = gameUserSpawns[l];
             var gameSlot = gameUserSpawn.GameSlot;
             var gameUser4 = gameUserSpawn.GameUser;
-            if (gameUser4 != null && !gameUser4.JoinedAsSpectator)
+            if (gameUser4 is { JoinedAsSpectator: false })
             {
                 ObjectPlayerSpawnMarker.SpawnPackageData spawnPackageData = null;
                 List<ObjectPlayerSpawnMarker.SpawnPackageData> list3 = null;
@@ -79,7 +85,7 @@ internal class ExtendedTeam
                         break;
                 }
 
-                if (list3 != null && list3.Count > 0)
+                if (list3 is { Count: > 0 })
                 {
                     int num = Constants.RANDOM.Next(0, list3.Count);
                     spawnPackageData = list3[num];
@@ -94,21 +100,23 @@ internal class ExtendedTeam
             }
         }
 
-        dictionary = new Dictionary<Team, int>();
-        dictionary.Add(Team.Independent, 1);
-        dictionary.Add(Team.Team1, 1);
-        dictionary.Add(Team.Team2, 1);
-        dictionary.Add(Team.Team3, 1);
-        dictionary.Add(Team.Team4, 1);
-        dictionary.Add((Team)5, 1);
-        dictionary.Add((Team)6, 1);
+        dictionary = new Dictionary<Team, int>
+        {
+            { Team.Independent, 1 },
+            { Team.Team1, 1 },
+            { Team.Team2, 1 },
+            { Team.Team3, 1 },
+            { Team.Team4, 1 },
+            { (Team)5, 1 },
+            { (Team)6, 1 }
+        };
         int i;
         for (i = 0; i < gameUserSpawns.Count; i++)
         {
             var gameUserSpawn2 = gameUserSpawns[i];
             var gameSlot2 = gameUserSpawn2.GameSlot;
             var gameUser2 = gameUserSpawn2.GameUser;
-            if (gameUser2 != null && !gameUser2.JoinedAsSpectator && !dictionary2.ContainsKey(gameSlot2.GameSlotIndex))
+            if (gameUser2 is { JoinedAsSpectator: false } && !dictionary2.ContainsKey(gameSlot2.GameSlotIndex))
             {
                 List<ObjectPlayerSpawnMarker.SpawnPackageData> list4 = null;
                 var gameSlotTeam = gameSlot2.CurrentTeam == (Team)(-1) ? Team.Independent : gameSlot2.CurrentTeam;
@@ -171,13 +179,12 @@ internal class ExtendedTeam
         {
             var gameSlot3 = gameUserSpawn3.GameSlot;
             var gameUser3 = gameUserSpawn3.GameUser;
-            if (gameUser3 != null && !gameUser3.JoinedAsSpectator)
+            if (gameUser3 is { JoinedAsSpectator: false })
             {
                 gameUser3.AFKHasMadeAction = false;
                 gameUser3.AFKTotalTime = 0f;
                 gameUser3.AFKWarningShown = false;
-                ObjectPlayerSpawnMarker.SpawnPackageData spawnPackageData3 = null;
-                if (dictionary2.TryGetValue(gameSlot3.GameSlotIndex, out spawnPackageData3))
+                if (dictionary2.TryGetValue(gameSlot3.GameSlotIndex, out var spawnPackageData3))
                 {
                     var team = gameSlot3.CurrentTeam == (Team)(-1) ? Team.Independent : gameSlot3.CurrentTeam;
                     var playerSpawnPoint = __instance.GameWorld.GetPlayerSpawnPoint(spawnPackageData3.WorldPosition);
@@ -349,7 +356,7 @@ internal class ExtendedTeam
                             }
                         }
 
-                        if (spawnPackageData3.OwnerPlayerSpawnMarker != null && spawnPackageData3.OwnerPlayerSpawnMarker.SpawnedUserIdentifier == 0)
+                        if (spawnPackageData3.OwnerPlayerSpawnMarker is { SpawnedUserIdentifier: 0 })
                         {
                             spawnPackageData3.OwnerPlayerSpawnMarker.SpawnedUserIdentifier = gameUser3.UserIdentifier;
                         }
@@ -493,6 +500,294 @@ internal class ExtendedTeam
         return false;
     }
 
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(Server), nameof(Server.GetTeamStatus))]
+    private static IEnumerable<CodeInstruction> AdditionalTeamStatus(IEnumerable<CodeInstruction> instructions)
+    {
+        var teamsCount = instructions.ElementAt(15);
+        teamsCount.opcode = OpCodes.Ldc_I4_7;
+
+        return instructions;
+    }
+    
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(ObjectPlayerSpawnTrigger), nameof(ObjectPlayerSpawnTrigger.GetSpawnTeam))]
+    private static IEnumerable<CodeInstruction> AdditionalPlayerSpawnTeam(IEnumerable<CodeInstruction> instructions)
+    {
+        var teamsCount = instructions.ElementAt(11);
+        teamsCount.opcode = OpCodes.Ldc_I4_6;
+
+        return instructions;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Constants), nameof(Constants.GetTeamColorString), typeof(int))]
+    private static bool GetAdditionalTeamColorString(int team, ref string __result)
+    {
+        __result = team switch
+        {
+            1 => LanguageHelper.GetText("team.1.color"),
+            2 => LanguageHelper.GetText("team.2.color"),
+            3 => LanguageHelper.GetText("team.3.color"),
+            4 => LanguageHelper.GetText("team.4.color"),
+            5 => "Purple",
+            6 => "Cyan",
+            _ => string.Empty
+        };
+
+        return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SFDDedicatedServerForm), nameof(SFDDedicatedServerForm.listViewGameSlots_menuItem_Click))]
+    private static bool DedicatedServerMenuClick(object sender, EventArgs e, SFDDedicatedServerForm __instance)
+    {
+        if (sender != null && __instance.m_gameSlotsContextMenu.SelectedItems != null && sender is MenuItem { Tag: string } menuItem)
+        {
+            bool flag = false;
+            string text = "\n" + string.Join(", ", __instance.m_gameSlotsContextMenu.SelectedItems.Select(x => x.GameSlot.GameUser == null ? "?" : x.GameSlot.GameUser.GetProfileName()));
+            foreach (var gameSlotListItem in __instance.m_gameSlotsContextMenu.SelectedItems)
+            {
+                int gameSlotIndex = gameSlotListItem.GameSlot.GameSlotIndex;
+                switch ((string)menuItem.Tag)
+                {
+                    case "KICK":
+                        if (gameSlotListItem.GameSlot.IsOccupied)
+                        {
+                            if (!flag)
+                            {
+                                flag = true;
+                                if (MessageBox.Show(LanguageHelper.GetText("dedicatedserver.menu.kick.confirm.question") + text, LanguageHelper.GetText("dedicatedserver.menu.kick.confirm.title"), MessageBoxButtons.YesNo) != DialogResult.Yes)
+                                {
+                                    return false;
+                                }
+                            }
+
+                            if (gameSlotListItem.GameSlot.GameUser != null)
+                            {
+                                __instance.SendChatMessage("/KICK_USER " + gameSlotListItem.GameSlot.GameUser.UserIdentifier);
+                            }
+                        }
+
+                        break;
+                    case "BAN":
+                        if (gameSlotListItem.GameSlot.IsOccupied)
+                        {
+                            if (!flag)
+                            {
+                                flag = true;
+                                if (MessageBox.Show(LanguageHelper.GetText("dedicatedserver.menu.ban.confirm.question") + text, LanguageHelper.GetText("dedicatedserver.menu.ban.confirm.title"), MessageBoxButtons.YesNo) != DialogResult.Yes)
+                                {
+                                    return false;
+                                }
+                            }
+
+                            if (gameSlotListItem.GameSlot.GameUser != null)
+                            {
+                                __instance.SendChatMessage("/BAN_USER " + gameSlotListItem.GameSlot.GameUser.UserIdentifier);
+                            }
+                        }
+
+                        break;
+                    case "OPEN":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.State, 0)));
+                        break;
+                    case "CLOSE":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.State, 1)));
+                        break;
+                    case "BOTEASY":
+                        if (!gameSlotListItem.GameSlot.IsOccupied || gameSlotListItem.GameSlot.IsOccupiedByBot)
+                        {
+                            DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.State, 4)));
+                        }
+
+                        break;
+                    case "BOTNORMAL":
+                        if (!gameSlotListItem.GameSlot.IsOccupied || gameSlotListItem.GameSlot.IsOccupiedByBot)
+                        {
+                            DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.State, 2)));
+                        }
+
+                        break;
+                    case "BOTHARD":
+                        if (!gameSlotListItem.GameSlot.IsOccupied || gameSlotListItem.GameSlot.IsOccupiedByBot)
+                        {
+                            DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.State, 5)));
+                        }
+
+                        break;
+                    case "BOTEXPERT":
+                        if (!gameSlotListItem.GameSlot.IsOccupied || gameSlotListItem.GameSlot.IsOccupiedByBot)
+                        {
+                            DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.State, 6)));
+                        }
+
+                        break;
+                    case "TEAM_0":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.Team, 0)));
+                        break;
+                    case "TEAM_1":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.Team, 1)));
+                        break;
+                    case "TEAM_2":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.Team, 2)));
+                        break;
+                    case "TEAM_3":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.Team, 3)));
+                        break;
+                    case "TEAM_4":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.Team, 4)));
+                        break;
+                    case "TEAM_5":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.Team, 5)));
+                        break;
+                    case "TEAM_6":
+                        DSCommand.Execute(new DSCommand.ChangeGameSlot(new NetMessage.GameInfo.GameSlotChange.Data(gameSlotIndex, NetMessage.GameInfo.GameSlotChange.DataChangeType.Team, 6)));
+                        break;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SFDDedicatedServerForm), nameof(SFDDedicatedServerForm.listViewGameSlots_MouseClick))]
+    private static bool DedicatedServerMenu(object sender, MouseEventArgs e, SFDDedicatedServerForm __instance)
+    {
+        if (e.Button == MouseButtons.Right)
+        {
+            __instance.m_gameSlotsContextMenu.CleanContextMenu();
+            if (__instance.m_gameSlotsContextMenu.SetSelectedItems(e) > 0)
+            {
+                bool flag = __instance.m_gameSlotsContextMenu.SelectedItems.Any(x => !x.GameSlot.IsOpen);
+                bool flag2 = __instance.m_gameSlotsContextMenu.SelectedItems.Any(x => !x.GameSlot.IsClosed);
+                bool flag3 = __instance.m_gameSlotsContextMenu.SelectedItems.Any(x => !x.GameSlot.IsOccupied || x.GameSlot.IsOccupiedByBot);
+                bool flag4 = __instance.m_gameSlotsContextMenu.SelectedItems.Any(x => x.GameSlot.IsOccupiedByUser);
+                __instance.m_gameSlotsContextMenu.MenuItems = new List<MenuItem>();
+
+                MenuItem menuItem;
+                if (flag)
+                {
+                    menuItem = new MenuItem(LanguageHelper.GetText("dedicatedserver.menu.gameslot.open"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "OPEN";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                }
+
+                if (flag2)
+                {
+                    menuItem = new MenuItem(LanguageHelper.GetText("dedicatedserver.menu.gameslot.close"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "CLOSE";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                }
+
+                if (flag3)
+                {
+                    menuItem = new MenuItem(LanguageHelper.GetText("menu.lobby.slot.bot.easy"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "BOTEASY";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                    menuItem = new MenuItem(LanguageHelper.GetText("menu.lobby.slot.bot.normal"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "BOTNORMAL";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                    menuItem = new MenuItem(LanguageHelper.GetText("menu.lobby.slot.bot.hard"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "BOTHARD";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                    menuItem = new MenuItem(LanguageHelper.GetText("menu.lobby.slot.bot.expert"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "BOTEXPERT";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                }
+
+                if (flag4)
+                {
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(new MenuItem("-"));
+                    menuItem = new MenuItem(LanguageHelper.GetText("dedicatedserver.menu.kick"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "KICK";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                    menuItem = new MenuItem(LanguageHelper.GetText("dedicatedserver.menu.ban"), __instance.listViewGameSlots_menuItem_Click);
+                    menuItem.Tag = "BAN";
+                    menuItem.Enabled = true;
+                    __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                }
+
+                menuItem = new MenuItem("Team", new List<MenuItem>
+                {
+                    new(GameSlotListItem.CreateTeamString(Team.Independent), __instance.listViewGameSlots_menuItem_Click)
+                    {
+                        Tag = "TEAM_0"
+                    },
+                    new(GameSlotListItem.CreateTeamString(Team.Team1), __instance.listViewGameSlots_menuItem_Click)
+                    {
+                        Tag = "TEAM_1"
+                    },
+                    new(GameSlotListItem.CreateTeamString(Team.Team2), __instance.listViewGameSlots_menuItem_Click)
+                    {
+                        Tag = "TEAM_2"
+                    },
+                    new(GameSlotListItem.CreateTeamString(Team.Team3), __instance.listViewGameSlots_menuItem_Click)
+                    {
+                        Tag = "TEAM_3"
+                    },
+                    new(GameSlotListItem.CreateTeamString(Team.Team4), __instance.listViewGameSlots_menuItem_Click)
+                    {
+                        Tag = "TEAM_4"
+                    },
+                    new(GameSlotListItem.CreateTeamString((Team)5), __instance.listViewGameSlots_menuItem_Click)
+                    {
+                        Tag = "TEAM_5"
+                    },
+                    new(GameSlotListItem.CreateTeamString((Team)6), __instance.listViewGameSlots_menuItem_Click)
+                    {
+                        Tag = "TEAM_6"
+                    }
+                }.ToArray());
+                __instance.m_gameSlotsContextMenu.MenuItems.Add(new MenuItem("-"));
+                __instance.m_gameSlotsContextMenu.MenuItems.Add(menuItem);
+                __instance.m_gameSlotsContextMenu.ContextMenu = new ContextMenu(__instance.m_gameSlotsContextMenu.MenuItems.ToArray());
+                __instance.m_gameSlotsContextMenu.ContextMenu.Show(__instance.listViewGameSlots, new Point(e.X, e.Y));
+            }
+        }
+
+        return false;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(SFDMapTestOptions.GameUserGUI), nameof(SFDMapTestOptions.GameUserGUI.Init))]
+    private static bool AddAdditionalTeamsInTestOptions(SFDMapTestOptions.GameUserGUI __instance)
+    {
+        __instance.UserTeam.DropDownStyle = ComboBoxStyle.DropDownList;
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(null));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Independent));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team1));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team2));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team3));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem(Team.Team4));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem((Team)5));
+        __instance.UserTeam.Items.Add(new SFDMapTestOptions.GameUserGUI.TeamItem((Team)6));
+        __instance.SelectTeam(EditorMapTestData.Instance.TestUsers[__instance.Index].Team);
+        __instance.UserTeam.SelectedIndexChanged += __instance.UserTeam_SelectedIndexChanged;
+        __instance.UpdateNameLabel();
+        __instance.UpdatePreviewPicture();
+
+        return false;
+    }
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(GameInfo), nameof(GameInfo.HandleCommand), typeof(ProcessCommandArgs))]
+    private static IEnumerable<CodeInstruction> AdditionalTeamCommands(IEnumerable<CodeInstruction> instructions)
+    {
+        var teamsCount = instructions.ElementAt(4175);
+        teamsCount.opcode = OpCodes.Ldc_I4_6;
+
+        return instructions;
+    }
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(LobbySlotTeam), nameof(LobbySlotTeam.dropdown))]
     private static bool AddAdditionalTeamInDropdown(LobbySlotTeam __instance)
@@ -504,15 +799,22 @@ internal class ExtendedTeam
 
         var eventDelegate = (MulticastDelegate)typeof(LobbySlotTeam).GetField(LobbySlotValueChangedEvent.Name, BindingFlags.Instance | BindingFlags.Public)?.GetValue(__instance);
 
-        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance, new MenuItemButton(LanguageHelper.GetText("team.independent"), __instance.independent), new MenuItemButton(LanguageHelper.GetText("team.1"), __instance.team1), new MenuItemButton(LanguageHelper.GetText("team.2"), __instance.team2), new MenuItemButton(LanguageHelper.GetText("team.3"), __instance.team3), new MenuItemButton(LanguageHelper.GetText("team.4"), __instance.team4), new MenuItemButton("Team 5", _ =>
-        {
-            __instance.SetValue(5);
-            InvokeTeamDelegates(eventDelegate, __instance, 5);
-        }), new MenuItemButton("Team 6", _ =>
-        {
-            __instance.SetValue(6);
-            InvokeTeamDelegates(eventDelegate, __instance, 6);
-        }));
+        var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance,
+            new MenuItemButton(LanguageHelper.GetText("team.independent"), __instance.independent),
+            new MenuItemButton(LanguageHelper.GetText("team.1"), __instance.team1),
+            new MenuItemButton(LanguageHelper.GetText("team.2"), __instance.team2),
+            new MenuItemButton(LanguageHelper.GetText("team.3"), __instance.team3),
+            new MenuItemButton(LanguageHelper.GetText("team.4"), __instance.team4),
+            new MenuItemButton("Team 5", _ =>
+            {
+                __instance.SetValue(5);
+                InvokeTeamDelegates(eventDelegate, __instance, 5);
+            }),
+            new MenuItemButton("Team 6", _ =>
+            {
+                __instance.SetValue(6);
+                InvokeTeamDelegates(eventDelegate, __instance, 6);
+            }));
 
         __instance.ParentPanel.OpenSubPanel(lobbySlotDropdownPanel);
         return false;
@@ -543,11 +845,11 @@ internal class ExtendedTeam
         switch (team)
         {
             case 5:
-                __result = Misc.Constants.Team5;
+                __result = Misc.Constants.Team5 * 2;
                 return false;
 
             case 6:
-                __result = Misc.Constants.Team6;
+                __result = Misc.Constants.Team6 * 2;
                 return false;
         }
 

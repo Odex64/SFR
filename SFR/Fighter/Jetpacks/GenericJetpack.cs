@@ -31,7 +31,11 @@ internal abstract class GenericJetpack
     internal virtual void Update(float ms, ExtendedPlayer extendedPlayer)
     {
         var player = extendedPlayer.Player;
-        if (player.InAir && !(player.LedgeGrabbing || player.Climbing || player.Crouching || player.Staggering || player.LayingOnGround || player.Falling || player.IsCaughtByPlayer))
+        if (player.RocketRideProjectileWorldID != 0)
+        {
+            Discard(extendedPlayer);
+        }
+        else if (player.InAir && !(player.Diving || player.LedgeGrabbing || player.Climbing || player.Crouching || player.Staggering || player.LayingOnGround || player.Falling || player.IsCaughtByPlayer))
         {
             AirTime += ms;
         }
