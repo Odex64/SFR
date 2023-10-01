@@ -123,7 +123,7 @@ internal sealed class ObjectHead : ObjectGiblet
             head = null;
         }
 
-        //Get Colors
+        // Get Colors
         Texture2D texture = new(skin?.GraphicsDevice, 16, 16);
         var data = new Color[16 * 16];
         texture.GetData(data);
@@ -136,7 +136,7 @@ internal sealed class ObjectHead : ObjectGiblet
         var headData = new Color[16 * 16];
         head?.GetData(headData);
 
-        //Draw
+        // Draw
         for (int i = 0; i < data.Length; i++)
         {
             var color = Color.Transparent;

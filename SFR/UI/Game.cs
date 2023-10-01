@@ -14,7 +14,7 @@ internal static class Game
     {
         foreach (var instruction in instructions)
         {
-            if (instruction.operand is null)
+            if (instruction.operand == null)
             {
                 continue;
             }

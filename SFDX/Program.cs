@@ -6,28 +6,30 @@ namespace SFDX;
 
 internal static class Program
 {
-    private const string Data = @"C:\Program Files (x86)\Steam\steamapps\common\Superfighters Deluxe\SFR\Content\Data";
+    private const string Data = @"C:\Users\odex6\Desktop\Modding\SFR\SFDX\Data";
     private static readonly string[] TargetFolders = { @"Images\Objects", @"Images\Tiles" };
     private static readonly string[] OriginalTiles = { "objects.sfdx", "tiles.sfdx", "tilesBG.sfdx", "tilesE.sfdx", "tilesFarBG.sfdx", "tilesS.sfdx" };
 
     public static void Main(string[] args)
     {
-        string data = string.Empty;
+        File.WriteAllText(Path.Combine(Data, "sorted.sfdx"), SortTiles(File.ReadAllText(Path.Combine(Data, "sfr_tilesFarBg.sfdx"))));
 
-        foreach (string file in Directory.GetFiles(Path.Combine(Data, "Tiles"), "*.sfdx", SearchOption.TopDirectoryOnly).Where(d => !OriginalTiles.Contains(Path.GetFileName(d))))
-        {
-            data += File.ReadAllText(file) + "\r\n";
-        }
 
-        SortTiles(data);
+        // string data = string.Empty;
+
+        // foreach (string file in Directory.GetFiles(Data, "*.sfdx", SearchOption.TopDirectoryOnly))
+        // {
+        //     data += File.ReadAllText(file) + "\r\n";
+        // }
+
         // FindMissingTiles(data);
     }
 
-    private static void SortTiles(string data)
+    private static string SortTiles(string data)
     {
         string[] entries = data.Split(new[] { "defaultTile", "\r\nTile" }, StringSplitOptions.RemoveEmptyEntries);
         Array.Sort(entries);
-        string sorted = string.Join("Tile", entries);
+        return string.Join("\r\nTile", entries);
     }
 
     private static void FindMissingTiles(string data)
