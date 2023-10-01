@@ -19,7 +19,6 @@ defaultTile(DefaultTile)
 	type = Static;
 	material.resistance.fire.modifier = 0;
 }
-
 Tile(FarBgBlimp00B)
 {
 	sizeable = N;
@@ -37,10 +36,6 @@ Tile(FarBgBuilding03I){}
 Tile(FarBgBuilding03J){}
 Tile(FarBgBuilding03K){}
 Tile(FarBgBuilding03L){}
-Tile(FarBgMountains01A){}
-Tile(FarBgMountains01B){}
-Tile(FarBgMountains01C){}
-Tile(FarBgMountains01D){}
 Tile(FarBgFog00){}
 Tile(FarBgGradientBlue00A){}
 Tile(FarBgGradientBlue01A){}
@@ -105,6 +100,10 @@ Tile(FarBgLightRadiusYellow00A){}
 Tile(FarBgLightRadiusYellow01A){}
 Tile(FarBgLightRadiusYellow02A){}
 Tile(FarBgLightRadiusYellow03A){}
+Tile(FarBgMountains01A){}
+Tile(FarBgMountains01B){}
+Tile(FarBgMountains01C){}
+Tile(FarBgMountains01D){}
 Tile(FarBgWallDarkBigRound00A){}
 Tile(FarBgWallDarkOutline00A){}
 Tile(FarBgWallDarkPixel00A){}
@@ -168,6 +167,14 @@ defaultTile(DefaultTile)
 {
 	drawCategory = FG;
 }
+Tile(FgDamage00A){ colorPalette = BG; }
+Tile(FgDamage00B){ colorPalette = BG; }
+Tile(FgDamage00C){ colorPalette = BG; }
+Tile(FgDamage00D){ colorPalette = BG; }
+Tile(FgDamage01A){ colorPalette = BG; }
+Tile(FgDamage01B){ colorPalette = BG; }
+Tile(FgDamage01C){ colorPalette = BG; }
+Tile(FgDamage01D){ colorPalette = BG; }
 Tile(FgGradientBlue00A){}
 Tile(FgGradientBlue01A){}
 Tile(FgGradientBlue02A){}
@@ -231,50 +238,6 @@ Tile(FgLightRadiusYellow00A){}
 Tile(FgLightRadiusYellow01A){}
 Tile(FgLightRadiusYellow02A){}
 Tile(FgLightRadiusYellow03A){}
-Tile(TransparentWater00A)
-{
-	isCloud = true;
-	cloudRotation = 0;
-	material = water;
-	sizeable = H;
-	projectileHit = false;
-	fixture()
-	{
-		collisionGroup = none;
-		blockFire = false;
-	}
-	animation(TransparentWater00A)
-	{
-		frameTimes = 100;
-		width = 16;
-		isSynced = true;
-	}
-}
-Tile(TransparentWater00B)
-{
-	material = water;
-	sizeable = D;
-	projectileHit = false;
-	fixture()
-	{
-		collisionGroup = none;
-		blockFire = false;
-	}
-	animation(TransparentWater00B)
-	{
-		frameTimes = 100;
-		width = 16;
-		isSynced = true;
-	}
-}
-Tile(FgDamage00A){ colorPalette = BG; }
-Tile(FgDamage00B){ colorPalette = BG; }
-Tile(FgDamage00C){ colorPalette = BG; }
-Tile(FgDamage00D){ colorPalette = BG; }
-Tile(FgDamage01A){ colorPalette = BG; }
-Tile(FgDamage01B){ colorPalette = BG; }
-Tile(FgDamage01C){ colorPalette = BG; }
-Tile(FgDamage01D){ colorPalette = BG; }
 Tile(FgWallDarkBigRound00A){ colorPalette = BG; }
 Tile(FgWallDarkOutline00A){ colorPalette = BG; }
 Tile(FgWallDarkPixel00A){ colorPalette = BG; }
@@ -332,3 +295,39 @@ Tile(FgWallMidShadeOutline00C){ colorPalette = BG; }
 Tile(FgWallMidShadeOutline00E){ colorPalette = BG; }
 Tile(FgWallMidShadeOutline00F){ colorPalette = BG; }
 Tile(FgWallMidShadeOutline00G){ colorPalette = BG; }
+Tile(TransparentWater00A)
+{
+	isCloud = true;
+	cloudRotation = 0;
+	material = water;
+	sizeable = H;
+	projectileHit = false;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+	animation(TransparentWater00A)
+	{
+		frameTimes = 100;
+		width = 16;
+		isSynced = true;
+	}
+}
+Tile(TransparentWater00B)
+{
+	material = water;
+	sizeable = D;
+	projectileHit = false;
+	fixture()
+	{
+		collisionGroup = none;
+		blockFire = false;
+	}
+	animation(TransparentWater00B)
+	{
+		frameTimes = 100;
+		width = 16;
+		isSynced = true;
+	}
+}

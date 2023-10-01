@@ -23,45 +23,146 @@ defaultTile(DefaultTile)
 	punchable = true;
 	doTakeDamage.fire = false;
 }
-Tile(StreetLamp01)
+Tile(AtlasStatueOld_D)
 {
+	drawCategory = SLD;
+	material = Stone;
 	type = Static;
-	doTakeDamage.fire = true;
-	life = 1;
-	material = glass;
-	Material.Resistance.Impact.Threshold = 20;
-	Material.BlockExplosions = false;
-	material.destroySound = DestroyGlass;
-	ImpactSound = GlassShard;
+	projectileHit = false;
+	material.blockExplosions = false;
+	clientSync.ECODBPI = true;
 	fixture()
 	{
-		circle = (0, 0, 8);
+		collisionGroup = none;
+		blockFire = false;
+	}
+}
+Tile(AtlasStatueOld00)
+{
+	drawCategory = SLD;
+	material = Stone;
+	type = Static;
+	life = 125;
+	material.blockExplosions = true;
+	clientSync.ECODBPI = true;
+	fixture()
+	{
+		collisionGroup = static_ground;
+		blockFire = true;
+		collisionPoints = (-20, -4), (-16, -8), (16, -8), (20, -4), (16, 4), (-16, 4);
+	}
+	fixture(a)
+	{
+		collisionGroup = static_ground;
+		blockFire = true;
+		circle = (0, 16, 20);
+	}
+}
+Tile(AtlasStatueOldGlobe)
+{
+	material = Stone;
+	type = Dynamic;
+	clientSync.ECODBPI = true;
+	fixture()
+	{
+		collisionGroup = dynamics_g1;
+		circle = (0, 0, 20);
+		mass = 300 kg;
 		blockFire = true;
 	}
 }
-Tile(StreetLamp01_D)
+Tile(Beachball00)
 {
-	type = Static;
-	doTakeDamage.fire = true;
-	material = glass;
-	Material.BlockExplosions = false;
-	material.destroySound = DestroyGlass;
+	life=10;
+	absorbProjectile = false;
+	projectileHit = true;
+	material = balloon;
+	material.blockExplosions = false;
+	material.hit.melee.sound = Baseball;
+	material.hit.melee.effect = Smack;
+	material.resistance.impact.modifier = 0.0;
+	material.resistance.impact.threshold = 9;
+	material.restitution = 4;
+	gibpressure.total = 250 kg;
+	gibpressure.spike = 1600 kg;
+	kickable = true;
+	punchable = true;
+	impactSound = Baseball;
+	type = Dynamic;
 	fixture()
 	{
-		circle = (0, 0, 8);
-		collisionGroup = none;
+		mass = 3 kg;
+		collisionGroup = dynamics_thrown;
+		circle = (0.0, 0.0, 8);
+		blockFire = false;
 	}
 }
-Tile(TrafficCone)
+Tile(Beachball00_D)
 {
-	life = 50;
-	material.flammable = true;
+	life=15;
 	absorbProjectile = false;
-	material.destroySound = DestroySmall;
+	projectileHit = true;
+	material = cloth;
+	material.blockExplosions = false;
+	material.hit.melee.sound = Baseball;
+	material.hit.melee.effect = Smack;
+	material.resistance.impact.modifier = 0.0;
+	material.restitution = 1;
+	gibpressure.total = 250 kg;
+	gibpressure.spike = 1600 kg;
+	kickable = true;
+	punchable = true;
+	impactSound = Baseball;
+	type = Dynamic;
 	fixture()
 	{
+		mass = 3 kg;
+		collisionGroup = dynamics_thrown;
+	}
+}
+Tile(Brain00)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Cannon00)
+{
+	material = metal;
+	life = 400;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = false;
+	doTakeDamage.fire = false;
+	fixture()
+	{
+		mass = 200 kg;
 		collisionGroup = dynamics_g2;
-		collisionPoints = (0, 6), (-5, -6), (5, -6);
+	}
+}
+Tile(CannonHolder00)
+{
+	material = wood;
+	life = 200;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = false;
+	doTakeDamage.fire = false;
+	fixture()
+	{
+		mass = 100 kg;
+		collisionGroup = dynamics_g2;
 	}
 }
 Tile(DinoBone00A)
@@ -241,190 +342,29 @@ Tile(DinoSpine00C)
 		mass = 20 kg;
 	}
 }
-Tile(AtlasStatueOld00)
+Tile(Froggy00)
 {
-	drawCategory = SLD;
-	material = Stone;
-	type = Static;
-	life = 125;
-	material.blockExplosions = true;
-	clientSync.ECODBPI = true;
-	fixture()
-	{
-		collisionGroup = static_ground;
-		blockFire = true;
-		collisionPoints = (-20, -4), (-16, -8), (16, -8), (20, -4), (16, 4), (-16, 4);
-	}
-	fixture(a)
-	{
-		collisionGroup = static_ground;
-		blockFire = true;
-		circle = (0, 16, 20);
-	}
-}
-Tile(AtlasStatueOld_D)
-{
-	drawCategory = SLD;
-	material = Stone;
-	type = Static;
-	projectileHit = false;
-	material.blockExplosions = false;
-	clientSync.ECODBPI = true;
-	fixture()
-	{
-		collisionGroup = none;
-		blockFire = false;
-	}
-}
-Tile(AtlasStatueOldGlobe)
-{
-	material = Stone;
-	type = Dynamic;
-	clientSync.ECODBPI = true;
-	fixture()
-	{
-		collisionGroup = dynamics_g1;
-		circle = (0, 0, 20);
-		mass = 300 kg;
-		blockFire = true;
-	}
-}
-Tile(PirateLifeboat00)
-{
-	material = wood;
-	material.flammable = true;
-	drawCategory = FG;
-	kickableTop = false;
-	fixture()
-	{
-		collisionPoints = (-35, 0), (35, 0), (35, 4), (-35, 4);
-	}
-	fixture(hull)
-	{
-		collisionGroup = dynamics_g1;
-		collisionPoints = (-8, -12), (8, -12), (28, -6), (35, 0), (-35, 0), (-28, -6);
-	}
-	fixture(l)
-	{
-		collisionGroup = dynamics_g1;
-		collisionPoints = (-35, 4), (-31, 4), (-31, 12), (-35, 12);
-	}
-	fixture(r)
-	{
-		collisionGroup = dynamics_g1;
-		collisionPoints = (31, 4), (35, 4), (35, 12), (31, 12);
-	}
-}
-Tile(Cannon00)
-{
-	material = metal;
-	life = 400;
-	gibpressure.total = 400 kg;
-	gibpressure.spike = 1600 kg;
-	material.blockExplosions = false;
-	material.flammable = false;
-	doTakeDamage.fire = false;
-	fixture()
-	{
-		mass = 200 kg;
-		collisionGroup = dynamics_g2;
-	}
-}
-Tile(CannonHolder00)
-{
-	material = wood;
-	life = 200;
-	gibpressure.total = 400 kg;
-	gibpressure.spike = 1600 kg;
-	material.blockExplosions = false;
-	material.flammable = false;
-	doTakeDamage.fire = false;
-	fixture()
-	{
-		mass = 100 kg;
-		collisionGroup = dynamics_g2;
-	}
-}
-Tile(WoodBarrel02)
-{
-	material = wood;
-	life = 75;
-	gibpressure.total = 400 kg;
-	gibpressure.spike = 1600 kg;
-	material.blockExplosions = false;
-	material.flammable = true;
-	doTakeDamage.fire = true;
-	fixture()
-	{
-		mass = 75 kg;
-		collisionGroup = dynamics_g1;
-		collisionPoints = (-5.5, 7.5), (-7.5, 4.5), (-7.5, -4.5), (-5.5, -7.5), (5.5, -7.5), (7.5, -4.5), (7.5, 4.5), (5.5, 7.5);
-
-	}
-}
-Tile(WoodBarrelExplosive00)
-{
-	material = wood;
-	life = 75;
-	gibpressure.total = 400 kg;
-	gibpressure.spike = 1600 kg;
-	material.blockExplosions = false;
-	material.flammable = true;
-	doTakeDamage.fire = true;
-	fixture()
-	{
-		mass = 75 kg;
-		collisionPoints = (-5.5, 7.5), (-7.5, 4.5), (-7.5, -4.5), (-5.5, -7.5), (5.5, -7.5), (7.5, -4.5), (7.5, 4.5), (5.5, 7.5);
-	}
-}
-Tile(Parrot00)
-{
-	life = 1;
+	life = 20;
 	gibpressure.total = 400 kg;
 	gibpressure.spike = 1600 kg;
 	material = flesh;
 	material.hit.melee.effect = HIT_S;
 	material.resistance.impact.threshold = 5.0;
 	objectStrength = 10;
-	material.destroyEffect = BulletHitPaper;
+	colorPalette = BG;
 	material.blockExplosions = false;
 	material.flammable = false;
-	material.friction = 0.0;
+	material.restitution = 1;
 	doTakeDamage.fire = true;
-	animation(Parrot00)
+	animation(Froggy00)
 	{
-		width = 16;
-		frameTime = 50;
+		width = 10;
+		frameTime = 0;
 	}
 	fixture()
 	{
 		collisionGroup = dynamics_g2;
-		circle = (0, 0.5, 4);
-	}
-}
-Tile(Parrot01)
-{
-	life = 1;
-	gibpressure.total = 400 kg;
-	gibpressure.spike = 1600 kg;
-	material = flesh;
-	material.hit.melee.effect = HIT_S;
-	material.resistance.impact.threshold = 5.0;
-	objectStrength = 10;
-	material.destroyEffect = BulletHitPaper;
-	material.blockExplosions = false;
-	material.flammable = false;
-	material.friction = 0.0;
-	doTakeDamage.fire = true;
-	animation(Parrot01)
-	{
-		width = 16;
-		frameTime = 50;
-	}
-	fixture()
-	{
-		collisionGroup = dynamics_g2;
-		circle = (0, 0.5, 4);
+		collisionPoints = (-5, -3.5), (5, -3.5), (5, 3.5), (-5, 3.5);
 	}
 }
 Tile(Giblet05)
@@ -441,109 +381,19 @@ Tile(Giblet05)
 		collisionPoints = (-1, -4), (1, -4), (1, 4), (-1, 4);
 	}
 }
-Tile(Organ00)
+Tile(Head00)
 {
 	drawCategory = DEB;
-	life = 100;
+	life = 5;
 	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
+	gibpressure.total = 30 kg;
+	gibpressure.spike = 150 kg;
 	ImpactSound = ImpactFlesh;
 	fixture()
 	{
-		collisionGroup = debris;
 		mass = 4 kg;
-		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
-	}
-}
-Tile(Organ01)
-{
-	drawCategory = DEB;
-	life = 100;
-	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
-	ImpactSound = ImpactFlesh;
-	fixture()
-	{
 		collisionGroup = debris;
-		mass = 4 kg;
-		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
-	}
-}
-Tile(Organ02)
-{
-	drawCategory = DEB;
-	life = 100;
-	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
-	ImpactSound = ImpactFlesh;
-	fixture()
-	{
-		collisionGroup = debris;
-		mass = 4 kg;
-		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
-	}
-}
-Tile(Organ03)
-{
-	drawCategory = DEB;
-	life = 100;
-	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
-	ImpactSound = ImpactFlesh;
-	fixture()
-	{
-		collisionGroup = debris;
-		mass = 4 kg;
-		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
-	}
-}
-Tile(Organ04)
-{
-	drawCategory = DEB;
-	life = 100;
-	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
-	ImpactSound = ImpactFlesh;
-	fixture()
-	{
-		collisionGroup = debris;
-		mass = 4 kg;
-		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
-	}
-}
-Tile(Organ05)
-{
-	drawCategory = DEB;
-	life = 100;
-	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
-	ImpactSound = ImpactFlesh;
-	fixture()
-	{
-		collisionGroup = debris;
-		mass = 4 kg;
-		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
-	}
-}
-Tile(Brain00)
-{
-	drawCategory = DEB;
-	life = 100;
-	material = flesh;
-	material.blockExplosions = false;
-	material.flammable = false;
-	ImpactSound = ImpactFlesh;
-	fixture()
-	{
-		collisionGroup = debris;
-		mass = 4 kg;
-		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+		collisionPoints = (-2.5, -2.5), (2.5, -2.5), (2.5, 2.5), (-2.5, 2.5);
 	}
 }
 Tile(HeadDebris00A)
@@ -591,84 +441,6 @@ Tile(HeadDebris00C)
 		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
 	}
 }
-Tile(Head00)
-{
-	drawCategory = DEB;
-	life = 5;
-	material = flesh;
-	gibpressure.total = 30 kg;
-	gibpressure.spike = 150 kg;
-	ImpactSound = ImpactFlesh;
-	fixture()
-	{
-		mass = 4 kg;
-		collisionGroup = debris;
-		collisionPoints = (-2.5, -2.5), (2.5, -2.5), (2.5, 2.5), (-2.5, 2.5);
-	}
-}
-Tile(Froggy00)
-{
-	life = 20;
-	gibpressure.total = 400 kg;
-	gibpressure.spike = 1600 kg;
-	material = flesh;
-	material.hit.melee.effect = HIT_S;
-	material.resistance.impact.threshold = 5.0;
-	objectStrength = 10;
-	colorPalette = BG;
-	material.blockExplosions = false;
-	material.flammable = false;
-	material.restitution = 1;
-	doTakeDamage.fire = true;
-	animation(Froggy00)
-	{
-		width = 10;
-		frameTime = 0;
-	}
-	fixture()
-	{
-		collisionGroup = dynamics_g2;
-		collisionPoints = (-5, -3.5), (5, -3.5), (5, 3.5), (-5, 3.5);
-	}
-}
-Tile(Monkey00)
-{
-	life = 80;
-	gibpressure.total = 400 kg;
-	gibpressure.spike = 1600 kg;
-	material = flesh;
-	material.hit.melee.effect = HIT_S;
-	material.resistance.impact.threshold = 5.0;
-	objectStrength = 10;
-	material.blockExplosions = false;
-	material.flammable = false;
-	material.restitution = 1;
-	doTakeDamage.fire = true;
-	animation(Monkey00)
-	{
-		width = 16;
-		frameTime = 0;
-	}
-	fixture()
-	{
-		collisionGroup = dynamics_g2;
-		collisionPoints = (-6.5, -4.5), (6.5, -4.5), (6.5, 4.5), (-6.5, 4.5);
-	}
-}
-Tile(MarbleStatueBase00)
-{
-	drawCategory = SLD;
-	material = Stone;
-	type = Static;
-	projectileHit = false;
-	material.blockExplosions = false;
-	clientSync.ECODBPI = true;
-	fixture()
-	{
-		collisionGroup = none;
-		blockFire = false;
-	}
-}
 Tile(MarbleStatue00)
 {
 	type=Static;
@@ -684,57 +456,6 @@ Tile(MarbleStatue00)
 	{
 		collisionGroup=none;
 		collisionPoints = (-9, -16), (11, -16), (11, 16), (-9, 16);
-	}
-}
-Tile(MarbleStatueDebris00A)
-{
-	drawCategory = DEB;
-	life = 25;
-	canBeMissile = true;
-	gibpressure.total = 40 kg;
-	gibpressure.spike = 160 kg;
-	material = Stone;
-	material.flammable = false;
-	absorbProjectile = false;
-	material.destroySound = DestroySmall;
-	fixture()
-	{
-		collisionGroup = debris;
-		collisionPoints = (-3.5, -2.5), (3.5, -2.5), (3.5, 2.5), (-3.5, 2.5);
-	}
-}
-Tile(MarbleStatueDebris00B)
-{
-	drawCategory = DEB;
-	life = 25;
-	canBeMissile = true;
-	gibpressure.total = 40 kg;
-	gibpressure.spike = 160 kg;
-	material = Stone;
-	material.flammable = false;
-	absorbProjectile = false;
-	material.destroySound = DestroySmall;
-	fixture()
-	{
-		collisionGroup = debris;
-		collisionPoints = (-3.5, -2.5), (3.5, -2.5), (3.5, 0.5), (-3.5, 0.5);
-	}
-}
-Tile(MarbleStatueDebris00C)
-{
-	drawCategory = DEB;
-	life = 25;
-	canBeMissile = true;
-	gibpressure.total = 40 kg;
-	gibpressure.spike = 160 kg;
-	material = Stone;
-	material.flammable = false;
-	absorbProjectile = false;
-	material.destroySound = DestroySmall;
-	fixture()
-	{
-		collisionGroup = debris;
-		collisionPoints = (-3.5, -3.5), (3.5, -3.5), (3.5, 3.5), (-3.5, 3.5);
 	}
 }
 Tile(MarbleStatue00_D)
@@ -860,53 +581,313 @@ Tile(MarbleStatue02_DD)
 		collisionPoints = (-6, -16), (7, -16), (7, -6), (-6, -6);
 	}
 }
-Tile(Beachball00)
+Tile(MarbleStatueBase00)
 {
-	life=10;
-	absorbProjectile = false;
-	projectileHit = true;
-	material = balloon;
+	drawCategory = SLD;
+	material = Stone;
+	type = Static;
+	projectileHit = false;
 	material.blockExplosions = false;
-	material.hit.melee.sound = Baseball;
-	material.hit.melee.effect = Smack;
-	material.resistance.impact.modifier = 0.0;
-	material.resistance.impact.threshold = 9;
-	material.restitution = 4;
-	gibpressure.total = 250 kg;
-	gibpressure.spike = 1600 kg;
-	kickable = true;
-	punchable = true;
-	impactSound = Baseball;
-	type = Dynamic;
+	clientSync.ECODBPI = true;
 	fixture()
 	{
-		mass = 3 kg;
-		collisionGroup = dynamics_thrown;
-		circle = (0.0, 0.0, 8);
+		collisionGroup = none;
 		blockFire = false;
 	}
 }
-Tile(Beachball00_D)
+Tile(MarbleStatueDebris00A)
 {
-	life=15;
+	drawCategory = DEB;
+	life = 25;
+	canBeMissile = true;
+	gibpressure.total = 40 kg;
+	gibpressure.spike = 160 kg;
+	material = Stone;
+	material.flammable = false;
 	absorbProjectile = false;
-	projectileHit = true;
-	material = cloth;
-	material.blockExplosions = false;
-	material.hit.melee.sound = Baseball;
-	material.hit.melee.effect = Smack;
-	material.resistance.impact.modifier = 0.0;
-	material.restitution = 1;
-	gibpressure.total = 250 kg;
-	gibpressure.spike = 1600 kg;
-	kickable = true;
-	punchable = true;
-	impactSound = Baseball;
-	type = Dynamic;
+	material.destroySound = DestroySmall;
 	fixture()
 	{
-		mass = 3 kg;
-		collisionGroup = dynamics_thrown;
+		collisionGroup = debris;
+		collisionPoints = (-3.5, -2.5), (3.5, -2.5), (3.5, 2.5), (-3.5, 2.5);
+	}
+}
+Tile(MarbleStatueDebris00B)
+{
+	drawCategory = DEB;
+	life = 25;
+	canBeMissile = true;
+	gibpressure.total = 40 kg;
+	gibpressure.spike = 160 kg;
+	material = Stone;
+	material.flammable = false;
+	absorbProjectile = false;
+	material.destroySound = DestroySmall;
+	fixture()
+	{
+		collisionGroup = debris;
+		collisionPoints = (-3.5, -2.5), (3.5, -2.5), (3.5, 0.5), (-3.5, 0.5);
+	}
+}
+Tile(MarbleStatueDebris00C)
+{
+	drawCategory = DEB;
+	life = 25;
+	canBeMissile = true;
+	gibpressure.total = 40 kg;
+	gibpressure.spike = 160 kg;
+	material = Stone;
+	material.flammable = false;
+	absorbProjectile = false;
+	material.destroySound = DestroySmall;
+	fixture()
+	{
+		collisionGroup = debris;
+		collisionPoints = (-3.5, -3.5), (3.5, -3.5), (3.5, 3.5), (-3.5, 3.5);
+	}
+}
+Tile(Monkey00)
+{
+	life = 80;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material = flesh;
+	material.hit.melee.effect = HIT_S;
+	material.resistance.impact.threshold = 5.0;
+	objectStrength = 10;
+	material.blockExplosions = false;
+	material.flammable = false;
+	material.restitution = 1;
+	doTakeDamage.fire = true;
+	animation(Monkey00)
+	{
+		width = 16;
+		frameTime = 0;
+	}
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		collisionPoints = (-6.5, -4.5), (6.5, -4.5), (6.5, 4.5), (-6.5, 4.5);
+	}
+}
+Tile(Organ00)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Organ01)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Organ02)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Organ03)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Organ04)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Organ05)
+{
+	drawCategory = DEB;
+	life = 100;
+	material = flesh;
+	material.blockExplosions = false;
+	material.flammable = false;
+	ImpactSound = ImpactFlesh;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 4 kg;
+		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
+	}
+}
+Tile(Parrot00)
+{
+	life = 1;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material = flesh;
+	material.hit.melee.effect = HIT_S;
+	material.resistance.impact.threshold = 5.0;
+	objectStrength = 10;
+	material.destroyEffect = BulletHitPaper;
+	material.blockExplosions = false;
+	material.flammable = false;
+	material.friction = 0.0;
+	doTakeDamage.fire = true;
+	animation(Parrot00)
+	{
+		width = 16;
+		frameTime = 50;
+	}
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		circle = (0, 0.5, 4);
+	}
+}
+Tile(Parrot01)
+{
+	life = 1;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material = flesh;
+	material.hit.melee.effect = HIT_S;
+	material.resistance.impact.threshold = 5.0;
+	objectStrength = 10;
+	material.destroyEffect = BulletHitPaper;
+	material.blockExplosions = false;
+	material.flammable = false;
+	material.friction = 0.0;
+	doTakeDamage.fire = true;
+	animation(Parrot01)
+	{
+		width = 16;
+		frameTime = 50;
+	}
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		circle = (0, 0.5, 4);
+	}
+}
+Tile(PirateLifeboat00)
+{
+	material = wood;
+	material.flammable = true;
+	drawCategory = FG;
+	kickableTop = false;
+	fixture()
+	{
+		collisionPoints = (-35, 0), (35, 0), (35, 4), (-35, 4);
+	}
+	fixture(hull)
+	{
+		collisionGroup = dynamics_g1;
+		collisionPoints = (-8, -12), (8, -12), (28, -6), (35, 0), (-35, 0), (-28, -6);
+	}
+	fixture(l)
+	{
+		collisionGroup = dynamics_g1;
+		collisionPoints = (-35, 4), (-31, 4), (-31, 12), (-35, 12);
+	}
+	fixture(r)
+	{
+		collisionGroup = dynamics_g1;
+		collisionPoints = (31, 4), (35, 4), (35, 12), (31, 12);
+	}
+}
+Tile(SnowPile00)
+{
+	type = Static;
+	drawCategory = SLD;
+	projectileHit = false;
+	colorPalette = BG;
+	punchable = false;
+	kickable = false;
+	fixture()
+	{
+		collisionGroup = none;
+	}
+}
+Tile(StreetLamp01)
+{
+	type = Static;
+	doTakeDamage.fire = true;
+	life = 1;
+	material = glass;
+	Material.Resistance.Impact.Threshold = 20;
+	Material.BlockExplosions = false;
+	material.destroySound = DestroyGlass;
+	ImpactSound = GlassShard;
+	fixture()
+	{
+		circle = (0, 0, 8);
+		blockFire = true;
+	}
+}
+Tile(StreetLamp01_D)
+{
+	type = Static;
+	doTakeDamage.fire = true;
+	material = glass;
+	Material.BlockExplosions = false;
+	material.destroySound = DestroyGlass;
+	fixture()
+	{
+		circle = (0, 0, 8);
+		collisionGroup = none;
+	}
+}
+Tile(TrafficCone)
+{
+	life = 50;
+	material.flammable = true;
+	absorbProjectile = false;
+	material.destroySound = DestroySmall;
+	fixture()
+	{
+		collisionGroup = dynamics_g2;
+		collisionPoints = (0, 6), (-5, -6), (5, -6);
 	}
 }
 Tile(Watermelon00)
@@ -946,16 +927,35 @@ Tile(Watermelon02)
 		collisionPoints = (-2, -2), (2, -2), (2, 2), (-2, 2);
 	}
 }
-Tile(SnowPile00)
+Tile(WoodBarrel02)
 {
-	type = Static;
-	drawCategory = SLD;
-	projectileHit = false;
-	colorPalette = BG;
-	punchable = false;
-	kickable = false;
+	material = wood;
+	life = 75;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = true;
+	doTakeDamage.fire = true;
 	fixture()
 	{
-		collisionGroup = none;
+		mass = 75 kg;
+		collisionGroup = dynamics_g1;
+		collisionPoints = (-5.5, 7.5), (-7.5, 4.5), (-7.5, -4.5), (-5.5, -7.5), (5.5, -7.5), (7.5, -4.5), (7.5, 4.5), (5.5, 7.5);
+
+	}
+}
+Tile(WoodBarrelExplosive00)
+{
+	material = wood;
+	life = 75;
+	gibpressure.total = 400 kg;
+	gibpressure.spike = 1600 kg;
+	material.blockExplosions = false;
+	material.flammable = true;
+	doTakeDamage.fire = true;
+	fixture()
+	{
+		mass = 75 kg;
+		collisionPoints = (-5.5, 7.5), (-7.5, 4.5), (-7.5, -4.5), (-5.5, -7.5), (5.5, -7.5), (7.5, -4.5), (7.5, 4.5), (5.5, 7.5);
 	}
 }

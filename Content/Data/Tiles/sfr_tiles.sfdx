@@ -25,1147 +25,6 @@ defaultTile(DefaultTile)
 	material.flammable = false;
 	doTakeDamage.Fire = false;
 }
-Tile(WallDarkPixel00A)
-{
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WallDarkShade00A)
-{
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-	}
-}
-Tile(WallDarkShade00B)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WallDarkShade00C)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WallDarkShade00E)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-16, -4), (16, -4), (-16, 4);
-	}
-}
-Tile(WallDarkShade00F)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WallDarkShade00G)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WallDarkShade00I)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WallDarkShadeOutline00A)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
-	}
-}
-Tile(WallDarkShadeOutline00B)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
-	}
-}
-Tile(WallDarkShadeOutline00C)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
-	}
-}
-Tile(WallDarkShadeOutline00E)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
-	}
-}
-Tile(WallDarkShadeOutline00F)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WallDarkShadeOutline00G)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WallMidPixel00A)
-{
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WallMidShade00A)
-{
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-	}
-}
-Tile(WallMidShade00B)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WallMidShade00C)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WallMidShade00E)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-16, -4), (16, -4), (-16, 4);
-	}
-}
-Tile(WallMidShade00F)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WallMidShade00G)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WallMidShade00I)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WallMidShadeOutline00A)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
-	}
-}
-Tile(WallMidShadeOutline00B)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
-	}
-}
-Tile(WallMidShadeOutline00C)
-{
-	colorPalette = BG;
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
-	}
-}
-Tile(WallMidShadeOutline00E)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
-	}
-}
-Tile(WallMidShadeOutline00F)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WallMidShadeOutline00G)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WallLightPixel00A)
-{
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5), (-0.5, 0.5);
-	}
-}
-Tile(WallLightShade00A)
-{
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-	}
-}
-Tile(WallLightShade00B)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WallLightShade00C)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WallLightShade00E)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-16, -4), (16, -4), (-16, 4);
-	}
-}
-Tile(WallLightShade00F)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WallLightShade00G)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WallLightShade00I)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WallLightShadeOutline00A)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
-	}
-}
-Tile(WallLightShadeOutline00B)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
-	}
-}
-Tile(WallLightShadeOutline00C)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
-	}
-}
-Tile(WallLightShadeOutline00E)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
-	}
-}
-Tile(WallLightShadeOutline00F)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WallLightShadeOutline00G)
-{
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WeakWallDarkPixel00A)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WeakWallDarkShade00A)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-	}
-}
-Tile(WeakWallDarkShade00B)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WeakWallDarkShade00C)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WeakWallDarkShade00E)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-16, -4), (16, -4), (-16, 4);
-	}
-}
-Tile(WeakWallDarkShade00F)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WeakWallDarkShade00G)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WeakWallDarkShade00I)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WeakWallDarkShadeOutline00A)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
-	}
-}
-Tile(WeakWallDarkShadeOutline00B)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
-	}
-}
-Tile(WeakWallDarkShadeOutline00C)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
-	}
-}
-Tile(WeakWallDarkShadeOutline00E)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
-	}
-}
-Tile(WeakWallDarkShadeOutline00F)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WeakWallDarkShadeOutline00G)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WeakWallMidPixel00A)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WeakWallMidShade00A)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-	}
-}
-Tile(WeakWallMidShade00B)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WeakWallMidShade00C)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WeakWallMidShade00E)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-16, -4), (16, -4), (-16, 4);
-	}
-}
-Tile(WeakWallMidShade00F)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WeakWallMidShade00G)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WeakWallMidShade00I)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WeakWallMidShadeOutline00A)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
-	}
-}
-Tile(WeakWallMidShadeOutline00B)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
-	}
-}
-Tile(WeakWallMidShadeOutline00C)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
-	}
-}
-Tile(WeakWallMidShadeOutline00E)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
-	}
-}
-Tile(WeakWallMidShadeOutline00F)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WeakWallMidShadeOutline00G)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WeakWallLightPixel00A)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5), (-0.5, 0.5);
-	}
-}
-Tile(WeakWallLightShade00A)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-	}
-}
-Tile(WeakWallLightShade00B)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(WeakWallLightShade00C)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WeakWallLightShade00E)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-16, -4), (16, -4), (-16, 4);
-	}
-}
-Tile(WeakWallLightShade00F)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WeakWallLightShade00G)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(WeakWallLightShade00I)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(WeakWallLightShadeOutline00A)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
-	}
-}
-Tile(WeakWallLightShadeOutline00B)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
-	}
-}
-Tile(WeakWallLightShadeOutline00C)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
-	}
-}
-Tile(WeakWallLightShadeOutline00E)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 50;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
-	}
-}
-Tile(WeakWallLightShadeOutline00F)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(WeakWallLightShadeOutline00G)
-{
-	life = 50;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
 Tile(BurningWeakWallDarkPixel00A)
 {
 	life = 20;
@@ -1377,231 +236,6 @@ Tile(BurningWeakWallDarkShadeOutline00F)
 	}
 }
 Tile(BurningWeakWallDarkShadeOutline00G)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(BurningWeakWallMidPixel00A)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(BurningWeakWallMidShade00A)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = D;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-	}
-}
-Tile(BurningWeakWallMidShade00B)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -4), (4, -4), (-4, 4);
-	}
-}
-Tile(BurningWeakWallMidShade00C)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(BurningWeakWallMidShade00E)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-16, -4), (16, -4), (-16, 4);
-	}
-}
-Tile(BurningWeakWallMidShade00F)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(BurningWeakWallMidShade00G)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (4, 8), (-8, 8);
-	}
-}
-Tile(BurningWeakWallMidShade00I)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-8, -4), (8, -4), (-8, 4);
-	}
-}
-Tile(BurningWeakWallMidShadeOutline00A)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
-	}
-}
-Tile(BurningWeakWallMidShadeOutline00B)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
-	}
-}
-Tile(BurningWeakWallMidShadeOutline00C)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
-	}
-}
-Tile(BurningWeakWallMidShadeOutline00E)
-{
-	isCloud = true;
-	cloudRotation = 0.0;
-	absorbProjectile = false;
-	kickable = false;
-	material.blockExplosions = false;
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = H;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
-	}
-}
-Tile(BurningWeakWallMidShadeOutline00F)
-{
-	life = 20;
-	material.flammable = true;
-	doTakeDamage.Fire = true;
-	colorPalette = BG;
-	sizeable = n;
-	material.destroyEffect = none;
-	material.destroySound = none;
-	fixture()
-	{
-		mass = 0.5 kg;
-		collisionPoints = (-4, -2), (4, 4), (-2, 4);
-	}
-}
-Tile(BurningWeakWallMidShadeOutline00G)
 {
 	life = 20;
 	material.flammable = true;
@@ -1841,31 +475,443 @@ Tile(BurningWeakWallLightShadeOutline00G)
 		collisionPoints = (-8, -4), (4, 8), (-8, 8);
 	}
 }
-Tile(PortalWoodU)
+Tile(BurningWeakWallMidPixel00A)
 {
-	drawCategory = SLD;
-	material.blockExplosions = false;
-	sizeable = N;
-	projectileHit = false;
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
 	fixture()
 	{
-		collisionGroup = none;
-		collisionPoints = (-8, -16), (8, -16), (8, 16), (-8, 16);
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
 	}
-	helpEntry = Portals;
 }
-Tile(PortalWoodD)
+Tile(BurningWeakWallMidShade00A)
 {
-	drawCategory = SLD;
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+	}
+}
+Tile(BurningWeakWallMidShade00B)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(BurningWeakWallMidShade00C)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(BurningWeakWallMidShade00E)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
+	}
+}
+Tile(BurningWeakWallMidShade00F)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(BurningWeakWallMidShade00G)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(BurningWeakWallMidShade00I)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(BurningWeakWallMidShadeOutline00A)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
 	material.blockExplosions = false;
-	sizeable = N;
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
+	}
+}
+Tile(BurningWeakWallMidShadeOutline00B)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
+	}
+}
+Tile(BurningWeakWallMidShadeOutline00C)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
+	}
+}
+Tile(BurningWeakWallMidShadeOutline00E)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
+	}
+}
+Tile(BurningWeakWallMidShadeOutline00F)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(BurningWeakWallMidShadeOutline00G)
+{
+	life = 20;
+	material.flammable = true;
+	doTakeDamage.Fire = true;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(CannonBallCrate00)
+{
+	type = Static;
+	drawCategory = SLD;
+	projectileHit = false;
+	colorPalette = BG;
+	punchable = false;
+	kickable = false;
+	animation(CannonBallCrate00)
+	{
+		width = 16;
+		frameTimes = 0;
+	}
+	fixture()
+	{
+		collisionGroup = none;
+	}
+}
+Tile(Cobblestone00A)
+{
+	material = concrete;
+	colorPalette = Concrete;
+	sizeable = A;
+}
+Tile(DurableBamboo00A)
+{
+	material = dirt;
+	colorPalette = BambooBlock;
+	sizeable = A;
+}
+Tile(DurableBamboo00B)
+{
+	material = dirt;
+	colorPalette = BambooBlock;
+	sizeable = A;
+}
+Tile(Ground00A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00B)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00C)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-4, -4), (4, -4), (4, 4);
+	}
+}
+Tile(Ground00D)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00E)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (8, -4), (8, 4);
+	}
+}
+Tile(Ground00F)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00G)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = n;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -4), (16, 4);
+	}
+}
+Tile(Ground00H)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00I)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground00J)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground01A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground02A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground03A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ground04A)
+{
+	material = dirt;
+	colorPalette = Ground;
+	sizeable = A;
+}
+Tile(Ice00G)
+{
+	material = ice;
+}
+Tile(Ice00H)
+{
+	sizeable = n;
+	material = ice;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -4), (16, 4);
+	}
+}
+Tile(Ice00I)
+{
+	material = ice;
+}
+Tile(Ice00J)
+{
+	material = ice;
+}
+Tile(PirateArmory00)
+{
+	type = Static;
+	drawCategory = SLD;
+	projectileHit = false;
+	colorPalette = BG;
+	punchable = false;
+	kickable = false;
+	animation(PirateArmory00)
+	{
+		width = 24;
+		frameTimes = 0;
+	}
+	fixture()
+	{
+		collisionGroup = none;
+	}
+}
+Tile(PirateLadder00A)
+{
+	isLadder = true;
+	sizeable = V;
+	freeRotation = false;
+	material.blockExplosions = false;
 	projectileHit = false;
 	fixture()
 	{
 		collisionGroup = none;
-		collisionPoints = (-8, -16), (8, -16), (8, 16), (-8, 16);
+		collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4);
+		blockFire = false;
 	}
-	helpEntry = Portals;
+}
+Tile(PirateLadder00B)
+{
+	isLadder = true;
+	sizeable = V;
+	freeRotation = false;
+	material.blockExplosions = false;
+	projectileHit = false;
+	fixture()
+	{
+		collisionGroup = none;
+		collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4);
+		blockFire = false;
+	}
+}
+Tile(PirateLadder00C)
+{
+	isLadder = true;
+	sizeable = V;
+	freeRotation = false;
+	material.blockExplosions = false;
+	projectileHit = false;
+	fixture()
+	{
+		collisionGroup = none;
+		collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4);
+		blockFire = false;
+	}
 }
 Tile(PirateShip00A){}
 Tile(PirateShip00B){}
@@ -2024,218 +1070,31 @@ Tile(PirateSteeringwheel00)
 		collisionGroup = none;
 	}
 }
-Tile(PirateArmory00)
+Tile(PortalWoodD)
 {
-	type = Static;
 	drawCategory = SLD;
+	material.blockExplosions = false;
+	sizeable = N;
 	projectileHit = false;
-	colorPalette = BG;
-	punchable = false;
-	kickable = false;
-	animation(PirateArmory00)
-	{
-		width = 24;
-		frameTimes = 0;
-	}
 	fixture()
 	{
 		collisionGroup = none;
+		collisionPoints = (-8, -16), (8, -16), (8, 16), (-8, 16);
 	}
+	helpEntry = Portals;
 }
-Tile(CannonBallCrate00)
+Tile(PortalWoodU)
 {
-	type = Static;
 	drawCategory = SLD;
-	projectileHit = false;
-	colorPalette = BG;
-	punchable = false;
-	kickable = false;
-	animation(CannonBallCrate00)
-	{
-		width = 16;
-		frameTimes = 0;
-	}
-	fixture()
-	{
-		collisionGroup = none;
-	}
-}
-Tile(PirateLadder00A)
-{
-	isLadder = true;
-	sizeable = V;
-	freeRotation = false;
 	material.blockExplosions = false;
+	sizeable = N;
 	projectileHit = false;
 	fixture()
 	{
 		collisionGroup = none;
-		collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4);
-		blockFire = false;
+		collisionPoints = (-8, -16), (8, -16), (8, 16), (-8, 16);
 	}
-}
-Tile(PirateLadder00B)
-{
-	isLadder = true;
-	sizeable = V;
-	freeRotation = false;
-	material.blockExplosions = false;
-	projectileHit = false;
-	fixture()
-	{
-		collisionGroup = none;
-		collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4);
-		blockFire = false;
-	}
-}
-Tile(PirateLadder00C)
-{
-	isLadder = true;
-	sizeable = V;
-	freeRotation = false;
-	material.blockExplosions = false;
-	projectileHit = false;
-	fixture()
-	{
-		collisionGroup = none;
-		collisionPoints = (-6, -4), (6, -4), (6, 4), (-6, 4);
-		blockFire = false;
-	}
-}
-Tile(Cobblestone00A)
-{
-	material = concrete;
-	colorPalette = Concrete;
-	sizeable = A;
-}
-Tile(DurableBamboo00B)
-{
-	material = dirt;
-	colorPalette = BambooBlock;
-	sizeable = A;
-}
-Tile(DurableBamboo00A)
-{
-	material = dirt;
-	colorPalette = BambooBlock;
-	sizeable = A;
-}
-Tile(Ground00A)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground00B)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground00C)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = n;
-	fixture()
-	{
-		collisionPoints = (-4, -4), (4, -4), (4, 4);
-	}
-}
-Tile(Ground00D)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground00E)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = n;
-	fixture()
-	{
-		collisionPoints = (-8, -4), (8, -4), (8, 4);
-	}
-}
-Tile(Ground00F)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground00G)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = n;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -4), (16, 4);
-	}
-}
-Tile(Ground00H)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground00I)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground00J)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground01A)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground02A)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground03A)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ground04A)
-{
-	material = dirt;
-	colorPalette = Ground;
-	sizeable = A;
-}
-Tile(Ice00G)
-{
-	material = ice;
-}
-Tile(Ice00I)
-{
-	material = ice;
-}
-Tile(Ice00J)
-{
-	material = ice;
-}
-Tile(Ice00H)
-{
-	sizeable = n;
-	material = ice;
-	fixture()
-	{
-		collisionPoints = (-16, -4), (16, -4), (16, 4);
-	}
+	helpEntry = Portals;
 }
 Tile(Sand00A){}
 Tile(Sand00B){}
@@ -2354,6 +1213,1147 @@ Tile(Snow02A)
 	material = snow;
 	colorPalette = Ground;
 	sizeable = A;
+}
+Tile(WallDarkPixel00A)
+{
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WallDarkShade00A)
+{
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+	}
+}
+Tile(WallDarkShade00B)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WallDarkShade00C)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WallDarkShade00E)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
+	}
+}
+Tile(WallDarkShade00F)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WallDarkShade00G)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WallDarkShade00I)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WallDarkShadeOutline00A)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
+	}
+}
+Tile(WallDarkShadeOutline00B)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
+	}
+}
+Tile(WallDarkShadeOutline00C)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
+	}
+}
+Tile(WallDarkShadeOutline00E)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
+	}
+}
+Tile(WallDarkShadeOutline00F)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WallDarkShadeOutline00G)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WallLightPixel00A)
+{
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5), (-0.5, 0.5);
+	}
+}
+Tile(WallLightShade00A)
+{
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+	}
+}
+Tile(WallLightShade00B)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WallLightShade00C)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WallLightShade00E)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
+	}
+}
+Tile(WallLightShade00F)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WallLightShade00G)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WallLightShade00I)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WallLightShadeOutline00A)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
+	}
+}
+Tile(WallLightShadeOutline00B)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
+	}
+}
+Tile(WallLightShadeOutline00C)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
+	}
+}
+Tile(WallLightShadeOutline00E)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
+	}
+}
+Tile(WallLightShadeOutline00F)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WallLightShadeOutline00G)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WallMidPixel00A)
+{
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WallMidShade00A)
+{
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+	}
+}
+Tile(WallMidShade00B)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WallMidShade00C)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WallMidShade00E)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
+	}
+}
+Tile(WallMidShade00F)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WallMidShade00G)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WallMidShade00I)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WallMidShadeOutline00A)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
+	}
+}
+Tile(WallMidShadeOutline00B)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
+	}
+}
+Tile(WallMidShadeOutline00C)
+{
+	colorPalette = BG;
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
+	}
+}
+Tile(WallMidShadeOutline00E)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
+	}
+}
+Tile(WallMidShadeOutline00F)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WallMidShadeOutline00G)
+{
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WeakWallDarkPixel00A)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WeakWallDarkShade00A)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+	}
+}
+Tile(WeakWallDarkShade00B)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WeakWallDarkShade00C)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WeakWallDarkShade00E)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
+	}
+}
+Tile(WeakWallDarkShade00F)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WeakWallDarkShade00G)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WeakWallDarkShade00I)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WeakWallDarkShadeOutline00A)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
+	}
+}
+Tile(WeakWallDarkShadeOutline00B)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
+	}
+}
+Tile(WeakWallDarkShadeOutline00C)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
+	}
+}
+Tile(WeakWallDarkShadeOutline00E)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
+	}
+}
+Tile(WeakWallDarkShadeOutline00F)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WeakWallDarkShadeOutline00G)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WeakWallLightPixel00A)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-0.5, -0.5), (0.5, -0.5), (0.5, 0.5), (-0.5, 0.5);
+	}
+}
+Tile(WeakWallLightShade00A)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+	}
+}
+Tile(WeakWallLightShade00B)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WeakWallLightShade00C)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WeakWallLightShade00E)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
+	}
+}
+Tile(WeakWallLightShade00F)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WeakWallLightShade00G)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WeakWallLightShade00I)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WeakWallLightShadeOutline00A)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
+	}
+}
+Tile(WeakWallLightShadeOutline00B)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
+	}
+}
+Tile(WeakWallLightShadeOutline00C)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
+	}
+}
+Tile(WeakWallLightShadeOutline00E)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
+	}
+}
+Tile(WeakWallLightShadeOutline00F)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WeakWallLightShadeOutline00G)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WeakWallMidPixel00A)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WeakWallMidShade00A)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = D;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+	}
+}
+Tile(WeakWallMidShade00B)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -4), (4, -4), (-4, 4);
+	}
+}
+Tile(WeakWallMidShade00C)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WeakWallMidShade00E)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-16, -4), (16, -4), (-16, 4);
+	}
+}
+Tile(WeakWallMidShade00F)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WeakWallMidShade00G)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
+}
+Tile(WeakWallMidShade00I)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (8, -4), (-8, 4);
+	}
+}
+Tile(WeakWallMidShadeOutline00A)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-4, 0), (4, 0), (4, 4), (-4, 4);
+	}
+}
+Tile(WeakWallMidShadeOutline00B)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (-4, -12), (-4, -4), (-8, 4);
+	}
+}
+Tile(WeakWallMidShadeOutline00C)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-8, -4), (0, -12), (0, -4), (-8, 4);
+	}
+}
+Tile(WeakWallMidShadeOutline00E)
+{
+	isCloud = true;
+	cloudRotation = 0.0;
+	absorbProjectile = false;
+	kickable = false;
+	material.blockExplosions = false;
+	life = 50;
+	colorPalette = BG;
+	sizeable = H;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		collisionPoints = (-16, -4), (16, -12), (16, -4), (-16, 4);
+	}
+}
+Tile(WeakWallMidShadeOutline00F)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-4, -2), (4, 4), (-2, 4);
+	}
+}
+Tile(WeakWallMidShadeOutline00G)
+{
+	life = 50;
+	colorPalette = BG;
+	sizeable = n;
+	material.destroyEffect = none;
+	material.destroySound = none;
+	fixture()
+	{
+		mass = 0.5 kg;
+		collisionPoints = (-8, -4), (4, 8), (-8, 8);
+	}
 }
 Tile(Wood00Weak)
 {

@@ -21,49 +21,107 @@ defaultTile(DefaultTile)
 	type = Static;
 	material.resistance.fire.modifier = 0;
 }
-
+Tile(BgArcadeMachine00A){}
+Tile(BgArmChair00A){}
+Tile(BgBanner00A){}
+Tile(BgBanner00B){}
+Tile(BgBanner00C){}
+Tile(BgBanner00D){}
 Tile(BgBarShelf00A){}
 Tile(BgBarShelf00B){}
 Tile(BgBarShelf00C){}
 Tile(BgBarShelf00D){}
-Tile(BgWoodenWallPanel00A){}
-Tile(BgWoodenWallPanel00B){}
-Tile(BgWoodenWallPanel00C){}
-Tile(BgWoodenWallPanel00D){}
-Tile(BgWoodenWallPanel00E){}
-Tile(BgWoodenWallPanel00F){}
-Tile(BgWoodenWallPanel00G){}
-Tile(BgWoodenWallPanel00H){}
-Tile(BgWoodenWallPanel00I){}
-Tile(BgNeonArrow00)
-{
-	colorPalette = Neon;
-}
-Tile(BgNeonBar00)
-{
-	colorPalette = Neon;
-}
-Tile(BgNeonBeer00)
-{
-	colorPalette = Neon;
-}
-Tile(BgNeonClosed00)
-{
-	colorPalette = Neon;
-}
-Tile(BgNeonExit00)
-{
-	colorPalette = Neon;
-}
-Tile(BgNeonOpen00)
-{
-	colorPalette = Neon;
-}
+Tile(BgBath00A){}
+Tile(BgBedsideTable00A){}
+Tile(BgBedsideTable00B){}
+Tile(BgBedsideTable01A){}
+Tile(BgBench00A){}
+Tile(BgBigBanner00A){}
+Tile(BgBigBanner00B){}
+Tile(BgBigBanner00C){}
+Tile(BgBigBanner00D){}
+Tile(BgBigBanner00E){}
+Tile(BgBigBanner01A){}
+Tile(BgCandle00A){}
+Tile(BgCandle00B){}
+Tile(BgCandle00C){}
+Tile(BgCandle01A){}
+Tile(BgCandle01B){}
+Tile(BgCandle01C){}
+Tile(BgChainLinkFence00A){}
+Tile(BgChainLinkFence00B){}
+Tile(BgChainLinkFence00C){}
+Tile(BgChainLinkFence00D){}
+Tile(BgChainLinkFence00E){}
+Tile(BgChainLinkFence00F){}
+Tile(BgChainLinkFence00G){}
+Tile(BgChainLinkFence00H){}
+Tile(BgChainLinkFence00I){}
+Tile(BgChair00A){}
+Tile(BgChair01B){}
+Tile(BgChest00A){}
+Tile(BgChest00B){}
+Tile(BgClockCabinet00A){}
+Tile(BgCog00A){}
+Tile(BgCog00B){}
+Tile(BgCog00C){}
+Tile(BgCog00D){}
+Tile(BgCompetitionCup00A){}
+Tile(BgCompetitionCup00B){}
+Tile(BgCompetitionCup00C){}
+Tile(BgCompetitionCup00D){}
+Tile(BgCrystalBall00A){}
+Tile(BgCrystalBall00B){}
+Tile(BgDesk00A){}
+Tile(BgDesk00B){}
+Tile(BgDoll00A){}
+Tile(BgDoll00B){}
+Tile(BgDoll00C){}
+Tile(BgDoll00D){}
+Tile(BgDurableBamboo00A){}
+Tile(BgDurableBamboo00B){}
+Tile(BgDurableBamboo00C){}
+Tile(BgElectricFence00A){}
+Tile(BgElectricFence00B){}
+Tile(BgElectricFence00C){}
+Tile(BgElectricFence00D){}
+Tile(BgElectricFence00E){}
 Tile(BgFan02A){}
 Tile(BgFan02B){}
 Tile(BgFan03A){}
 Tile(BgFan03B){}
+Tile(BgFan04A){}
+Tile(BgFan04B){}
+Tile(BgFence00H){}
+Tile(BgFence00I){}
+Tile(BgFence00J){}
+Tile(BgFence00K){}
+Tile(BgFence00L){}
+Tile(BgFence00M){}
 Tile(BgFireExtinguisher00){}
+Tile(BgFlagPole01A){}
+Tile(BgFountain00A){}
+Tile(BgFridge00A){}
+Tile(BgFridge01A){}
+Tile(BgFunnymanStatue00A){}
+Tile(BgGasStove00A){}
+Tile(BgGate00A){}
+Tile(BgGate00B){}
+Tile(BgGateFence00A){}
+Tile(BgGateFence00B){}
+Tile(BgGateFence00C){}
+Tile(BgGateFence00D){}
+Tile(BgGateFence00E){}
+Tile(BgGateFence00F){}
+Tile(BgGateFence00G){}
+Tile(BgGateFence00H){}
+Tile(BgGateFence00I){}
+Tile(BgGateFence00J){}
+Tile(BgGateFence00K){}
+Tile(BgGateFence00L){}
+Tile(BgGateFence00M){}
+Tile(BgGlobe00){}
+Tile(BgGlobe00A){}
 Tile(BgGradientBlue00A){}
 Tile(BgGradientBlue01A){}
 Tile(BgGradientBlue02A){}
@@ -91,6 +149,58 @@ Tile(BgGradientWhite02A){}
 Tile(BgGradientYellow00A){}
 Tile(BgGradientYellow01A){}
 Tile(BgGradientYellow02A){}
+Tile(BgGrass00A){}
+Tile(BgGrass00B){}
+Tile(BgGrass00C){}
+Tile(BgGrass00D){}
+Tile(BgGrass01A){}
+Tile(BgGrass01B){}
+Tile(BgGrasses00A){}
+Tile(BgGrasses00B){}
+Tile(BgGuitar00A){}
+Tile(BgHangedLamp00A){}
+Tile(BgHeartMonitor00A)
+{
+	animation(BgHeartMonitor00A)
+	{
+		width = 16;
+		frameTime = 180;
+	}
+}
+Tile(BgHeartMonitor00B){}
+Tile(BgHourglass00){}
+Tile(BgHourglass00A){}
+Tile(BgHugeBanner00A){}
+Tile(BgKitchenWardrobe00A){}
+Tile(BgLampPost00A){}
+Tile(BgLampPost00B){}
+Tile(BgLampPost01A){}
+Tile(BgLampPost01B){}
+Tile(BgLampPost02A){}
+Tile(BgLampStand00A){}
+Tile(BgLavalamp00A)
+{
+	animation(BgLavalamp00A)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
+Tile(BgLavalamp01A)
+{
+	animation(BgLavalamp01A)
+	{
+		width = 16;
+		frameTime = 240;
+	}
+}
+Tile(BgLeaves00){}
+Tile(BgLeaves01){}
+Tile(BgLeaves01A){}
+Tile(BgLeaves01B){}
+Tile(BgLeaves01C){}
+Tile(BgLeaves02){}
+Tile(BgLeaves03A){}
 Tile(BgLightRadiusBlue00A){}
 Tile(BgLightRadiusBlue01A){}
 Tile(BgLightRadiusBlue02A){}
@@ -127,109 +237,80 @@ Tile(BgLightRadiusYellow00A){}
 Tile(BgLightRadiusYellow01A){}
 Tile(BgLightRadiusYellow02A){}
 Tile(BgLightRadiusYellow03A){}
-Tile(BgWallDarkBigRound00A){}
-Tile(BgWallDarkOutline00A){}
-Tile(BgWallDarkPixel00A){}
-Tile(BgWallDarkRound00A){}
-Tile(BgWallDarkShade00A){}
-Tile(BgWallDarkShade00B){}
-Tile(BgWallDarkShade00C){}
-Tile(BgWallDarkShade00D){}
-Tile(BgWallDarkShade00E){}
-Tile(BgWallDarkShade00F){}
-Tile(BgWallDarkShade00G){}
-Tile(BgWallDarkShade00H){}
-Tile(BgWallDarkShade00I){}
-Tile(BgWallDarkShadeOutline00A){}
-Tile(BgWallDarkShadeOutline00B){}
-Tile(BgWallDarkShadeOutline00C){}
-Tile(BgWallDarkShadeOutline00E){}
-Tile(BgWallDarkShadeOutline00F){}
-Tile(BgWallDarkShadeOutline00G){}
-Tile(BgWallLightBigRound00A){}
-Tile(BgWallLightOutline00A){}
-Tile(BgWallLightPixel00A){}
-Tile(BgWallLightRound00A){}
-Tile(BgWallLightShade00A){}
-Tile(BgWallLightShade00B){}
-Tile(BgWallLightShade00C){}
-Tile(BgWallLightShade00D){}
-Tile(BgWallLightShade00E){}
-Tile(BgWallLightShade00F){}
-Tile(BgWallLightShade00G){}
-Tile(BgWallLightShade00H){}
-Tile(BgWallLightShade00I){}
-Tile(BgWallLightShadeOutline00A){}
-Tile(BgWallLightShadeOutline00B){}
-Tile(BgWallLightShadeOutline00C){}
-Tile(BgWallLightShadeOutline00E){}
-Tile(BgWallLightShadeOutline00F){}
-Tile(BgWallLightShadeOutline00G){}
-Tile(BgWallMidBigRound00A){}
-Tile(BgWallMidOutline00A){}
-Tile(BgWallMidPixel00A){}
-Tile(BgWallMidRound00A){}
-Tile(BgWallMidShade00A){}
-Tile(BgWallMidShade00B){}
-Tile(BgWallMidShade00C){}
-Tile(BgWallMidShade00D){}
-Tile(BgWallMidShade00E){}
-Tile(BgWallMidShade00F){}
-Tile(BgWallMidShade00G){}
-Tile(BgWallMidShade00H){}
-Tile(BgWallMidShade00I){}
-Tile(BgWallMidShadeOutline00A){}
-Tile(BgWallMidShadeOutline00B){}
-Tile(BgWallMidShadeOutline00C){}
-Tile(BgWallMidShadeOutline00E){}
-Tile(BgWallMidShadeOutline00F){}
-Tile(BgWallMidShadeOutline00G){}
-Tile(BgArcadeMachine00A){}
-Tile(BgClockCabinet00A){}
-Tile(BgCog00A){}
-Tile(BgCog00B){}
-Tile(BgCog00C){}
-Tile(BgCog00D){}
-Tile(BgGasStove00A){}
-Tile(BgKitchenWardrobe00A){}
-Tile(BgMirror00A){}
-Tile(BgPot00A){}
-Tile(BgPot00B){}
-Tile(BgSofa00A){}
-Tile(BgStreetLamp00A){}
-Tile(BgTreeWood00A){}
-Tile(BgArmChair00A){}
-Tile(BgDurableBamboo00A){}
-Tile(BgDurableBamboo00B){}
-Tile(BgDurableBamboo00C){}
-Tile(BgHugeBanner00A){}
-Tile(BgMicrowaveOven00A){}
-Tile(BgMirror00B){}
-Tile(BgSpeaker01A){}
-Tile(BgStreetLamp00B){}
-Tile(BgPirateShip01A){}
-Tile(BgPirateShip01B){}
-Tile(BgPirateShip01C){}
-Tile(BgPirateShip02A){}
-Tile(BgPirateShip03A){}
-Tile(BgPirateShip03B){}
-Tile(BgPirateShip03C){}
-Tile(BgPirateShip03D){}
-Tile(BgPirateShip03E){}
-Tile(BgPirateShip03F){}
-Tile(BgPirateShip04A){}
-Tile(BgPirateShip04B){}
-Tile(BgPirateShip04C){}
-Tile(BgPirateShip05A){}
-Tile(BgPirateShip05B){}
-Tile(BgPirateShip05C){}
-Tile(BgPirateShip05D){}
-Tile(PirateBrig00)
+Tile(BgLitCandle00A)
 {
-	drawCategory = FG;
+	animation(BgLitCandle00A)
+	{
+		width = 5;
+		frameTime = 140;
+	}
 }
-Tile(BgPirateShipSmall00){}
-Tile(BgPirateWheelHolder00){}
+Tile(BgLitCandle00B)
+{
+	animation(BgLitCandle00B)
+	{
+		width = 5;
+		frameTime = 140;
+	}
+}
+Tile(BgLitCandle00C)
+{
+	animation(BgLitCandle00C)
+	{
+		width = 10;
+		frameTime = 140;
+	}
+}
+Tile(BgLitCandle01A)
+{
+	animation(BgLitCandle01A)
+	{
+		width = 8;
+		frameTime = 140;
+	}
+}
+Tile(BgLitCandle01B)
+{
+	animation(BgLitCandle01B)
+	{
+		width = 8;
+		frameTime = 140;
+	}
+}
+Tile(BgLittleShip00A){}
+Tile(BgLock00A){}
+Tile(BgLongPainting_D){}
+Tile(BgMicrowaveOven00A){}
+Tile(BgMirror00A){}
+Tile(BgMirror00B){}
+Tile(BgModernBed00A){}
+Tile(BgModernBed00B){}
+Tile(BgModernBed02A){}
+Tile(BgModernMonitor00A){}
+Tile(BgNeonArrow00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonBar00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonBeer00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonClosed00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonExit00)
+{
+	colorPalette = Neon;
+}
+Tile(BgNeonOpen00)
+{
+	colorPalette = Neon;
+}
 Tile(BgPainting00)
 {
 	type = Static;
@@ -249,6 +330,11 @@ Tile(BgPainting00_D)
 	punchable = false;
 	kickable = false;
 }
+Tile(BgPainting00A){}
+Tile(BgPainting00B){}
+Tile(BgPainting00C){}
+Tile(BgPainting00D){}
+Tile(BgPainting00E){}
 Tile(BgPainting01)
 {
 	type = Static;
@@ -297,177 +383,6 @@ Tile(BgPainting04)
 	kickable = true;
 	punchable = true;
 }
-Tile(BgBanner00A){}
-Tile(BgBanner00B){}
-Tile(BgBanner00C){}
-Tile(BgBanner00D){}
-Tile(BgBigBanner00A){}
-Tile(BgBigBanner00B){}
-Tile(BgBigBanner00C){}
-Tile(BgBigBanner00D){}
-Tile(BgBigBanner00E){}
-Tile(BgBigBanner01A){}
-Tile(BgCandle00A){}
-Tile(BgCandle00B){}
-Tile(BgCandle00C){}
-Tile(BgCandle01A){}
-Tile(BgCandle01B){}
-Tile(BgCandle01C){}
-Tile(BgChainLinkFence00A){}
-Tile(BgChainLinkFence00B){}
-Tile(BgChainLinkFence00C){}
-Tile(BgChainLinkFence00D){}
-Tile(BgChainLinkFence00E){}
-Tile(BgChainLinkFence00F){}
-Tile(BgChainLinkFence00G){}
-Tile(BgChainLinkFence00H){}
-Tile(BgChainLinkFence00I){}
-Tile(BgChair00A){}
-Tile(BgChair01B){}
-Tile(BgChest00A){}
-Tile(BgChest00B){}
-Tile(BgCrystalBall00A){}
-Tile(BgCrystalBall00B){}
-Tile(BgDesk00A){}
-Tile(BgDesk00B){}
-Tile(BgDoll00A){}
-Tile(BgDoll00B){}
-Tile(BgDoll00C){}
-Tile(BgDoll00D){}
-Tile(BgElectricFence00A){}
-Tile(BgElectricFence00B){}
-Tile(BgElectricFence00C){}
-Tile(BgElectricFence00D){}
-Tile(BgElectricFence00E){}
-Tile(BgFence00H){}
-Tile(BgFence00I){}
-Tile(BgFence00J){}
-Tile(BgFence00K){}
-Tile(BgFence00L){}
-Tile(BgFence00M){}
-Tile(BgFlagPole01A){}
-Tile(BgFridge00A){}
-Tile(BgFridge01A){}
-Tile(BgFunnymanStatue00A){}
-Tile(BgGate00A){}
-Tile(BgGate00B){}
-Tile(BgGateFence00A){}
-Tile(BgGateFence00B){}
-Tile(BgGateFence00C){}
-Tile(BgGateFence00D){}
-Tile(BgGateFence00E){}
-Tile(BgGateFence00F){}
-Tile(BgGateFence00G){}
-Tile(BgGateFence00H){}
-Tile(BgGateFence00I){}
-Tile(BgGateFence00J){}
-Tile(BgGateFence00K){}
-Tile(BgGateFence00L){}
-Tile(BgGateFence00M){}
-Tile(BgGlobe00){}
-Tile(BgGrass00A){}
-Tile(BgGrass00B){}
-Tile(BgGrass00C){}
-Tile(BgGrass00D){}
-Tile(BgGrass01A){}
-Tile(BgGrass01B){}
-Tile(BgBath00A){}
-Tile(BgBedsideTable00A){}
-Tile(BgBedsideTable00B){}
-Tile(BgBedsideTable01A){}
-Tile(BgBench00A){}
-Tile(BgFountain00A){}
-Tile(BgGlobe00A){}
-Tile(BgGuitar00A){}
-Tile(BgHangedLamp00A){}
-Tile(BgHeartMonitor00A)
-{
-	animation(BgHeartMonitor00A)
-	{
-		width = 16;
-		frameTime = 180;
-	}
-}
-Tile(BgHeartMonitor00B){}
-Tile(BgHourglass00){}
-Tile(BgHourglass00A){}
-Tile(BgLampPost00A){}
-Tile(BgLampPost00B){}
-Tile(BgLampPost01A){}
-Tile(BgLampPost01B){}
-Tile(BgLampPost02A){}
-Tile(BgLampStand00A){}
-Tile(BgLavalamp00A)
-{
-	animation(BgLavalamp00A)
-	{
-		width = 16;
-		frameTime = 240;
-	}
-}
-Tile(BgLavalamp01A)
-{
-	animation(BgLavalamp01A)
-	{
-		width = 16;
-		frameTime = 240;
-	}
-}
-Tile(BgLeaves01A){}
-Tile(BgLeaves01B){}
-Tile(BgLeaves01C){}
-Tile(BgLitCandle00A)
-{
-	animation(BgLitCandle00A)
-	{
-		width = 5;
-		frameTime = 140;
-	}
-}
-Tile(BgLitCandle00B)
-{
-	animation(BgLitCandle00B)
-	{
-		width = 5;
-		frameTime = 140;
-	}
-}
-Tile(BgLitCandle00C)
-{
-	animation(BgLitCandle00C)
-	{
-		width = 10;
-		frameTime = 140;
-	}
-}
-Tile(BgLitCandle01A)
-{
-	animation(BgLitCandle01A)
-	{
-		width = 8;
-		frameTime = 140;
-	}
-}
-Tile(BgLitCandle01B)
-{
-	animation(BgLitCandle01B)
-	{
-		width = 8;
-		frameTime = 140;
-	}
-}
-Tile(BgLittleShip00A){}
-Tile(BgLock00A){}
-Tile(BgLongPainting_D){}
-Tile(BgModernBed00A){}
-Tile(BgModernBed00B){}
-Tile(BgModernBed02A){}
-Tile(BgModernMonitor00A){}
-Tile(BgPainting00A){}
-Tile(BgPainting00B){}
-Tile(BgPainting00C){}
-Tile(BgPainting00D){}
-Tile(BgPainting00E){}
 Tile(BgPainting06){}
 Tile(BgPainting07){}
 Tile(BgPainting09){}
@@ -481,6 +396,25 @@ Tile(BgPalmTreeTrunk00A){}
 Tile(BgPiano00A){}
 Tile(BgPicture00A){}
 Tile(BgPicture01A){}
+Tile(BgPirateShip01A){}
+Tile(BgPirateShip01B){}
+Tile(BgPirateShip01C){}
+Tile(BgPirateShip02A){}
+Tile(BgPirateShip03A){}
+Tile(BgPirateShip03B){}
+Tile(BgPirateShip03C){}
+Tile(BgPirateShip03D){}
+Tile(BgPirateShip03E){}
+Tile(BgPirateShip03F){}
+Tile(BgPirateShip04A){}
+Tile(BgPirateShip04B){}
+Tile(BgPirateShip04C){}
+Tile(BgPirateShip05A){}
+Tile(BgPirateShip05B){}
+Tile(BgPirateShip05C){}
+Tile(BgPirateShip05D){}
+Tile(BgPirateShipSmall00){}
+Tile(BgPirateWheelHolder00){}
 Tile(BgPoster03){}
 Tile(BgPoster04){}
 Tile(BgPoster05){}
@@ -497,6 +431,8 @@ Tile(BgPoster15){}
 Tile(BgPoster16){}
 Tile(BgPoster17){}
 Tile(BgPoster18){}
+Tile(BgPot00A){}
+Tile(BgPot00B){}
 Tile(BgProtestor00A)
 {
 	animation(BgProtestor00A)
@@ -577,79 +513,8 @@ Tile(BgSiren00A){}
 Tile(BgSiren00B){}
 Tile(BgSiren01A){}
 Tile(BgSiren01B){}
-Tile(BgTable00B){}
-Tile(BgTable011A){}
-Tile(BgTableLamp00A){}
-Tile(BgTerrarium00A){}
-Tile(BgTerrarium00B){}
-Tile(BgTiledWall00A){}
-Tile(BgToilet00A){}
-Tile(BgWall02R){}
-Tile(BgWallOutline02F){}
-Tile(BgWallOutline02G){}
-Tile(BgWallOutline02L){}
-Tile(BgWallOutline02O){}
-Tile(BgWallOutline02P){}
-Tile(BgWallOutline02Q){}
-Tile(BgWallOutline02R){}
-Tile(BgWallpaper00A){}
-Tile(BgWallpaper01A){}
-Tile(BgWallpaper02A){}
-Tile(BgWallpaper03A){}
-Tile(BgWallpaper04A){}
-Tile(BgWallpaper05A){}
-Tile(BgWallpaper06A){}
-Tile(BgWallpaper07A){}
-Tile(BgWallpaper08A){}
-Tile(BgWallpaper09A){}
-Tile(BgWallpaper10A){}
-Tile(BgWallpaper11A){}
-Tile(BgWallpaper12A){}
-Tile(BgWallpaper13A){}
-Tile(BgWallpaper14A){}
-Tile(BgWallpaper15A){}
-Tile(BgWallpaper16A){}
-Tile(BgWallpaper17A){}
-Tile(BgWallpaper18A){}
-Tile(BgWallpaper19A){}
-Tile(BgWallpaper20A){}
-Tile(BgWallpaper21A){}
-Tile(BgWallpaper22A){}
-Tile(BgWallpaper23A){}
-Tile(BgWallpaper24A){}
-Tile(BgWardrobe01A){}
-Tile(BgWardrobe01B){}
-Tile(BgWardrobe01C){}
-Tile(BgWardrobe02A){}
-Tile(BgWardrobe02B){}
-Tile(BgWardrobe02C){}
-Tile(BgWarningSign00A){}
-Tile(BgWarningSign00B){}
-Tile(BgWarningSign00C){}
-Tile(BgWarningSign00D){}
-Tile(BgWasher00A){}
-Tile(BgWashStand00A){}
-Tile(BgWindow09A){}
-Tile(BgWindow09B){}
-Tile(BgWindow09C){}
-Tile(BgWindow09D){}
-Tile(BgWindow09E){}
-Tile(BgWindow09F){}
-Tile(BgWindow09G){}
-Tile(BgWindow09H){}
-Tile(BgWindow09I){}
-Tile(BgWindow09J){}
-Tile(BgWindowFrame00A){}
-Tile(BgWindowFrame00B){}
-Tile(BgWindowFrame01A){}
-Tile(BgWindowFrame01B){}
-Tile(BgWindowSlope00A){}
-Tile(BgWindowSlope01A){}
-Tile(BgFan04A){}
-Tile(BgFan04B){}
-Tile(BgLeaves00){}
-Tile(BgLeaves01){}
-Tile(BgLeaves02){}
+Tile(BgSofa00A){}
+Tile(BgSpeaker01A){}
 Tile(BgSpectator01)
 {
 	sizeable = D;
@@ -722,17 +587,151 @@ Tile(BgSpectator08)
 		frameTime = 210;
 	}
 }
-Tile(BgWarnPoster00){}
-Tile(BgCompetitionCup00A){}
-Tile(BgCompetitionCup00B){}
-Tile(BgCompetitionCup00C){}
-Tile(BgCompetitionCup00D){}
-Tile(BgGrasses00A){}
-Tile(BgGrasses00B){}
-Tile(BgLeaves03A){}
+Tile(BgStreetLamp00A){}
+Tile(BgStreetLamp00B){}
+Tile(BgTable00B){}
+Tile(BgTable011A){}
+Tile(BgTableLamp00A){}
+Tile(BgTerrarium00A){}
+Tile(BgTerrarium00B){}
+Tile(BgTiledWall00A){}
+Tile(BgToilet00A){}
+Tile(BgTreeWood00A){}
 Tile(BgTreeWood00B){}
 Tile(BgTreeWood00C){}
 Tile(BgTreeWood00D){}
 Tile(BgTreeWood00E){}
 Tile(BgTreeWood00F){}
 Tile(BgTreeWood00G){}
+Tile(BgWall02R){}
+Tile(BgWallDarkBigRound00A){}
+Tile(BgWallDarkOutline00A){}
+Tile(BgWallDarkPixel00A){}
+Tile(BgWallDarkRound00A){}
+Tile(BgWallDarkShade00A){}
+Tile(BgWallDarkShade00B){}
+Tile(BgWallDarkShade00C){}
+Tile(BgWallDarkShade00D){}
+Tile(BgWallDarkShade00E){}
+Tile(BgWallDarkShade00F){}
+Tile(BgWallDarkShade00G){}
+Tile(BgWallDarkShade00H){}
+Tile(BgWallDarkShade00I){}
+Tile(BgWallDarkShadeOutline00A){}
+Tile(BgWallDarkShadeOutline00B){}
+Tile(BgWallDarkShadeOutline00C){}
+Tile(BgWallDarkShadeOutline00E){}
+Tile(BgWallDarkShadeOutline00F){}
+Tile(BgWallDarkShadeOutline00G){}
+Tile(BgWallLightBigRound00A){}
+Tile(BgWallLightOutline00A){}
+Tile(BgWallLightPixel00A){}
+Tile(BgWallLightRound00A){}
+Tile(BgWallLightShade00A){}
+Tile(BgWallLightShade00B){}
+Tile(BgWallLightShade00C){}
+Tile(BgWallLightShade00D){}
+Tile(BgWallLightShade00E){}
+Tile(BgWallLightShade00F){}
+Tile(BgWallLightShade00G){}
+Tile(BgWallLightShade00H){}
+Tile(BgWallLightShade00I){}
+Tile(BgWallLightShadeOutline00A){}
+Tile(BgWallLightShadeOutline00B){}
+Tile(BgWallLightShadeOutline00C){}
+Tile(BgWallLightShadeOutline00E){}
+Tile(BgWallLightShadeOutline00F){}
+Tile(BgWallLightShadeOutline00G){}
+Tile(BgWallMidBigRound00A){}
+Tile(BgWallMidOutline00A){}
+Tile(BgWallMidPixel00A){}
+Tile(BgWallMidRound00A){}
+Tile(BgWallMidShade00A){}
+Tile(BgWallMidShade00B){}
+Tile(BgWallMidShade00C){}
+Tile(BgWallMidShade00D){}
+Tile(BgWallMidShade00E){}
+Tile(BgWallMidShade00F){}
+Tile(BgWallMidShade00G){}
+Tile(BgWallMidShade00H){}
+Tile(BgWallMidShade00I){}
+Tile(BgWallMidShadeOutline00A){}
+Tile(BgWallMidShadeOutline00B){}
+Tile(BgWallMidShadeOutline00C){}
+Tile(BgWallMidShadeOutline00E){}
+Tile(BgWallMidShadeOutline00F){}
+Tile(BgWallMidShadeOutline00G){}
+Tile(BgWallOutline02F){}
+Tile(BgWallOutline02G){}
+Tile(BgWallOutline02L){}
+Tile(BgWallOutline02O){}
+Tile(BgWallOutline02P){}
+Tile(BgWallOutline02Q){}
+Tile(BgWallOutline02R){}
+Tile(BgWallpaper00A){}
+Tile(BgWallpaper01A){}
+Tile(BgWallpaper02A){}
+Tile(BgWallpaper03A){}
+Tile(BgWallpaper04A){}
+Tile(BgWallpaper05A){}
+Tile(BgWallpaper06A){}
+Tile(BgWallpaper07A){}
+Tile(BgWallpaper08A){}
+Tile(BgWallpaper09A){}
+Tile(BgWallpaper10A){}
+Tile(BgWallpaper11A){}
+Tile(BgWallpaper12A){}
+Tile(BgWallpaper13A){}
+Tile(BgWallpaper14A){}
+Tile(BgWallpaper15A){}
+Tile(BgWallpaper16A){}
+Tile(BgWallpaper17A){}
+Tile(BgWallpaper18A){}
+Tile(BgWallpaper19A){}
+Tile(BgWallpaper20A){}
+Tile(BgWallpaper21A){}
+Tile(BgWallpaper22A){}
+Tile(BgWallpaper23A){}
+Tile(BgWallpaper24A){}
+Tile(BgWardrobe01A){}
+Tile(BgWardrobe01B){}
+Tile(BgWardrobe01C){}
+Tile(BgWardrobe02A){}
+Tile(BgWardrobe02B){}
+Tile(BgWardrobe02C){}
+Tile(BgWarningSign00A){}
+Tile(BgWarningSign00B){}
+Tile(BgWarningSign00C){}
+Tile(BgWarningSign00D){}
+Tile(BgWarnPoster00){}
+Tile(BgWasher00A){}
+Tile(BgWashStand00A){}
+Tile(BgWindow09A){}
+Tile(BgWindow09B){}
+Tile(BgWindow09C){}
+Tile(BgWindow09D){}
+Tile(BgWindow09E){}
+Tile(BgWindow09F){}
+Tile(BgWindow09G){}
+Tile(BgWindow09H){}
+Tile(BgWindow09I){}
+Tile(BgWindow09J){}
+Tile(BgWindowFrame00A){}
+Tile(BgWindowFrame00B){}
+Tile(BgWindowFrame01A){}
+Tile(BgWindowFrame01B){}
+Tile(BgWindowSlope00A){}
+Tile(BgWindowSlope01A){}
+Tile(BgWoodenWallPanel00A){}
+Tile(BgWoodenWallPanel00B){}
+Tile(BgWoodenWallPanel00C){}
+Tile(BgWoodenWallPanel00D){}
+Tile(BgWoodenWallPanel00E){}
+Tile(BgWoodenWallPanel00F){}
+Tile(BgWoodenWallPanel00G){}
+Tile(BgWoodenWallPanel00H){}
+Tile(BgWoodenWallPanel00I){}
+Tile(PirateBrig00)
+{
+	drawCategory = FG;
+}
