@@ -23,7 +23,7 @@ internal sealed class CreditsPanel : Panel
             new MenuItemSeparator("ARTISTS"),
             new MenuItemLabel("Shock", Align.Center, Color.Lime),
             new MenuItemLabel("Dxse", Align.Center, Color.Lime),
-            new MenuItemLabel("KL1", Align.Center, Color.Lime),
+            new MenuItemLabel("KLI", Align.Center, Color.Lime),
             new MenuItemLabel("Danila015", Align.Center, Color.Lime),
             new MenuItemLabel("Eiga", Align.Center, Color.Lime),
 
