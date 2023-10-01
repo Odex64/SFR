@@ -6,5 +6,6 @@ internal enum DataType
     StickyGrenade,
     Head,
     ExtraClientStates,
-    SledgehammerBlink
+    SledgehammerBlink,
+    Crossbow
 }

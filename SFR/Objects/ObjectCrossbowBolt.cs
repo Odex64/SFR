@@ -29,40 +29,6 @@ internal sealed class ObjectCrossbowBolt : ObjectData
             return;
         }
 
-        if (IsDynamic)
-        {
-            var pos = GetWorldPosition();
-            pos.Y -= 4;
-            AABB.Create(out var aabb, pos, 4);
-            if (GetLinearVelocity() == Vector2.Zero && GameWorld.GetObjectDataByArea(aabb, true, PhysicsLayer.All).Any(o => o.IsStatic && !o.Tile.Name.StartsWith("Bg")))
-            {
-                Body.SetType(BodyType.Static);
-            }
-        }
-
-        if (_boltPlayer != null)
-        {
-            if (_boltPlayer is { IsRemoved: false, IsDead: false, Rolling: false, Falling: false, Diving: false })
-            {
-                var pos = Vector2.Zero;
-                var the = _boltPlayer.Position + new Vector2(_boltPlayer.LastDirectionX * _playerFace * _playerOffset.X, _playerOffset.Y);
-                FaceDirection = (short)(_boltPlayer.LastDirectionX * _playerFace);
-                if (_boltPlayer.Crouching)
-                {
-                    pos += new Vector2(0, -10);
-                }
-
-                Converter.ConvertWorldToBox2D(the.X, the.Y, out pos.X, out pos.Y);
-                Body.SetTransform(pos, _playerAngle * _playerFace * _boltPlayer.LastDirectionX);
-                Body.SetLinearVelocity(Vector2.Zero);
-            }
-            else
-            {
-                Destroy();
-                return;
-            }
-        }
-
         if (FilterObjectId != -1)
         {
             Body.GetFixtureByIndex(0).GetFilterData(out var filter);
@@ -83,7 +49,36 @@ internal sealed class ObjectCrossbowBolt : ObjectData
             FilterObjectId = -1;
         }
 
-        base.UpdateObject(ms);
+        if (_boltPlayer != null)
+        {
+            if (_boltPlayer is { IsRemoved: false, IsDead: false, Rolling: false, Falling: false, Diving: false })
+            {
+                var pos = Vector2.Zero;
+                var the = _boltPlayer.Position + new Vector2(_boltPlayer.LastDirectionX * _playerFace * _playerOffset.X, _playerOffset.Y);
+                FaceDirection = (short)(_boltPlayer.LastDirectionX * _playerFace);
+                if (_boltPlayer.Crouching)
+                {
+                    pos += new Vector2(0, -10);
+                }
+
+                Converter.ConvertWorldToBox2D(the.X, the.Y, out pos.X, out pos.Y);
+                Body.Position = pos;
+            }
+            else
+            {
+                Destroy();
+            }
+        }
+        else if (IsDynamic)
+        {
+            var pos = GetWorldPosition();
+            pos.Y -= 4;
+            AABB.Create(out var aabb, pos, 4);
+            if (GetLinearVelocity() == Vector2.Zero && GameWorld.GetObjectDataByArea(aabb, true, PhysicsLayer.All).Any(o => o.IsStatic && !o.Tile.Name.StartsWith("Bg")))
+            {
+                Body.SetType(BodyType.Static);
+            }
+        }
     }
 
     internal void ApplyPlayerBolt(Player player)

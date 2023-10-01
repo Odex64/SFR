@@ -8,6 +8,7 @@ using SFD.Projectiles;
 using SFD.Sounds;
 using SFD.Tiles;
 using SFR.Objects;
+using SFR.Sync.Generic;
 
 namespace SFR.Projectiles;
 
@@ -90,13 +91,18 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
             SoundHandler.PlaySound("MeleeHitSharp", GameWorld);
 
             Remove();
-            var data = (ObjectCrossbowBolt)GameWorld.IDCounter.NextLocalObjectData("CrossbowBolt01");
+            var data = (ObjectCrossbowBolt)GameWorld.IDCounter.NextObjectData("CrossbowBolt01");
             SpawnObjectInformation spawnObject = new(data, Position, -GetAngle(), 1, Vector2.Zero, 0);
-            GameWorld.CreateTile(spawnObject);
-            data.ChangeBodyType(BodyType.Static);
             data.Timer = GameWorld.ElapsedTotalGameTime + 10000;
+            var body = GameWorld.CreateTile(spawnObject);
+            body.SetType(BodyType.Static);
+
             data.ApplyPlayerBolt(player);
             data.EnableUpdateObject();
+            if (GameOwner == GameOwnerEnum.Server)
+            {
+                GenericData.SendGenericDataToClients(new GenericData(DataType.Crossbow, new[] { SyncFlag.MustSyncNewObjects }, data.ObjectID, player.ObjectID, data.Timer));
+            }
         }
     }
 

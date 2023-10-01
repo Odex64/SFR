@@ -201,13 +201,14 @@ internal static class SyncHandler
                 break;
 
             case DataType.StickyGrenade:
-                var stickyGrenadeData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0], (int)data.Args[1]);
-                if (stickyGrenadeData == null)
+                var stickyGrenadeData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
+                var stickyGrenadePlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
+                if (stickyGrenadeData == null || stickyGrenadePlayer == null)
                 {
                     return;
                 }
 
-                ((ObjectStickyBombThrown)stickyGrenadeData[0]).ApplyStickyPlayer(stickyGrenadeData[1].ObjectID, (float)data.Args[2], (float)data.Args[3], (float)data.Args[4]);
+                ((ObjectStickyBombThrown)stickyGrenadeData[0]).ApplyStickyPlayer(stickyGrenadePlayer, (float)data.Args[2], (float)data.Args[3], (float)data.Args[4]);
                 break;
 
             case DataType.Head:
@@ -218,6 +219,20 @@ internal static class SyncHandler
                 }
 
                 ((ObjectHead)headData[0]).ReplaceTexture = ObjectHead.TextureFromString((string)data.Args[1]);
+                break;
+
+            case DataType.Crossbow:
+                var crossbowData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
+                var crossbowPlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
+                if (crossbowData == null || crossbowPlayer == null)
+                {
+                    return;
+                }
+            
+                var crossbowBolt = (ObjectCrossbowBolt)crossbowData[0];
+                crossbowBolt.Timer = (float)data.Args[2];
+                crossbowBolt.ApplyPlayerBolt(crossbowPlayer);
+                crossbowBolt.EnableUpdateObject();
                 break;
 
             case DataType.ExtraClientStates:
