@@ -509,7 +509,7 @@ internal class ExtendedTeam
 
         return instructions;
     }
-    
+
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(ObjectPlayerSpawnTrigger), nameof(ObjectPlayerSpawnTrigger.GetSpawnTeam))]
     private static IEnumerable<CodeInstruction> AdditionalPlayerSpawnTeam(IEnumerable<CodeInstruction> instructions)
