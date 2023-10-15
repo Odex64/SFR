@@ -228,7 +228,7 @@ internal static class SyncHandler
                 {
                     return;
                 }
-            
+
                 var crossbowBolt = (ObjectCrossbowBolt)crossbowData[0];
                 crossbowBolt.Timer = (float)data.Args[2];
                 crossbowBolt.ApplyPlayerBolt(crossbowPlayer);

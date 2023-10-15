@@ -42,7 +42,7 @@ internal static class Database
     [HarmonyPatch(typeof(WeaponDatabase), nameof(WeaponDatabase.Load))]
     private static void LoadWeapons()
     {
-        WeaponDatabase.m_weapons = new WeaponItem[107];
+        WeaponDatabase.m_weapons = new WeaponItem[110];
 
         _weapons ??= new List<WeaponItem>
         {
@@ -63,12 +63,14 @@ internal static class Database
             // new(WeaponItemType.Melee, new RiotShield()), // 82
             new(WeaponItemType.Melee, new Sledgehammer()), // 83
             new(WeaponItemType.Melee, new Switchblade()), // 84
+            new(WeaponItemType.Melee, new Scythe()), // 108
 
             // Handgun
             new(WeaponItemType.Handgun, new Flintlock()), // 69
             new(WeaponItemType.Handgun, new NailGun()), // 70
             new(WeaponItemType.Handgun, new UnkemptHarold()), // 85
             new(WeaponItemType.Handgun, new StickyLauncher()), // 86
+            new(WeaponItemType.Handgun, new Anaconda()), // 109
 
             // Throwable
             new(WeaponItemType.Thrown, new Claymore()), // 87
@@ -88,6 +90,7 @@ internal static class Database
             new(WeaponItemType.Rifle, new RCM()), // 100
             new(WeaponItemType.Rifle, new Winchester()), // 101
             new(WeaponItemType.Rifle, new Minigun()), // 102
+            new(WeaponItemType.Rifle, new AK47()), // 107
 
             // Pickup
             new(WeaponItemType.Powerup, new HealthPouch()), // 92
@@ -220,9 +223,11 @@ internal static class Database
             { 101, 12 }, // Winchester
             { 102, 6 }, // Minigun
             { 103, 12 }, // Adrenaline boost
-            { 104, 17 } // Jetpack
+            { 104, 17 }, // Jetpack
             // 105, Jetpack editor
-            // 106, Gunpack
+            { 107, 12 }, // AK47
+            { 108, 10 }, // Scythe
+            { 109, 12 } // Anaconda
         };
 
         __result = WeaponItem.ID.m_wpns;
@@ -332,6 +337,9 @@ internal static class Database
         Winchester,
         Minigun,
         AdrenalineBoost,
+        AK47,
+        Scythe,
+        Anaconda,
         Jetpack,
         JetpackEditor,
         Gunpack

@@ -260,6 +260,33 @@ Tile(WpnRevolver)
 		blockFire = false;
 	}
 }
+Tile(WpnAnaconda)
+{
+	tileTexture = AnacondaM;
+	material = metal;
+	material.blockExplosions = false;
+	pickupType = instant;
+	pickupRange = 10.0;
+	absorbProjectile = false;
+	projectileHit = false;
+	impactEffect = ImpactDefault;
+	impactSound = WeaponBounce;
+	missileDamageMax = 10;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 2.5 kg;
+		collisionPoints = (-3.5, 1.5), (5.5, 1.5), (5.5, 3.5), (-2.5, 3.5), (-3.5, 2.5);
+		blockFire = false;
+	}
+	fixture(grip)
+	{
+		collisionGroup = debris;
+		mass = 2.5 kg;
+		collisionPoints = (-3.5, -1.5), (-1.5, -1.5), (-1.5, 1.5), (-3.5, 1.5);
+		blockFire = false;
+	}
+}
 Tile(WpnPumpShotgun)
 {
 	tileTexture = ShotgunM;
@@ -327,6 +354,45 @@ Tile(WpnDarkShotgun)
 Tile(WpnTommygun)
 {
 	tileTexture = TommyGunM;
+	pickupType = instant;
+	pickupRange = 10.0;
+	absorbProjectile = false;
+	projectileHit = false;
+	impactEffect = ImpactDefault;
+	impactSound = WeaponBounce;
+	missileDamageMax = 15;
+	fixture()
+	{
+		collisionGroup = debris;
+		mass = 2.5 kg;
+		collisionPoints = (-7.5, 1.5), (8.5, 1.5), (8.5, 3.5), (-7.5, 3.5);
+		blockFire = false;
+	}
+	fixture(stock)
+	{
+		collisionGroup = debris;
+		mass = 2.5 kg;
+		collisionPoints = (-10.5, -0.5), (-4.5, -0.5), (-4.5, 2.5), (-10.5, 2.5);
+		blockFire = false;
+	}
+	fixture(grip)
+	{
+		collisionGroup = debris;
+		mass = 2.5 kg;
+		collisionPoints = (2.5, -0.5), (4.5, -0.5), (4.5, 2.5), (2.5, 2.5);
+		blockFire = false;
+	}
+	fixture(mag)
+	{
+		collisionGroup = debris;
+		mass = 2.5 kg;
+		collisionPoints = (2.5, -0.5), (4.5, -0.5), (4.5, 2.5), (2.5, 2.5);
+		blockFire = false;
+	}
+}
+Tile(WpnAK47)
+{
+	tileTexture = AK47M;
 	pickupType = instant;
 	pickupRange = 10.0;
 	absorbProjectile = false;
@@ -996,6 +1062,45 @@ Tile(WpnAxe)
 	}
 }
 Tile(AxeDebris1)
+{
+	editorEnabled = false;
+	punchable = true;
+	kickable = true;
+	material = metal;
+	fixture()
+	{
+		collisionPoints = (-3.5, 2.5), (3.5, -2.5), (3.5, 2.5);
+		blockFire = false;
+	}
+}
+Tile(WpnScythe)
+{
+	tileTexture = ScytheM;
+	pickupType = instant;
+	pickupRange = 15.0;
+	absorbProjectile = false;
+	projectileHit = false;
+	impactEffect = ImpactDefault;
+	impactSound = ImpactWood;
+	missileThrownHitEffectID = HIT_S;
+	missileThrownHitSoundID = MeleeHitSharp;
+	missileDamageFactorThrown = 9;
+	missileDamageMax = 30 | 15;
+	fixture()
+	{
+		collisionPoints =  (8, -1), (8, 1), (-11, 2), (-11, 0);
+		mass = 2.5 kg;
+		blockFire = false;
+	}
+	fixture(head) //so no head? ;)
+	{
+		collisionGroup = debris;
+		collisionPoints = (2, -11), (7, -5.5), (7.5, 0), (3.5, 0);
+		mass = 2.5 kg;
+		blockFire = false;
+	}
+}
+Tile(ScytheDebris1)
 {
 	editorEnabled = false;
 	punchable = true;
@@ -2199,7 +2304,7 @@ Tile(WpnCrowbar)
 	fixture(head)
 	{
 		collisionGroup = debris;
-		collisionPoints = (5, -0.5), (8, -0.5), (7, -3.5), (5, -3.5);
+		collisionPoints = (8, -0.5), (5, -0.5), (5, -3.5), (7, -3.5);
 		mass = 2.5 kg;
 		blockFire = false;
 	}
@@ -2614,10 +2719,10 @@ Tile(WpnPoleaxe)
 		mass = 2.5 kg;
 		blockFire = false;
 	}
-	fixture(blade)
+	fixture(blade) //goodbye old friend ;( #K
 	{
 		collisionGroup = debris;
-		collisionPoints = (12, -4.5), (7.5, -6), (3, -4.5), (7.5, 4.5);
+		collisionPoints = (7.5, 4.5), (3, -4.5), (7.5, -6), (12, -4.5);
 		mass = 2.5 kg;
 		blockFire = false;
 	}

@@ -104,10 +104,6 @@
             <HintPath>..\SFD\SFD.GameScriptInterface.dll</HintPath>
             <Private>false</Private>
         </Reference>
-        <Reference Include="SFD.Input">
-            <HintPath>..\SFD\SFD.Input.dll</HintPath>
-            <Private>false</Private>
-        </Reference>
         <Reference Include="SFD.ScriptEngine">
             <HintPath>..\SFD\SFD.ScriptEngine.dll</HintPath>
             <Private>false</Private>
@@ -119,18 +115,14 @@
         <Reference Include="System">
             <Private>false</Private>
         </Reference>
-        <Reference Include="System.Drawing">
-            <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Drawing\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll</HintPath>
-        </Reference>
+        <Reference Include="System.Drawing"/>
         <Reference Include="System.IO.Compression">
             <Private>false</Private>
         </Reference>
         <Reference Include="System.IO.Compression.FileSystem">
             <Private>false</Private>
         </Reference>
-        <Reference Include="System.Windows.Forms">
-            <HintPath>..\..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
-        </Reference>
+        <Reference Include="System.Windows.Forms"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\SharedAssemblyInfo.cs">
@@ -221,6 +213,7 @@
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="UI\MenuItemLabel.cs"/>
         <Compile Include="Weapons\Database.cs"/>
+        <Compile Include="Weapons\Handguns\Anaconda.cs"/>
         <Compile Include="Weapons\Handguns\Flintlock.cs"/>
         <Compile Include="Weapons\Handguns\NailGun.cs"/>
         <Compile Include="Weapons\Handguns\StickyLauncher.cs"/>
@@ -238,6 +231,7 @@
         <Compile Include="Weapons\Melee\ParryingDagger.cs"/>
         <Compile Include="Weapons\Melee\Poleaxe.cs"/>
         <Compile Include="Weapons\Melee\Rapier.cs"/>
+        <Compile Include="Weapons\Melee\Scythe.cs"/>
         <Compile Include="Weapons\Melee\Sledgehammer.cs"/>
         <Compile Include="Weapons\Melee\Switchblade.cs"/>
         <Compile Include="Weapons\Others\Gunpack.cs"/>
@@ -246,6 +240,7 @@
         <Compile Include="Weapons\Others\Jetpack.cs"/>
         <Compile Include="Weapons\Others\AdrenalineBoost.cs"/>
         <Compile Include="Weapons\Rifles\AA12.cs"/>
+        <Compile Include="Weapons\Rifles\AK47.cs"/>
         <Compile Include="Weapons\Rifles\Barrett.cs"/>
         <Compile Include="Weapons\Rifles\Blunderbuss.cs"/>
         <Compile Include="Weapons\Rifles\Crossbow.cs"/>
