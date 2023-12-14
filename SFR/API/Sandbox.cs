@@ -13,7 +13,7 @@ namespace SFR.API;
 [HarmonyPatch(typeof(ScriptEngine.Sandbox))]
 internal static class Sandbox
 {
-    private static readonly Dictionary<ScriptEngine.Sandbox, AppDomain> AppDomains = new();
+    private static readonly Dictionary<ScriptEngine.Sandbox, AppDomain> _appDomains = new();
 
     [HarmonyPrefix]
     [HarmonyPatch(nameof(ScriptEngine.Sandbox.Create))]
@@ -33,7 +33,7 @@ internal static class Sandbox
         var appDomain = AppDomain.CreateDomain("Sandbox", null, info, permissionSet, typeof(ScriptEngine.Sandbox).Assembly.Evidence.GetHostEvidence<StrongName>());
         var sandbox = (ScriptEngine.Sandbox)Activator.CreateInstanceFrom(appDomain, typeof(ScriptEngine.Sandbox).Assembly.ManifestModule.FullyQualifiedName, typeof(ScriptEngine.Sandbox).FullName!).Unwrap();
         sandbox.Setup();
-        AppDomains.Add(sandbox, appDomain);
+        _appDomains.Add(sandbox, appDomain);
 
         __result = sandbox;
         return false;
@@ -43,11 +43,11 @@ internal static class Sandbox
     [HarmonyPatch(nameof(ScriptEngine.Sandbox.Unload))]
     private static bool Unload(ScriptEngine.Sandbox sandbox)
     {
-        if (AppDomains.ContainsKey(sandbox))
+        if (_appDomains.ContainsKey(sandbox))
         {
-            var domain = AppDomains[sandbox];
+            var domain = _appDomains[sandbox];
             sandbox.Dispose();
-            AppDomains.Remove(sandbox);
+            _appDomains.Remove(sandbox);
             AppDomain.Unload(domain);
         }
 
