@@ -29,11 +29,11 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
             CursorAimOffset = new Vector2(0f, 1f),
             LazerPosition = new Vector2(14f, -0.5f),
             AimStartSoundID = "PistolAim",
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "MetalDebris00A",
                 "ItemDebrisShiny00"
-            },
+            ],
             SpecialAmmoBulletsRefill = 200,
             AI_DamageOutput = DamageOutputType.High,
             AI_EffectiveRange = 80,
@@ -65,7 +65,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         weaponProperties.VisualText = "Minigun";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "F" });
+        CacheDrawnTextures(["F"]);
     }
 
     private Minigun(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
@@ -165,15 +165,15 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         }
 
         // _synced = false;
-        // GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.Player.ObjectID, "SYNC_MINIGUN_UNREV"));
-        // args.Player.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.Player.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_UNREV"));
+        // GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.PlayerExt.ObjectID, "SYNC_MINIGUN_UNREV"));
+        // args.PlayerExt.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.PlayerExt.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_UNREV"));
         if (_revUpCurrent >= RevUpRounds)
         {
             // if (!_synced)
             // {
             //     _synced = true;
-            //     GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.Player.ObjectID, "SYNC_MINIGUN_REVUP"));
-            // args.Player.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.Player.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_REVUP"));
+            //     GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.PlayerExt.ObjectID, "SYNC_MINIGUN_REVUP"));
+            // args.PlayerExt.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.PlayerExt.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_REVUP"));
             // }
 
             Properties.MuzzleEffectTextureID = "MuzzleFlashL";

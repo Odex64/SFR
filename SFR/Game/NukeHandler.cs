@@ -40,7 +40,7 @@ internal static class NukeHandler
 
     private static GameWorld _gameWorld;
 
-    private static List<ObjectNuke> _nukeObjects = new();
+    private static List<ObjectNuke> _nukeObjects = [];
 
     private static void Finish()
     {
@@ -72,16 +72,16 @@ internal static class NukeHandler
 
             // if (gameWorld.GameOwner == GameOwnerEnum.Server)
             // {
-            GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, new[] { SyncFlag.MustSyncNewObjects }, fgNuke.ObjectID, bgNuke.ObjectID));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.Nuke, [SyncFlag.MustSyncNewObjects], fgNuke.ObjectID, bgNuke.ObjectID));
             gameWorld.SlowmotionHandler.Reset();
             gameWorld.SlowmotionHandler.AddSlowmotion(new Slowmotion(ScreenWipeTime * 0.25f, ScreenWipeTime * 0.8f, ScreenWipeTime * 0.2f, 0.2f, 0));
             // }
 
-            List<ObjectNuke> nukeObjects = new()
-            {
+            List<ObjectNuke> nukeObjects =
+            [
                 fgNuke,
                 bgNuke
-            };
+            ];
 
             _terminateType = terminateType;
             _terminateObjects = objectType;
@@ -156,8 +156,8 @@ internal static class NukeHandler
             if (relativeProgress > FadeTime)
             {
                 // Logger.LogDebug("9");
-                float value = Math.InverseLerp(FadeTime, 1, relativeProgress);
-                shake = Math.Lerp(1, 0, value);
+                float value = ExtendedMath.InverseLerp(FadeTime, 1, relativeProgress);
+                shake = ExtendedMath.Lerp(1, 0, value);
             }
 
             Camera.m_shakeIntensity = shake * ShakeIntensity;
@@ -272,8 +272,8 @@ internal static class NukeHandler
             float saturation = 1 + _screenWipeProgress / ScreenWipeTime * MaxSaturation;
             if (progress > FadeTime)
             {
-                float value = Math.InverseLerp(FadeTime, 1, progress);
-                saturation = Math.Lerp(GameSFD.Saturation, saturation, value);
+                float value = ExtendedMath.InverseLerp(FadeTime, 1, progress);
+                saturation = ExtendedMath.Lerp(GameSFD.Saturation, saturation, value);
             }
 
             GameSFD.Saturation = saturation;

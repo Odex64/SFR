@@ -9,8 +9,8 @@ namespace SFR.Weapons.Handguns;
 
 internal sealed class Anaconda : RWeapon
 {
+    private const int _shellsToSpawn = 5;
     private bool _spawnShells;
-    private const int ShellsToSpawn = 5;
 
     internal Anaconda()
     {
@@ -64,7 +64,7 @@ internal sealed class Anaconda : RWeapon
         weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
         weaponProperties.VisualText = "Anaconda";
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private Anaconda(RWeaponProperties rwp, RWeaponVisuals rwv)
@@ -80,7 +80,7 @@ internal sealed class Anaconda : RWeapon
             {
                 if (_spawnShells)
                 {
-                    for (int i = 0; i < ShellsToSpawn; i++)
+                    for (int i = 0; i < _shellsToSpawn; i++)
                     {
                         SpawnUnsyncedShell(player, "ShellSmall");
                     }

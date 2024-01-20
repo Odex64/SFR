@@ -5,11 +5,15 @@ using SFR.Sync.Generic;
 
 namespace SFR.Fighter.Jetpacks;
 
-internal abstract class GenericJetpack
+/// <summary>
+///     All the jetpacks derive from this.
+///     This class will handle basic tasks, such as setting basic speed, playing effects / sounds etc.
+/// </summary>
+internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
 {
     protected const float FlyThreshold = 250f;
-    protected internal readonly BarMeter Fuel;
-    protected internal readonly float MaxSpeed;
+    protected internal readonly BarMeter Fuel = new(fuel, fuel);
+    protected internal readonly float MaxSpeed = maxSpeed;
 
     protected float AirTime;
     protected float EffectTimer;
@@ -21,12 +25,6 @@ internal abstract class GenericJetpack
     protected float SoundTimer;
 
     protected internal JetpackState State;
-
-    protected GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
-    {
-        MaxSpeed = maxSpeed;
-        Fuel = new BarMeter(fuel, fuel);
-    }
 
     internal virtual void Update(float ms, ExtendedPlayer extendedPlayer)
     {
@@ -82,7 +80,7 @@ internal abstract class GenericJetpack
 
                 if (player.GameOwner == GameOwnerEnum.Server)
                 {
-                    GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, player.ObjectID, extendedPlayer.GetStates()));
+                    GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
                 }
             }
 
@@ -129,7 +127,7 @@ internal abstract class GenericJetpack
         extendedPlayer.GenericJetpack = null;
         if (extendedPlayer.Player.GameOwner == GameOwnerEnum.Server)
         {
-            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
         }
     }
 

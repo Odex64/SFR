@@ -18,7 +18,7 @@ internal sealed class Flintlock : RWeapon
             LazerPosition = new Vector2(6f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.High,
-            BreakDebris = new[] { "MetalDebris00A" },
+            BreakDebris = ["MetalDebris00A"],
             SpecialAmmoBulletsRefill = 3
         };
 
@@ -46,7 +46,7 @@ internal sealed class Flintlock : RWeapon
         weaponProperties.VisualText = "Flintlock";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private Flintlock(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)

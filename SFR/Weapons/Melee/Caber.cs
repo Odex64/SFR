@@ -43,11 +43,11 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 100f
             },
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "CaberDebris1",
                 "CaberDebris2"
-            },
+            ],
             AI_DamageOutput = DamageOutputType.High
         };
 
@@ -178,7 +178,7 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
         SoundHandler.PlaySound("DestroyMetal", player.GameWorld);
         EffectHandler.PlayEffect("DestroyMetal", player.Position, player.GameWorld);
         Vector2 center = new(player.Position.X, player.Position.Y + 16f);
-        player.GameWorld.SpawnDebris(player.ObjectData, center, 8f, new[] { "CaberDebris1", "CaberDebris2" });
+        player.GameWorld.SpawnDebris(player.ObjectData, center, 8f, ["CaberDebris1", "CaberDebris2"]);
         TriggerExplosion(player);
     }
 }

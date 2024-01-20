@@ -12,7 +12,7 @@ namespace SFR.Objects;
 internal sealed class ObjectNuke : ObjectData
 {
     private const float CreateBoomInterval = 5;
-    private readonly List<Boom> _booms = new();
+    private readonly List<Boom> _booms = [];
     private float _createBoomTimer;
     internal bool IsActive;
     internal float Progress = 0f;
@@ -36,8 +36,8 @@ internal sealed class ObjectNuke : ObjectData
 
             if (Progress > NukeHandler.FadeTime)
             {
-                float value = Math.InverseLerp(NukeHandler.FadeTime, 1, Progress);
-                float fade = Math.Lerp(0, 255, Math.Clamp(1 - value));
+                float value = ExtendedMath.InverseLerp(NukeHandler.FadeTime, 1, Progress);
+                float fade = ExtendedMath.Lerp(0, 255, ExtendedMath.Clamp(1 - value));
                 color.A = (byte)fade;
             }
 

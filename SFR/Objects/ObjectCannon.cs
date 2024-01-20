@@ -7,6 +7,7 @@ using SFD.Sounds;
 using SFD.Weapons;
 using SFR.Helper;
 using SFR.Weapons.Makeshift;
+using Player = SFD.Player;
 
 namespace SFR.Objects;
 

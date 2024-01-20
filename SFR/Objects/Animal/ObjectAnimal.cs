@@ -10,7 +10,7 @@ namespace SFR.Objects.Animal;
 /// <summary>
 ///     Every animal must inherits from this class.
 /// </summary>
-internal abstract class ObjectAnimal : ObjectData
+internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : ObjectData(startParams)
 {
     private float _jumpTimer;
     private float _lastX;
@@ -20,8 +20,6 @@ internal abstract class ObjectAnimal : ObjectData
     protected float MaxJumpForce;
     protected float MinCheckInterval;
     protected float MinJumpForce;
-
-    protected ObjectAnimal(ObjectDataStartParams startParams) : base(startParams) { }
 
     public override void Initialize()
     {

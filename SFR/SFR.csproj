@@ -28,7 +28,7 @@
         <PlatformTarget>x86</PlatformTarget>
         <LangVersion>default</LangVersion>
         <ErrorReport>prompt</ErrorReport>
-        <Prefer32Bit>true</Prefer32Bit>
+        <Prefer32Bit>false</Prefer32Bit>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
         <OutputPath>bin\x86\Release\</OutputPath>
@@ -37,11 +37,11 @@
         <PlatformTarget>x86</PlatformTarget>
         <LangVersion>default</LangVersion>
         <ErrorReport>prompt</ErrorReport>
-        <Prefer32Bit>true</Prefer32Bit>
+        <Prefer32Bit>false</Prefer32Bit>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="0Harmony, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\Lib.Harmony.2.3.0-prerelease.2\lib\net472\0Harmony.dll</HintPath>
+            <HintPath>..\packages\Lib.Harmony.2.3.0-prerelease.5\lib\net472\0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="Box2D.XNA">
             <HintPath>..\SFD\Box2D.XNA.dll</HintPath>
@@ -65,39 +65,30 @@
         </Reference>
         <Reference Include="Mono.Cecil, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
             <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.dll</HintPath>
-            <Private>true</Private>
         </Reference>
         <Reference Include="Mono.Cecil.Mdb, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
             <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Mdb.dll</HintPath>
-            <Private>false</Private>
         </Reference>
         <Reference Include="Mono.Cecil.Pdb, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
             <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Pdb.dll</HintPath>
-            <Private>false</Private>
         </Reference>
         <Reference Include="Mono.Cecil.Rocks, Version=0.11.5.0, Culture=neutral, PublicKeyToken=50cebf1cceb9d05e, processorArchitecture=MSIL">
             <HintPath>..\packages\Mono.Cecil.0.11.5\lib\net40\Mono.Cecil.Rocks.dll</HintPath>
-            <Private>false</Private>
         </Reference>
-        <Reference Include="MonoMod.Backports, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\MonoMod.Backports.1.0.1\lib\net452\MonoMod.Backports.dll</HintPath>
-            <Private>true</Private>
+        <Reference Include="MonoMod.Backports, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>..\packages\MonoMod.Backports.1.1.0-prerelease.2\lib\net452\MonoMod.Backports.dll</HintPath>
         </Reference>
-        <Reference Include="MonoMod.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Core.dll</HintPath>
-            <Private>true</Private>
+        <Reference Include="MonoMod.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>..\packages\MonoMod.Core.1.1.0-prerelease.2\lib\net452\MonoMod.Core.dll</HintPath>
         </Reference>
         <Reference Include="MonoMod.Iced, Version=1.17.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\MonoMod.Core.1.0.1\lib\net452\MonoMod.Iced.dll</HintPath>
-            <Private>true</Private>
+            <HintPath>..\packages\MonoMod.Core.1.1.0-prerelease.2\lib\net452\MonoMod.Iced.dll</HintPath>
         </Reference>
-        <Reference Include="MonoMod.ILHelpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-            <HintPath>..\packages\MonoMod.ILHelpers.1.0.0\lib\net452\MonoMod.ILHelpers.dll</HintPath>
-            <Private>true</Private>
+        <Reference Include="MonoMod.ILHelpers, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+            <HintPath>..\packages\MonoMod.ILHelpers.1.0.1-prerelease.2\lib\net452\MonoMod.ILHelpers.dll</HintPath>
         </Reference>
         <Reference Include="MonoMod.Utils, Version=25.0.3.0, Culture=neutral, processorArchitecture=MSIL">
             <HintPath>..\packages\MonoMod.Utils.25.0.3\lib\net452\MonoMod.Utils.dll</HintPath>
-            <Private>true</Private>
         </Reference>
         <Reference Include="mscorlib"/>
         <Reference Include="SFD.GameScriptInterface">
@@ -122,13 +113,15 @@
         <Reference Include="System.IO.Compression.FileSystem">
             <Private>false</Private>
         </Reference>
+        <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+            <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+        </Reference>
         <Reference Include="System.Windows.Forms"/>
     </ItemGroup>
     <ItemGroup>
         <Compile Include="..\SharedAssemblyInfo.cs">
             <Link>Properties\SharedAssemblyInfo.cs</Link>
         </Compile>
-        <Compile Include="API\ScriptCompiler.cs"/>
         <Compile Include="Bootstrap\Assets.cs"/>
         <Compile Include="API\Sandbox.cs"/>
         <Compile Include="Debug\DebugStartup.cs"/>
@@ -153,11 +146,9 @@
         <Compile Include="Game\CommandHandler.cs"/>
         <Compile Include="Game\NukeHandler.cs"/>
         <Compile Include="Game\WorldHandler.cs"/>
-        <Compile Include="Helper\Fighter.cs"/>
+        <Compile Include="Helper\Extensions.cs"/>
         <Compile Include="Helper\Logger.cs"/>
-        <Compile Include="Helper\Math.cs"/>
-        <Compile Include="Helper\Randomizer.cs"/>
-        <Compile Include="Helper\Vector.cs"/>
+        <Compile Include="Helper\ExtendedMath.cs"/>
         <Compile Include="Editor\MapData.cs"/>
         <Compile Include="Misc\Tweaks.cs"/>
         <Compile Include="Objects\Animal\ObjectAnimal.cs"/>

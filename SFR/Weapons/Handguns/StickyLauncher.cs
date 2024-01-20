@@ -9,12 +9,13 @@ using SFD.Weapons;
 using SFR.Helper;
 using SFR.Objects;
 using Constants = SFR.Misc.Constants;
+using Player = SFD.Player;
 
 namespace SFR.Weapons.Handguns;
 
 internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
 {
-    private readonly List<ObjectStickyProjectile> _stickies = new();
+    private readonly List<ObjectStickyProjectile> _stickies = [];
     private bool _ejectShells = true;
 
     internal StickyLauncher()
@@ -43,12 +44,12 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
             AI_DamageOutput = DamageOutputType.None,
             CanRefilAtAmmoStashes = true,
             AI_MaxRange = 0f,
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "ItemDebrisWood00",
                 "ItemDebrisShiny00",
                 "MetalDebris00C"
-            },
+            ],
             SpecialAmmoBulletsRefill = 8
         };
 
@@ -77,7 +78,7 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
         weaponProperties.VisualText = "Sticky Launcher";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private StickyLauncher(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)

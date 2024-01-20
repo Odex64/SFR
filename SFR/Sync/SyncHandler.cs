@@ -78,7 +78,7 @@ internal static class SyncHandler
     /// </summary>
     private static ObjectData[] SyncGameWorldObject(GameWorld gameWorld, GenericData genericData, params int[] objectsID)
     {
-        List<ObjectData> receivedData = new();
+        List<ObjectData> receivedData = [];
         foreach (int obj in objectsID)
         {
             var data = gameWorld.GetObjectDataByID(obj);

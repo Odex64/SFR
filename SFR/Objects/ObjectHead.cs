@@ -5,13 +5,14 @@ using SFD;
 using SFD.Objects;
 using SFD.Tiles;
 using SFR.Helper;
+using Player = SFD.Player;
 
 namespace SFR.Objects;
 
 internal sealed class ObjectHead : ObjectGiblet
 {
     private static readonly Texture2D BackupTexture = null;
-    private static readonly string[] DisallowedAccessories = { "swing", "armband", "dogtag", "scarf" };
+    private static readonly string[] DisallowedAccessories = ["swing", "armband", "dogtag", "scarf"];
     internal Texture2D ReplaceTexture;
 
     internal ObjectHead(ObjectDataStartParams startParams) : base(startParams) { }

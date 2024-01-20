@@ -8,6 +8,7 @@ using SFR.Helper;
 using SFR.Weapons.Others;
 using Constants = SFR.Misc.Constants;
 using Math = System.Math;
+using Player = SFD.Player;
 
 namespace SFR.Fighter;
 
@@ -21,8 +22,8 @@ internal static class AnimHandler
 
     internal static List<AnimationData> GetAnimations(AnimationsData data)
     {
-        _customAnimations ??= new List<AnimationData>
-        {
+        _customAnimations ??=
+        [
             ChangeAnimationTime(data.GetAnimation("UpperMelee2H1"), 1.75f, "UpperMelee2H1VerySlow"),
             ChangeAnimationTime(data.GetAnimation("UpperMelee2H2"), 1.75f, "UpperMelee2H2VerySlow"),
             ChangeAnimationTime(data.GetAnimation("UpperMelee2H3"), 1.75f, "UpperMelee2H3VerySlow"),
@@ -37,7 +38,7 @@ internal static class AnimHandler
             ChangeAnimationTime(data.GetAnimation("UpperMelee1H2"), 0.75f, "UpperMelee1H2Fast"),
             ChangeAnimationTime(data.GetAnimation("UpperMelee1H3"), 0.75f, "UpperMelee1H3Fast"),
             ChangeAnimationTime(data.GetAnimation("UpperBlockMelee"), 0.5f, "UpperBlockMeleeFast")
-        };
+        ];
 
         return _customAnimations;
     }

@@ -5,6 +5,7 @@ using SFD.Effects;
 using SFD.Projectiles;
 using SFD.Tiles;
 using SFR.Helper;
+using Player = SFD.Player;
 
 namespace SFR.Projectiles;
 

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using HarmonyLib;
-using SFD;
-using SFD.Objects;
 using SFD.Weapons;
 using SFR.Weapons.Handguns;
 using SFR.Weapons.Makeshift;
@@ -19,24 +17,7 @@ namespace SFR.Weapons;
 [HarmonyPatch]
 internal static class Database
 {
-    private static List<WeaponItem> _weapons;
-
-    /// <summary>
-    ///     Fix an issue that prevents new weapons from spawning correctly.
-    /// </summary>
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(ObjectData), nameof(ObjectData.CreateNew))]
-    private static bool FixDrop(ObjectDataStartParams startParams, ref ObjectData __result)
-    {
-        var weapon = _weapons.Find(w => startParams.MapObjectID == w.BaseProperties.ModelID.ToUpper());
-        if (weapon != null)
-        {
-            __result = new ObjectWeaponItem(startParams, weapon.BaseProperties.WeaponID);
-            return false;
-        }
-
-        return true;
-    }
+    internal static List<WeaponItem> Weapons;
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(WeaponDatabase), nameof(WeaponDatabase.Load))]
@@ -44,63 +25,62 @@ internal static class Database
     {
         WeaponDatabase.m_weapons = new WeaponItem[110];
 
-        _weapons ??= new List<WeaponItem>
-        {
-            // Makeshift
-            new(WeaponItemType.Melee, new Brick()), // 71
-            new(WeaponItemType.Melee, new Broom()), // 72
-            new(WeaponItemType.Melee, new CannonBall()), // 73
+        Weapons ??=
+        [
+            new WeaponItem(WeaponItemType.Melee, new Brick()), // 71
+            new WeaponItem(WeaponItemType.Melee, new Broom()), // 72
+            new WeaponItem(WeaponItemType.Melee, new CannonBall()), // 73
 
             // Melee
-            new(WeaponItemType.Melee, new Blade()), // 74
-            new(WeaponItemType.Melee, new Caber()), // 75
-            new(WeaponItemType.Melee, new Crowbar()), // 76
-            new(WeaponItemType.Melee, new Greatsword()), // 77
-            new(WeaponItemType.Melee, new Morningstar()), // 78
-            new(WeaponItemType.Melee, new ParryingDagger()), // 79
-            new(WeaponItemType.Melee, new Poleaxe()), // 80
-            new(WeaponItemType.Melee, new Rapier()), // 81
+            new WeaponItem(WeaponItemType.Melee, new Blade()), // 74
+            new WeaponItem(WeaponItemType.Melee, new Caber()), // 75
+            new WeaponItem(WeaponItemType.Melee, new Crowbar()), // 76
+            new WeaponItem(WeaponItemType.Melee, new Greatsword()), // 77
+            new WeaponItem(WeaponItemType.Melee, new Morningstar()), // 78
+            new WeaponItem(WeaponItemType.Melee, new ParryingDagger()), // 79
+            new WeaponItem(WeaponItemType.Melee, new Poleaxe()), // 80
+            new WeaponItem(WeaponItemType.Melee, new Rapier()), // 81
             // new(WeaponItemType.Melee, new RiotShield()), // 82
-            new(WeaponItemType.Melee, new Sledgehammer()), // 83
-            new(WeaponItemType.Melee, new Switchblade()), // 84
-            new(WeaponItemType.Melee, new Scythe()), // 108
+            new WeaponItem(WeaponItemType.Melee, new Sledgehammer()), // 83
+            new WeaponItem(WeaponItemType.Melee, new Switchblade()), // 84
+            new WeaponItem(WeaponItemType.Melee, new Scythe()), // 108
 
             // Handgun
-            new(WeaponItemType.Handgun, new Flintlock()), // 69
-            new(WeaponItemType.Handgun, new NailGun()), // 70
-            new(WeaponItemType.Handgun, new UnkemptHarold()), // 85
-            new(WeaponItemType.Handgun, new StickyLauncher()), // 86
-            new(WeaponItemType.Handgun, new Anaconda()), // 109
+            new WeaponItem(WeaponItemType.Handgun, new Flintlock()), // 69
+            new WeaponItem(WeaponItemType.Handgun, new NailGun()), // 70
+            new WeaponItem(WeaponItemType.Handgun, new UnkemptHarold()), // 85
+            new WeaponItem(WeaponItemType.Handgun, new StickyLauncher()), // 86
+            new WeaponItem(WeaponItemType.Handgun, new Anaconda()), // 109
 
             // Throwable
-            new(WeaponItemType.Thrown, new Claymore()), // 87
-            new(WeaponItemType.Thrown, new FragGrenade()), // 88
-            new(WeaponItemType.Thrown, new ImpactGrenade()), // 89
-            new(WeaponItemType.Thrown, new Snowball()), // 90
-            new(WeaponItemType.Thrown, new StickyBomb()), // 91
+            new WeaponItem(WeaponItemType.Thrown, new Claymore()), // 87
+            new WeaponItem(WeaponItemType.Thrown, new FragGrenade()), // 88
+            new WeaponItem(WeaponItemType.Thrown, new ImpactGrenade()), // 89
+            new WeaponItem(WeaponItemType.Thrown, new Snowball()), // 90
+            new WeaponItem(WeaponItemType.Thrown, new StickyBomb()), // 91
 
             // Rifle
-            new(WeaponItemType.Rifle, new AA12()), // 93
-            new(WeaponItemType.Rifle, new Barrett()), // 94
-            new(WeaponItemType.Rifle, new Blunderbuss()), // 95
-            new(WeaponItemType.Rifle, new Crossbow()), // 96
-            new(WeaponItemType.Rifle, new DoubleBarrel()), // 97
-            new(WeaponItemType.Rifle, new Musket()), // 98
-            new(WeaponItemType.Rifle, new QuadLauncher()), // 99
-            new(WeaponItemType.Rifle, new RCM()), // 100
-            new(WeaponItemType.Rifle, new Winchester()), // 101
-            new(WeaponItemType.Rifle, new Minigun()), // 102
-            new(WeaponItemType.Rifle, new AK47()), // 107
+            new WeaponItem(WeaponItemType.Rifle, new AA12()), // 93
+            new WeaponItem(WeaponItemType.Rifle, new Barrett()), // 94
+            new WeaponItem(WeaponItemType.Rifle, new Blunderbuss()), // 95
+            new WeaponItem(WeaponItemType.Rifle, new Crossbow()), // 96
+            new WeaponItem(WeaponItemType.Rifle, new DoubleBarrel()), // 97
+            new WeaponItem(WeaponItemType.Rifle, new Musket()), // 98
+            new WeaponItem(WeaponItemType.Rifle, new QuadLauncher()), // 99
+            new WeaponItem(WeaponItemType.Rifle, new RCM()), // 100
+            new WeaponItem(WeaponItemType.Rifle, new Winchester()), // 101
+            new WeaponItem(WeaponItemType.Rifle, new Minigun()), // 102
+            new WeaponItem(WeaponItemType.Rifle, new AK47()), // 107
 
             // Pickup
-            new(WeaponItemType.Powerup, new HealthPouch()), // 92
-            new(WeaponItemType.Powerup, new AdrenalineBoost()), // 103
-            new(WeaponItemType.InstantPickup, new Jetpack()), // 104
-            new(WeaponItemType.InstantPickup, new JetpackEditor()), // 105
-            new(WeaponItemType.InstantPickup, new Gunpack()) // 106
-        };
+            new WeaponItem(WeaponItemType.Powerup, new HealthPouch()), // 92
+            new WeaponItem(WeaponItemType.Powerup, new AdrenalineBoost()), // 103
+            new WeaponItem(WeaponItemType.InstantPickup, new Jetpack()), // 104
+            new WeaponItem(WeaponItemType.InstantPickup, new JetpackEditor()), // 105
+            new WeaponItem(WeaponItemType.InstantPickup, new Gunpack())
+        ];
 
-        foreach (var weapon in _weapons)
+        foreach (var weapon in Weapons)
         {
             WeaponDatabase.m_weapons[weapon.BaseProperties.WeaponID] = weapon;
         }

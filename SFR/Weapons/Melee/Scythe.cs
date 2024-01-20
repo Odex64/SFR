@@ -29,7 +29,7 @@ internal sealed class Scythe : MWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = new[] { "ScytheDebris1", "MetalDebris00A" },
+            BreakDebris = ["ScytheDebris1", "MetalDebris00A"],
             Handling = MeleeHandlingType.Custom
         };
         MWeaponVisuals weaponVisuals = new();
@@ -56,7 +56,7 @@ internal sealed class Scythe : MWeapon
         weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
         weaponProperties.VisualText = "Scythe";
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Extended", "Curved" });
+        CacheDrawnTextures(["Extended", "Curved"]);
     }
 
     private Scythe(MWeaponProperties rwp, MWeaponVisuals rwv)

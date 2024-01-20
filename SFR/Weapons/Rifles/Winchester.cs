@@ -38,12 +38,12 @@ internal sealed class Winchester : RWeapon
             LazerPosition = new Vector2(13f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_EffectiveRange = 400f,
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "ItemDebrisStockWood00",
                 "ItemDebrisShiny01",
                 "ItemDebrisDark00"
-            },
+            ],
             SpecialAmmoBulletsRefill = 14,
             AI_DamageOutput = DamageOutputType.Standard
         };
@@ -73,7 +73,7 @@ internal sealed class Winchester : RWeapon
         weaponProperties.VisualText = "Winchester";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Pump" });
+        CacheDrawnTextures(["Pump"]);
     }
 
     private Winchester(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)

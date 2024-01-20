@@ -5,6 +5,7 @@ using SFD.Projectiles;
 using SFD.Tiles;
 using SFR.Helper;
 using Math = System.Math;
+using Player = SFD.Player;
 
 namespace SFR.Projectiles;
 
@@ -129,10 +130,10 @@ internal sealed class ProjectileQuad : ProjectileBazooka
         if (_dataReflected)
         {
             _dataReflected = false;
-            return new[] { (byte)_seed, (byte)((_originalDirection.X + 1f) * 128f), (byte)((_originalDirection.Y + 1f) * 128f) };
+            return [(byte)_seed, (byte)((_originalDirection.X + 1f) * 128f), (byte)((_originalDirection.Y + 1f) * 128f)];
         }
 
-        return new[] { (byte)_seed };
+        return [(byte)_seed];
     }
 
     public override void ReadAdditionalData(byte[] bytes)

@@ -16,11 +16,11 @@ namespace SFR;
 /// </summary>
 internal static class Program
 {
-    private const string VersionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/version";
-    private const string PreviewVersionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/preview";
+    private const string _versionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/version";
+    private const string _previewVersionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/preview";
     private static string _gameUri = "https://github.com/Odex64/SFR/releases/download/GAMEVERSION/SFR.zip";
     internal static readonly string GameDirectory = Directory.GetCurrentDirectory();
-    private static readonly Harmony Harmony = new("github.com/Odex64/SFR");
+    private static readonly Harmony _harmony = new("github.com/Odex64/SFR");
     private static WebClient _webClient;
 
     private static int Main(string[] args)
@@ -110,7 +110,7 @@ internal static class Program
         }
 
         Logger.LogWarn("Patching");
-        Harmony.PatchAll();
+        _harmony.PatchAll();
         Logger.LogError("Starting SFR");
         SFD.Program.Main(args);
 
@@ -123,7 +123,7 @@ internal static class Program
         try
         {
             _webClient = new WebClient();
-            remoteVersion = Constants.IsDev() ? _webClient.DownloadString(PreviewVersionUri).Trim() : _webClient.DownloadString(VersionUri).Trim();
+            remoteVersion = Constants.IsDev() ? _webClient.DownloadString(_previewVersionUri).Trim() : _webClient.DownloadString(_versionUri).Trim();
         }
         catch (WebException)
         {

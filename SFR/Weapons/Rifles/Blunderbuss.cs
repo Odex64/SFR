@@ -36,7 +36,7 @@ internal sealed class Blunderbuss : RWeapon
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.Standard,
             AI_GravityArcingEffect = 0.66f,
-            BreakDebris = new[] { "ItemDebrisStockWood00", "ItemDebrisWood00", "ItemDebrisShiny00" },
+            BreakDebris = ["ItemDebrisStockWood00", "ItemDebrisWood00", "ItemDebrisShiny00"],
             SpecialAmmoBulletsRefill = 4
         };
 

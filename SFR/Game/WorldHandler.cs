@@ -24,7 +24,7 @@ internal static class WorldHandler
         {
             if (__instance.MapObjectID is "CRATE00" or "CRATE01" && Constants.Random.NextDouble() <= 0.02)
             {
-                __instance.GameWorld.SpawnDebris(__instance, __instance.GetWorldPosition(), 0f, new[] { Constants.Random.NextBool() ? "BeachBall00" : "Monkey00" }, 1, false);
+                __instance.GameWorld.SpawnDebris(__instance, __instance.GetWorldPosition(), 0f, [Constants.Random.NextBool() ? "BeachBall00" : "Monkey00"], 1, false);
             }
         }
     }

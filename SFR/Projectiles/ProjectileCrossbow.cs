@@ -101,7 +101,7 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
             data.EnableUpdateObject();
             if (GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.Crossbow, new[] { SyncFlag.MustSyncNewObjects }, data.ObjectID, player.ObjectID, data.Timer));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.Crossbow, [SyncFlag.MustSyncNewObjects], data.ObjectID, player.ObjectID, data.Timer));
             }
         }
     }

@@ -24,7 +24,7 @@ internal sealed class Crossbow : RWeapon
             LazerPosition = new Vector2(1f, -1.5f),
             CursorAimOffset = new Vector2(0f, 2f),
             AimStartSoundID = "Draw1",
-            BreakDebris = new[] { "ItemDebrisShiny00", "ItemDebrisShiny01" },
+            BreakDebris = ["ItemDebrisShiny00", "ItemDebrisShiny01"],
             ExtraAutomaticCooldown = 0,
             CooldownAfterPostAction = 250,
             ReloadPostCooldown = 0,
@@ -59,7 +59,7 @@ internal sealed class Crossbow : RWeapon
         weaponProperties.VisualText = "Crossbow";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "DrawBack", "Reload1", "Reload2" });
+        CacheDrawnTextures(["DrawBack", "Reload1", "Reload2"]);
 
         _textureSEmpty = Textures.GetTexture("CrossbowSEmpty");
         _textureDrawEmpty = Textures.GetTexture("CrossbowDDrawBackEmpty");

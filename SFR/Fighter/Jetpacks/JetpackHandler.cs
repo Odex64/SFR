@@ -6,20 +6,14 @@ using SFD;
 using SFD.Effects;
 using SFD.Sounds;
 using SFD.Weapons;
+using SFR.Helper;
+using SFR.Weapons;
 
 namespace SFR.Fighter.Jetpacks;
 
 [HarmonyPatch]
 internal static class JetpackHandler
 {
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(Player), nameof(Player.Update))]
-    private static void RunJetpackUpdates(float ms, float realMs, Player __instance)
-    {
-        var extendedPlayer = Helper.Fighter.GetExtension(__instance);
-        extendedPlayer.GenericJetpack?.Update(ms, extendedPlayer);
-    }
-
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Player), nameof(Player.ActivateObject))]
     private static void CheckDisposeKey(Player __instance)
@@ -27,7 +21,7 @@ internal static class JetpackHandler
         var closedObject = __instance.GetClosestActivateableObject(true, false, 0f, 0f);
         if (closedObject == null)
         {
-            var extendedPlayer = Helper.Fighter.GetExtension(__instance);
+            var extendedPlayer = __instance.GetExtension();
             if (extendedPlayer.GenericJetpack is { State: JetpackState.Idling } jetpack && __instance.Crouching)
             {
                 SoundHandler.PlaySound("PistolDraw", __instance.GameWorld);
@@ -41,7 +35,7 @@ internal static class JetpackHandler
     [HarmonyPatch(typeof(WpnFireAmmo), nameof(WpnFireAmmo.OnPickup))]
     private static void ApplyFireUpgrade(Player player, HItem instantPickupItem)
     {
-        var extendedPlayer = Helper.Fighter.GetExtension(player);
+        var extendedPlayer = player.GetExtension();
 
         if (extendedPlayer.GenericJetpack is Gunpack gunpack)
         {
@@ -53,7 +47,7 @@ internal static class JetpackHandler
     [HarmonyPatch(typeof(Player), nameof(Player.Draw))]
     private static bool PreDraw(SpriteBatch spriteBatch, float ms, Player __instance)
     {
-        var extendedPlayer = Helper.Fighter.GetExtension(__instance);
+        var extendedPlayer = __instance.GetExtension();
         if (extendedPlayer.GenericJetpack == null)
         {
             return true;
@@ -137,19 +131,23 @@ internal static class JetpackHandler
     [HarmonyPatch(typeof(Player), nameof(Player.Draw))]
     private static void PostDraw(SpriteBatch spriteBatch, float ms, Player __instance)
     {
-        var extendedPlayer = Helper.Fighter.GetExtension(__instance);
-        if (extendedPlayer.GenericJetpack == null)
+        object weapon = __instance.GetCurrentWeapon();
+        if (weapon is IExtendedWeapon wep)
         {
-            return;
+            wep.DrawExtra(spriteBatch, __instance, ms);
         }
 
-        if (__instance.Climbing)
+        var extendedPlayer = __instance.GetExtension();
+        if (extendedPlayer.GenericJetpack != null)
         {
-            var gamePos = __instance.Position + new Vector2(0, 12);
-            gamePos = new Vector2(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
-            Camera.ConvertBox2DToScreen(ref gamePos, out gamePos);
-            var texture = extendedPlayer.GenericJetpack.GetJetpackTexture("Back");
-            spriteBatch.Draw(texture, gamePos, null, new Color(0.5f, 0.5f, 0.5f, 1f), 0, new Vector2(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, SpriteEffects.None, 0f);
+            if (__instance.Climbing)
+            {
+                var gamePos = __instance.Position + new Vector2(0, 12);
+                gamePos = new Vector2(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
+                Camera.ConvertBox2DToScreen(ref gamePos, out gamePos);
+                var texture = extendedPlayer.GenericJetpack.GetJetpackTexture("Back");
+                spriteBatch.Draw(texture, gamePos, null, new Color(0.5f, 0.5f, 0.5f, 1f), 0, new Vector2(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, SpriteEffects.None, 0f);
+            }
         }
     }
 }

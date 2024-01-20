@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using SFD;
+using SFR.Helper;
 
 namespace SFR.Fighter;
 
@@ -21,7 +22,7 @@ internal static class StatusBarHandler
 
     private static void DrawFuel(Player player, Rectangle rec)
     {
-        var extendedPlayer = Helper.Fighter.GetExtension(player);
+        var extendedPlayer = player.GetExtension();
         if (extendedPlayer.GenericJetpack == null)
         {
             return;

@@ -9,6 +9,7 @@ using SFR.Helper;
 using Constants = SFR.Misc.Constants;
 using Explosion = SFD.Explosion;
 using Math = System.Math;
+using Player = SFD.Player;
 
 namespace SFR.Objects;
 

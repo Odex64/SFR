@@ -58,7 +58,7 @@ internal sealed class Morningstar : MWeapon
         weaponProperties.VisualText = "Morningstar";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Extended", "Curved" });
+        CacheDrawnTextures(["Extended", "Curved"]);
     }
 
     private Morningstar(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
@@ -79,7 +79,7 @@ internal sealed class Morningstar : MWeapon
         SoundHandler.PlaySound("DestroySmall", ownerPlayer.GameWorld);
         EffectHandler.PlayEffect("DestroyMetal", ownerPlayer.Position, ownerPlayer.GameWorld);
         Vector2 center = new(ownerPlayer.Position.X, ownerPlayer.Position.Y + 16f);
-        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, new[] { "MorningstarDebris1", "MorningstarDebris2" });
+        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, ["MorningstarDebris1", "MorningstarDebris2"]);
     }
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)

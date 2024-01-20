@@ -25,7 +25,7 @@ internal sealed class ObjectDoor : ObjectData
         if (GameOwner != GameOwnerEnum.Client)
         {
             float radius = GetDecals()[0].Texture.Width * 0.25f;
-            GameWorld.SpawnDebris(this, GetWorldPosition(), radius, new[] { "WoodDebris00A", "WoodDebris00B", "WoodDebris00C" }, FaceDirection);
+            GameWorld.SpawnDebris(this, GetWorldPosition(), radius, ["WoodDebris00A", "WoodDebris00B", "WoodDebris00C"], FaceDirection);
             base.OnDestroyObject();
         }
     }

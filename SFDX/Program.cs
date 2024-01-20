@@ -7,8 +7,8 @@ namespace SFDX;
 internal static class Program
 {
     private const string Data = @"C:\Users\odex6\Desktop\Modding\SFR\SFDX\Data";
-    private static readonly string[] TargetFolders = { @"Images\Objects", @"Images\Tiles" };
-    private static readonly string[] OriginalTiles = { "objects.sfdx", "tiles.sfdx", "tilesBG.sfdx", "tilesE.sfdx", "tilesFarBG.sfdx", "tilesS.sfdx" };
+    private static readonly string[] TargetFolders = [@"Images\Objects", @"Images\Tiles"];
+    private static readonly string[] OriginalTiles = ["objects.sfdx", "tiles.sfdx", "tilesBG.sfdx", "tilesE.sfdx", "tilesFarBG.sfdx", "tilesS.sfdx"];
 
     public static void Main(string[] args)
     {
@@ -27,7 +27,7 @@ internal static class Program
 
     private static string SortTiles(string data)
     {
-        string[] entries = data.Split(new[] { "defaultTile", "\r\nTile" }, StringSplitOptions.RemoveEmptyEntries);
+        string[] entries = data.Split(["defaultTile", "\r\nTile"], StringSplitOptions.RemoveEmptyEntries);
         Array.Sort(entries);
         return string.Join("\r\nTile", entries);
     }

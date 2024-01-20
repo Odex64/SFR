@@ -24,7 +24,7 @@ namespace SFR.Fighter;
 [HarmonyPatch]
 internal class ExtendedTeam
 {
-    private static readonly EventInfo LobbySlotValueChangedEvent = typeof(LobbySlotTeam).GetEvent("LobbySlotValueChanged", BindingFlags.Instance | BindingFlags.Public);
+    private static readonly EventInfo _lobbySlotValueChangedEvent = typeof(LobbySlotTeam).GetEvent("LobbySlotValueChanged", BindingFlags.Instance | BindingFlags.Public);
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(GameInfo), nameof(GameInfo.SpawnUsers))]
@@ -374,7 +374,7 @@ internal class ExtendedTeam
         {
             foreach (var handler in eventDelegate.GetInvocationList())
             {
-                handler.Method.Invoke(handler.Target, new object[] { lobbySlotTeam, index });
+                handler.Method.Invoke(handler.Target, [lobbySlotTeam, index]);
             }
         }
     }
@@ -664,7 +664,7 @@ internal class ExtendedTeam
                 bool flag2 = __instance.m_gameSlotsContextMenu.SelectedItems.Any(x => !x.GameSlot.IsClosed);
                 bool flag3 = __instance.m_gameSlotsContextMenu.SelectedItems.Any(x => !x.GameSlot.IsOccupied || x.GameSlot.IsOccupiedByBot);
                 bool flag4 = __instance.m_gameSlotsContextMenu.SelectedItems.Any(x => x.GameSlot.IsOccupiedByUser);
-                __instance.m_gameSlotsContextMenu.MenuItems = new List<MenuItem>();
+                __instance.m_gameSlotsContextMenu.MenuItems = [];
 
                 MenuItem menuItem;
                 if (flag)
@@ -797,7 +797,7 @@ internal class ExtendedTeam
             return false;
         }
 
-        var eventDelegate = (MulticastDelegate)typeof(LobbySlotTeam).GetField(LobbySlotValueChangedEvent.Name, BindingFlags.Instance | BindingFlags.Public)?.GetValue(__instance);
+        var eventDelegate = (MulticastDelegate)typeof(LobbySlotTeam).GetField(_lobbySlotValueChangedEvent.Name, BindingFlags.Instance | BindingFlags.Public)?.GetValue(__instance);
 
         var lobbySlotDropdownPanel = new LobbySlotDropdownPanel(__instance,
             new MenuItemButton(LanguageHelper.GetText("team.independent"), __instance.independent),
