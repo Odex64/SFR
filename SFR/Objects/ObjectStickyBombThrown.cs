@@ -11,6 +11,7 @@ using SFR.Helper;
 using SFR.Sync.Generic;
 using Constants = SFR.Misc.Constants;
 using Explosion = SFD.Explosion;
+using Player = SFD.Player;
 
 namespace SFR.Objects;
 
@@ -225,7 +226,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
             ApplyStickyPlayer(player, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle);
             if (GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, new SyncFlag[] { }, ObjectID, player.ObjectID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, [], ObjectID, player.ObjectID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
             }
         }
     }

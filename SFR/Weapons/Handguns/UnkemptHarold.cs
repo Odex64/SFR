@@ -34,7 +34,7 @@ internal sealed class UnkemptHarold : RWeapon
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.High,
             AI_HasOneShotPotential = true,
-            BreakDebris = new[] { "ItemDebrisShiny01" },
+            BreakDebris = ["ItemDebrisShiny01"],
             SpecialAmmoBulletsRefill = 18
         };
 

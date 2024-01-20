@@ -36,12 +36,12 @@ internal sealed class QuadLauncher : RWeapon
             AI_DamageOutput = DamageOutputType.High,
             CanRefilAtAmmoStashes = false,
             AI_HasOneShotPotential = true,
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "ItemDebrisBazooka00",
                 "MetalDebris00B",
                 "ItemDebrisBazooka00"
-            },
+            ],
             SpecialAmmoBulletsRefill = 4
         };
 

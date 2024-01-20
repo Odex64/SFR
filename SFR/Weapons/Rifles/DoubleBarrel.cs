@@ -20,7 +20,7 @@ internal sealed class DoubleBarrel : RWeapon
             AimStartSoundID = "PistolAim",
             AI_EffectiveRange = 120f,
             CooldownAfterPostAction = 250,
-            BreakDebris = new[] { "ItemDebrisWood00", "MetalDebris00C" },
+            BreakDebris = ["ItemDebrisWood00", "MetalDebris00C"],
             SpecialAmmoBulletsRefill = 4,
             AI_DamageOutput = DamageOutputType.High
         };
@@ -50,7 +50,7 @@ internal sealed class DoubleBarrel : RWeapon
         weaponProperties.VisualText = "Double Barrel Shotgun";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private DoubleBarrel(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)

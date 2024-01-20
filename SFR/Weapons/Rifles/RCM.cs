@@ -38,12 +38,12 @@ internal sealed class RCM : RWeapon
             AI_EffectiveRange = 80,
             CanRefilAtAmmoStashes = false,
             AI_HasOneShotPotential = true,
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "ItemDebrisBazooka00",
                 "MetalDebris00B",
                 "ItemDebrisBazooka00"
-            },
+            ],
             SpecialAmmoBulletsRefill = 2
         };
 

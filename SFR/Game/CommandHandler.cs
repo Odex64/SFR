@@ -9,7 +9,7 @@ namespace SFR.Game;
 internal static class CommandHandler
 {
     private static bool _useHostMouse;
-    private static readonly float[] DebugVar = new float[10];
+    private static readonly float[] _debugVar = new float[10];
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GameWorld), nameof(GameWorld.Update))]
@@ -62,7 +62,7 @@ internal static class CommandHandler
                             if (float.TryParse(args.Parameters[1], out float num))
                             {
                                 args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "Debug float: " + num));
-                                DebugVar[index] = num;
+                                _debugVar[index] = num;
                             }
                         }
                     }

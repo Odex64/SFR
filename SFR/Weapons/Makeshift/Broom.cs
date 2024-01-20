@@ -32,10 +32,10 @@ internal sealed class Broom : MWeapon
                 DeflectType = DeflectBulletType.Absorb,
                 DurabilityLoss = 70f
             },
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "CueStick00Debris"
-            }
+            ]
         };
 
         MWeaponVisuals weaponVisuals = new();
@@ -74,7 +74,7 @@ internal sealed class Broom : MWeapon
         SoundHandler.PlaySound("DestroySmall", ownerPlayer.GameWorld);
         EffectHandler.PlayEffect("DestroyWood", ownerPlayer.Position, ownerPlayer.GameWorld);
         Vector2 center = new(ownerPlayer.Position.X, ownerPlayer.Position.Y + 16f);
-        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, new[] { "CueStick00Debris" });
+        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, ["CueStick00Debris"]);
     }
 
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)

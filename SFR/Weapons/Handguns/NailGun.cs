@@ -16,7 +16,7 @@ internal sealed class NailGun : RWeapon
             LazerPosition = new Vector2(7f, -0.5f),
             CursorAimOffset = new Vector2(0f, 4f),
             AimStartSoundID = "PistolAim",
-            BreakDebris = new[] { "ItemDebrisDark00", "ItemDebrisDark01" },
+            BreakDebris = ["ItemDebrisDark00", "ItemDebrisDark01"],
             AI_DamageOutput = DamageOutputType.Standard
         };
 
@@ -44,7 +44,7 @@ internal sealed class NailGun : RWeapon
         weaponProperties.VisualText = "Nailgun";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private NailGun(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)

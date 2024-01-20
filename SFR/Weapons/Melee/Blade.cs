@@ -31,11 +31,11 @@ internal sealed class Blade : MWeapon, ISharpMelee
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "MetalDebris00A",
                 "BladeDebris1"
-            },
+            ],
             AI_DamageOutput = DamageOutputType.Standard
         };
 
@@ -95,6 +95,6 @@ internal sealed class Blade : MWeapon, ISharpMelee
         SoundHandler.PlaySound("DestroyMetal", ownerPlayer.GameWorld);
         EffectHandler.PlayEffect("DestroyMetal", ownerPlayer.Position, ownerPlayer.GameWorld);
         Vector2 center = new(ownerPlayer.Position.X, ownerPlayer.Position.Y + 16f);
-        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, new[] { "MetalDebris00A", "BladeDebris1" });
+        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, ["MetalDebris00A", "BladeDebris1"]);
     }
 }

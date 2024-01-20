@@ -7,6 +7,7 @@ using SFD.Tiles;
 using SFDGameScriptInterface;
 using SFR.Helper;
 using Constants = SFR.Misc.Constants;
+using Player = SFD.Player;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace SFR.Fighter.Jetpacks;

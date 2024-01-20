@@ -3,7 +3,6 @@ using HarmonyLib;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFR.Fighter;
-using SFR.Helper;
 
 namespace SFR.Weapons;
 
@@ -71,28 +70,6 @@ internal static class ExtendedWeapon
         if (weapon is IExtendedWeapon wep)
         {
             wep.OnHitObject(player, e, __instance);
-        }
-    }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(Player), nameof(Player.Update))]
-    private static void Update(float ms, float realMs, Player __instance)
-    {
-        object weapon = __instance.GetCurrentWeapon();
-        if (weapon is IExtendedWeapon wep)
-        {
-            wep.Update(__instance, ms, realMs);
-        }
-    }
-
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(Player), nameof(Player.Draw))]
-    private static void DrawExtra(SpriteBatch spriteBatch, float ms, Player __instance)
-    {
-        object weapon = __instance.GetCurrentWeapon();
-        if (weapon is IExtendedWeapon wep)
-        {
-            wep.DrawExtra(spriteBatch, __instance, ms);
         }
     }
 }

@@ -10,8 +10,8 @@ internal sealed class CreditsPanel : Panel
 {
     internal CreditsPanel() : base("CREDITS", 360, 420)
     {
-        List<MenuItem> items = new()
-        {
+        List<MenuItem> items =
+        [
             new MenuItemSeparator("MISC"),
             new MenuItemLabel("Project Repo", Align.Center, Color.BlueViolet, _ => Process.Start("https://github.com/Odex64/SFR")),
             new MenuItemLabel("Discord", Align.Center, Color.BlueViolet, _ => Process.Start("https://discord.gg/CqYZfazH6M")),
@@ -36,7 +36,7 @@ internal sealed class CreditsPanel : Panel
             new MenuItemLabel("Mimyuu - For the special font ", Align.Center, Color.Gold),
             new MenuItemLabel("Motto73 - For his extensive work on the mod", Align.Center, Color.Gold),
             new MenuItemLabel("NearHuscarl - For his amazing items editor", Align.Center, Color.Gold)
-        };
+        ];
 
         Menu menu = new(new Vector2(0f, 40f), Width, Height - 40, this, items.ToArray());
         members.Add(menu);

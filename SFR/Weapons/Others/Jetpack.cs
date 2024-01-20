@@ -5,6 +5,7 @@ using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
 using SFR.Sync.Generic;
+using Player = SFD.Player;
 
 namespace SFR.Weapons.Others;
 
@@ -35,7 +36,7 @@ internal sealed class Jetpack : HItem
             extendedPlayer.GenericJetpack = new Fighter.Jetpacks.Jetpack();
             if (player.GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, new SyncFlag[] { }, player.ObjectID, extendedPlayer.GetStates()));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
             }
         }
     }

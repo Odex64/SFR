@@ -4,16 +4,28 @@ using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
 using SFR.Objects.Animal;
+using SFR.Weapons;
 
 namespace SFR.Objects;
 
 [HarmonyPatch]
 internal static class ObjectsHandler
 {
+    /// <summary>
+    ///     Spawn the new object in the world based on its name
+    /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ObjectData), nameof(ObjectData.CreateNew))]
     private static bool LoadObjects(ObjectDataStartParams startParams, ref ObjectData __result)
     {
+        // For new weapons we iterate them, so we don't have to manually check their name.
+        var weapon = Database.Weapons.Find(w => startParams.MapObjectID == w.BaseProperties.ModelID.ToUpper());
+        if (weapon != null)
+        {
+            __result = new ObjectWeaponItem(startParams, weapon.BaseProperties.WeaponID);
+            return false;
+        }
+
         switch (startParams.MapObjectID)
         {
             case "WOODDOOR00":

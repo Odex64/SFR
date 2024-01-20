@@ -15,11 +15,11 @@ internal sealed class AA12 : RWeapon
             CursorAimOffset = new Vector2(0f, 1f),
             LazerPosition = new Vector2(14f, -0.5f),
             AimStartSoundID = "PistolAim",
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "MetalDebris00A",
                 "ItemDebrisShiny00"
-            },
+            ],
             SpecialAmmoBulletsRefill = 10,
             AI_DamageOutput = DamageOutputType.High
         };
@@ -49,7 +49,7 @@ internal sealed class AA12 : RWeapon
         weaponProperties.VisualText = "AA12";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private AA12(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)

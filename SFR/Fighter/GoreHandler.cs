@@ -11,6 +11,7 @@ using SFR.Objects;
 using SFR.Sync.Generic;
 using SFR.Weapons;
 using Constants = SFR.Misc.Constants;
+using Player = SFD.Player;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 using WeaponItemType = SFD.Weapons.WeaponItemType;
 
@@ -19,10 +20,10 @@ namespace SFR.Fighter;
 [HarmonyPatch]
 internal static class GoreHandler
 {
-    private const float HeadThresholdStanding = 5f;
-    private const float HeadThresholdCrouching = 5f;
-    private const float HeadThresholdLaying = 3f;
-    private const int MaxDamageChance = 40;
+    private const float _headThresholdStanding = 5f;
+    private const float _headThresholdCrouching = 5f;
+    private const float _headThresholdLaying = 3f;
+    private const int _maxDamageChance = 40;
 
     /// <summary>
     ///     Spawn more giblets on player dead.
@@ -33,7 +34,7 @@ internal static class GoreHandler
     {
         if (!__instance.IsRemoved && !__instance.m_removalRunning && __instance.PlayerHitEffect == PlayerHitEffect.Default)
         {
-            string[] giblets = { "Organ00", "Organ01", "Organ02", "Organ03", "Organ04", "Organ05" };
+            string[] giblets = ["Organ00", "Organ01", "Organ02", "Organ03", "Organ04", "Organ05"];
             foreach (string giblet in giblets)
             {
                 var value = Converter.ConvertBox2DToWorld(__instance.WorldBody.GetPosition());
@@ -68,7 +69,7 @@ internal static class GoreHandler
             float finalDamage = projectile.HitDamageValue * player.GetModifiers().ProjectileDamageTakenModifier;
 
             // Shotguns have higher chance
-            int[] shotgunRounds = { 2, 10, 54 };
+            int[] shotgunRounds = [2, 10, 54];
             foreach (int i in shotgunRounds)
             {
                 if (i == projectile.Properties.ProjectileID)
@@ -83,7 +84,7 @@ internal static class GoreHandler
                 finalDamage /= 4;
             }
 
-            if (Constants.Random.Next(MaxDamageChance) > finalDamage)
+            if (Constants.Random.Next(_maxDamageChance) > finalDamage)
             {
                 return;
             }
@@ -92,7 +93,7 @@ internal static class GoreHandler
             var position = projectile.Position;
             int facingDirection = player.LastDirectionX * (player.GetAnimation().ToString() == "LayOnGroundB" ? -1 : 1);
 
-            if ((player.Crouching || player.FullLanding) && position.Y > aabb.GetCenter().Y + HeadThresholdCrouching)
+            if ((player.Crouching || player.FullLanding) && position.Y > aabb.GetCenter().Y + _headThresholdCrouching)
             {
                 headShot = true;
             }
@@ -100,11 +101,11 @@ internal static class GoreHandler
             {
                 headShot = true;
             }
-            else if ((player.LayingOnGround && facingDirection == 1 && aabb.GetCenter().X + HeadThresholdLaying < position.X) || (facingDirection == -1 && aabb.GetCenter().X - HeadThresholdLaying > position.X))
+            else if ((player.LayingOnGround && facingDirection == 1 && aabb.GetCenter().X + _headThresholdLaying < position.X) || (facingDirection == -1 && aabb.GetCenter().X - _headThresholdLaying > position.X))
             {
                 headShot = true;
             }
-            else if (position.Y > aabb.GetCenter().Y + HeadThresholdStanding)
+            else if (position.Y > aabb.GetCenter().Y + _headThresholdStanding)
             {
                 headShot = true;
             }
@@ -212,7 +213,7 @@ internal static class GoreHandler
         // Spawn gibs
         if (headshotType == "Bazinga")
         {
-            player.GameWorld.SpawnDebris(player.ObjectData, position, 4, new[] { "HeadDebris00A", "HeadDebris00B", "HeadDebris00C" });
+            player.GameWorld.SpawnDebris(player.ObjectData, position, 4, ["HeadDebris00A", "HeadDebris00B", "HeadDebris00C"]);
             var spine = ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "Giblet05", player.GameWorld.GameOwner));
             player.GameWorld.CreateTile(new SpawnObjectInformation(spine, player.Position + new Vector2(0, 13), 0, (short)player.LastDirectionX, new Vector2(Constants.Random.NextFloat(-0.5f, 0.5f), Constants.Random.NextFloat(6, 10)), Constants.Random.NextFloat(-1f, 1f)));
 
@@ -228,7 +229,7 @@ internal static class GoreHandler
 
         if (headshotType == "Normal")
         {
-            player.GameWorld.SpawnDebris(player.ObjectData, position, 4, new[] { "HeadDebris00A", "HeadDebris00B", "HeadDebris00C" });
+            player.GameWorld.SpawnDebris(player.ObjectData, position, 4, ["HeadDebris00A", "HeadDebris00B", "HeadDebris00C"]);
         }
 
         if (headshotType == "Melee_Sharp")
@@ -239,7 +240,7 @@ internal static class GoreHandler
             switch (player.GameOwner)
             {
                 case GameOwnerEnum.Server:
-                    GenericData.SendGenericDataToClients(new GenericData(DataType.Head, new[] { SyncFlag.MustSyncNewObjects }, head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
+                    GenericData.SendGenericDataToClients(new GenericData(DataType.Head, [SyncFlag.MustSyncNewObjects], head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
                     // head.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, player.GameWorld.ElapsedTotalGameTime, ObjectHead.EquipmentToString(player.Equipment)));
                     break;
                 case GameOwnerEnum.Local:
@@ -302,7 +303,7 @@ internal static class GoreHandler
 
         if (isZombie)
         {
-            string[] zHats = { "Headless", "ExposedBrain", "HeadShot", "HeadShot2", "HeadShot3" };
+            string[] zHats = ["Headless", "ExposedBrain", "HeadShot", "HeadShot2", "HeadShot3"];
             hat = zHats[Constants.Random.Next(zHats.Length)];
             if (hat.Contains("Brain"))
             {
@@ -311,7 +312,7 @@ internal static class GoreHandler
         }
         else
         {
-            string[] nHats = { "Headless", "HeadShot", "HeadShot2" };
+            string[] nHats = ["Headless", "HeadShot", "HeadShot2"];
             hat = nHats[Constants.Random.Next(nHats.Length)];
         }
 

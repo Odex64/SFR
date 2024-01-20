@@ -3,6 +3,7 @@ using SFD.Sounds;
 using SFD.Tiles;
 using SFD.Weapons;
 using SFR.Helper;
+using Player = SFD.Player;
 
 namespace SFR.Weapons.Others;
 

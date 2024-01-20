@@ -8,7 +8,7 @@ namespace SFR.Projectiles;
 
 internal sealed class ProjectileBarrett : Projectile
 {
-    private readonly List<int> _ignoreIds = new();
+    private readonly List<int> _ignoreIds = [];
 
     internal ProjectileBarrett()
     {

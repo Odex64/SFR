@@ -19,7 +19,7 @@ internal sealed class AK47 : RWeapon
             CursorAimOffset = new Vector2(0f, 1f),
             LazerPosition = new Vector2(12f, -0.5f),
             AimStartSoundID = "PistolAim",
-            BreakDebris = new[] { "MetalDebris00A", "ItemDebrisStockWood00", "ItemDebrisShiny00" },
+            BreakDebris = ["MetalDebris00A", "ItemDebrisStockWood00", "ItemDebrisShiny00"],
             SpecialAmmoBulletsRefill = 35
         };
         RWeaponVisuals rWeaponVisuals = new();
@@ -46,7 +46,7 @@ internal sealed class AK47 : RWeapon
         rWeaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
         rWeaponProperties.VisualText = "AK47";
         SetPropertiesAndVisuals(rWeaponProperties, rWeaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private AK47(RWeaponProperties rwp, RWeaponVisuals rwv)

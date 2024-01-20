@@ -36,12 +36,12 @@ internal sealed class Musket : RWeapon
             AI_DamageOutput = DamageOutputType.Standard,
             AI_GravityArcingEffect = 0.66f,
             AI_EffectiveRange = 200,
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "ItemDebrisStockWood00",
                 "ItemDebrisWood00",
                 "ItemDebrisShiny00"
-            },
+            ],
             SpecialAmmoBulletsRefill = 8
         };
 
@@ -70,7 +70,7 @@ internal sealed class Musket : RWeapon
         weaponProperties.VisualText = "Musket";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
     }
 
     private Musket(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)

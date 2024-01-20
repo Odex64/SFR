@@ -8,6 +8,7 @@ using SFD.Sounds;
 using SFD.Tiles;
 using SFR.Helper;
 using Math = System.Math;
+using Player = SFD.Player;
 
 namespace SFR.Objects;
 

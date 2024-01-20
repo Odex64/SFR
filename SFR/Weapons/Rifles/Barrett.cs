@@ -38,12 +38,12 @@ internal sealed class Barrett : RWeapon
             AI_DamageOutput = DamageOutputType.High,
             CanRefilAtAmmoStashes = false,
             ReloadPostCooldown = 650f,
-            BreakDebris = new[]
-            {
+            BreakDebris =
+            [
                 "MetalDebris00C",
                 "ItemDebrisStockDark00",
                 "ItemDebrisShiny01"
-            },
+            ],
             SpecialAmmoBulletsRefill = 3
         };
 
@@ -72,7 +72,7 @@ internal sealed class Barrett : RWeapon
         weaponProperties.VisualText = "Anti-Materiel Rifle";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Reload" });
+        CacheDrawnTextures(["Reload"]);
         LazerUpgrade = 1;
     }
 

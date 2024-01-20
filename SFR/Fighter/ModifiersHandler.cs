@@ -1,24 +1,17 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using SFD;
 using SFD.Objects;
 using SFDGameScriptInterface;
 using SFR.Helper;
+using Player = SFD.Player;
 
 namespace SFR.Fighter;
 
 [HarmonyPatch]
 internal class ModifiersHandler
 {
-    // [HarmonyPostfix]
-    // [HarmonyPatch(typeof(PlayerModifiers), MethodType.Constructor, new Type[] { typeof(bool) })]
-    // private static void GenerateExtension(PlayerModifiers __instance, bool defaultValues = false)
-    // {
-    //     ExtendedModifiers.ExtendedModifiersTable.Add(__instance, new ExtendedModifiers(__instance, defaultValues));
-    // }
-
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(ObjectProperties), nameof(ObjectProperties.Load), new Type[] { })]
+    [HarmonyPatch(typeof(ObjectProperties), nameof(ObjectProperties.Load), [])]
     private static void AddExtraProperties()
     {
         foreach (var objectPropertyId in new[]

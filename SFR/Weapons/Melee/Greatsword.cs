@@ -34,7 +34,7 @@ internal sealed class Greatsword : MWeapon, ISharpMelee
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = new[] { "MetalDebris00A", "GreatswordDebris1" },
+            BreakDebris = ["MetalDebris00A", "GreatswordDebris1"],
             AI_DamageOutput = DamageOutputType.High
         };
 
@@ -94,7 +94,7 @@ internal sealed class Greatsword : MWeapon, ISharpMelee
         SoundHandler.PlaySound("DestroyMetal", ownerPlayer.GameWorld);
         EffectHandler.PlayEffect("DestroyMetal", ownerPlayer.Position, ownerPlayer.GameWorld);
         Vector2 center = new(ownerPlayer.Position.X, ownerPlayer.Position.Y + 16f);
-        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, new[] { "MetalDebris00A", "GreatswordDebris1" });
+        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, ["MetalDebris00A", "GreatswordDebris1"]);
     }
 
     public override bool CustomHandlingOnAttackKey(Player player, bool onKeyEvent)

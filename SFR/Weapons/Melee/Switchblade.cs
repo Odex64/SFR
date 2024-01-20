@@ -32,7 +32,7 @@ internal sealed class Switchblade : MWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = new[] { "MetalDebris00A", "KnifeDebris1" }
+            BreakDebris = ["MetalDebris00A", "KnifeDebris1"]
         };
 
         MWeaponVisuals weaponVisuals = new();
@@ -60,7 +60,7 @@ internal sealed class Switchblade : MWeapon
         weaponProperties.VisualText = "Switchblade";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Open" });
+        CacheDrawnTextures(["Open"]);
     }
 
     private Switchblade(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
@@ -102,6 +102,6 @@ internal sealed class Switchblade : MWeapon
         SoundHandler.PlaySound("DestroyMetal", ownerPlayer.GameWorld);
         EffectHandler.PlayEffect("DestroyMetal", ownerPlayer.Position, ownerPlayer.GameWorld);
         Vector2 center = new(ownerPlayer.Position.X, ownerPlayer.Position.Y + 16f);
-        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, new[] { "MetalDebris00A", "KnifeDebris1" });
+        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, ["MetalDebris00A", "KnifeDebris1"]);
     }
 }

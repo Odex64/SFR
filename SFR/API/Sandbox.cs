@@ -9,6 +9,8 @@ namespace SFR.API;
 
 /// <summary>
 ///     For unknown reasons scripts won't work in SFR. This class fixes them.
+///     Most likely it's due to the strong signing of Superfighters Deluxe.exe
+///     which SFR breaks, thus the script engine won't recognize it at all.
 /// </summary>
 [HarmonyPatch(typeof(ScriptEngine.Sandbox))]
 internal static class Sandbox

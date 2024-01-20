@@ -50,7 +50,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = new[] { "SledgehammerDebris1", "WoodDebris00A" },
+            BreakDebris = ["SledgehammerDebris1", "WoodDebris00A"],
             AI_DamageOutput = DamageOutputType.Low
         };
 
@@ -78,7 +78,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
         weaponProperties.VisualText = "Sledgehammer";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(new[] { "Blink" });
+        CacheDrawnTextures(["Blink"]);
     }
 
     private Sledgehammer(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
@@ -134,7 +134,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
     {
         EffectHandler.PlayEffect("DestroyWood", ownerPlayer.Position, ownerPlayer.GameWorld);
         Vector2 center = new(ownerPlayer.Position.X, ownerPlayer.Position.Y + 16f);
-        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, new[] { "SledgehammerDebris1", "WoodDebris00A" });
+        ownerPlayer.GameWorld.SpawnDebris(ownerPlayer.ObjectData, center, 8f, ["SledgehammerDebris1", "WoodDebris00A"]);
     }
 
     public override void CustomHandlingPostUpdate(Player player, float totalMs)
@@ -194,7 +194,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
         if (player.GameOwner != GameOwnerEnum.Client)
         {
             BlinkTimer = time;
-            GenericData.SendGenericDataToClients(new GenericData(DataType.SledgehammerBlink, new SyncFlag[] { }, player.ObjectData.BodyID, time));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.SledgehammerBlink, [], player.ObjectData.BodyID, time));
         }
     }
 

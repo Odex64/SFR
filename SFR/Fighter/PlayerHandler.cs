@@ -1,5 +1,4 @@
-﻿using System;
-using HarmonyLib;
+﻿using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
@@ -8,9 +7,11 @@ using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
 using SFR.Objects;
+using SFR.Weapons;
 using SFR.Weapons.Rifles;
 using Constants = SFR.Misc.Constants;
 using Math = System.Math;
+using Player = SFD.Player;
 
 namespace SFR.Fighter;
 
@@ -19,7 +20,7 @@ namespace SFR.Fighter;
 ///     <list type="bullet|table">
 ///         <listheader>
 ///             <term>State</term>
-///             <description>Player state for server &amp; client sync</description>
+///             <description>PlayerExt state for server &amp; client sync</description>
 ///         </listheader>
 ///         <item>
 ///             <term>0</term>
@@ -239,6 +240,20 @@ internal static class PlayerHandler
         return true;
     }
 
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(Player), nameof(Player.Update))]
+    private static void Update(float ms, float realMs, Player __instance)
+    {
+        object weapon = __instance.GetCurrentWeapon();
+        if (weapon is IExtendedWeapon wep)
+        {
+            wep.Update(__instance, ms, realMs);
+        }
+
+        var extendedPlayer = __instance.GetExtension();
+        extendedPlayer.GenericJetpack?.Update(ms, extendedPlayer);
+    }
+
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Player), nameof(Player.Movement), MethodType.Setter)]
     private static bool KeepMoving(PlayerMovement value, Player __instance)
@@ -254,7 +269,7 @@ internal static class PlayerHandler
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(Player), nameof(Player.Jump), new Type[] { })]
+    [HarmonyPatch(typeof(Player), nameof(Player.Jump), [])]
     private static bool CanJump(Player __instance)
     {
         var extendedModifiers = __instance.m_modifiers.GetExtension();
