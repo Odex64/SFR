@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using HarmonyLib;
 using SFD;
 using SFD.Objects;
+using SFR.Bootstrap;
 using SFR.Fighter;
 using SFR.Helper;
 using SFR.Sync;
@@ -20,6 +21,8 @@ internal static class WorldHandler
     [HarmonyPatch(typeof(ObjectDestructible), nameof(ObjectDestructible.OnDestroyObject))]
     private static void DestroyObject(ObjectDestructible __instance)
     {
+        if (Vanilla.Active) return;
+
         if (__instance.GameOwner != GameOwnerEnum.Client)
         {
             if (__instance.MapObjectID is "CRATE00" or "CRATE01" && Constants.Random.NextDouble() <= 0.02)

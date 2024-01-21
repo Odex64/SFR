@@ -124,6 +124,7 @@
         </Compile>
         <Compile Include="Bootstrap\Assets.cs"/>
         <Compile Include="API\Sandbox.cs"/>
+        <Compile Include="Bootstrap\Vanilla.cs" />
         <Compile Include="Debug\DebugStartup.cs"/>
         <Compile Include="Fighter\AnimHandler.cs"/>
         <Compile Include="Fighter\ExtendedPlayer.cs"/>

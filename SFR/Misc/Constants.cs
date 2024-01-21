@@ -6,7 +6,8 @@ namespace SFR.Misc;
 
 internal static class Constants
 {
-    internal const string SFRVersion = "v.1.0.4";
+    internal const string SFRVersion = "v.1.0.5_dev";
+    internal const string VanillaVersion = "v.1.3.7d";
     internal const int Build = 0;
     internal static readonly string ServerVersion = SFRVersion.Replace("v.1", "v.2");
     internal static readonly Random Random = new();

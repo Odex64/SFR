@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Lidgren.Network;
 using SFD;
+using SFR.Bootstrap;
 using SFR.Fighter.Jetpacks;
 using SFR.Game;
 using SFR.Helper;
@@ -27,48 +28,35 @@ namespace SFR.Sync;
 [HarmonyPatch]
 internal static class SyncHandler
 {
-    private const byte MaxAttempts = 18;
+    private const byte _maxAttempts = 18;
 
     internal static readonly Dictionary<int, byte> Attempts = new();
 
-    [HarmonyTranspiler]
+    [HarmonyPrefix]
     [HarmonyPatch(typeof(NetMessage), nameof(NetMessage.WriteDataType))]
-    private static IEnumerable<CodeInstruction> ExtendWriteData(IEnumerable<CodeInstruction> instructions)
+    private static bool ExtendWriteData(MessageType msgType, NetOutgoingMessage netOutgoingMessage, ref NetOutgoingMessage __result)
     {
-        foreach (var instruction in instructions)
-        {
-            if (instruction.operand == null)
-            {
-                continue;
-            }
+        if (Vanilla.Active) return true;
 
-            if (instruction.operand.Equals((sbyte)62))
-            {
-                instruction.operand = 63;
-            }
-        }
-
-        return instructions;
+        netOutgoingMessage.WriteRangedInteger(-1, 63, (int)msgType);
+        netOutgoingMessage.WriteRangedInteger(0, 4, netOutgoingMessage.GameNumber);
+        __result = netOutgoingMessage;
+        return false;
     }
 
-    [HarmonyTranspiler]
+    [HarmonyPrefix]
     [HarmonyPatch(typeof(NetMessage), nameof(NetMessage.ReadDataType))]
-    private static IEnumerable<CodeInstruction> ExtendReadData(IEnumerable<CodeInstruction> instructions)
+    private static bool ExtendReadData(NetIncomingMessage netIncomingMessage, ref NetMessage.MessageData __result)
     {
-        foreach (var instruction in instructions)
-        {
-            if (instruction.operand == null)
-            {
-                continue;
-            }
+        if (Vanilla.Active) return true;
 
-            if (instruction.operand.Equals((sbyte)62))
-            {
-                instruction.operand = 63;
-            }
+        if (netIncomingMessage.Position + 9L <= netIncomingMessage.LengthBits)
+        {
+            _ = (MessageType)netIncomingMessage.ReadRangedInteger(-1, 62);
+            netIncomingMessage.ReadRangedInteger(0, 4);
         }
 
-        return instructions;
+        return false;
     }
 
     /// <summary>
@@ -89,7 +77,7 @@ internal static class SyncHandler
                     Attempts.Add(obj, 0);
                 }
 
-                if (Attempts[obj]++ < MaxAttempts)
+                if (Attempts[obj]++ < _maxAttempts)
                 {
                     GenericData.SendGenericDataToClients(genericData);
                 }
@@ -118,6 +106,8 @@ internal static class SyncHandler
     [HarmonyPatch(typeof(Server), nameof(Server.updateRun))]
     private static void SendDataToClients(bool isLast, bool isFirst, Server __instance)
     {
+        if (Vanilla.Active) return;
+
         if (__instance.m_server == null || __instance.CurrentState != ServerClientState.Game || __instance.WaitingForUsers || __instance.GameInfo.TotalGameUserCount == 0 || __instance.m_waitingForUserRestartInProgress)
         {
             return;
@@ -125,8 +115,6 @@ internal static class SyncHandler
 
         if (isLast)
         {
-            // SendExtraPlayerStatesToClients(__instance);
-
             foreach (var genericServerData in GenericData.ServerData)
             {
                 __instance.m_server.SendToAll(genericServerData, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
@@ -135,32 +123,6 @@ internal static class SyncHandler
             GenericData.ServerData.Clear();
         }
     }
-
-    // private static void SendExtraPlayerStatesToClients(Server server)
-    // {
-    //     foreach (var player in server.GameWorld.Players)
-    //     {
-    //         var extendedPlayer = player.GetExtension();
-    //         var data = new GenericData(DataType.ExtraClientStates, player.ObjectID, extendedPlayer.GetStates());
-    //         var outgoingMessage = GenericServerData.Write(data, server.m_server.CreateMessage());
-    //         server.m_server.SendToAll(outgoingMessage, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
-    //     }
-    // }
-
-    #region Server
-
-    // [HarmonyPrefix]
-    // [HarmonyPatch(typeof(Server), nameof(Server.HandleDataMessage))]
-    // private static bool ReceiveFromClients(NetMessage.MessageData messageData, NetIncomingMessage msg, Server __instance)
-    // {
-    //     switch ((int)messageData.MessageType)
-    //     {
-    //     }
-    //
-    //     return true;
-    // }
-
-    #endregion
 
 
     #region Client
@@ -278,11 +240,7 @@ internal static class SyncHandler
     [HarmonyPatch(typeof(Client), nameof(Client.HandleDataMessage))]
     private static void ReceiveDataFromServer(NetMessage.MessageData messageData, NetIncomingMessage msg, ref bool processGameWorldDependentData, Client __instance)
     {
-        // if (processGameWorldDependentData)
-        // {
-        //     __instance.ProcessGameWorldDependentMessages();
-        //     processGameWorldDependentData = false;
-        // }
+        if (Vanilla.Active) return;
 
         switch ((int)messageData.MessageType)
         {
