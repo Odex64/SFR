@@ -1,4 +1,4 @@
-<p align="center"><img src="docs/Logo.png" alt="Logo"/></p>
+<p align="center"><img src="docs/Logo.gif" alt="Logo"/></p>
 
 # F.A.Q.
 > [!NOTE]
