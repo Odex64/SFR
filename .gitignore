@@ -15,4 +15,4 @@ obj
 packages
 
 # Other
-build.bat
+*.bat
