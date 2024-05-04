@@ -1,6 +1,6 @@
 <p align="center"><img src="docs/Logo.gif" alt="Logo"/></p>
 
-> [!NOTE]
+  > [!IMPORTANT]
 > This mod is still a work-in-progress. Features may break, be added, removed, or changed entirely.
 
 <details>
