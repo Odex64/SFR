@@ -26,8 +26,8 @@ internal sealed class Winchester : RWeapon
             ShellID = "ShellBig",
             AccuracyDeflection = 0.01f,
             ProjectileID = 101,
-            MuzzlePosition = new Vector2(11f, -2.5f),
-            CursorAimOffset = new Vector2(0f, 2.5f),
+            MuzzlePosition = new(11f, -2.5f),
+            CursorAimOffset = new(0f, 2.5f),
             MuzzleEffectTextureID = "MuzzleFlashL",
             BlastSoundID = "Carbine",
             DrawSoundID = "ShotgunDraw",
@@ -35,7 +35,7 @@ internal sealed class Winchester : RWeapon
             OutOfAmmoSoundID = "OutOfAmmoHeavy",
             ClearRoundsOnReloadStart = false,
             ReloadPostCooldown = 650f,
-            LazerPosition = new Vector2(13f, -0.5f),
+            LazerPosition = new(13f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_EffectiveRange = 400f,
             BreakDebris =
@@ -76,10 +76,7 @@ internal sealed class Winchester : RWeapon
         CacheDrawnTextures(["Pump"]);
     }
 
-    private Winchester(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Winchester(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override void OnSubAnimationEvent(Player player, AnimationEvent animationEvent, AnimationData animationData, int currentFrameIndex)
     {
@@ -134,7 +131,7 @@ internal sealed class Winchester : RWeapon
                     if (Properties.ShellID != string.Empty)
                     {
                         var currentRifleWeapon = player.CurrentRifleWeapon;
-                        if (currentRifleWeapon != null)
+                        if (currentRifleWeapon is not null)
                         {
                             if (currentRifleWeapon.CurrentRoundsInWeapon <= 0)
                             {

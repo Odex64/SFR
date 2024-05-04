@@ -16,7 +16,7 @@ Reach us through [Discord](https://discord.gg/UbbCs2kywd).
 # Features
 
 ## Skins
-There are tons of new items and colors you can equip. Some of theme even have a tertiary color.
+There are tons of new items and colors you can equip. Some of them even have a tertiary color.
 <img src="docs/Skins.gif" alt="Skins"/>
 
 ## Weapons

@@ -12,7 +12,7 @@ namespace SFR.Objects;
 internal static class ObjectsHandler
 {
     /// <summary>
-    ///     Spawn the new object in the world based on its name
+    /// Spawn the new object in the world based on its name
     /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ObjectData), nameof(ObjectData.CreateNew))]
@@ -20,7 +20,7 @@ internal static class ObjectsHandler
     {
         // For new weapons we iterate them, so we don't have to manually check their name.
         var weapon = Database.Weapons.Find(w => startParams.MapObjectID == w.BaseProperties.ModelID.ToUpper());
-        if (weapon != null)
+        if (weapon is not null)
         {
             __result = new ObjectWeaponItem(startParams, weapon.BaseProperties.WeaponID);
             return false;
@@ -194,13 +194,6 @@ internal static class ObjectsHandler
             case "PROJECTILESTICKY":
                 __result = new ObjectStickyProjectile(startParams);
                 return false;
-            case "BGNUKE":
-            case "FGNUKE":
-                __result = new ObjectNuke(startParams);
-                return false;
-            case "NUKETRIGGER":
-                __result = new ObjectNukeTrigger(startParams);
-                return false;
         }
 
         return true;
@@ -208,7 +201,7 @@ internal static class ObjectsHandler
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ObjectData), nameof(ObjectData.DrawBase))]
-    private static bool DamageFlash(SpriteBatch spriteBatch, float ms, Color drawColor, ObjectData __instance)
+    private static bool DamageFlash(SpriteBatch spriteBatch, Color drawColor, ObjectData __instance)
     {
         __instance.GetDrawColor(ref drawColor);
         switch (__instance.MapObjectID)
@@ -259,8 +252,8 @@ internal static class ObjectsHandler
             case 289:
             case 345:
                 var allowedValues = propertyItem.AllowedValues;
-                allowedValues.Add(new ObjectPropertyValue(Constants.GetTeamString(5), 5));
-                allowedValues.Add(new ObjectPropertyValue(Constants.GetTeamString(6), 6));
+                allowedValues.Add(new(Constants.GetTeamString(5), 5));
+                allowedValues.Add(new(Constants.GetTeamString(6), 6));
                 propertyItem.SetAllowedValues(allowedValues, 0);
                 return true;
 

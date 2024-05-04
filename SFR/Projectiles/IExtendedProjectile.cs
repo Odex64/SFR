@@ -6,9 +6,9 @@ using SFD.Projectiles;
 namespace SFR.Projectiles;
 
 /// <summary>
-///     Since some projectiles need special interaction, we need to override and call special methods upon specific actions.
-///     However all projectiles already inherit from a class, therefore we use an interface and through polymorphism
-///     we call overridden methods from hooked harmony patches. The following interface defines all the extra methods a projectile can override.
+/// Since some projectiles need special interaction, we need to override and call special methods upon specific actions.
+/// However all projectiles already inherit from a class, therefore we use an interface and through polymorphism
+/// we call overridden methods from hooked harmony patches. The following interface defines all the extra methods a projectile can override.
 /// </summary>
 internal interface IExtendedProjectile
 {

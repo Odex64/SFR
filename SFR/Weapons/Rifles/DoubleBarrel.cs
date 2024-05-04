@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SFD;
+﻿using SFD;
 using SFD.Sounds;
 using SFD.Weapons;
 
@@ -11,12 +10,12 @@ internal sealed class DoubleBarrel : RWeapon
 
     internal DoubleBarrel()
     {
-        RWeaponProperties weaponProperties = new(97, "DoubleBarrel", 1, 1, 15, 4, 3000, 100, 200, 12, 97, string.Empty, 0.3f, new Vector2(11f, -2.5f), "MuzzleFlashShotgun", "SawedOff", "SawedOffDraw", "SawedOffReload", "OutOfAmmoHeavy", "WpnDoubleBarrel", false, WeaponCategory.Primary)
+        RWeaponProperties weaponProperties = new(97, "DoubleBarrel", 1, 1, 15, 4, 3000, 100, 200, 12, 97, string.Empty, 0.3f, new(11f, -2.5f), "MuzzleFlashShotgun", "SawedOff", "SawedOffDraw", "SawedOffReload", "OutOfAmmoHeavy", "WpnDoubleBarrel", false, WeaponCategory.Primary)
         {
-            CursorAimOffset = new Vector2(0f, 2.5f),
+            CursorAimOffset = new(0f, 2.5f),
             ClearRoundsOnReloadStart = false,
             CooldownBeforePostAction = 1000,
-            LazerPosition = new Vector2(13f, -0.5f),
+            LazerPosition = new(13f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_EffectiveRange = 120f,
             CooldownAfterPostAction = 250,
@@ -53,10 +52,7 @@ internal sealed class DoubleBarrel : RWeapon
         CacheDrawnTextures(["Reload"]);
     }
 
-    private DoubleBarrel(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private DoubleBarrel(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override void OnReloadAnimationEvent(Player player, AnimationEvent animEvent, SubAnimationPlayer subAnim)
     {

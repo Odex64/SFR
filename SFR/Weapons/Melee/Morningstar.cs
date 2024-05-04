@@ -61,10 +61,7 @@ internal sealed class Morningstar : MWeapon
         CacheDrawnTextures(["Extended", "Curved"]);
     }
 
-    private Morningstar(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Morningstar(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override MWeapon Copy() => new Morningstar(Properties, Visuals)
     {
@@ -85,9 +82,9 @@ internal sealed class Morningstar : MWeapon
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
     {
         string subAnimation;
-        if ((subAnimation = args.SubAnimation) != null)
+        if ((subAnimation = args.SubAnimation) is not null)
         {
-            if (subAnimation != "UpperMelee1H1" && subAnimation != "UpperMelee1H2" && subAnimation != "UpperMelee1H3")
+            if (subAnimation is not "UpperMelee1H1" and not "UpperMelee1H2" and not "UpperMelee1H3")
             {
                 if (subAnimation == "UpperBlockMelee")
                 {

@@ -22,10 +22,7 @@ internal sealed class HealthPouch : PItem
         SetPropertiesAndVisuals(itemProperties, visuals);
     }
 
-    private HealthPouch(PItemProperties itemProperties, PItemVisuals itemVisuals)
-    {
-        SetPropertiesAndVisuals(itemProperties, itemVisuals);
-    }
+    private HealthPouch(PItemProperties itemProperties, PItemVisuals itemVisuals) => SetPropertiesAndVisuals(itemProperties, itemVisuals);
 
     public override void OnActivation(Player player, PItem powerupItem)
     {

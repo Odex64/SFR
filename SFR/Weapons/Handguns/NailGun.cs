@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SFD;
+﻿using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
@@ -10,11 +9,11 @@ internal sealed class NailGun : RWeapon
 {
     internal NailGun()
     {
-        RWeaponProperties weaponProperties = new(70, "Nailgun", 1, 18, 4, 2, -1, 150, 0, 1, 70, string.Empty, 0.13f, new Vector2(8f, -2f), string.Empty, "OutOfAmmoLight", "PistolDraw", "PistolReload", "OutOfAmmoHeavy", "WpnNailgun", false, WeaponCategory.Secondary)
+        RWeaponProperties weaponProperties = new(70, "Nailgun", 1, 18, 4, 2, -1, 150, 0, 1, 70, string.Empty, 0.13f, new(8f, -2f), string.Empty, "OutOfAmmoLight", "PistolDraw", "PistolReload", "OutOfAmmoHeavy", "WpnNailgun", false, WeaponCategory.Secondary)
         {
             SpecialAmmoBulletsRefill = 18,
-            LazerPosition = new Vector2(7f, -0.5f),
-            CursorAimOffset = new Vector2(0f, 4f),
+            LazerPosition = new(7f, -0.5f),
+            CursorAimOffset = new(0f, 4f),
             AimStartSoundID = "PistolAim",
             BreakDebris = ["ItemDebrisDark00", "ItemDebrisDark01"],
             AI_DamageOutput = DamageOutputType.Standard
@@ -47,10 +46,7 @@ internal sealed class NailGun : RWeapon
         CacheDrawnTextures(["Reload"]);
     }
 
-    private NailGun(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private NailGun(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override void OnReloadAnimationEvent(Player player, AnimationEvent animEvent, SubAnimationPlayer subAnim)
     {
@@ -58,7 +54,7 @@ internal sealed class NailGun : RWeapon
         {
             if (animEvent == AnimationEvent.EnterFrame && subAnim.GetCurrentFrameIndex() == 1)
             {
-                SpawnMagazine(player, "MagSmall", new Vector2(-6f, -5f));
+                SpawnMagazine(player, "MagSmall", new(-6f, -5f));
                 SoundHandler.PlaySound("MagnumReloadEnd", player.Position, player.GameWorld);
             }
 

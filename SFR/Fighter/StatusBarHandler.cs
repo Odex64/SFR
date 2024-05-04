@@ -14,7 +14,7 @@ internal static class StatusBarHandler
             bc = Color.White;
         }
 
-        player.m_spriteBatch.Draw(Constants.WhitePixel, rec, new Color(64, 64, 64));
+        player.m_spriteBatch.Draw(Constants.WhitePixel, rec, new(64, 64, 64));
         rec.Width = (int)(rec.Width * bm.Fullness);
 
         player.m_spriteBatch.Draw(Constants.WhitePixel, rec, ColorCorrection.FromXNAToCustom(bc));
@@ -23,12 +23,12 @@ internal static class StatusBarHandler
     private static void DrawFuel(Player player, Rectangle rec)
     {
         var extendedPlayer = player.GetExtension();
-        if (extendedPlayer.GenericJetpack == null)
+        if (extendedPlayer.GenericJetpack is null)
         {
             return;
         }
 
-        player.m_spriteBatch.Draw(Constants.WhitePixel, rec, new Color(64, 64, 64));
+        player.m_spriteBatch.Draw(Constants.WhitePixel, rec, new(64, 64, 64));
         rec.Width = (int)(rec.Width * extendedPlayer.GenericJetpack.Fuel.Fullness);
 
         player.m_spriteBatch.Draw(Constants.WhitePixel, rec, ColorCorrection.FromXNAToCustom(Constants.COLORS.PING_YELLOW));
@@ -36,7 +36,7 @@ internal static class StatusBarHandler
 
     private static void DrawEnergy(Player player, Rectangle rec)
     {
-        player.m_spriteBatch.Draw(Constants.WhitePixel, rec, new Color(64, 64, 64));
+        player.m_spriteBatch.Draw(Constants.WhitePixel, rec, new(64, 64, 64));
         rec.Width = (int)(rec.Width * player.Energy.Fullness);
 
         player.m_spriteBatch.Draw(Constants.WhitePixel, rec, ColorCorrection.FromXNAToCustom(Constants.COLORS.ENERGY_BAR));

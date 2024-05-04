@@ -27,7 +27,7 @@ internal class ModifiersHandler
                 (ObjectPropertyID)501 => "[0, 1]",
                 _ => string.Empty
             };
-            ObjectProperties.AddProperty(new ObjectPropertyItem((int)objectPropertyId, text, -1f)
+            ObjectProperties.AddProperty(new((int)objectPropertyId, text, -1f)
             {
                 Description = description,
                 SyncType = ObjectPropertySyncType.Unsynced,
@@ -41,15 +41,15 @@ internal class ModifiersHandler
     [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.SetProperties))]
     private static void LoadExtraModifiers(ObjectPlayerModifierInfo __instance)
     {
-        __instance.Properties.Add(500);
-        __instance.Properties.Add(501);
+        _ = __instance.Properties.Add(500);
+        _ = __instance.Properties.Add(501);
     }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(ObjectPlayerModifierInfo), nameof(ObjectPlayerModifierInfo.SetModifiers))]
     private static bool SetExtraModifiers(ObjectPlayerModifierInfo __instance, PlayerModifiers value)
     {
-        if (value == null)
+        if (value is null)
         {
             return false;
         }
@@ -98,7 +98,7 @@ internal class ModifiersHandler
     [HarmonyPatch(typeof(Player), nameof(Player.SetModifiers))]
     private static void SetModifiersPatch(Player __instance, PlayerModifiers value)
     {
-        if (value != null)
+        if (value is not null)
         {
             var extendedModifiers = value.GetExtension();
             var currentExtendedModifiers = __instance.m_modifiers.GetExtension();

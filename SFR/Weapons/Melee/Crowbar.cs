@@ -63,10 +63,7 @@ internal sealed class Crowbar : MWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Crowbar(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Crowbar(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override MWeapon Copy() => new Crowbar(Properties, Visuals)
     {

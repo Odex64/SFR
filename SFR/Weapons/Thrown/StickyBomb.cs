@@ -4,8 +4,8 @@ using SFD;
 using SFD.Sounds;
 using SFD.Weapons;
 using SFR.Helper;
+using SFR.Misc;
 using SFR.Objects;
-using Constants = SFR.Misc.Constants;
 
 namespace SFR.Weapons.Thrown;
 
@@ -54,15 +54,7 @@ internal sealed class StickyBomb : TWeapon
         NumberOfThrowablesLeft = weaponProperties.NumberOfThrowables;
     }
 
-    public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
-    {
-        if (_primed && args.Player is { CurrentThrownWeapon: not null })
-        {
-            return Visuals.Throwing;
-        }
-
-        return base.GetDrawnTexture(ref args);
-    }
+    public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args) => _primed && args.Player is { CurrentThrownWeapon: not null } ? Visuals.Throwing : base.GetDrawnTexture(ref args);
 
     public override void OnBeforeBeginCharge(TWeaponBeforeBeginChargeArgs e) { }
 
@@ -90,8 +82,8 @@ internal sealed class StickyBomb : TWeapon
             Vector2 linearVelocity = new(-(float)e.Player.LastDirectionX * 2f, 2f);
             if (!_primed)
             {
-                e.Player.GameWorld.CreateLocalTile("StickyBombDebris1", worldPosition, Constants.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity, Constants.Random.NextFloat(-3f, 3f));
-                e.Player.GameWorld.CreateLocalTile("StickyBombDebris1", worldPosition, Constants.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity * 1.5f, Constants.Random.NextFloat(-3f, 3f));
+                _ = e.Player.GameWorld.CreateLocalTile("StickyBombDebris1", worldPosition, Globals.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity, Globals.Random.NextFloat(-3f, 3f));
+                _ = e.Player.GameWorld.CreateLocalTile("StickyBombDebris1", worldPosition, Globals.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity * 1.5f, Globals.Random.NextFloat(-3f, 3f));
                 _primed = true;
             }
         }
@@ -106,10 +98,7 @@ internal sealed class StickyBomb : TWeapon
         }
     }
 
-    public override void OnDeadline(TWeaponOnDeadlineArgs e)
-    {
-        e.Action = TWeaponDeadlineAction.Drop;
-    }
+    public override void OnDeadline(TWeaponOnDeadlineArgs e) => e.Action = TWeaponDeadlineAction.Drop;
 
     public override TWeapon Copy() =>
         new StickyBomb(Properties, Visuals)

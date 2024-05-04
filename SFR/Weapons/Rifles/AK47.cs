@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SFD;
+﻿using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
@@ -10,14 +9,14 @@ internal sealed class AK47 : RWeapon
 {
     internal AK47()
     {
-        RWeaponProperties rWeaponProperties = new(107, "AK47", 1, 18, 4, 2, -1, 95, 0, 1, 5, "ShellSmall", 0.15f, new Vector2(10f, -2f), "MuzzleFlashM", "TommyGun", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnAK47", false, WeaponCategory.Primary)
+        RWeaponProperties rWeaponProperties = new(107, "AK47", 1, 18, 4, 2, -1, 95, 0, 1, 5, "ShellSmall", 0.15f, new(10f, -2f), "MuzzleFlashM", "TommyGun", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnAK47", false, WeaponCategory.Primary)
         {
             BurstRoundsToFire = 3,
             BurstCooldown = 70,
             CooldownAfterPostAction = 325,
             ExtraAutomaticCooldown = 150,
-            CursorAimOffset = new Vector2(0f, 1f),
-            LazerPosition = new Vector2(12f, -0.5f),
+            CursorAimOffset = new(0f, 1f),
+            LazerPosition = new(12f, -0.5f),
             AimStartSoundID = "PistolAim",
             BreakDebris = ["MetalDebris00A", "ItemDebrisStockWood00", "ItemDebrisShiny00"],
             SpecialAmmoBulletsRefill = 35
@@ -49,10 +48,7 @@ internal sealed class AK47 : RWeapon
         CacheDrawnTextures(["Reload"]);
     }
 
-    private AK47(RWeaponProperties rwp, RWeaponVisuals rwv)
-    {
-        SetPropertiesAndVisuals(rwp, rwv);
-    }
+    private AK47(RWeaponProperties rwp, RWeaponVisuals rwv) => SetPropertiesAndVisuals(rwp, rwv);
 
     public override RWeapon Copy()
     {
@@ -67,7 +63,7 @@ internal sealed class AK47 : RWeapon
         {
             if (animEvent == AnimationEvent.EnterFrame && subAnim.GetCurrentFrameIndex() == 1)
             {
-                SpawnMagazine(player, "MagDrum", new Vector2(-8f, -3f));
+                SpawnMagazine(player, "MagDrum", new(-8f, -3f));
                 SoundHandler.PlaySound("MagnumReloadEnd", player.Position, player.GameWorld);
             }
 

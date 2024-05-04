@@ -8,8 +8,8 @@ using SFD.Objects;
 using SFD.Projectiles;
 using SFD.Sounds;
 using SFR.Helper;
+using SFR.Misc;
 using SFR.Sync.Generic;
-using Constants = SFR.Misc.Constants;
 using Explosion = SFD.Explosion;
 using Player = SFD.Player;
 
@@ -45,10 +45,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
         Body.SetAngularDamping(3f);
     }
 
-    public override void OnRemoveObject()
-    {
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
-    }
+    public override void OnRemoveObject() => GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
 
     public override void BeforePlayerMeleeHit(Player player, PlayerBeforeHitEventArgs e)
     {
@@ -58,10 +55,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
         }
     }
 
-    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e)
-    {
-        ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
-    }
+    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e) => ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
 
     public override void ExplosionHit(Explosion explosionData, ExplosionHitEventArgs e)
     {
@@ -79,10 +73,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
         }
     }
 
-    public override void SetProperties()
-    {
-        Properties.Add(ObjectPropertyID.Grenade_DudChance);
-    }
+    public override void SetProperties() => Properties.Add(ObjectPropertyID.Grenade_DudChance);
 
     public override void UpdateObject(float ms)
     {
@@ -95,7 +86,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
                 m_timeBeforeEnablePlayerHit = 0f;
                 DisableUpdateObject();
 
-                if (Constants.Random.NextFloat() < GetDudChance())
+                if (Globals.Random.NextFloat() < GetDudChance())
                 {
                     EffectHandler.PlayEffect("GR_D", GetWorldPosition(), GameWorld);
                     SoundHandler.PlaySound("GrenadeDud", GameWorld);
@@ -132,16 +123,9 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
 
     private static Vector2 GetBombPosition(Player player, Vector2 offset, float angle)
     {
-        Vector2 gamePos;
-        if (player.Crouching || player.Diving || player.Falling || player.Rolling || player.LayingOnGround || player.IsDead)
-        {
-            gamePos = player.Position + new Vector2(0, 8);
-        }
-        else
-        {
-            gamePos = player.Position + new Vector2(offset.X * player.LastDirectionX * angle, offset.Y);
-        }
-
+        var gamePos = player.Crouching || player.Diving || player.Falling || player.Rolling || player.LayingOnGround || player.IsDead
+            ? player.Position + new Vector2(0, 8)
+            : player.Position + new Vector2(offset.X * player.LastDirectionX * angle, offset.Y);
         Vector2 newPos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
         return newPos;
     }
@@ -170,14 +154,11 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
         }
     }
 
-    public override void OnDestroyObject()
-    {
-        GameWorld.TriggerExplosion(GetWorldPosition(), 140f);
-    }
+    public override void OnDestroyObject() => GameWorld.TriggerExplosion(GetWorldPosition(), 140f);
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        foreach (var objectDecal in m_objectDecals.Where(o => o != null))
+        foreach (var objectDecal in m_objectDecals.Where(o => o is not null))
         {
             var position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
             if (Stickied && _stickiedPlayer is { IsRemoved: false })
@@ -226,17 +207,17 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
             ApplyStickyPlayer(player, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle);
             if (GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, [], ObjectID, player.ObjectID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
+                GenericData.SendGenericDataToClients(new(DataType.StickyGrenade, [], ObjectID, player.ObjectID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
             }
         }
     }
 
     internal void ApplyStickyPlayer(Player player, float x, float y, float angle)
     {
-        if (player != null)
+        if (player is not null)
         {
             _stickiedPlayer = player;
-            _stickiedOffset = new Vector2(x, y);
+            _stickiedOffset = new(x, y);
             _stickiedAngle = angle;
             Stickied = true;
         }

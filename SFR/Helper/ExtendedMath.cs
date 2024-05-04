@@ -6,13 +6,10 @@ internal static class ExtendedMath
 
     internal static float InverseLerp(float a, float b, float f) => (f - a) / (b - a);
 
-    internal static float Clamp(float a)
+    internal static float Clamp(float a) => a switch
     {
-        return a switch
-        {
-            < 0 => 0,
-            > 1 => 1,
-            _ => a
-        };
-    }
+        < 0 => 0,
+        > 1 => 1,
+        _ => a
+    };
 }

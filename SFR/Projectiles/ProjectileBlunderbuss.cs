@@ -15,8 +15,8 @@ internal sealed class ProjectileBlunderbuss : Projectile
 
     internal ProjectileBlunderbuss()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
-        Properties = new ProjectileProperties(95, 700f, 50f, 3.5f, 6f, 0.1f, 3.5f, 20f, 0.5f)
+        Visuals = new(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
+        Properties = new(95, 700f, 50f, 3.5f, 6f, 0.1f, 3.5f, 20f, 0.5f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Fireplosion,

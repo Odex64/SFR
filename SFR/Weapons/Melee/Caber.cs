@@ -12,13 +12,13 @@ namespace SFR.Weapons.Melee;
 
 internal sealed class Caber : MWeapon, IExtendedWeapon
 {
-    private const float CaberRadius = 32f;
-    private const float CaberDamage = 50f;
-    private const float CaberSelfDamage = 25f;
-    private const float CaberSelfBoost = 6f;
-    private const float CaberBoost = 4f;
-    private const float CaberMaxSpeed = 8f;
-    private const float CaberMinSpeed = 2f;
+    private const float _caberRadius = 32f;
+    private const float _caberDamage = 50f;
+    private const float _caberSelfDamage = 25f;
+    private const float _caberSelfBoost = 6f;
+    private const float _caberBoost = 4f;
+    private const float _caberMaxSpeed = 8f;
+    private const float _caberMinSpeed = 2f;
     private bool _destroyed;
     private float _fallBackDamage;
 
@@ -77,10 +77,7 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Caber(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Caber(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public void GetDealtDamage(Player player, float damage)
     {
@@ -108,8 +105,6 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
     public void Update(Player player, float ms, float realMs) { }
     public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
 
-    public void BeforeHit(Player player, Player target) { }
-
     public override MWeapon Copy() => new Caber(Properties, Visuals)
     {
         Durability =
@@ -129,11 +124,11 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
         EffectHandler.PlayEffect("CAM_S", position, ownerPlayer.GameWorld, 8f, 250f, false);
 
         // Move the owner player and damage him
-        ownerPlayer.TakeMiscDamage(CaberSelfDamage, sourceID: ownerPlayer.ObjectID);
-        ownerPlayer.SetNewLinearVelocity(new Vector2(ownerPlayer.CurrentVelocity.X, CaberSelfBoost));
+        ownerPlayer.TakeMiscDamage(_caberSelfDamage, sourceID: ownerPlayer.ObjectID);
+        ownerPlayer.SetNewLinearVelocity(new(ownerPlayer.CurrentVelocity.X, _caberSelfBoost));
 
         // Move all the nearby players and damage them
-        AABB.Create(out var area, ownerPlayer.Position, ownerPlayer.Position, CaberRadius);
+        AABB.Create(out var area, ownerPlayer.Position, ownerPlayer.Position, _caberRadius);
         foreach (var obj in ownerPlayer.GameWorld.GetObjectDataByArea(area, false, PhysicsLayer.Active))
         {
             // Damage objects
@@ -149,22 +144,22 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
             }
 
             // Have to use TakeMiscDamage, to actually kill the players + attach a source id for scripters
-            player.TakeMiscDamage(CaberDamage, sourceID: ownerPlayer.ObjectID);
+            player.TakeMiscDamage(_caberDamage, sourceID: ownerPlayer.ObjectID);
             var direction = player.Position - (position + new Vector2(0f, -12f));
             float distance = Vector2.Distance(player.Position, position);
-            var boost = direction / distance * CaberBoost;
+            var boost = direction / distance * _caberBoost;
             player.Position += new Vector2(0f, 2f);
 
             // Limit target velocity
-            if (boost.Length() > CaberMaxSpeed)
+            if (boost.Length() > _caberMaxSpeed)
             {
                 boost.Normalize();
-                boost *= CaberMaxSpeed;
+                boost *= _caberMaxSpeed;
             }
-            else if (boost.Length() < CaberMinSpeed)
+            else if (boost.Length() < _caberMinSpeed)
             {
                 boost.Normalize();
-                boost *= CaberMinSpeed;
+                boost *= _caberMinSpeed;
             }
 
             // This will make them ragdoll

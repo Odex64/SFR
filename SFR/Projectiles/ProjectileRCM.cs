@@ -11,14 +11,14 @@ namespace SFR.Projectiles;
 
 internal sealed class ProjectileRCM : ProjectileBazooka
 {
-    private const float MaxDistance = 2000;
+    private const float _maxDistance = 2000;
     private float _effectTimer;
     private bool _normalRocket;
 
     internal ProjectileRCM()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("RCMRocket"), Textures.GetTexture("RCMRocket"));
-        Properties = new ProjectileProperties(100, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
+        Visuals = new(Textures.GetTexture("RCMRocket"), Textures.GetTexture("RCMRocket"));
+        Properties = new(100, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
         {
             DodgeChance = 0f,
             CanBeAbsorbedOrBlocked = false,
@@ -44,7 +44,7 @@ internal sealed class ProjectileRCM : ProjectileBazooka
         {
             base.Update(ms);
         }
-        else if (PlayerOwner != null)
+        else if (PlayerOwner is not null)
         {
             if (OwnerCanControl())
             {
@@ -62,7 +62,7 @@ internal sealed class ProjectileRCM : ProjectileBazooka
                 Velocity = velocity;
                 ImportantUpdate = true;
 
-                if (keyboard.PressingKey(13) || TotalDistanceTraveled >= MaxDistance)
+                if (keyboard.PressingKey(13) || TotalDistanceTraveled >= _maxDistance)
                 {
                     ConvertToNormal(true);
                     return;
@@ -89,7 +89,7 @@ internal sealed class ProjectileRCM : ProjectileBazooka
     {
         IsDead: false, CurrentWeaponDrawn: WeaponItemType.Rifle, CurrentAction: PlayerAction.ManualAim, MeleeHit: false, Staggering: false,
         InputMode: PlayerInputMode.ReadOnly
-    } && GetRocketRidePlayer() == null;
+    } && GetRocketRidePlayer() is null;
 
     public override void OutsideWorld()
     {

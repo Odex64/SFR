@@ -10,8 +10,8 @@ namespace SFR.Weapons.Melee;
 
 internal sealed class Rapier : MWeapon
 {
-    private const float LungeSpeed = 4f;
-    private const float LungeDuration = 200f;
+    private const float _lungeSpeed = 4f;
+    private const float _lungeDuration = 200f;
     private bool _lungeDone;
 
     private float _lungeTimer;
@@ -67,10 +67,7 @@ internal sealed class Rapier : MWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Rapier(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Rapier(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override MWeapon Copy() => new Rapier(Properties, Visuals)
     {
@@ -104,13 +101,13 @@ internal sealed class Rapier : MWeapon
         {
             if (!_lungeDone)
             {
-                if (player.GetTopSpeed() == 1f || _lungeTimer >= LungeDuration)
+                if (player.GetTopSpeed() == 1f || _lungeTimer >= _lungeDuration)
                 {
                     _lungeDone = true;
                 }
                 else if (player.GetTopSpeed() == 2.25f || player.SpeedBoostActive)
                 {
-                    player.CurrentSpeed = new Vector2(player.AimVector().X > 0 ? LungeSpeed : -LungeSpeed, 0f);
+                    player.CurrentSpeed = new(player.AimVector().X > 0 ? _lungeSpeed : -_lungeSpeed, 0f);
                     player.ImportantUpdate = true;
                     _lungeTimer += totalMs;
                 }
@@ -131,12 +128,12 @@ internal sealed class Rapier : MWeapon
         {
             if (player.CurrentAction == PlayerAction.JumpAttack)
             {
-                player.CurrentSpeed = new Vector2(player.AimVector().X > 0 ? LungeSpeed * 1.4f : -LungeSpeed * 1.4f, player.CurrentSpeed.Y);
+                player.CurrentSpeed = new(player.AimVector().X > 0 ? _lungeSpeed * 1.4f : -_lungeSpeed * 1.4f, player.CurrentSpeed.Y);
                 player.ImportantUpdate = true;
             }
         }
 
-        base.CustomHandlingOnAttackKey(player, onKeyEvent);
+        _ = base.CustomHandlingOnAttackKey(player, onKeyEvent);
         return false;
     }
 }

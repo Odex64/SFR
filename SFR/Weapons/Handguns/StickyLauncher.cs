@@ -1,14 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
 using SFR.Helper;
+using SFR.Misc;
 using SFR.Objects;
-using Constants = SFR.Misc.Constants;
 using Player = SFD.Player;
 
 namespace SFR.Weapons.Handguns;
@@ -32,14 +31,14 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
             ShellID = "",
             AccuracyDeflection = 0.05f,
             ProjectileID = -1,
-            MuzzlePosition = new Vector2(8f, -2f),
+            MuzzlePosition = new(8f, -2f),
             MuzzleEffectTextureID = "MuzzleFlashS",
             BlastSoundID = "",
             DrawSoundID = "GLauncherDraw",
             GrabAmmoSoundID = "GLauncherReload",
             OutOfAmmoSoundID = "OutOfAmmoHeavy",
-            CursorAimOffset = new Vector2(0f, 3.5f),
-            LazerPosition = new Vector2(10f, -0.5f),
+            CursorAimOffset = new(0f, 3.5f),
+            LazerPosition = new(10f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.None,
             CanRefilAtAmmoStashes = true,
@@ -81,10 +80,7 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
         CacheDrawnTextures(["Reload"]);
     }
 
-    private StickyLauncher(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private StickyLauncher(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public void Update(Player player, float ms, float realMs)
     {
@@ -116,8 +112,8 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
 
     public override void BeforeCreateProjectile(BeforeCreateProjectileArgs args)
     {
-        var pipe = (ObjectStickyProjectile)ObjectData.CreateNew(new ObjectDataStartParams(args.GameWorld.IDCounter.NextID(), 0, 0, "ProjectileSticky", args.GameWorld.GameOwner));
-        args.GameWorld.CreateTile(new SpawnObjectInformation(pipe, args.WorldPosition, 0, 1, args.Direction.GetRotatedVector(0.2f * args.Player.LastDirectionX * (1 - args.Direction.Y)) * 9, (float)Constants.Random.NextDouble()));
+        var pipe = (ObjectStickyProjectile)ObjectData.CreateNew(new(args.GameWorld.IDCounter.NextID(), 0, 0, "ProjectileSticky", args.GameWorld.GameOwner));
+        _ = args.GameWorld.CreateTile(new(pipe, args.WorldPosition, 0, 1, args.Direction.GetRotatedVector(0.2f * args.Player.LastDirectionX * (1 - args.Direction.Y)) * 9, (float)Globals.Random.NextDouble()));
         _stickies.Add(pipe);
 
         // if (args.GameWorld.GameOwner == GameOwnerEnum.Server)
@@ -202,8 +198,5 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
         base.OnThrowWeaponItem(player, thrownWeaponItem);
     }
 
-    private IEnumerable<ObjectStickyProjectile> GetRealStickies()
-    {
-        return _stickies.Where(s => s is { RemovalInitiated: false, Detonated: false }).ToArray();
-    }
+    private IEnumerable<ObjectStickyProjectile> GetRealStickies() => _stickies.Where(s => s is { RemovalInitiated: false, Detonated: false }).ToArray();
 }

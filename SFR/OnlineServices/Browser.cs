@@ -6,13 +6,12 @@ using Microsoft.Xna.Framework;
 using SFD;
 using SFD.MenuControls;
 using SFD.SFDOnlineServices;
-using SFR.Bootstrap;
-using Constants = SFR.Misc.Constants;
+using SFR.Misc;
 
 namespace SFR.OnlineServices;
 
 /// <summary>
-///     Handles in-game browser and server join requests.
+/// Handles in-game browser and server join requests.
 /// </summary>
 [HarmonyPatch]
 internal static class Browser
@@ -24,12 +23,12 @@ internal static class Browser
         if (__instance.m_game != value)
         {
             __instance.m_game = value;
-            if (__instance.labels != null)
+            if (__instance.labels is not null)
             {
                 var color = Color.Red;
                 if (__instance.m_game is { SFDGameServer: not null })
                 {
-                    if (__instance.m_game.SFDGameServer.Version == Constants.ServerVersion)
+                    if (__instance.m_game.SFDGameServer.Version == Globals.ServerVersion)
                     {
                         color = Color.White;
                     }
@@ -55,18 +54,17 @@ internal static class Browser
     {
         if (value == "v.1.3.7x")
         {
-            value = Constants.ServerVersion;
+            value = Globals.ServerVersion;
         }
 
         return true;
     }
 
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(SFD.Constants), nameof(SFD.Constants.VersionCheckDifference), typeof(string))]
+    [HarmonyPatch(typeof(Constants), nameof(Constants.VersionCheckDifference), typeof(string))]
     private static bool VersionCheckPatch(string versionToCheck, ref VersionDifference __result)
     {
-        __result = versionToCheck == Constants.ServerVersion || versionToCheck == Constants.VanillaVersion ? VersionDifference.Same : VersionDifference.Older;
-
+        __result = versionToCheck == Globals.ServerVersion ? VersionDifference.Same : VersionDifference.Older;
         return false;
     }
 
@@ -76,7 +74,7 @@ internal static class Browser
     {
         if (__instance.Version == "v.1.3.7x")
         {
-            __instance.Version = Constants.ServerVersion;
+            __instance.Version = Globals.ServerVersion;
         }
     }
 
@@ -86,14 +84,14 @@ internal static class Browser
     {
         foreach (var instruction in instructions)
         {
-            if (instruction.operand == null)
+            if (instruction.operand is null)
             {
                 continue;
             }
 
             if (instruction.operand.Equals("v.1.3.7x"))
             {
-                instruction.operand = Constants.ServerVersion;
+                instruction.operand = Globals.ServerVersion;
             }
         }
 
@@ -106,7 +104,7 @@ internal static class Browser
     {
         if (__instance.Version == "v.1.3.7x")
         {
-            __instance.Version = Constants.VanillaVersion;
+            __instance.Version = Globals.ServerVersion;
         }
     }
 
@@ -130,8 +128,7 @@ internal static class Browser
                 result.CryptPhraseB = netIncomingMessage.ReadString();
             }
 
-            Vanilla.Active = result.Version == Constants.VanillaVersion;
-            result.ServerPInstance = result.Version == Constants.ServerVersion || result.Version == Constants.VanillaVersion ? new Guid(netIncomingMessage.ReadBytes(16)) : Guid.Empty;
+            result.ServerPInstance = result.Version == Globals.ServerVersion ? new Guid(netIncomingMessage.ReadBytes(16)) : Guid.Empty;
         }
         catch (Exception)
         {

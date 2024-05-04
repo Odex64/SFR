@@ -43,10 +43,7 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
         TimeStamp = GameWorld.ElapsedTotalGameTime;
     }
 
-    public override void OnRemoveObject()
-    {
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
-    }
+    public override void OnRemoveObject() => GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
 
     public override void BeforePlayerMeleeHit(Player player, PlayerBeforeHitEventArgs e)
     {
@@ -56,10 +53,7 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
         }
     }
 
-    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e)
-    {
-        ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
-    }
+    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e) => ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
 
     public override void ExplosionHit(Explosion explosionData, ExplosionHitEventArgs e)
     {
@@ -77,10 +71,7 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
         }
     }
 
-    public override void SetProperties()
-    {
-        Properties.Add(ObjectPropertyID.Grenade_DudChance);
-    }
+    public override void SetProperties() => Properties.Add(ObjectPropertyID.Grenade_DudChance);
 
     public override void UpdateObject(float ms)
     {
@@ -130,12 +121,12 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
     public override void OnDestroyObject()
     {
         Detonated = true;
-        GameWorld.TriggerExplosion(GetWorldPosition(), 80f);
+        _ = GameWorld.TriggerExplosion(GetWorldPosition(), 80f);
     }
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        foreach (var objectDecal in m_objectDecals.Where(o => o != null))
+        foreach (var objectDecal in m_objectDecals.Where(o => o is not null))
         {
             var position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
             Camera.ConvertBox2DToScreen(ref position, out position);
@@ -164,7 +155,7 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
 
     public override void MissileHitPlayer(Player player, MissileHitEventArgs e)
     {
-        if (player != null)
+        if (player is not null)
         {
             base.MissileHitPlayer(player, e);
             Body.SetLinearVelocity(Body.GetLinearVelocity() * new Vector2(0.2f, 1f));

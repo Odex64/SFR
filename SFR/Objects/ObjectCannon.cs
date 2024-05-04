@@ -66,17 +66,17 @@ internal sealed class ObjectCannon : ObjectActivateTrigger
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        DrawBase(spriteBatch, ms, new Color(0.5f, 0.5f, 0.5f, 1f));
+        DrawBase(spriteBatch, ms, new(0.5f, 0.5f, 0.5f, 1f));
         if (GameWorld.EditTestMode)
         {
             string text = _isLoaded ? "LOADED" : "EMPTY";
             var vector = Camera.ConvertWorldToScreen(GetWorldPosition() + new Vector2(-4f, 8.5f));
             float scale = Camera.Zoom * 0.3f;
-            Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector + new Vector2(1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
-            Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector - new Vector2(1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
-            Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector + new Vector2(1f, -1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
-            Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector + new Vector2(-1f, 1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
-            Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            _ = Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector + new Vector2(1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            _ = Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector - new Vector2(1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            _ = Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector + new Vector2(1f, -1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            _ = Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector + new Vector2(-1f, 1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
+            _ = Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
         }
     }
 
@@ -100,6 +100,6 @@ internal sealed class ObjectCannon : ObjectActivateTrigger
         EffectHandler.PlayEffect("CAM_S", Vector2.Zero, GameWorld, 1f, 250f, false);
         Vector2 angle = new(FaceDirection * 16, 0);
         SFDMath.RotatePosition(ref angle, GetAngle(), out angle);
-        GameWorld.SpawnProjectile(93, GetMuzzle(), angle, ObjectID);
+        _ = GameWorld.SpawnProjectile(93, GetMuzzle(), angle, ObjectID);
     }
 }

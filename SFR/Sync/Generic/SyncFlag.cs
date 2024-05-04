@@ -2,5 +2,5 @@
 
 internal enum SyncFlag
 {
-    MustSyncNewObjects
+    NewObjects
 }

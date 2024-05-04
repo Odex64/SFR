@@ -11,8 +11,8 @@ namespace SFR.Projectiles;
 
 internal sealed class ProjectileQuad : ProjectileBazooka
 {
-    private const float ExplosionValue = 60;
-    private const float MaxRange = 600;
+    private const float _explosionValue = 60;
+    private const float _maxRange = 600;
     private bool _dataReflected;
     private float _effectTimer;
     private Vector2 _originalDirection;
@@ -21,8 +21,8 @@ internal sealed class ProjectileQuad : ProjectileBazooka
 
     internal ProjectileQuad()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("QuadRocket"), Textures.GetTexture("QuadRocket"));
-        Properties = new ProjectileProperties(99, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
+        Visuals = new(Textures.GetTexture("QuadRocket"), Textures.GetTexture("QuadRocket"));
+        Properties = new(99, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
         {
             DodgeChance = 0f,
             CanBeAbsorbedOrBlocked = false,
@@ -46,7 +46,7 @@ internal sealed class ProjectileQuad : ProjectileBazooka
     {
         if (player.GameOwner != GameOwnerEnum.Client)
         {
-            GameWorld.TriggerExplosion(Position, ExplosionValue, true);
+            _ = GameWorld.TriggerExplosion(Position, _explosionValue, true);
             HitFlag = true;
             GameWorld.RemovedProjectiles.Add(this);
         }
@@ -71,9 +71,9 @@ internal sealed class ProjectileQuad : ProjectileBazooka
             _dataReflected = true;
         }
 
-        if (TotalDistanceTraveled > MaxRange)
+        if (TotalDistanceTraveled > _maxRange)
         {
-            GameWorld.TriggerExplosion(Position, ExplosionValue, true);
+            _ = GameWorld.TriggerExplosion(Position, _explosionValue, true);
             HitFlag = true;
             GameWorld.RemovedProjectiles.Add(this);
             return;
@@ -92,7 +92,7 @@ internal sealed class ProjectileQuad : ProjectileBazooka
             {
                 if (e.ReflectionStatus != ProjectileReflectionStatus.WillBeReflected)
                 {
-                    GameWorld.TriggerExplosion(Position - Direction * 2, ExplosionValue, true);
+                    _ = GameWorld.TriggerExplosion(Position - Direction * 2, _explosionValue, true);
                 }
                 else
                 {
@@ -121,7 +121,7 @@ internal sealed class ProjectileQuad : ProjectileBazooka
         if (GameOwner != GameOwnerEnum.Client)
         {
             _seed = PlayerOwner.Statisticts.m_TotalShotsFired % 4;
-            WriteAdditionalData();
+            _ = WriteAdditionalData();
         }
     }
 
@@ -148,7 +148,7 @@ internal sealed class ProjectileQuad : ProjectileBazooka
             _seed = bytes[0];
             float x = bytes[1] / 128f - 1f;
             float y = bytes[2] / 128f - 1f;
-            _originalDirection = new Vector2(x, y);
+            _originalDirection = new(x, y);
         }
     }
 }

@@ -13,10 +13,8 @@ internal static class CommandHandler
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(GameWorld), nameof(GameWorld.Update))]
-    private static void DebugMouse(float chunkMs, float totalMs, bool isLast, bool isFirst, GameWorld __instance)
+    private static void DebugMouse(bool isLast, GameWorld __instance)
     {
-        //if ( isLast && Program.IsGame && __instance.GameOwner != GameOwnerEnum.Client && __instance.m_game.CurrentState is State.EditorTestRun or State.MainMenu) return; //Already handled
-
         if (isLast && SFD.Program.IsGame && __instance.m_game.CurrentState is not State.EditorTestRun or State.MainMenu && __instance.GameOwner != GameOwnerEnum.Client)
         {
             if (_useHostMouse)
@@ -48,7 +46,7 @@ internal static class CommandHandler
                             _useHostMouse = false;
                         }
 
-                        args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "Mouse Control: " + _useHostMouse));
+                        args.Feedback.Add(new(args.SenderGameUser, "Mouse Control: " + _useHostMouse));
                     }
                 }
 
@@ -61,7 +59,7 @@ internal static class CommandHandler
                         {
                             if (float.TryParse(args.Parameters[1], out float num))
                             {
-                                args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "Debug float: " + num));
+                                args.Feedback.Add(new(args.SenderGameUser, "Debug float: " + num));
                                 _debugVar[index] = num;
                             }
                         }
@@ -70,33 +68,17 @@ internal static class CommandHandler
 #endif
             }
 
-#if DEBUG
-            if (args.ModeratorPrivileges)
-            {
-                if (args.IsCommand("NUKE"))
-                {
-                    args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, args.SenderGameUser.GetProfileName() + " has set the world on fire", Color.Red));
-                    NukeHandler.CreateNuke(__instance.GameWorld);
-                }
-            }
-#endif
-
             if (args.IsCommand("HELP"))
             {
                 Color color = new(159, 255, 64);
-                args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "SFR Commands: ", color, args.SenderGameUser));
+                args.Feedback.Add(new(args.SenderGameUser, "SFR Commands: ", color, args.SenderGameUser));
                 if (args.HostPrivileges)
                 {
 #if DEBUG
-                    args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "'/DEBUG [INDEX] [VALUE]' debug purposes", color, args.SenderGameUser));
+                    args.Feedback.Add(new(args.SenderGameUser, "'/DEBUG [INDEX] [VALUE]' debug purposes", color, args.SenderGameUser));
 #endif
-                    args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "'/MOUSE [1/0]' Drag stuff with mouse", color, args.SenderGameUser));
+                    args.Feedback.Add(new(args.SenderGameUser, "'/MOUSE [1/0]' Drag stuff with mouse", color, args.SenderGameUser));
                 }
-
-                // if (args.ModeratorPrivileges)
-                // {
-                //     args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "'/NUKE' You're a terrible person.", color, args.SenderGameUser));
-                // }
             }
         }
     }

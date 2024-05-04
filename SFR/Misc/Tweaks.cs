@@ -7,15 +7,15 @@ using SFR.Weapons;
 namespace SFR.Misc;
 
 /// <summary>
-///     Here we tweak some system methods (non-SFD) in order to fix some bugs.
+/// Here we tweak some system methods (non-SFD) in order to fix some bugs.
 /// </summary>
 [HarmonyPatch]
 internal static class Tweaks
 {
     /// <summary>
-    ///     When patching enums they return its raw value (number) instead of their name.
-    ///     Here we return their correct title based on the object type and enum value.
-    ///     E.g: Metrolaw track used to return 42 instead of its name.
+    /// When patching enums they return its raw value (number) instead of their name.
+    /// Here we return their correct title based on the object type and enum value.
+    /// E.g: Metrolaw track used to return 42 instead of its name.
     /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Enum), "InternalFormat")]
@@ -51,8 +51,8 @@ internal static class Tweaks
     }
 
     /// <summary>
-    ///     This method is used to return an enum of all the new weapons.
-    ///     This fixed an issue regarding supply crates
+    /// This method is used to return an enum of all the new weapons.
+    /// This fixed an issue regarding supply crates
     /// </summary>
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Enum), nameof(Enum.GetValues))]
@@ -68,10 +68,10 @@ internal static class Tweaks
     }
 
     /// <summary>
-    ///     This patch allows us to override comparison operators without having access to the source code.
+    /// This patch allows us to override comparison operators without having access to the source code.
     /// </summary>
     [HarmonyPrefix]
-    [HarmonyPatch(typeof(object), nameof(object.Equals), typeof(object), typeof(object))]
+    [HarmonyPatch(typeof(object), nameof(Equals), typeof(object), typeof(object))]
     private static bool PatchEquals(object objA, object objB, ref bool __result)
     {
         if (objA is Player playerA && objB is Player playerB)

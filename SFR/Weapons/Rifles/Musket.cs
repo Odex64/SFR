@@ -24,9 +24,9 @@ internal sealed class Musket : RWeapon
             ShellID = string.Empty,
             AccuracyDeflection = 0.09f,
             ProjectileID = 98,
-            MuzzlePosition = new Vector2(13f, -2.5f),
-            CursorAimOffset = new Vector2(0f, 2.5f),
-            LazerPosition = new Vector2(12f, -1.5f),
+            MuzzlePosition = new(13f, -2.5f),
+            CursorAimOffset = new(0f, 2.5f),
+            LazerPosition = new(12f, -1.5f),
             MuzzleEffectTextureID = "MuzzleFlashS",
             BlastSoundID = "Carbine",
             DrawSoundID = "CarbineDraw",
@@ -73,10 +73,7 @@ internal sealed class Musket : RWeapon
         CacheDrawnTextures(["Reload"]);
     }
 
-    private Musket(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Musket(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override RWeapon Copy()
     {
@@ -149,7 +146,7 @@ internal sealed class Musket : RWeapon
     {
         //Show custom animation
         string subAnimation;
-        if ((subAnimation = args.SubAnimation) != null && subAnimation == "UpperReloadBazooka")
+        if ((subAnimation = args.SubAnimation) is not null && subAnimation == "UpperReloadBazooka")
         {
             if (args.SubFrame is >= 1 and <= 5)
             {

@@ -10,20 +10,17 @@ namespace SFR.Helper;
 internal static class Extensions
 {
     /// <summary>
-    ///     Helper method to return the current weapon in use
+    /// Helper method to return the current weapon in use
     /// </summary>
     /// <param name="player">A player</param>
     /// <returns>The current weapon in use</returns>
-    internal static object GetCurrentWeapon(this Player player)
+    internal static object GetCurrentWeapon(this Player player) => player.CurrentWeaponDrawn switch
     {
-        return player.CurrentWeaponDrawn switch
-        {
-            WeaponItemType.Melee => player.GetCurrentMeleeWeaponInUse(),
-            WeaponItemType.Handgun or WeaponItemType.Rifle => player.GetCurrentRangedWeaponInUse(),
-            WeaponItemType.Thrown => player.GetCurrentThrownWeaponInUse(),
-            _ => null
-        };
-    }
+        WeaponItemType.Melee => player.GetCurrentMeleeWeaponInUse(),
+        WeaponItemType.Handgun or WeaponItemType.Rifle => player.GetCurrentRangedWeaponInUse(),
+        WeaponItemType.Thrown => player.GetCurrentThrownWeaponInUse(),
+        _ => null
+    };
 
     internal static ExtendedPlayer GetExtension(this Player player)
     {
@@ -61,7 +58,7 @@ internal static class Extensions
     {
         double cosAngle = Math.Cos(angle);
         double sinAngle = Math.Sin(angle);
-        return new Vector2((float)(cosAngle * vector.X - sinAngle * vector.Y), (float)(sinAngle * vector.X + cosAngle * vector.Y));
+        return new((float)(cosAngle * vector.X - sinAngle * vector.Y), (float)(sinAngle * vector.X + cosAngle * vector.Y));
     }
 
     internal static float GetAngle(this Vector2 vector) => (float)Math.Atan2(vector.Y, vector.X);

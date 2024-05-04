@@ -6,16 +6,16 @@ namespace SFR.Objects;
 
 internal class ObjectPirateShip : ObjectData
 {
-    private const int DamageFrames = 5;
+    private const int _damageFrames = 5;
     private Texture2D[] _textures;
 
     internal ObjectPirateShip(ObjectDataStartParams startParams) : base(startParams) { }
 
     public override void Initialize()
     {
-        _textures = new Texture2D[DamageFrames];
+        _textures = new Texture2D[_damageFrames];
         base.Initialize();
-        for (int i = 0; i < DamageFrames; i++)
+        for (int i = 0; i < _damageFrames; i++)
         {
             string str = "PirateShipSmall00";
             if (i != 0)
@@ -32,9 +32,9 @@ internal class ObjectPirateShip : ObjectData
         base.DealScriptDamage(damage, sourceID);
         if (!Health.IsEmpty)
         {
-            int frame = (int)(DamageFrames - Health.Fullness * DamageFrames);
+            int frame = (int)(_damageFrames - Health.Fullness * _damageFrames);
             ClearDecals();
-            AddDecal(new ObjectDecal(_textures[frame]));
+            AddDecal(new(_textures[frame]));
         }
     }
 
@@ -42,9 +42,9 @@ internal class ObjectPirateShip : ObjectData
     {
         if (!Health.IsEmpty)
         {
-            int frame = (int)(DamageFrames - Health.Fullness * DamageFrames);
+            int frame = (int)(_damageFrames - Health.Fullness * _damageFrames);
             ClearDecals();
-            AddDecal(new ObjectDecal(_textures[frame]));
+            AddDecal(new(_textures[frame]));
             base.Draw(spriteBatch, ms);
         }
     }

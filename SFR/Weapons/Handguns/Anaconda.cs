@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using SFD;
+﻿using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
@@ -26,17 +24,17 @@ internal sealed class Anaconda : RWeapon
             ShellID = "",
             AccuracyDeflection = 0.04f,
             ProjectileID = 28,
-            MuzzlePosition = new Vector2(5f, -2f),
+            MuzzlePosition = new(5f, -2f),
             MuzzleEffectTextureID = "MuzzleFlashS",
             BlastSoundID = "Revolver",
             DrawSoundID = "RevolverDraw",
             GrabAmmoSoundID = "RevolverReload",
             OutOfAmmoSoundID = "OutOfAmmoLight",
-            CursorAimOffset = new Vector2(0f, 3.5f),
-            LazerPosition = new Vector2(6f, -0.5f),
+            CursorAimOffset = new(0f, 3.5f),
+            LazerPosition = new(6f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.Low,
-            BreakDebris = Array.Empty<string>(),
+            BreakDebris = [],
             SpecialAmmoBulletsRefill = 10
         };
         RWeaponVisuals weaponVisuals = new();
@@ -67,10 +65,7 @@ internal sealed class Anaconda : RWeapon
         CacheDrawnTextures(["Reload"]);
     }
 
-    private Anaconda(RWeaponProperties rwp, RWeaponVisuals rwv)
-    {
-        SetPropertiesAndVisuals(rwp, rwv);
-    }
+    private Anaconda(RWeaponProperties rwp, RWeaponVisuals rwv) => SetPropertiesAndVisuals(rwp, rwv);
 
     public override void OnReloadAnimationEvent(Player player, AnimationEvent animEvent, SubAnimationPlayer subAnim)
     {

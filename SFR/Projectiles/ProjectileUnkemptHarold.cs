@@ -11,10 +11,10 @@ namespace SFR.Projectiles;
 
 internal sealed class ProjectileUnkemptHarold : Projectile
 {
-    private const float FrameTime = 30f;
-    private const int AnimationFrames = 6;
-    private const float ExplosionPower = 35f;
-    private const float SplitDistance = 64;
+    private const float _frameTime = 30f;
+    private const int _animationFrames = 6;
+    private const float _explosionPower = 35f;
+    private const float _splitDistance = 64;
     private float _animationTimer;
     private int _currentFrame = 1;
     private float _effectTimer;
@@ -22,9 +22,9 @@ internal sealed class ProjectileUnkemptHarold : Projectile
 
     internal ProjectileUnkemptHarold()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("BulletUnkemptHarold"), Textures.GetTexture("BulletUnkemptHarold"));
-        Visuals.BulletTraceOrigin = new Vector2(Visuals.BulletTraceTexture.Width - Visuals.BulletTraceOrigin.X + 8, Visuals.BulletTraceOrigin.Y);
-        Properties = new ProjectileProperties(85, 200f, 1f, 1f, 1f, 0.2f, 0f, 0f, 0.1f)
+        Visuals = new(Textures.GetTexture("BulletUnkemptHarold"), Textures.GetTexture("BulletUnkemptHarold"));
+        Visuals.BulletTraceOrigin = new(Visuals.BulletTraceTexture.Width - Visuals.BulletTraceOrigin.X + 8, Visuals.BulletTraceOrigin.Y);
+        Properties = new(85, 200f, 1f, 1f, 1f, 0.2f, 0f, 0f, 0.1f)
         {
             PowerupBounceRandomAngle = 0.2f,
             PowerupFireType = ProjectilePowerupFireType.Default,
@@ -45,7 +45,7 @@ internal sealed class ProjectileUnkemptHarold : Projectile
 
     public override void Update(float ms)
     {
-        if (_splits > 0 && TotalDistanceTraveled > SplitDistance)
+        if (_splits > 0 && TotalDistanceTraveled > _splitDistance)
         {
             if (GameOwner != GameOwnerEnum.Client)
             {
@@ -70,7 +70,7 @@ internal sealed class ProjectileUnkemptHarold : Projectile
         base.HitObject(objectData, e);
         if (HitFlag && GameOwner != GameOwnerEnum.Client && e.ReflectionStatus != ProjectileReflectionStatus.WillBeReflected)
         {
-            GameWorld.TriggerExplosion(Position - Direction * 2, ExplosionPower, true);
+            _ = GameWorld.TriggerExplosion(Position - Direction * 2, _explosionPower, true);
         }
     }
 
@@ -79,14 +79,14 @@ internal sealed class ProjectileUnkemptHarold : Projectile
         base.HitPlayer(player, playerObjectData);
         if (HitFlag)
         {
-            GameWorld.TriggerExplosion(Position - Direction * 2, ExplosionPower, true);
+            _ = GameWorld.TriggerExplosion(Position - Direction * 2, _explosionPower, true);
         }
     }
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
         _animationTimer += ms;
-        _currentFrame = (int)(_animationTimer % (FrameTime * AnimationFrames) / FrameTime);
-        spriteBatch.Draw(Visuals.BulletTraceTexture, Camera.ConvertWorldToScreen(Position), new Rectangle(_currentFrame * 16, 0, 16, 16), new Color(0.6f, 0.6f, 0.6f, 1f), GetAngle(), Visuals.BulletTraceOrigin, Camera.Zoom, SpriteEffects.None, 0f);
+        _currentFrame = (int)(_animationTimer % (_frameTime * _animationFrames) / _frameTime);
+        spriteBatch.Draw(Visuals.BulletTraceTexture, Camera.ConvertWorldToScreen(Position), new Rectangle(_currentFrame * 16, 0, 16, 16), new(0.6f, 0.6f, 0.6f, 1f), GetAngle(), Visuals.BulletTraceOrigin, Camera.Zoom, SpriteEffects.None, 0f);
     }
 }

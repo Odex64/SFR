@@ -6,8 +6,8 @@ using SFR.Sync.Generic;
 namespace SFR.Fighter.Jetpacks;
 
 /// <summary>
-///     All the jetpacks derive from this.
-///     This class will handle basic tasks, such as setting basic speed, playing effects / sounds etc.
+/// All the jetpacks derive from this.
+/// This class will handle basic tasks, such as setting basic speed, playing effects / sounds etc.
 /// </summary>
 internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
 {
@@ -58,14 +58,9 @@ internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
             var velocity = player.CurrentVelocity;
             velocity.X *= player.SlowmotionFactor * 0.6f;
 
-            if (velocity.Y <= MaxSpeed)
-            {
-                velocity.Y = (velocity.Y > 1.94f ? velocity.Y : MaxSpeed > 1 ? 1.94f : 1.94f * MaxSpeed) * player.SlowmotionFactor * 1.17f;
-            }
-            else
-            {
-                velocity.Y = MaxSpeed;
-            }
+            velocity.Y = velocity.Y <= MaxSpeed
+                ? (velocity.Y > 1.94f ? velocity.Y : MaxSpeed > 1 ? 1.94f : 1.94f * MaxSpeed) * player.SlowmotionFactor * 1.17f
+                : MaxSpeed;
 
             // player.SetNewLinearVelocity(velocity);
             player.WorldBody.SetLinearVelocity(velocity);
@@ -80,7 +75,7 @@ internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
 
                 if (player.GameOwner == GameOwnerEnum.Server)
                 {
-                    GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
+                    GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
                 }
             }
 
@@ -127,7 +122,7 @@ internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
         extendedPlayer.GenericJetpack = null;
         if (extendedPlayer.Player.GameOwner == GameOwnerEnum.Server)
         {
-            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
+            GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
         }
     }
 

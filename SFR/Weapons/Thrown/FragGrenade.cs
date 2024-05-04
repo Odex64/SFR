@@ -3,8 +3,8 @@ using SFD;
 using SFD.Sounds;
 using SFD.Weapons;
 using SFR.Helper;
+using SFR.Misc;
 using SFR.Objects;
-using Constants = SFR.Misc.Constants;
 
 namespace SFR.Weapons.Thrown;
 
@@ -73,7 +73,7 @@ internal sealed class FragGrenade : TWeapon
             SoundHandler.PlaySound("GrenadeSafe", e.Player.Position, e.Player.GameWorld);
             var worldPosition = e.Player.Position + new Vector2(-(float)e.Player.LastDirectionX * 5f, 7f);
             Vector2 linearVelocity = new(-(float)e.Player.LastDirectionX * 2f, 2f);
-            e.Player.GameWorld.CreateLocalTile("WpnGrenadePin", worldPosition, Constants.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity, Constants.Random.NextFloat(-3f, 3f));
+            _ = e.Player.GameWorld.CreateLocalTile("WpnGrenadePin", worldPosition, Globals.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity, Globals.Random.NextFloat(-3f, 3f));
         }
     }
 
@@ -86,10 +86,7 @@ internal sealed class FragGrenade : TWeapon
         }
     }
 
-    public override void OnDeadline(TWeaponOnDeadlineArgs e)
-    {
-        e.Action = TWeaponDeadlineAction.Drop;
-    }
+    public override void OnDeadline(TWeaponOnDeadlineArgs e) => e.Action = TWeaponDeadlineAction.Drop;
 
     public override TWeapon Copy() => new FragGrenade(Properties, Visuals)
     {

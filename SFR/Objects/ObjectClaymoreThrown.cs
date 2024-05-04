@@ -7,8 +7,8 @@ using SFD.Projectiles;
 using SFD.Sounds;
 using SFD.Tiles;
 using SFR.Helper;
+using SFR.Misc;
 using SFR.Projectiles;
-using Constants = SFR.Misc.Constants;
 using Explosion = SFD.Explosion;
 using Math = System.Math;
 
@@ -46,10 +46,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
         _blinkTexture = Textures.GetTexture("ClaymoreMBlink");
     }
 
-    public override void OnRemoveObject()
-    {
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
-    }
+    public override void OnRemoveObject() => GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
 
     public override void ExplosionHit(Explosion explosionData, ExplosionHitEventArgs e)
     {
@@ -61,7 +58,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
 
     public override void ProjectileHit(Projectile projectile, ProjectileHitEventArgs e)
     {
-        if (GameOwner != GameOwnerEnum.Client && projectile.Properties.ProjectileID != 64 && !(projectile is IExtendedProjectile))
+        if (GameOwner != GameOwnerEnum.Client && projectile.Properties.ProjectileID != 64 && projectile is not IExtendedProjectile)
         {
             Destroy();
         }
@@ -69,16 +66,13 @@ internal sealed class ObjectClaymoreThrown : ObjectData
 
     public override void SetProperties()
     {
-        Properties.Add(ObjectPropertyID.Mine_DudChance);
-        Properties.Add(ObjectPropertyID.Mine_Status);
+        _ = Properties.Add(ObjectPropertyID.Mine_DudChance);
+        _ = Properties.Add(ObjectPropertyID.Mine_Status);
     }
 
     private float GetDudChance() => (float)Properties.Get(ObjectPropertyID.Mine_DudChance).Value;
 
-    private void SetDudChance(float value)
-    {
-        Properties.Get(ObjectPropertyID.Mine_DudChance).Value = value;
-    }
+    private void SetDudChance(float value) => Properties.Get(ObjectPropertyID.Mine_DudChance).Value = value;
 
     public override void PropertyValueChanged(ObjectPropertyInstance propertyChanged)
     {
@@ -105,7 +99,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             {
                 num += 16f;
                 var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, num, LazerRayCastCollision, _ => true);
-                if (rayCastResult.EndFixture != null)
+                if (rayCastResult.EndFixture is not null)
                 {
                     var objectData = Read(rayCastResult.EndFixture);
                     if (objectData.IsPlayer)
@@ -126,7 +120,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
                     ApplyFilter();
                 }
 
-                if (_stickiedObject.Body != null)
+                if (_stickiedObject.Body is not null)
                 {
                     var gamePos = _stickiedOffset;
                     SFDMath.RotatePosition(ref gamePos, _stickiedObject.GetAngle() - _stickiedAngle, out gamePos);
@@ -185,48 +179,48 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             switch (_status)
             {
                 case 2:
-                {
-                    if (_isTripped)
                     {
-                        Properties.Get(ObjectPropertyID.Mine_Status).Value = 3;
-                        SoundHandler.PlaySound("MineTrigger", GameWorld);
-                    }
-
-                    break;
-                }
-                case 3:
-                {
-                    if (_blinkTimer <= 0f)
-                    {
-                        _blink = !_blink;
-                        _blinkTimer += _blinkInterval;
-                    }
-
-                    _blinkTimer -= ms;
-                    if (GameOwner != GameOwnerEnum.Client)
-                    {
-                        _explosionTimer -= ms;
-                        if (_explosionTimer <= 0f)
+                        if (_isTripped)
                         {
-                            if (Constants.Random.NextFloat() < GetDudChance())
-                            {
-                                EffectHandler.PlayEffect("GR_D", GetWorldPosition(), GameWorld);
-                                SoundHandler.PlaySound("GrenadeDud", GameWorld);
-                                Properties.Get(ObjectPropertyID.Mine_Status).Value = -1;
-                                Body.SetType(BodyType.Dynamic);
-                                Body.GetFixtureByIndex(0).SetFilterData(ref _originalFilter);
-                            }
-                            else
-                            {
-                                Destroy();
-                            }
-
-                            DisableUpdateObject();
+                            Properties.Get(ObjectPropertyID.Mine_Status).Value = 3;
+                            SoundHandler.PlaySound("MineTrigger", GameWorld);
                         }
-                    }
 
-                    break;
-                }
+                        break;
+                    }
+                case 3:
+                    {
+                        if (_blinkTimer <= 0f)
+                        {
+                            _blink = !_blink;
+                            _blinkTimer += _blinkInterval;
+                        }
+
+                        _blinkTimer -= ms;
+                        if (GameOwner != GameOwnerEnum.Client)
+                        {
+                            _explosionTimer -= ms;
+                            if (_explosionTimer <= 0f)
+                            {
+                                if (Globals.Random.NextFloat() < GetDudChance())
+                                {
+                                    EffectHandler.PlayEffect("GR_D", GetWorldPosition(), GameWorld);
+                                    SoundHandler.PlaySound("GrenadeDud", GameWorld);
+                                    Properties.Get(ObjectPropertyID.Mine_Status).Value = -1;
+                                    Body.SetType(BodyType.Dynamic);
+                                    Body.GetFixtureByIndex(0).SetFilterData(ref _originalFilter);
+                                }
+                                else
+                                {
+                                    Destroy();
+                                }
+
+                                DisableUpdateObject();
+                            }
+                        }
+
+                        break;
+                    }
             }
         }
     }
@@ -238,7 +232,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             Vector2 vec = new(10, 0);
             for (int i = 0; i < 18; i++)
             {
-                var dir = vec.GetRotatedVector(-GetAngle() + Constants.Random.NextFloat(-0.25f, 0.25f));
+                var dir = vec.GetRotatedVector(-GetAngle() + Globals.Random.NextFloat(-0.25f, 0.25f));
                 var projectile = GameWorld.SpawnProjectile(61, GetWorldPosition(), dir, BodyID);
                 projectile.CritChanceDealtModifier = 0f;
                 projectile.Properties.DodgeChance = 0;
@@ -292,7 +286,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
         var vector = Body.Position;
         vector += GameWorld.DrawingBox2DSimulationTimestepOver * Body.GetLinearVelocity();
         Camera.ConvertBox2DToScreen(ref vector, out vector);
-        spriteBatch.Draw(texture2D, vector, null, Color.Gray, GetAngle(), new Vector2(texture2D.Width / 2, texture2D.Height / 2), Camera.ZoomUpscaled, m_faceDirectionSpriteEffect, 0f);
+        spriteBatch.Draw(texture2D, vector, null, Color.Gray, GetAngle(), new(texture2D.Width / 2, texture2D.Height / 2), Camera.ZoomUpscaled, m_faceDirectionSpriteEffect, 0f);
 
         if (_status >= 2 || Body.GetType() == BodyType.Static)
         {
@@ -302,8 +296,8 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             {
                 angle += 16f;
                 var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, angle, LazerRayCastCollision, _ => true);
-                GameWorld.DrawLazer(spriteBatch, _isTripped || (_blink && _status < 2), rayCastResult.StartPosition, rayCastResult.EndPosition, rayCastResult.Direction);
-                if (rayCastResult.EndFixture != null)
+                GameWorld.DrawLazer(spriteBatch, _isTripped || _blink && _status < 2, rayCastResult.StartPosition, rayCastResult.EndPosition, rayCastResult.Direction);
+                if (rayCastResult.EndFixture is not null)
                 {
                     var objectData = Read(rayCastResult.EndFixture);
                     if (objectData.IsPlayer)

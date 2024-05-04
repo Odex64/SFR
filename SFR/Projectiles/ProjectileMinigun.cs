@@ -6,8 +6,8 @@ internal sealed class ProjectileMinigun : Projectile
 {
     internal ProjectileMinigun()
     {
-        Visuals = new ProjectileVisuals(ProjectileDatabase.BulletCommonTexture, ProjectileDatabase.BulletCommonSlowmoTexture);
-        Properties = new ProjectileProperties(102, 1200f, 10f, 3f, 20f, 0.01f, 5f, 10f, 0.1f)
+        Visuals = new(ProjectileDatabase.BulletCommonTexture, ProjectileDatabase.BulletCommonSlowmoTexture);
+        Properties = new(102, 1200f, 10f, 3f, 20f, 0.01f, 5f, 10f, 0.1f)
         {
             PowerupBounceRandomAngle = 0.2f,
             PowerupFireType = ProjectilePowerupFireType.Default

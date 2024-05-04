@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using HarmonyLib;
 using SFD;
-using Constants = SFR.Misc.Constants;
+using SFR.Misc;
 
 namespace SFR.UI;
 
 [HarmonyPatch]
-internal static class Game
+internal static class GameMenu
 {
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(GameSFD), nameof(GameSFD.DrawInner))]
@@ -14,14 +14,14 @@ internal static class Game
     {
         foreach (var instruction in instructions)
         {
-            if (instruction.operand == null)
+            if (instruction.operand is null)
             {
                 continue;
             }
 
             if (instruction.operand.Equals("v.1.3.7x"))
             {
-                instruction.operand = $"SFR {Constants.SFRVersion}";
+                instruction.operand = $"SFR {Globals.SFRVersion}";
                 break;
             }
         }

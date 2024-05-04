@@ -18,10 +18,7 @@ internal sealed class ObjectImpactGrenadeThrown : ObjectGrenadeThrown
         Body.SetBullet(true);
     }
 
-    public override void OnRemoveObject()
-    {
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
-    }
+    public override void OnRemoveObject() => GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
 
     public override void MissileHitPlayer(Player player, MissileHitEventArgs e)
     {
@@ -34,10 +31,7 @@ internal sealed class ObjectImpactGrenadeThrown : ObjectGrenadeThrown
 
     public override void BeforePlayerMeleeHit(Player player, PlayerBeforeHitEventArgs e) { }
 
-    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e)
-    {
-        ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
-    }
+    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e) => ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
 
     public override void ExplosionHit(Explosion explosionData, ExplosionHitEventArgs e)
     {
@@ -55,17 +49,11 @@ internal sealed class ObjectImpactGrenadeThrown : ObjectGrenadeThrown
         }
     }
 
-    public override void SetProperties()
-    {
-        Properties.Add(ObjectPropertyID.Grenade_DudChance);
-    }
+    public override void SetProperties() => Properties.Add(ObjectPropertyID.Grenade_DudChance);
 
     public override void UpdateObject(float ms) { }
 
-    public override void OnDestroyObject()
-    {
-        GameWorld.TriggerExplosion(GetWorldPosition(), 80f);
-    }
+    public override void OnDestroyObject() => GameWorld.TriggerExplosion(GetWorldPosition(), 80f);
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {

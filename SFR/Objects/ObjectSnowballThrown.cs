@@ -7,6 +7,7 @@ using SFD.Effects;
 using SFD.Sounds;
 using SFD.Tiles;
 using SFR.Helper;
+using SFR.Misc;
 using Math = System.Math;
 using Player = SFD.Player;
 
@@ -14,7 +15,7 @@ namespace SFR.Objects;
 
 internal sealed class ObjectSnowballThrown : ObjectData
 {
-    private const float SnowballDamage = 6f;
+    private const float _snowballDamage = 6f;
     private TrailSpawner _trailSpawner;
 
     internal ObjectSnowballThrown(ObjectDataStartParams startParams) : base(startParams) { }
@@ -27,18 +28,12 @@ internal sealed class ObjectSnowballThrown : ObjectData
         //Body.SetAngularDamping(3f);
         Body.SetAngularVelocity(Body.GetAngularVelocity() * 6f);
 
-        _trailSpawner = new TrailSpawner(GameWorld, Body, new Vector2(0f, 0f), "F_S");
+        _trailSpawner = new(GameWorld, Body, new(0f, 0f), "F_S");
     }
 
-    public override void OnRemoveObject()
-    {
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
-    }
+    public override void OnRemoveObject() => GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
 
-    public override void UpdateObject(float ms)
-    {
-        _trailSpawner.Update(ms);
-    }
+    public override void UpdateObject(float ms) => _trailSpawner.Update(ms);
 
     public override void SolveImpactContactHit(Contact contact, ObjectData otherObject, Fixture myFixture, Fixture otherFixture,
         ref WorldManifold worldManifold, ref FixedArray2<PointState> pointStates, ref Manifold manifold)
@@ -84,7 +79,7 @@ internal sealed class ObjectSnowballThrown : ObjectData
         if (GameOwner != GameOwnerEnum.Client && otherObject.IsPlayer)
         {
             var player = (Player)otherObject.InternalData;
-            player.TakeMiscDamage(SnowballDamage);
+            player.TakeMiscDamage(_snowballDamage);
             Destroy();
         }
     }
@@ -100,7 +95,7 @@ internal sealed class ObjectSnowballThrown : ObjectData
 
     public override void Dispose()
     {
-        if (!IsDisposed && _trailSpawner != null)
+        if (!IsDisposed && _trailSpawner is not null)
         {
             _trailSpawner.Dispose();
             _trailSpawner = null;
@@ -156,7 +151,7 @@ internal sealed class TrailSpawner
                     num2 = (int)Math.Round(num2 * 0.5f, MidpointRounding.AwayFromZero);
                 }
 
-                Vector2 value = new(Misc.Constants.Random.NextFloat(-2f, 2f), Misc.Constants.Random.NextFloat(-2f, 2f));
+                Vector2 value = new(Globals.Random.NextFloat(-2f, 2f), Globals.Random.NextFloat(-2f, 2f));
                 if (num2 > 1)
                 {
                     float scaleFactor = num / num2;

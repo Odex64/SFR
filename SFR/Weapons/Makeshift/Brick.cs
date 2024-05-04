@@ -60,10 +60,7 @@ internal sealed class Brick : MWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Brick(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Brick(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override void Destroyed(Player ownerPlayer)
     {

@@ -38,20 +38,17 @@ internal sealed class CreditsPanel : Panel
             new MenuItemLabel("NearHuscarl - For his amazing items editor", Align.Center, Color.Gold)
         ];
 
-        Menu menu = new(new Vector2(0f, 40f), Width, Height - 40, this, items.ToArray());
+        Menu menu = new(new(0f, 40f), Width, Height - 40, this, [.. items]);
         members.Add(menu);
     }
 
-    private void Close(object sender)
-    {
-        ParentPanel.CloseSubPanel();
-    }
+    private void Close() => ParentPanel.CloseSubPanel();
 
     public override void KeyPress(Keys key)
     {
-        if (subPanel == null && key == Keys.Escape)
+        if (subPanel is null && key == Keys.Escape)
         {
-            Close(null);
+            Close();
             return;
         }
 

@@ -64,10 +64,7 @@ internal sealed class Greatsword : MWeapon, ISharpMelee
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Greatsword(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Greatsword(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public float GetDecapitationChance() => 1f;
 

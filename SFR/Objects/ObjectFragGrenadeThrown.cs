@@ -6,7 +6,7 @@ using SFD.Objects;
 using SFD.Projectiles;
 using SFD.Sounds;
 using SFR.Helper;
-using Constants = SFR.Misc.Constants;
+using SFR.Misc;
 using Explosion = SFD.Explosion;
 using Math = System.Math;
 using Player = SFD.Player;
@@ -15,7 +15,7 @@ namespace SFR.Objects;
 
 internal sealed class ObjectFragGrenadeThrown : ObjectGrenadeThrown
 {
-    private const int Fragments = 24;
+    private const int _fragments = 24;
 
     internal ObjectFragGrenadeThrown(ObjectDataStartParams startParams) : base(startParams) => ExplosionTimer = 3000f;
 
@@ -27,10 +27,7 @@ internal sealed class ObjectFragGrenadeThrown : ObjectGrenadeThrown
         Body.SetBullet(true);
     }
 
-    public override void OnRemoveObject()
-    {
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
-    }
+    public override void OnRemoveObject() => GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
 
     public override void MissileHitPlayer(Player player, MissileHitEventArgs e)
     {
@@ -47,10 +44,7 @@ internal sealed class ObjectFragGrenadeThrown : ObjectGrenadeThrown
         }
     }
 
-    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e)
-    {
-        ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
-    }
+    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e) => ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
 
     public override void ExplosionHit(Explosion explosionData, ExplosionHitEventArgs e)
     {
@@ -68,10 +62,7 @@ internal sealed class ObjectFragGrenadeThrown : ObjectGrenadeThrown
         }
     }
 
-    public override void SetProperties()
-    {
-        Properties.Add(ObjectPropertyID.Grenade_DudChance);
-    }
+    public override void SetProperties() => Properties.Add(ObjectPropertyID.Grenade_DudChance);
 
     public override void UpdateObject(float ms)
     {
@@ -83,7 +74,7 @@ internal sealed class ObjectFragGrenadeThrown : ObjectGrenadeThrown
             {
                 m_timeBeforeEnablePlayerHit = 0f;
                 DisableUpdateObject();
-                if (Constants.Random.NextFloat() < GetDudChance())
+                if (Globals.Random.NextFloat() < GetDudChance())
                 {
                     EffectHandler.PlayEffect("GR_D", GetWorldPosition(), GameWorld);
                     SoundHandler.PlaySound("GrenadeDud", GameWorld);
@@ -98,15 +89,15 @@ internal sealed class ObjectFragGrenadeThrown : ObjectGrenadeThrown
 
     public override void OnDestroyObject()
     {
-        GameWorld.TriggerExplosion(GetWorldPosition(), 70f);
-        for (int i = 0; i < Fragments; i++)
+        _ = GameWorld.TriggerExplosion(GetWorldPosition(), 70f);
+        for (int i = 0; i < _fragments; i++)
         {
-            double angle = 2f * Math.PI / Fragments * i;
+            double angle = 2f * Math.PI / _fragments * i;
             double cosAngle = Math.Cos(angle);
             double sinAngle = Math.Sin(angle);
             Vector2 vec = new(0, 10);
             Vector2 direction = new((float)(cosAngle * vec.X - sinAngle * vec.Y), (float)(sinAngle * vec.X + cosAngle * vec.Y));
-            GameWorld.SpawnProjectile(10, GetWorldPosition(), direction, ObjectID);
+            _ = GameWorld.SpawnProjectile(10, GetWorldPosition(), direction, ObjectID);
         }
     }
 

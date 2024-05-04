@@ -60,10 +60,7 @@ internal sealed class Snowball : TWeapon
 
     public override void OnDrop(TWeaponOnThrowArgs e) { }
 
-    public override void OnDeadline(TWeaponOnDeadlineArgs e)
-    {
-        e.Action = TWeaponDeadlineAction.Drop;
-    }
+    public override void OnDeadline(TWeaponOnDeadlineArgs e) => e.Action = TWeaponDeadlineAction.Drop;
 
     public override TWeapon Copy() =>
         new Snowball(Properties, Visuals)

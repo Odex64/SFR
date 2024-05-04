@@ -10,23 +10,20 @@ namespace SFR.UI;
 [HarmonyPatch]
 internal static class MainMenu
 {
-    private const string Website = "superfightersredux.tk";
-    private static Action<Panel> OpenSubPanel;
+    private const string _website = "redux.odex64.dev";
+    private static Action<Panel> _openSubPanel;
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(MainMenuPanel), MethodType.Constructor)]
     private static void MainMenuPanel(MainMenuPanel __instance)
     {
-        OpenSubPanel = __instance.OpenSubPanel;
+        _openSubPanel = __instance.OpenSubPanel;
 
         __instance.menu.Height += 1;
         __instance.menu.Add(new MainMenuItem("CREDITS ⛭", Credits), 6);
     }
 
-    private static void Credits(object sender)
-    {
-        OpenSubPanel(new CreditsPanel());
-    }
+    private static void Credits(object sender) => _openSubPanel(new CreditsPanel());
 
     [HarmonyTranspiler]
     [HarmonyPatch(typeof(MainMenuPanel), nameof(SFD.MenuControls.MainMenuPanel.KeyPress))]

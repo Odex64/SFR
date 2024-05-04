@@ -2,223 +2,222 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
-using SFD.Projectiles;
 using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
+using SFR.Misc;
 using SFR.Objects;
 using SFR.Weapons;
 using SFR.Weapons.Rifles;
-using Constants = SFR.Misc.Constants;
 using Math = System.Math;
 using Player = SFD.Player;
 
 namespace SFR.Fighter;
 
 /// <summary>
-///     Class containing all patches regarding players and their state
-///     <list type="bullet|table">
-///         <listheader>
-///             <term>State</term>
-///             <description>PlayerExt state for server &amp; client sync</description>
-///         </listheader>
-///         <item>
-///             <term>0</term>
-///             <description>Standing on ground</description>
-///         </item>
-///         <item>
-///             <term>1</term>
-///             <description>In air</description>
-///         </item>
-///         <item>
-///             <term>2</term>
-///             <description>Running</description>
-///         </item>
-///         <item>
-///             <term>3</term>
-///             <description>Sprinting</description>
-///         </item>
-///         <item>
-///             <term>4</term>
-///             <description>Falling</description>
-///         </item>
-///         <item>
-///             <term>5</term>
-///             <description>Crouching</description>
-///         </item>
-///         <item>
-///             <term>6</term>
-///             <description>Rolling</description>
-///         </item>
-///         <item>
-///             <term>7</term>
-///             <description>Diving</description>
-///         </item>
-///         <item>
-///             <term>8</term>
-///             <description>Laying on ground</description>
-///         </item>
-///         <item>
-///             <term>9</term>
-///             <description>Melee hit</description>
-///         </item>
-///         <item>
-///             <term>10</term>
-///             <description>Dazed</description>
-///         </item>
-///         <item>
-///             <term>11</term>
-///             <description>Dead</description>
-///         </item>
-///         <item>
-///             <term>12</term>
-///             <description>Staggering</description>
-///         </item>
-///         <item>
-///             <term>13</term>
-///             <description>Clouds disabled</description>
-///         </item>
-///         <item>
-///             <term>14</term>
-///             <description>Taking cover</description>
-///         </item>
-///         <item>
-///             <term>15</term>
-///             <description>Removed</description>
-///         </item>
-///         <item>
-///             <term>16</term>
-///             <description>Force kneel</description>
-///         </item>
-///         <item>
-///             <term>17</term>
-///             <description>Climbing</description>
-///         </item>
-///         <item>
-///             <term>18</term>
-///             <description>Throw charging</description>
-///         </item>
-///         <item>
-///             <term>19</term>
-///             <description>Chat active</description>
-///         </item>
-///         <item>
-///             <term>20</term>
-///             <description>Reloading</description>
-///         </item>
-///         <item>
-///             <term>21</term>
-///             <description>Reloading toggle</description>
-///         </item>
-///         <item>
-///             <term>22</term>
-///             <description>Walking</description>
-///         </item>
-///         <item>
-///             <term>23</term>
-///             <description>Ledge grabbing turn</description>
-///         </item>
-///         <item>
-///             <term>24</term>
-///             <description>Full landing</description>
-///         </item>
-///         <item>
-///             <term>25</term>
-///             <description>Burned</description>
-///         </item>
-///         <item>
-///             <term>26</term>
-///             <description>Burning inferno</description>
-///         </item>
-///         <item>
-///             <term>27</term>
-///             <description>Input enabled</description>
-///         </item>
-///         <item>
-///             <term>28</term>
-///             <description>Death kneeling</description>
-///         </item>
-///         <item>
-///             <term>29</term>
-///             <description>Can recover from fall</description>
-///         </item>
-///         <item>
-///             <term>30</term>
-///             <description>Recovery rolling</description>
-///         </item>
-///         <item>
-///             <term>31</term>
-///             <description>Throwing mode</description>
-///         </item>
-///         <item>
-///             <term>32</term>
-///             <description>Grab telegraphing</description>
-///         </item>
-///         <item>
-///             <term>33</term>
-///             <description>Grab charging</description>
-///         </item>
-///         <item>
-///             <term>34</term>
-///             <description>Grab attacking</description>
-///         </item>
-///         <item>
-///             <term>35</term>
-///             <description>Grab kicking</description>
-///         </item>
-///         <item>
-///             <term>36</term>
-///             <description>Grab throwing</description>
-///         </item>
-///         <item>
-///             <term>37</term>
-///             <description>Grab immunity</description>
-///         </item>
-///         <item>
-///             <term>38</term>
-///             <description>Exiting throwing mode</description>
-///         </item>
-///         <item>
-///             <term>40</term>
-///             <description>Extra melee state chainsaw active</description>
-///         </item>
-///         <item>
-///             <term>41</term>
-///             <description>Strength boost preparing</description>
-///         </item>
-///         <item>
-///             <term>42</term>
-///             <description>Strength boost active</description>
-///         </item>
-///         <item>
-///             <term>43</term>
-///             <description>Speed boost preparing</description>
-///         </item>
-///         <item>
-///             <term>44</term>
-///             <description>Speed boost active</description>
-///         </item>
-///         <item>
-///             <term>45</term>
-///             <description>Input mode</description>
-///         </item>
-///         <item>
-///             <term>SFR: 0</term>
-///             <description>Rage boost</description>
-///         </item>
-///         <item>
-///             <term>SFR: 1</term>
-///             <description>Preparing jetpack</description>
-///         </item>
-///         <item>
-///             <term>SFR: 2</term>
-///             <description>Jetpack type</description>
-///         </item>
-///         <item>
-///             <term>SFR: 3</term>
-///             <description>Jetpack fuel</description>
-///         </item>
-///     </list>
+/// Class containing all patches regarding players and their state
+/// <list type="bullet|table">
+/// <listheader>
+/// <term>State</term>
+/// <description>PlayerExt state for server &amp; client sync</description>
+/// </listheader>
+/// <item>
+/// <term>0</term>
+/// <description>Standing on ground</description>
+/// </item>
+/// <item>
+/// <term>1</term>
+/// <description>In air</description>
+/// </item>
+/// <item>
+/// <term>2</term>
+/// <description>Running</description>
+/// </item>
+/// <item>
+/// <term>3</term>
+/// <description>Sprinting</description>
+/// </item>
+/// <item>
+/// <term>4</term>
+/// <description>Falling</description>
+/// </item>
+/// <item>
+/// <term>5</term>
+/// <description>Crouching</description>
+/// </item>
+/// <item>
+/// <term>6</term>
+/// <description>Rolling</description>
+/// </item>
+/// <item>
+/// <term>7</term>
+/// <description>Diving</description>
+/// </item>
+/// <item>
+/// <term>8</term>
+/// <description>Laying on ground</description>
+/// </item>
+/// <item>
+/// <term>9</term>
+/// <description>Melee hit</description>
+/// </item>
+/// <item>
+/// <term>10</term>
+/// <description>Dazed</description>
+/// </item>
+/// <item>
+/// <term>11</term>
+/// <description>Dead</description>
+/// </item>
+/// <item>
+/// <term>12</term>
+/// <description>Staggering</description>
+/// </item>
+/// <item>
+/// <term>13</term>
+/// <description>Clouds disabled</description>
+/// </item>
+/// <item>
+/// <term>14</term>
+/// <description>Taking cover</description>
+/// </item>
+/// <item>
+/// <term>15</term>
+/// <description>Removed</description>
+/// </item>
+/// <item>
+/// <term>16</term>
+/// <description>Force kneel</description>
+/// </item>
+/// <item>
+/// <term>17</term>
+/// <description>Climbing</description>
+/// </item>
+/// <item>
+/// <term>18</term>
+/// <description>Throw charging</description>
+/// </item>
+/// <item>
+/// <term>19</term>
+/// <description>Chat active</description>
+/// </item>
+/// <item>
+/// <term>20</term>
+/// <description>Reloading</description>
+/// </item>
+/// <item>
+/// <term>21</term>
+/// <description>Reloading toggle</description>
+/// </item>
+/// <item>
+/// <term>22</term>
+/// <description>Walking</description>
+/// </item>
+/// <item>
+/// <term>23</term>
+/// <description>Ledge grabbing turn</description>
+/// </item>
+/// <item>
+/// <term>24</term>
+/// <description>Full landing</description>
+/// </item>
+/// <item>
+/// <term>25</term>
+/// <description>Burned</description>
+/// </item>
+/// <item>
+/// <term>26</term>
+/// <description>Burning inferno</description>
+/// </item>
+/// <item>
+/// <term>27</term>
+/// <description>Input enabled</description>
+/// </item>
+/// <item>
+/// <term>28</term>
+/// <description>Death kneeling</description>
+/// </item>
+/// <item>
+/// <term>29</term>
+/// <description>Can recover from fall</description>
+/// </item>
+/// <item>
+/// <term>30</term>
+/// <description>Recovery rolling</description>
+/// </item>
+/// <item>
+/// <term>31</term>
+/// <description>Throwing mode</description>
+/// </item>
+/// <item>
+/// <term>32</term>
+/// <description>Grab telegraphing</description>
+/// </item>
+/// <item>
+/// <term>33</term>
+/// <description>Grab charging</description>
+/// </item>
+/// <item>
+/// <term>34</term>
+/// <description>Grab attacking</description>
+/// </item>
+/// <item>
+/// <term>35</term>
+/// <description>Grab kicking</description>
+/// </item>
+/// <item>
+/// <term>36</term>
+/// <description>Grab throwing</description>
+/// </item>
+/// <item>
+/// <term>37</term>
+/// <description>Grab immunity</description>
+/// </item>
+/// <item>
+/// <term>38</term>
+/// <description>Exiting throwing mode</description>
+/// </item>
+/// <item>
+/// <term>40</term>
+/// <description>Extra melee state chainsaw active</description>
+/// </item>
+/// <item>
+/// <term>41</term>
+/// <description>Strength boost preparing</description>
+/// </item>
+/// <item>
+/// <term>42</term>
+/// <description>Strength boost active</description>
+/// </item>
+/// <item>
+/// <term>43</term>
+/// <description>Speed boost preparing</description>
+/// </item>
+/// <item>
+/// <term>44</term>
+/// <description>Speed boost active</description>
+/// </item>
+/// <item>
+/// <term>45</term>
+/// <description>Input mode</description>
+/// </item>
+/// <item>
+/// <term>SFR: 0</term>
+/// <description>Rage boost</description>
+/// </item>
+/// <item>
+/// <term>SFR: 1</term>
+/// <description>Preparing jetpack</description>
+/// </item>
+/// <item>
+/// <term>SFR: 2</term>
+/// <description>Jetpack type</description>
+/// </item>
+/// <item>
+/// <term>SFR: 3</term>
+/// <description>Jetpack fuel</description>
+/// </item>
+/// </list>
 /// </summary>
 [HarmonyPatch]
 internal static class PlayerHandler
@@ -259,13 +258,8 @@ internal static class PlayerHandler
     private static bool KeepMoving(PlayerMovement value, Player __instance)
     {
         var extendedPlayer = __instance.GetExtension();
-        if (extendedPlayer.AdrenalineBoost && __instance.CurrentAction is PlayerAction.MeleeAttack1 or PlayerAction.MeleeAttack2
-                                           && __instance.Movement != PlayerMovement.Idle && value == PlayerMovement.Idle)
-        {
-            return false;
-        }
-
-        return true;
+        return !extendedPlayer.AdrenalineBoost || __instance.CurrentAction is not PlayerAction.MeleeAttack1 and not PlayerAction.MeleeAttack2
+                                           || __instance.Movement == PlayerMovement.Idle || value != PlayerMovement.Idle;
     }
 
     [HarmonyPrefix]
@@ -285,7 +279,7 @@ internal static class PlayerHandler
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Player), nameof(Player.TestProjectileHit))]
-    private static void CanProjectileHit(ref bool __result, Player __instance, Projectile projectile)
+    private static void CanProjectileHit(ref bool __result, Player __instance)
     {
         if (!__result)
         {
@@ -293,7 +287,7 @@ internal static class PlayerHandler
         }
 
         var extendedModifiers = __instance.m_modifiers.GetExtension();
-        if (extendedModifiers.BulletDodgeChance > 0 && Constants.Random.NextDouble() < extendedModifiers.BulletDodgeChance)
+        if (extendedModifiers.BulletDodgeChance > 0 && Globals.Random.NextDouble() < extendedModifiers.BulletDodgeChance)
         {
             __result = false;
         }
@@ -390,13 +384,13 @@ internal static class PlayerHandler
                 }
 
                 vector2 = Camera.ConvertWorldToScreen(vector2);
-                vector2.X -= num2 * (SFD.Constants.DistanceArrow.Width + 10) / 2;
-                vector2.Y += num3 * (SFD.Constants.DistanceArrow.Height + 10) / 2;
+                vector2.X -= num2 * (Constants.DistanceArrow.Width + 10) / 2;
+                vector2.Y += num3 * (Constants.DistanceArrow.Height + 10) / 2;
                 float num4 = 0f;
                 Texture2D texture2D;
                 if (num2 != 0 && num3 != 0)
                 {
-                    texture2D = SFD.Constants.DistanceArrowD;
+                    texture2D = Constants.DistanceArrowD;
                     if (num2 == 1)
                     {
                         if (num3 == 1)
@@ -419,7 +413,7 @@ internal static class PlayerHandler
                 }
                 else
                 {
-                    texture2D = SFD.Constants.DistanceArrow;
+                    texture2D = Constants.DistanceArrow;
                     if (num2 == 1)
                     {
                         num4 = 0f;
@@ -441,26 +435,26 @@ internal static class PlayerHandler
                 var vector3 = new Vector2(texture2D.Width / 2f, texture2D.Height / 2f);
                 float num5 = Math.Max(Camera.Zoom * 0.5f, 1f);
                 __instance.m_spriteBatch.Draw(texture2D, vector2, null, Color.Gray, num4, vector3, num5, SpriteEffects.None, 0f);
-                vector2.X -= num2 * (SFD.Constants.DistanceArrow.Width + 10) * num5;
-                vector2.Y += num3 * (SFD.Constants.DistanceArrow.Height + 10) * num5;
+                vector2.X -= num2 * (Constants.DistanceArrow.Width + 10) * num5;
+                vector2.Y += num3 * (Constants.DistanceArrow.Height + 10) * num5;
                 string text = $"{__instance.Name} ({num})";
-                if (SFD.Constants.Font1Outline != null)
+                if (Constants.Font1Outline is not null)
                 {
                     var texture2D2 = __instance.CurrentTeam switch
                     {
-                        Team.Team1 => SFD.Constants.TeamIcon1,
-                        Team.Team2 => SFD.Constants.TeamIcon2,
-                        Team.Team3 => SFD.Constants.TeamIcon3,
-                        Team.Team4 => SFD.Constants.TeamIcon4,
-                        (Team)5 => Constants.TeamIcon5,
-                        (Team)6 => Constants.TeamIcon6,
+                        Team.Team1 => Constants.TeamIcon1,
+                        Team.Team2 => Constants.TeamIcon2,
+                        Team.Team3 => Constants.TeamIcon3,
+                        Team.Team4 => Constants.TeamIcon4,
+                        (Team)5 => Globals.TeamIcon5,
+                        (Team)6 => Globals.TeamIcon6,
                         _ => null
                     };
 
-                    var vector4 = SFD.Constants.MeasureString(SFD.Constants.Font1Outline, text);
+                    var vector4 = Constants.MeasureString(Constants.Font1Outline, text);
                     float num6 = Camera.ConvertWorldToScreenX(boundsArrows.Left);
                     float num7 = Camera.ConvertWorldToScreenX(boundsArrows.Right);
-                    if (texture2D2 != null)
+                    if (texture2D2 is not null)
                     {
                         num6 += (texture2D2.Width + 4f) * num5;
                     }
@@ -482,10 +476,10 @@ internal static class PlayerHandler
                     }
 
                     float num8 = vector2.X - vector4.X * 0.5f * (num5 * 0.5f);
-                    SFD.Constants.DrawString(__instance.m_spriteBatch, SFD.Constants.Font1Outline, text, vector2, __instance.CurrentTeamColor, 0f, vector4 * 0.5f, num5 * 0.5f, SpriteEffects.None, 0);
-                    if (texture2D2 != null)
+                    _ = Constants.DrawString(__instance.m_spriteBatch, Constants.Font1Outline, text, vector2, __instance.CurrentTeamColor, 0f, vector4 * 0.5f, num5 * 0.5f, SpriteEffects.None, 0);
+                    if (texture2D2 is not null)
                     {
-                        __instance.m_spriteBatch.Draw(texture2D2, new Vector2(num8 - texture2D2.Width * num5, vector2.Y - vector4.Y * 0.25f * num5), null, Color.Gray, 0f, Vector2.Zero, num5, SpriteEffects.None, 1f);
+                        __instance.m_spriteBatch.Draw(texture2D2, new(num8 - texture2D2.Width * num5, vector2.Y - vector4.Y * 0.25f * num5), null, Color.Gray, 0f, Vector2.Zero, num5, SpriteEffects.None, 1f);
                     }
                 }
             }
@@ -500,7 +494,7 @@ internal static class PlayerHandler
     {
         var extendedPlayer = __instance.GetExtension();
         // __result = (__instance.CurrentAction == PlayerAction.Idle || (__instance.CurrentAction == PlayerAction.HipFire && __instance.ThrowableIsActivated)) && (!__instance.Diving || extendedPlayer.AdrenalineBoost) && !__instance.Rolling && !__instance.Falling && !__instance.Climbing && __instance.PreparingHipFire <= 0f && __instance.FireSequence.KickCooldownTimer <= 800f + timeOffset && !__instance.TimeSequence.PostDropClimbAttackCooldown && !__instance.StrengthBoostPreparing && !__instance.SpeedBoostPreparing;
-        __result = (__instance.CurrentAction == PlayerAction.Idle || (__instance.CurrentAction == PlayerAction.HipFire && __instance.ThrowableIsActivated)) && !((__instance.Diving && !extendedPlayer.AdrenalineBoost) || (extendedPlayer.GenericJetpack != null && extendedPlayer.GenericJetpack.State != JetpackState.Idling) || __instance.Rolling || __instance.Falling || __instance.Climbing || __instance.PreparingHipFire > 0f || __instance.FireSequence.KickCooldownTimer > 800f + timeOffset || __instance.TimeSequence.PostDropClimbAttackCooldown || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
+        __result = (__instance.CurrentAction == PlayerAction.Idle || __instance.CurrentAction == PlayerAction.HipFire && __instance.ThrowableIsActivated) && !(__instance.Diving && !extendedPlayer.AdrenalineBoost || extendedPlayer.GenericJetpack is not null && extendedPlayer.GenericJetpack.State != JetpackState.Idling || __instance.Rolling || __instance.Falling || __instance.Climbing || __instance.PreparingHipFire > 0f || __instance.FireSequence.KickCooldownTimer > 800f + timeOffset || __instance.TimeSequence.PostDropClimbAttackCooldown || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
         return false;
     }
 
@@ -510,13 +504,13 @@ internal static class PlayerHandler
     {
         var extendedPlayer = __instance.GetExtension();
 
-        __result = !((__instance.Diving && !extendedPlayer.AdrenalineBoost) || (extendedPlayer.GenericJetpack != null && extendedPlayer.GenericJetpack.State != JetpackState.Idling) || __instance.Rolling || __instance.Climbing || __instance.LedgeGrabbing || __instance.ThrowingModeToggleQueued || __instance.ClimbingClient || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
+        __result = !(__instance.Diving && !extendedPlayer.AdrenalineBoost || extendedPlayer.GenericJetpack is not null && extendedPlayer.GenericJetpack.State != JetpackState.Idling || __instance.Rolling || __instance.Climbing || __instance.LedgeGrabbing || __instance.ThrowingModeToggleQueued || __instance.ClimbingClient || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
         return false;
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Player), nameof(Player.TimeSequence.Update))]
-    private static void UpdateTimeSequence(float ms, float realMs, Player __instance)
+    private static void UpdateTimeSequence(float ms, Player __instance)
     {
         var extendedPlayer = __instance.GetExtension();
         if (extendedPlayer.AdrenalineBoost)

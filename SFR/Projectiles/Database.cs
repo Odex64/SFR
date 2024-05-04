@@ -5,7 +5,7 @@ using SFD.Projectiles;
 namespace SFR.Projectiles;
 
 /// <summary>
-///     Load all the new projectiles.
+/// Load all the new projectiles.
 /// </summary>
 [HarmonyPatch]
 internal static class Database

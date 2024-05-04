@@ -19,7 +19,7 @@ internal static class JetpackHandler
     private static void CheckDisposeKey(Player __instance)
     {
         var closedObject = __instance.GetClosestActivateableObject(true, false, 0f, 0f);
-        if (closedObject == null)
+        if (closedObject is null)
         {
             var extendedPlayer = __instance.GetExtension();
             if (extendedPlayer.GenericJetpack is { State: JetpackState.Idling } jetpack && __instance.Crouching)
@@ -33,7 +33,7 @@ internal static class JetpackHandler
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(WpnFireAmmo), nameof(WpnFireAmmo.OnPickup))]
-    private static void ApplyFireUpgrade(Player player, HItem instantPickupItem)
+    private static void ApplyFireUpgrade(Player player)
     {
         var extendedPlayer = player.GetExtension();
 
@@ -45,17 +45,17 @@ internal static class JetpackHandler
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Player), nameof(Player.Draw))]
-    private static bool PreDraw(SpriteBatch spriteBatch, float ms, Player __instance)
+    private static bool PreDraw(SpriteBatch spriteBatch, Player __instance)
     {
         var extendedPlayer = __instance.GetExtension();
-        if (extendedPlayer.GenericJetpack == null)
+        if (extendedPlayer.GenericJetpack is null)
         {
             return true;
         }
 
         if (!__instance.Climbing)
         {
-            if (__instance.Rolling || __instance.LayingOnGround || __instance.RocketRideProjectile != null)
+            if (__instance.Rolling || __instance.LayingOnGround || __instance.RocketRideProjectile is not null)
             {
                 return true;
             }
@@ -106,7 +106,7 @@ internal static class JetpackHandler
                 gamePos -= new Vector2(0, 8);
             }
 
-            if (__instance.GrabbedByPlayer != null)
+            if (__instance.GrabbedByPlayer is not null)
             {
                 gamePos -= new Vector2(0, 8);
             }
@@ -119,9 +119,9 @@ internal static class JetpackHandler
                 gamePos += extra;
             }
 
-            gamePos = new Vector2(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
+            gamePos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
             Camera.ConvertBox2DToScreen(ref gamePos, out gamePos);
-            spriteBatch.Draw(texture, gamePos, null, new Color(0.5f, 0.5f, 0.5f, 1f), angle, new Vector2(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, effect, 0f);
+            spriteBatch.Draw(texture, gamePos, null, new(0.5f, 0.5f, 0.5f, 1f), angle, new(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, effect, 0f);
         }
 
         return true;
@@ -138,15 +138,15 @@ internal static class JetpackHandler
         }
 
         var extendedPlayer = __instance.GetExtension();
-        if (extendedPlayer.GenericJetpack != null)
+        if (extendedPlayer.GenericJetpack is not null)
         {
             if (__instance.Climbing)
             {
                 var gamePos = __instance.Position + new Vector2(0, 12);
-                gamePos = new Vector2(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
+                gamePos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
                 Camera.ConvertBox2DToScreen(ref gamePos, out gamePos);
                 var texture = extendedPlayer.GenericJetpack.GetJetpackTexture("Back");
-                spriteBatch.Draw(texture, gamePos, null, new Color(0.5f, 0.5f, 0.5f, 1f), 0, new Vector2(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, SpriteEffects.None, 0f);
+                spriteBatch.Draw(texture, gamePos, null, new(0.5f, 0.5f, 0.5f, 1f), 0, new(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, SpriteEffects.None, 0f);
             }
         }
     }

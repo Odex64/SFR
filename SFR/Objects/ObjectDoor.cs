@@ -30,10 +30,7 @@ internal sealed class ObjectDoor : ObjectData
         }
     }
 
-    public override void SetProperties()
-    {
-        Properties.Add(ObjectPropertyID.Common_hidden_bool_01);
-    }
+    public override void SetProperties() => Properties.Add(ObjectPropertyID.Common_hidden_bool_01);
 
     public override void PropertyValueChanged(ObjectPropertyInstance propertyChanged)
     {
@@ -82,13 +79,10 @@ internal sealed class ObjectDoor : ObjectData
         filter.projectileHit = !IsOpen;
         filter.absorbProjectile = !IsOpen;
         Body.GetFixtureList().SetFilterData(ref filter);
-        SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, GameWorld.ElapsedTotalGameTime, IsOpen ? 1 : 0, true));
+        SyncedMethod(new(ObjectDataSyncedMethod.Methods.AnimationSetFrame, GameWorld.ElapsedTotalGameTime, IsOpen ? 1 : 0, true));
     }
 
-    public override void Activate(ObjectData sender)
-    {
-        ToggleDoor(!IsOpen);
-    }
+    public override void Activate(ObjectData sender) => ToggleDoor(!IsOpen);
 
     public override void ProjectileHit(Projectile projectile, ProjectileHitEventArgs e)
     {

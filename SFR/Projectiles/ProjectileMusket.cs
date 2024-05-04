@@ -15,8 +15,8 @@ internal sealed class ProjectileMusket : Projectile
 
     internal ProjectileMusket()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
-        Properties = new ProjectileProperties(98, 900f, 100f, 40f, 50f, 0.5f, 40f, 45f, 0.5f)
+        Visuals = new(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
+        Properties = new(98, 900f, 100f, 40f, 50f, 0.5f, 40f, 45f, 0.5f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Fireplosion,

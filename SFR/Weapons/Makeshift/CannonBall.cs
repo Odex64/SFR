@@ -60,10 +60,7 @@ internal sealed class CannonBall : MWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private CannonBall(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private CannonBall(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override void Destroyed(Player ownerPlayer)
     {

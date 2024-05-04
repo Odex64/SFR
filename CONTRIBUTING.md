@@ -67,13 +67,9 @@ If you want to start the game even faster and immediately load into a map inside
 
 example: `-SFR -SKIP -DEBUG C:\Users\YOUR_USERNAME\Documents\Superfighters Deluxe\Maps\Custom\Debug`.
 
-### Finally
-If you want to maximise loading times and prevent Steam from starting you must crack the game. I won't discuss it here, but if you really want to do that you can DM me on Discord.
-
-
 
 # Project structure
-The SFR mod is composed by many files and folders, here's a general overview of the project
+The SFR mod is composed by many files and folders, here's a general overview of the project (needs update).
 ```
 API/                          \ Additions and tweaks to the Scripting API itself.
 ├─ Sandbox.cs                   | Modification to the Scripting API in order to make SFD.ScriptEngine work in SFR.

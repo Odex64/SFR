@@ -25,9 +25,9 @@ internal sealed class Blunderbuss : RWeapon
             ShellID = string.Empty,
             AccuracyDeflection = 0.3f,
             ProjectileID = 95,
-            MuzzlePosition = new Vector2(13f, -2.5f),
-            CursorAimOffset = new Vector2(0f, 2.5f),
-            LazerPosition = new Vector2(12f, -1.5f),
+            MuzzlePosition = new(13f, -2.5f),
+            CursorAimOffset = new(0f, 2.5f),
+            LazerPosition = new(12f, -1.5f),
             MuzzleEffectTextureID = "MuzzleFlashShotgun",
             BlastSoundID = "Explosion",
             DrawSoundID = "CarbineDraw",
@@ -67,10 +67,7 @@ internal sealed class Blunderbuss : RWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Blunderbuss(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Blunderbuss(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override RWeapon Copy()
     {
@@ -149,7 +146,7 @@ internal sealed class Blunderbuss : RWeapon
     {
         //Show custom animation
         string subAnimation;
-        if ((subAnimation = args.SubAnimation) != null && subAnimation == "UpperReloadBazooka")
+        if ((subAnimation = args.SubAnimation) is not null && subAnimation == "UpperReloadBazooka")
         {
             if (args.SubFrame is >= 1 and <= 5)
             {

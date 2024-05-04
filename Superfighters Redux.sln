@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFR", "SFR\SFR.csproj", "{907E970D-7E11-4461-AC55-999E0E6CF42A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SFDX", "SFDX\SFDX.csproj", "{C63865DF-9C65-4BD0-AE3F-61964CC2890C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -22,10 +20,6 @@ Global
 		{907E970D-7E11-4461-AC55-999E0E6CF42A}.Debug|x86.Build.0 = Debug|x86
 		{907E970D-7E11-4461-AC55-999E0E6CF42A}.Release|x86.ActiveCfg = Release|x86
 		{907E970D-7E11-4461-AC55-999E0E6CF42A}.Release|x86.Build.0 = Release|x86
-		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Debug|x86.ActiveCfg = Debug|x86
-		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Debug|x86.Build.0 = Debug|x86
-		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Release|x86.ActiveCfg = Release|x86
-		{C63865DF-9C65-4BD0-AE3F-61964CC2890C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

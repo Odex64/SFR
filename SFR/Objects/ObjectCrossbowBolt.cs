@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Box2D.XNA;
 using SFD;
 using SFDGameScriptInterface;
@@ -11,7 +10,6 @@ namespace SFR.Objects;
 internal sealed class ObjectCrossbowBolt : ObjectData
 {
     private Player _boltPlayer;
-    private float _playerAngle;
     private int _playerFace;
     private Vector2 _playerOffset;
     internal int FilterObjectId = -1;
@@ -32,16 +30,16 @@ internal sealed class ObjectCrossbowBolt : ObjectData
         if (FilterObjectId != -1)
         {
             Body.GetFixtureByIndex(0).GetFilterData(out var filter);
-            filter.bodyIDToIgnore ??= new Dictionary<int, ushort>();
+            filter.bodyIDToIgnore ??= [];
 
             filter.bodyIDToIgnore.Add(FilterObjectId, 1);
             Body.GetFixtureByIndex(0).SetFilterData(ref filter);
 
             var otherObject = GameWorld.GetObjectDataByID(FilterObjectId);
-            if (otherObject != null)
+            if (otherObject is not null)
             {
                 otherObject.Body.GetFixtureByIndex(0).GetFilterData(out var filter1);
-                filter1.bodyIDToIgnore ??= new Dictionary<int, ushort>();
+                filter1.bodyIDToIgnore ??= [];
                 filter1.bodyIDToIgnore.Add(ObjectID, 1);
                 otherObject.Body.GetFixtureByIndex(0).SetFilterData(ref filter1);
             }
@@ -49,7 +47,7 @@ internal sealed class ObjectCrossbowBolt : ObjectData
             FilterObjectId = -1;
         }
 
-        if (_boltPlayer != null)
+        if (_boltPlayer is not null)
         {
             if (_boltPlayer is { IsRemoved: false, IsDead: false, Rolling: false, Falling: false, Diving: false })
             {
@@ -85,7 +83,6 @@ internal sealed class ObjectCrossbowBolt : ObjectData
     {
         _boltPlayer = player;
         _playerOffset = GetWorldPosition() - player.Position;
-        _playerAngle = GetAngle();
         _playerFace = player.LastDirectionX;
     }
 }

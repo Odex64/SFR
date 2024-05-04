@@ -11,7 +11,7 @@ internal class MenuItemLabel : MenuItem
 
     internal MenuItemLabel(string text, Align alignment, Color color, OnKeyPress chooseEvent = null)
     {
-        _label = new Label(text, color)
+        _label = new(text, color)
         {
             TextAlign = alignment
         };
@@ -45,7 +45,7 @@ internal class MenuItemLabel : MenuItem
         }
 
         base.Draw(batch, elapsed);
-        _label.Draw(batch, elapsed, new Vector2(Position.X + ParentMenu.Width / 2, Position.Y));
+        _label.Draw(batch, elapsed, new(Position.X + ParentMenu.Width / 2, Position.Y));
     }
 
     internal delegate void OnKeyPress(object sender);

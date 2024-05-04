@@ -12,12 +12,11 @@ using SFR.Misc;
 namespace SFR;
 
 /// <summary>
-///     Entry point of SFR. This class will simply check for available updates, patch SFD and start the game.
+/// Entry point of SFR. This class will simply check for available updates, patch SFD and start the game.
 /// </summary>
 internal static class Program
 {
     private const string _versionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/version";
-    private const string _previewVersionUri = "https://raw.githubusercontent.com/Odex64/SFR/master/preview";
     private static string _gameUri = "https://github.com/Odex64/SFR/releases/download/GAMEVERSION/SFR.zip";
     internal static readonly string GameDirectory = Directory.GetCurrentDirectory();
     private static readonly Harmony _harmony = new("github.com/Odex64/SFR");
@@ -97,14 +96,14 @@ internal static class Program
             {
                 if (i + 1 < args.Length && int.TryParse(args[i + 1], out int slots))
                 {
-                    Constants.Slots = slots;
+                    Globals.Slots = slots;
                 }
             }
 #if DEBUG
             else if (args[i].Equals("-DEBUG", StringComparison.OrdinalIgnoreCase))
             {
-                Constants.FastStart = true;
-                Constants.DebugMap = args[i + 1] + ".sfdm";
+                Globals.QuickStart = true;
+                Globals.DebugMap = args[i + 1] + ".sfdm";
             }
 #endif
         }
@@ -122,8 +121,8 @@ internal static class Program
         string remoteVersion;
         try
         {
-            _webClient = new WebClient();
-            remoteVersion = Constants.IsDev() ? _webClient.DownloadString(_previewVersionUri).Trim() : _webClient.DownloadString(_versionUri).Trim();
+            _webClient = new();
+            remoteVersion = _webClient.DownloadString(_versionUri).Trim();
         }
         catch (WebException)
         {
@@ -135,14 +134,14 @@ internal static class Program
         string[] versionInfo = remoteVersion.Split('+');
         _gameUri = _gameUri.Replace("GAMEVERSION", versionInfo[0]);
 
-        switch (string.CompareOrdinal(Constants.SFRVersion, versionInfo[0]))
+        switch (string.CompareOrdinal(Globals.SFRVersion, versionInfo[0]))
         {
             // New version
             case < 0:
                 return Update();
 
-            // Same version but hotfix if present
-            case 0 when versionInfo.Length > 1 && int.TryParse(versionInfo[1], out int result) && result > Constants.Build:
+            // Same version but patch if present
+            case 0 when versionInfo.Length > 1 && int.TryParse(versionInfo[1], out int result) && result > Globals.Build:
                 return Update();
         }
 
@@ -207,7 +206,6 @@ internal static class Program
             using (var archive = ZipFile.OpenRead(archivePath))
             {
                 archive.ExtractToDirectory(GameDirectory);
-                archive.Dispose();
             }
 
             File.Delete(archivePath);

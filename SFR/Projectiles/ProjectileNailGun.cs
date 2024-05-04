@@ -16,8 +16,8 @@ internal sealed class ProjectileNailGun : Projectile, IExtendedProjectile
 
     internal ProjectileNailGun()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("ProjectileNailgun"), Textures.GetTexture("ProjectileNailgun"));
-        Properties = new ProjectileProperties(70, 400f, 10f, 6f, 6f, 0.01f, 8f, 10f, 0.35f)
+        Visuals = new(Textures.GetTexture("ProjectileNailgun"), Textures.GetTexture("ProjectileNailgun"));
+        Properties = new(70, 400f, 10f, 6f, 6f, 0.01f, 8f, 10f, 0.35f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Default,

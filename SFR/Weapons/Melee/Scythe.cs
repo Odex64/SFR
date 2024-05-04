@@ -59,10 +59,7 @@ internal sealed class Scythe : MWeapon
         CacheDrawnTextures(["Extended", "Curved"]);
     }
 
-    private Scythe(MWeaponProperties rwp, MWeaponVisuals rwv)
-    {
-        SetPropertiesAndVisuals(rwp, rwv);
-    }
+    private Scythe(MWeaponProperties rwp, MWeaponVisuals rwv) => SetPropertiesAndVisuals(rwp, rwv);
 
     public override MWeapon Copy() => new Scythe(Properties, Visuals)
     {

@@ -63,10 +63,7 @@ internal sealed class Switchblade : MWeapon
         CacheDrawnTextures(["Open"]);
     }
 
-    private Switchblade(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Switchblade(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
     {

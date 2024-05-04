@@ -23,10 +23,7 @@ internal class AdrenalineBoost : PItem
         SetPropertiesAndVisuals(itemProperties, itemVisuals);
     }
 
-    private AdrenalineBoost(PItemProperties properties, PItemVisuals visuals)
-    {
-        SetPropertiesAndVisuals(properties, visuals);
-    }
+    private AdrenalineBoost(PItemProperties properties, PItemVisuals visuals) => SetPropertiesAndVisuals(properties, visuals);
 
     public override void OnActivation(Player player, PItem powerupItem)
     {

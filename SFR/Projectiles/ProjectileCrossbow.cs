@@ -19,8 +19,8 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
 
     internal ProjectileCrossbow()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("CrossbowBolt00"), Textures.GetTexture("CrossbowBolt00"));
-        Properties = new ProjectileProperties(96, 700f, 50f, 30f, 40f, 0f, 30f, 40f, 0.5f)
+        Visuals = new(Textures.GetTexture("CrossbowBolt00"), Textures.GetTexture("CrossbowBolt00"));
+        Properties = new(96, 700f, 50f, 30f, 40f, 0f, 30f, 40f, 0.5f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Fireplosion,
@@ -101,7 +101,7 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
             data.EnableUpdateObject();
             if (GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new GenericData(DataType.Crossbow, [SyncFlag.MustSyncNewObjects], data.ObjectID, player.ObjectID, data.Timer));
+                GenericData.SendGenericDataToClients(new(DataType.Crossbow, [SyncFlag.NewObjects], data.ObjectID, player.ObjectID, data.Timer));
             }
         }
     }
@@ -112,8 +112,8 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
         if (GameOwner != GameOwnerEnum.Client && !PowerupBounceActive && !objectData.IsPlayer && objectData.GetCollisionFilter().AbsorbProjectile)
         {
             Remove();
-            var data = (ObjectCrossbowBolt)ObjectData.CreateNew(new ObjectDataStartParams(GameWorld.IDCounter.NextID(), 0, 0, "CrossbowBolt00", GameOwner));
-            GameWorld.CreateTile(new SpawnObjectInformation(data, Position, -GetAngle(), 1, objectData.LocalRenderLayer, objectData.GetLinearVelocity(), 0));
+            var data = (ObjectCrossbowBolt)ObjectData.CreateNew(new(GameWorld.IDCounter.NextID(), 0, 0, "CrossbowBolt00", GameOwner));
+            _ = GameWorld.CreateTile(new(data, Position, -GetAngle(), 1, objectData.LocalRenderLayer, objectData.GetLinearVelocity(), 0));
             data.Timer = GameWorld.ElapsedTotalGameTime + 15000;
             data.EnableUpdateObject();
             data.FilterObjectId = objectData.BodyID;

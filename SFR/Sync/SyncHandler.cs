@@ -2,9 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Lidgren.Network;
 using SFD;
-using SFR.Bootstrap;
 using SFR.Fighter.Jetpacks;
-using SFR.Game;
 using SFR.Helper;
 using SFR.Objects;
 using SFR.Sync.Generic;
@@ -13,56 +11,69 @@ using SFR.Weapons.Melee;
 namespace SFR.Sync;
 
 /// <summary>
-///     This class handles the sync between clients &amp; server.
-///     <list type="table">
-///         <listheader>
-///             <term>Sync</term>
-///             <description>Data to sync</description>
-///         </listheader>
-///         <item>
-///             <term>63</term>
-///             <description>Generic Server Data.</description>
-///         </item>
-///     </list>
+/// This class handles the sync between clients &amp; server.
+/// <list type="table">
+/// <listheader>
+/// <term>Sync</term>
+/// <description>Data to sync</description>
+/// </listheader>
+/// <item>
+/// <term>63</term>
+/// <description>Generic Server Data.</description>
+/// </item>
+/// </list>
 /// </summary>
 [HarmonyPatch]
 internal static class SyncHandler
 {
     private const byte _maxAttempts = 18;
 
-    internal static readonly Dictionary<int, byte> Attempts = new();
+    internal static readonly Dictionary<int, byte> Attempts = [];
 
-    [HarmonyPrefix]
+    [HarmonyTranspiler]
     [HarmonyPatch(typeof(NetMessage), nameof(NetMessage.WriteDataType))]
-    private static bool ExtendWriteData(MessageType msgType, NetOutgoingMessage netOutgoingMessage, ref NetOutgoingMessage __result)
+    private static IEnumerable<CodeInstruction> ExtendWriteData(IEnumerable<CodeInstruction> instructions)
     {
-        if (Vanilla.Active) return true;
-
-        netOutgoingMessage.WriteRangedInteger(-1, 63, (int)msgType);
-        netOutgoingMessage.WriteRangedInteger(0, 4, netOutgoingMessage.GameNumber);
-        __result = netOutgoingMessage;
-        return false;
-    }
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(NetMessage), nameof(NetMessage.ReadDataType))]
-    private static bool ExtendReadData(NetIncomingMessage netIncomingMessage, ref NetMessage.MessageData __result)
-    {
-        if (Vanilla.Active) return true;
-
-        if (netIncomingMessage.Position + 9L <= netIncomingMessage.LengthBits)
+        foreach (var instruction in instructions)
         {
-            _ = (MessageType)netIncomingMessage.ReadRangedInteger(-1, 62);
-            netIncomingMessage.ReadRangedInteger(0, 4);
+            if (instruction.operand is null)
+            {
+                continue;
+            }
+
+            if (instruction.operand.Equals((sbyte)62))
+            {
+                instruction.operand = 63;
+            }
         }
 
-        return false;
+        return instructions;
+    }
+
+    [HarmonyTranspiler]
+    [HarmonyPatch(typeof(NetMessage), nameof(NetMessage.ReadDataType))]
+    private static IEnumerable<CodeInstruction> ExtendReadData(IEnumerable<CodeInstruction> instructions)
+    {
+        foreach (var instruction in instructions)
+        {
+            if (instruction.operand is null)
+            {
+                continue;
+            }
+
+            if (instruction.operand.Equals((sbyte)62))
+            {
+                instruction.operand = 63;
+            }
+        }
+
+        return instructions;
     }
 
     /// <summary>
-    ///     When spawning new objects clients will take a while to save them in their GameWorld.
-    ///     Therefore we check if given objects has been spawned yet with some attempts.
-    ///     TODO: Find a better way to sync newly spawned objects between clients / server.
+    /// When spawning new objects clients will take a while to save them in their GameWorld.
+    /// Therefore we check if given objects has been spawned yet with some attempts.
+    /// TODO: Find a better way to sync newly spawned objects between clients / server.
     /// </summary>
     private static ObjectData[] SyncGameWorldObject(GameWorld gameWorld, GenericData genericData, params int[] objectsID)
     {
@@ -70,7 +81,7 @@ internal static class SyncHandler
         foreach (int obj in objectsID)
         {
             var data = gameWorld.GetObjectDataByID(obj);
-            if (data == null)
+            if (data is null)
             {
                 if (!Attempts.ContainsKey(obj))
                 {
@@ -84,7 +95,7 @@ internal static class SyncHandler
                 else
                 {
                     Logger.LogError($"{genericData.Type} sync exceeded max attempts! Aborting.");
-                    Attempts.Remove(obj);
+                    _ = Attempts.Remove(obj);
                 }
 
                 return null;
@@ -93,22 +104,20 @@ internal static class SyncHandler
             if (Attempts.ContainsKey(obj))
             {
                 Logger.LogWarn($"Synced {genericData.Type} after {Attempts[obj]} attempts");
-                Attempts.Remove(obj);
+                _ = Attempts.Remove(obj);
             }
 
             receivedData.Add(data);
         }
 
-        return receivedData.ToArray();
+        return [.. receivedData];
     }
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Server), nameof(Server.updateRun))]
-    private static void SendDataToClients(bool isLast, bool isFirst, Server __instance)
+    private static void SendDataToClients(bool isLast, Server __instance)
     {
-        if (Vanilla.Active) return;
-
-        if (__instance.m_server == null || __instance.CurrentState != ServerClientState.Game || __instance.WaitingForUsers || __instance.GameInfo.TotalGameUserCount == 0 || __instance.m_waitingForUserRestartInProgress)
+        if (__instance.m_server is null || __instance.CurrentState != ServerClientState.Game || __instance.WaitingForUsers || __instance.GameInfo.TotalGameUserCount == 0 || __instance.m_waitingForUserRestartInProgress)
         {
             return;
         }
@@ -124,32 +133,13 @@ internal static class SyncHandler
         }
     }
 
-
-    #region Client
-
     private static void HandleGenericData(Client client, GenericData data)
     {
         switch (data.Type)
         {
-            case DataType.Nuke:
-                var nukeData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0], (int)data.Args[1]);
-                if (nukeData == null)
-                {
-                    return;
-                }
-
-                var nukes = new List<ObjectNuke>
-                {
-                    (ObjectNuke)nukeData[0],
-                    (ObjectNuke)nukeData[1]
-                };
-
-                NukeHandler.Begin(nukes);
-                break;
-
             case DataType.SledgehammerBlink:
                 var sledgehammerPlayer = client.GameWorld.GetPlayer((int)data.Args[0]);
-                if (sledgehammerPlayer == null)
+                if (sledgehammerPlayer is null)
                 {
                     return;
                 }
@@ -165,7 +155,7 @@ internal static class SyncHandler
             case DataType.StickyGrenade:
                 var stickyGrenadeData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
                 var stickyGrenadePlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
-                if (stickyGrenadeData == null || stickyGrenadePlayer == null)
+                if (stickyGrenadeData is null || stickyGrenadePlayer is null)
                 {
                     return;
                 }
@@ -175,7 +165,7 @@ internal static class SyncHandler
 
             case DataType.Head:
                 var headData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
-                if (headData == null)
+                if (headData is null)
                 {
                     return;
                 }
@@ -186,7 +176,7 @@ internal static class SyncHandler
             case DataType.Crossbow:
                 var crossbowData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
                 var crossbowPlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
-                if (crossbowData == null || crossbowPlayer == null)
+                if (crossbowData is null || crossbowPlayer is null)
                 {
                     return;
                 }
@@ -199,7 +189,7 @@ internal static class SyncHandler
 
             case DataType.ExtraClientStates:
                 var player = client.GameWorld.GetPlayer((int)data.Args[0]);
-                if (player == null)
+                if (player is null)
                 {
                     Logger.LogError("Player is null while syncing states!");
                     return;
@@ -213,7 +203,7 @@ internal static class SyncHandler
                 }
 
                 var jetpackType = (JetpackType)(int)data.Args[2];
-                if (extendedPlayer.GenericJetpack == null || jetpackType != extendedPlayer.JetpackType)
+                if (extendedPlayer.GenericJetpack is null || jetpackType != extendedPlayer.JetpackType)
                 {
                     extendedPlayer.JetpackType = jetpackType;
                     extendedPlayer.GenericJetpack = extendedPlayer.JetpackType switch
@@ -227,7 +217,7 @@ internal static class SyncHandler
                 }
 
                 float jetPackFuel = (float)data.Args[3];
-                if (extendedPlayer.GenericJetpack != null)
+                if (extendedPlayer.GenericJetpack is not null)
                 {
                     extendedPlayer.GenericJetpack.Fuel.CurrentValue = jetPackFuel;
                 }
@@ -238,20 +228,17 @@ internal static class SyncHandler
 
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Client), nameof(Client.HandleDataMessage))]
-    private static void ReceiveDataFromServer(NetMessage.MessageData messageData, NetIncomingMessage msg, ref bool processGameWorldDependentData, Client __instance)
+    private static void ReceiveAdditionalDataFromServer(NetMessage.MessageData messageData, NetIncomingMessage msg, Client __instance)
     {
-        if (Vanilla.Active) return;
-
         switch ((int)messageData.MessageType)
         {
             case 63:
-            {
                 var data = GenericServerData.Read(msg);
                 foreach (var syncFlags in data.Flags)
                 {
                     switch (syncFlags)
                     {
-                        case SyncFlag.MustSyncNewObjects:
+                        case SyncFlag.NewObjects:
                             __instance.HandleNewObjects();
                             break;
                     }
@@ -259,9 +246,6 @@ internal static class SyncHandler
 
                 HandleGenericData(__instance, data);
                 break;
-            }
         }
     }
-
-    #endregion
 }

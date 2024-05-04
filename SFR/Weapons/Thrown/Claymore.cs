@@ -1,7 +1,6 @@
 ﻿using SFD;
 using SFD.Sounds;
 using SFD.Weapons;
-using SFR.Objects;
 
 namespace SFR.Weapons.Thrown;
 
@@ -54,11 +53,6 @@ internal sealed class Claymore : TWeapon
         {
             SoundHandler.PlaySound("GrenadeThrow", e.Player.Position, e.Player.GameWorld);
         }
-
-        if (e.Player.GameOwner != GameOwnerEnum.Client && e.ThrowableIsActivated)
-        {
-            var objectMineThrown = (ObjectClaymoreThrown)e.ThrowableObjectData;
-        }
     }
 
     public override void OnBeginCharge(TWeaponOnBeginChargeArgs e)
@@ -69,18 +63,9 @@ internal sealed class Claymore : TWeapon
         }
     }
 
-    public override void OnDrop(TWeaponOnThrowArgs e)
-    {
-        if (e.Player.GameOwner != GameOwnerEnum.Client && e.ThrowableIsActivated)
-        {
-            var objectMineThrown = (ObjectClaymoreThrown)e.ThrowableObjectData;
-        }
-    }
+    public override void OnDrop(TWeaponOnThrowArgs e) { }
 
-    public override void OnDeadline(TWeaponOnDeadlineArgs e)
-    {
-        e.Action = TWeaponDeadlineAction.Drop;
-    }
+    public override void OnDeadline(TWeaponOnDeadlineArgs e) => e.Action = TWeaponDeadlineAction.Drop;
 
     public override TWeapon Copy() => new Claymore(Properties, Visuals)
     {

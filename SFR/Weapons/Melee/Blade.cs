@@ -65,10 +65,7 @@ internal sealed class Blade : MWeapon, ISharpMelee
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Blade(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Blade(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public float GetDecapitationChance() => 0.33f;
 

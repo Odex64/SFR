@@ -8,10 +8,10 @@ using SFR.Sync.Generic;
 namespace SFR.Fighter;
 
 /// <summary>
-///     Since we need to save additional data into the player instance
-///     we use this file to "extend" the player class.
+/// Since we need to save additional data into the player instance
+/// we use this file to "extend" the player class.
 /// </summary>
-internal sealed class ExtendedPlayer : IEquatable<Player>
+internal sealed class ExtendedPlayer : IEquatable<Player>, IEquatable<ExtendedPlayer>
 {
     internal static readonly ConditionalWeakTable<Player, ExtendedPlayer> ExtendedPlayersTable = new();
     internal readonly Player Player;
@@ -32,23 +32,19 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
     internal void ApplyAdrenalineBoost()
     {
         AdrenalineBoost = true;
-        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
+        GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
     }
 
     internal object[] GetStates()
     {
-        object[] states = new object[3];
-        states[0] = AdrenalineBoost;
-        states[1] = (int)JetpackType;
-        states[2] = GenericJetpack?.Fuel?.CurrentValue ?? 0f;
-
+        object[] states = [AdrenalineBoost, (int)JetpackType, GenericJetpack?.Fuel?.CurrentValue ?? 0f];
         return states;
     }
 
     internal void DisableAdrenalineBoost()
     {
         AdrenalineBoost = false;
-        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
+        GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
         SoundHandler.PlaySound("StrengthBoostStop", Player.Position, Player.GameWorld);
     }
 
@@ -57,4 +53,6 @@ internal sealed class ExtendedPlayer : IEquatable<Player>
         internal const float AdrenalineBoostTime = 20000f;
         internal float AdrenalineBoost;
     }
+
+    public bool Equals(ExtendedPlayer other) => other?.Player.ObjectID == Player.ObjectID;
 }

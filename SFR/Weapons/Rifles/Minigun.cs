@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
 using SFD.Sounds;
@@ -9,9 +8,9 @@ namespace SFR.Weapons.Rifles;
 
 internal sealed class Minigun : RWeapon, IExtendedWeapon
 {
-    private const int RevUpRounds = 50;
+    private const int _revUpRounds = 50;
 
-    private const float AfterFireThreshold = 1000;
+    private const float _afterFireThreshold = 1000;
 
     // private bool _clientRevUp;
     private string _revState;
@@ -24,10 +23,10 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
     internal Minigun()
     {
-        RWeaponProperties weaponProperties = new(102, "Minigun", 1, 200, 0, 1, -1, 25, 0, 1, 102, "ShellSmall", 0.3f, new Vector2(15f, 1f), "MuzzleFlashL", "M60", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnMinigun", false, WeaponCategory.Primary)
+        RWeaponProperties weaponProperties = new(102, "Minigun", 1, 200, 0, 1, -1, 25, 0, 1, 102, "ShellSmall", 0.3f, new(15f, 1f), "MuzzleFlashL", "M60", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnMinigun", false, WeaponCategory.Primary)
         {
-            CursorAimOffset = new Vector2(0f, 1f),
-            LazerPosition = new Vector2(14f, -0.5f),
+            CursorAimOffset = new(0f, 1f),
+            LazerPosition = new(14f, -0.5f),
             AimStartSoundID = "PistolAim",
             BreakDebris =
             [
@@ -68,10 +67,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         CacheDrawnTextures(["F"]);
     }
 
-    private Minigun(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Minigun(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public void Update(Player player, float ms, float realMs)
     {
@@ -85,7 +81,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
                     _soundTimeStamp = player.GameWorld.ElapsedTotalRealTime + 200;
                     _revState = string.Empty;
                 }
-                else if (_timeStamp + AfterFireThreshold / 2 < player.GameWorld.ElapsedTotalGameTime && _timeStamp + AfterFireThreshold > player.GameWorld.ElapsedTotalGameTime)
+                else if (_timeStamp + _afterFireThreshold / 2 < player.GameWorld.ElapsedTotalGameTime && _timeStamp + _afterFireThreshold > player.GameWorld.ElapsedTotalGameTime)
                 {
                     SoundHandler.PlaySound("MinigunDown", player.GameWorld);
                     _soundTimeStamp = player.GameWorld.ElapsedTotalRealTime + 500;
@@ -113,7 +109,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         {
             if (subAnim.GetCurrentFrameIndex() == 1)
             {
-                SpawnMagazine(player, "MagDrum", new Vector2(-8f, -3f));
+                SpawnMagazine(player, "MagDrum", new(-8f, -3f));
                 SoundHandler.PlaySound("MagnumReloadEnd", player.Position, player.GameWorld);
             }
             else if (subAnim.GetCurrentFrameIndex() == 4)
@@ -151,7 +147,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
     public override void ConsumeAmmoFromFire(Player player)
     {
-        if (_revUpCurrent >= RevUpRounds)
+        if (_revUpCurrent >= _revUpRounds)
         {
             base.ConsumeAmmoFromFire(player);
         }
@@ -159,7 +155,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
     public override void BeforeCreateProjectile(BeforeCreateProjectileArgs args)
     {
-        if (_timeStamp + AfterFireThreshold < args.Player.GameWorld.ElapsedTotalGameTime)
+        if (_timeStamp + _afterFireThreshold < args.Player.GameWorld.ElapsedTotalGameTime)
         {
             _revUpCurrent = 0;
         }
@@ -167,7 +163,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         // _synced = false;
         // GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.PlayerExt.ObjectID, "SYNC_MINIGUN_UNREV"));
         // args.PlayerExt.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.PlayerExt.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_UNREV"));
-        if (_revUpCurrent >= RevUpRounds)
+        if (_revUpCurrent >= _revUpRounds)
         {
             // if (!_synced)
             // {
@@ -203,7 +199,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
     public override void OnRecoilEvent(Player player)
     {
-        if (_revUpCurrent >= RevUpRounds && _timeStamp + AfterFireThreshold > player.GameWorld.ElapsedTotalGameTime && player.GameOwner != GameOwnerEnum.Client)
+        if (_revUpCurrent >= _revUpRounds && _timeStamp + _afterFireThreshold > player.GameWorld.ElapsedTotalGameTime && player.GameOwner != GameOwnerEnum.Client)
         {
             base.OnRecoilEvent(player);
         }
@@ -216,7 +212,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
     {
-        if (_revUpCurrent >= RevUpRounds)
+        if (_revUpCurrent >= _revUpRounds)
         {
             if (_revUpCurrent % 2 == 0)
             {

@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SFD;
+﻿using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
@@ -10,10 +9,10 @@ internal sealed class AA12 : RWeapon
 {
     internal AA12()
     {
-        RWeaponProperties weaponProperties = new(93, "AA12", 1, 8, 3, 2, -1, 300, 0, 5, 10, "ShellShotgun", 0.3f, new Vector2(12f, -2f), "MuzzleFlashShotgun", "SawedOff", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnAA12", false, WeaponCategory.Primary)
+        RWeaponProperties weaponProperties = new(93, "AA12", 1, 8, 3, 2, -1, 300, 0, 5, 10, "ShellShotgun", 0.3f, new(12f, -2f), "MuzzleFlashShotgun", "SawedOff", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnAA12", false, WeaponCategory.Primary)
         {
-            CursorAimOffset = new Vector2(0f, 1f),
-            LazerPosition = new Vector2(14f, -0.5f),
+            CursorAimOffset = new(0f, 1f),
+            LazerPosition = new(14f, -0.5f),
             AimStartSoundID = "PistolAim",
             BreakDebris =
             [
@@ -52,10 +51,7 @@ internal sealed class AA12 : RWeapon
         CacheDrawnTextures(["Reload"]);
     }
 
-    private AA12(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private AA12(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override RWeapon Copy()
     {
@@ -70,7 +66,7 @@ internal sealed class AA12 : RWeapon
         {
             if (subAnim.GetCurrentFrameIndex() == 1)
             {
-                SpawnMagazine(player, "MagDrum", new Vector2(-8f, -3f));
+                SpawnMagazine(player, "MagDrum", new(-8f, -3f));
                 SoundHandler.PlaySound("MagnumReloadEnd", player.Position, player.GameWorld);
             }
             else if (subAnim.GetCurrentFrameIndex() == 4)

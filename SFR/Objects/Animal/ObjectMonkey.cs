@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using SFD;
 
 namespace SFR.Objects.Animal;
 
 internal sealed class ObjectMonkey : ObjectAnimal
 {
-    private const float AnimSpeed1 = 0.2f;
-    private const float AnimSpeed2 = 2f;
+    private const float _animSpeed1 = 0.2f;
+    private const float _animSpeed2 = 2f;
 
     internal ObjectMonkey(ObjectDataStartParams startParams) : base(startParams) { }
 
@@ -26,10 +25,10 @@ internal sealed class ObjectMonkey : ObjectAnimal
         float len = GetLinearVelocity().Length();
         switch (len)
         {
-            case < AnimSpeed1:
+            case < _animSpeed1:
                 CurrentAnimation.SetFrame(0);
                 break;
-            case < AnimSpeed2:
+            case < _animSpeed2:
                 CurrentAnimation.SetFrame(1);
                 break;
             default:
@@ -37,6 +36,6 @@ internal sealed class ObjectMonkey : ObjectAnimal
                 break;
         }
 
-        DrawBase(spriteBatch, ms, new Color(0.5f, 0.5f, 0.5f, 1));
+        DrawBase(spriteBatch, ms, new(0.5f, 0.5f, 0.5f, 1));
     }
 }

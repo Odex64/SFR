@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using SFD;
+﻿using SFD;
 using SFD.Sounds;
 using SFD.Weapons;
 
@@ -23,14 +22,14 @@ internal sealed class UnkemptHarold : RWeapon
             ShellID = "",
             AccuracyDeflection = 0.06f,
             ProjectileID = 85,
-            MuzzlePosition = new Vector2(5f, -3f),
+            MuzzlePosition = new(5f, -3f),
             MuzzleEffectTextureID = "MuzzleFlashS",
             BlastSoundID = "Magnum",
             DrawSoundID = "MagnumDraw",
             GrabAmmoSoundID = "MagnumReload",
             OutOfAmmoSoundID = "OutOfAmmoHeavy",
-            CursorAimOffset = new Vector2(0f, 3.5f),
-            LazerPosition = new Vector2(6f, -0.5f),
+            CursorAimOffset = new(0f, 3.5f),
+            LazerPosition = new(6f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.High,
             AI_HasOneShotPotential = true,
@@ -65,10 +64,7 @@ internal sealed class UnkemptHarold : RWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private UnkemptHarold(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private UnkemptHarold(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override void GrabAmmo(Player player)
     {

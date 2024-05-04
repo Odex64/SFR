@@ -1,13 +1,12 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using SFD;
 
 namespace SFR.Objects.Animal;
 
 internal sealed class ObjectFroggy : ObjectAnimal
 {
-    private const float AnimSpeed1 = 0.1f;
-    private const float AnimSpeed2 = 1f;
+    private const float _animSpeed1 = 0.1f;
+    private const float _animSpeed2 = 1f;
 
     internal ObjectFroggy(ObjectDataStartParams startParams) : base(startParams) { }
 
@@ -32,31 +31,31 @@ internal sealed class ObjectFroggy : ObjectAnimal
         float len = GetLinearVelocity().Length();
         switch (len)
         {
-            case < AnimSpeed1:
-            {
-                float num = GameWorld.ElapsedTotalGameTime % 4000;
-                switch (num)
+            case < _animSpeed1:
                 {
-                    case < 100:
-                        CurrentAnimation.SetFrame(0);
-                        break;
-                    case < 200:
-                        CurrentAnimation.SetFrame(1);
-                        break;
-                    case < 300:
-                        CurrentAnimation.SetFrame(2);
-                        break;
-                    case < 400:
-                        CurrentAnimation.SetFrame(1);
-                        break;
-                    default:
-                        CurrentAnimation.SetFrame(3);
-                        break;
-                }
+                    float num = GameWorld.ElapsedTotalGameTime % 4000;
+                    switch (num)
+                    {
+                        case < 100:
+                            CurrentAnimation.SetFrame(0);
+                            break;
+                        case < 200:
+                            CurrentAnimation.SetFrame(1);
+                            break;
+                        case < 300:
+                            CurrentAnimation.SetFrame(2);
+                            break;
+                        case < 400:
+                            CurrentAnimation.SetFrame(1);
+                            break;
+                        default:
+                            CurrentAnimation.SetFrame(3);
+                            break;
+                    }
 
-                break;
-            }
-            case < AnimSpeed2:
+                    break;
+                }
+            case < _animSpeed2:
                 CurrentAnimation.SetFrame(4);
                 break;
             default:
@@ -64,6 +63,6 @@ internal sealed class ObjectFroggy : ObjectAnimal
                 break;
         }
 
-        DrawBase(spriteBatch, ms, new Color(0.5f, 0.5f, 0.5f, 1));
+        DrawBase(spriteBatch, ms, new(0.5f, 0.5f, 0.5f, 1));
     }
 }

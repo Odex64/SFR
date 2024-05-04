@@ -15,8 +15,8 @@ internal sealed class ProjectileFlintlock : Projectile
 
     internal ProjectileFlintlock()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
-        Properties = new ProjectileProperties(69, 900f, 50f, 34f, 50f, 0.5f, 34f, 45f, 0.5f)
+        Visuals = new(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
+        Properties = new(69, 900f, 50f, 34f, 50f, 0.5f, 34f, 45f, 0.5f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Fireplosion,

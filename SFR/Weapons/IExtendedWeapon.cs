@@ -7,9 +7,9 @@ using SFR.Fighter;
 namespace SFR.Weapons;
 
 /// <summary>
-///     Since some weapons need special interaction, we need to override and call special methods upon specific actions.
-///     However all weapons already inherit from a class, therefore we use an interface and through polymorphism
-///     we call overridden methods from hooked harmony patches. The following interface defines all the extra methods a weapon can override.
+/// Since some weapons need special interaction, we need to override and call special methods upon specific actions.
+/// However all weapons already inherit from a class, therefore we use an interface and through polymorphism
+/// we call overridden methods from hooked harmony patches. The following interface defines all the extra methods a weapon can override.
 /// </summary>
 internal interface IExtendedWeapon
 {
@@ -21,8 +21,8 @@ internal interface IExtendedWeapon
 }
 
 /// <summary>
-///     Here we hook for specific methods. If an action occurs we try to cast the current weapon to an IExtendedWeapon
-///     and call its overridden method from here.
+/// Here we hook for specific methods. If an action occurs we try to cast the current weapon to an IExtendedWeapon
+/// and call its overridden method from here.
 /// </summary>
 [HarmonyPatch]
 internal static class ExtendedWeapon

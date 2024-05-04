@@ -40,17 +40,17 @@ internal static class GenericServerData
             }
         }
 
-        return new GenericData(type, flags, data);
+        return new(type, flags, data);
     }
 
     public static NetOutgoingMessage Write(GenericData genericData, NetOutgoingMessage netOutgoingMessage)
     {
-        NetMessage.WriteDataType((MessageType)63, netOutgoingMessage);
+        _ = NetMessage.WriteDataType((MessageType)63, netOutgoingMessage);
 
         int count = 0;
-        foreach (object iter in genericData.Args)
+        foreach (object data in genericData.Args)
         {
-            if (iter is object[] arr)
+            if (data is object[] arr)
             {
                 count += arr.Length;
             }
@@ -75,12 +75,12 @@ internal static class GenericServerData
             {
                 foreach (object innerData in arr)
                 {
-                    WriteMessage(innerData, netOutgoingMessage);
+                    _ = WriteMessage(innerData, netOutgoingMessage);
                 }
             }
             else
             {
-                WriteMessage(data, netOutgoingMessage);
+                _ = WriteMessage(data, netOutgoingMessage);
             }
         }
 
@@ -92,19 +92,19 @@ internal static class GenericServerData
         switch (data)
         {
             case bool parsedBool:
-                netOutgoingMessage.WriteRangedInteger(0, 3, 0);
+                _ = netOutgoingMessage.WriteRangedInteger(0, 3, 0);
                 netOutgoingMessage.Write(parsedBool);
                 return true;
             case int parsedInt:
-                netOutgoingMessage.WriteRangedInteger(0, 3, 1);
+                _ = netOutgoingMessage.WriteRangedInteger(0, 3, 1);
                 netOutgoingMessage.Write(parsedInt);
                 return true;
             case float parsedFloat:
-                netOutgoingMessage.WriteRangedInteger(0, 3, 2);
+                _ = netOutgoingMessage.WriteRangedInteger(0, 3, 2);
                 netOutgoingMessage.Write(parsedFloat);
                 return true;
             case string parsedString:
-                netOutgoingMessage.WriteRangedInteger(0, 3, 3);
+                _ = netOutgoingMessage.WriteRangedInteger(0, 3, 3);
                 netOutgoingMessage.Write(parsedString);
                 return true;
         }

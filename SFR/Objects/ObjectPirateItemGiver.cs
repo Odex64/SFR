@@ -2,7 +2,7 @@
 using SFD;
 using SFD.Objects;
 using SFD.Weapons;
-using Constants = SFR.Misc.Constants;
+using SFR.Misc;
 
 namespace SFR.Objects;
 
@@ -22,12 +22,12 @@ internal class ObjectPirateItemGiver : ObjectButtonTrigger
             if (_type == "BALL")
             {
                 var wpn = WeaponDatabase.GetWeapon(93);
-                player.GrabWeaponItem(wpn);
+                _ = player.GrabWeaponItem(wpn);
             }
             else
             {
                 var weapons = new List<WeaponItem>();
-                switch (Constants.Random.Next(4))
+                switch (Globals.Random.Next(4))
                 {
                     case 0:
                         weapons.Add(WeaponDatabase.GetWeapon(94));
@@ -49,7 +49,7 @@ internal class ObjectPirateItemGiver : ObjectButtonTrigger
 
                 foreach (var wep in weapons)
                 {
-                    player.GrabWeaponItem(wep);
+                    _ = player.GrabWeaponItem(wep);
                 }
             }
         }

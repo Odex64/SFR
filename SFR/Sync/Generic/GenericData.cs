@@ -5,8 +5,8 @@ using SFD;
 namespace SFR.Sync.Generic;
 
 /// <summary>
-///     Use this class to send any kind of data to clients or server.
-///     Only primitive variables allowed.
+/// Use this class to send any kind of data to clients or server.
+/// Only primitive variables allowed.
 /// </summary>
 internal sealed class GenericData
 {

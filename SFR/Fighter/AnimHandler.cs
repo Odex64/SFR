@@ -5,15 +5,15 @@ using SFD.MenuControls;
 using SFD.States;
 using SFD.Weapons;
 using SFR.Helper;
+using SFR.Misc;
 using SFR.Weapons.Others;
-using Constants = SFR.Misc.Constants;
 using Math = System.Math;
 using Player = SFD.Player;
 
 namespace SFR.Fighter;
 
 /// <summary>
-///     Here we load or programmatically create custom animations to be used in-game.
+/// Here we load or programmatically create custom animations to be used in-game.
 /// </summary>
 [HarmonyPatch]
 internal static class AnimHandler
@@ -58,7 +58,7 @@ internal static class AnimHandler
             var newParts = new AnimationPartData[frames[i].Parts.Length];
             foreach (var x in frames[i].Parts)
             {
-                newParts[i] = new AnimationPartData(x.LocalId, x.X, x.Y, x.Rotation, x.Flip, x.Scale.X, x.Scale.Y, x.PostFix);
+                newParts[i] = new(x.LocalId, x.X, x.Y, x.Rotation, x.Flip, x.Scale.X, x.Scale.Y, x.PostFix);
             }
 
             AnimationFrameData newFrame = new(frames[i].Parts, frames[i].Collisions, frames[i].Event, (int)(frames[i].Time * newTime))
@@ -68,7 +68,7 @@ internal static class AnimHandler
             frameData[i] = newFrame;
         }
 
-        return new AnimationData(frameData, newName);
+        return new(frameData, newName);
     }
 
     [HarmonyPrefix]
@@ -88,7 +88,7 @@ internal static class AnimHandler
         }
 
         var profile = __instance.GetProfile().ToSFDProfile();
-        if (profile.Skin.Name.Contains("Zombie") && (__instance.CurrentMeleeWeapon == null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
+        if (profile.Skin.Name.Contains("Zombie") && (__instance.CurrentMeleeWeapon is null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
         {
             switch (__instance.Equipment.WeaponDrawn)
             {
@@ -136,7 +136,7 @@ internal static class AnimHandler
         }
 
         var profile = __instance.GetProfile().ToSFDProfile();
-        if (!__instance.InThrowingMode && (__instance.CurrentMeleeWeapon == null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
+        if (!__instance.InThrowingMode && (__instance.CurrentMeleeWeapon is null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
         {
             if (profile.Skin.Name.Contains("Zombie") && !__instance.Crouching && !__instance.TakingCover)
             {
@@ -172,7 +172,7 @@ internal static class AnimHandler
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(PlayerUpperUseSyringeAnimation), nameof(PlayerUpperUseSyringeAnimation.OverrideUpperAnimationEnterFrame))]
-    private static bool OnSyringeAnimation(Player player, AnimationEvent animEvent, SubAnimationPlayer subAnim, PlayerUpperUseSyringeAnimation __instance)
+    private static bool OnSyringeAnimation(Player player, SubAnimationPlayer subAnim, PlayerUpperUseSyringeAnimation __instance)
     {
         if (__instance.CheckAbort(player))
         {
@@ -208,8 +208,6 @@ internal static class AnimHandler
             return false;
         }
 
-        var extendedPlayer = __instance.GetExtension();
-
         if (__instance.m_subAnimations[1].IsStopped)
         {
             if (__instance.CurrentAction == PlayerAction.DrawWeapon)
@@ -234,21 +232,16 @@ internal static class AnimHandler
             if (__instance.CurrentAction == PlayerAction.ManualAim)
             {
                 __instance.m_subAnimations[0].Rotation = 0f;
-                if (__instance.AnimationUpperOverride != null && __instance.AnimationUpperOverride.ResetRotation())
-                {
-                    __instance.m_subAnimations[1].Rotation = 0f;
-                }
-                else
-                {
-                    __instance.m_subAnimations[1].Rotation = __instance.LastDirectionX == 1 ? __instance.AimAngle : -__instance.AimAngle;
-                }
+                __instance.m_subAnimations[1].Rotation = __instance.AnimationUpperOverride is not null && __instance.AnimationUpperOverride.ResetRotation()
+                    ? 0f
+                    : __instance.LastDirectionX == 1 ? __instance.AimAngle : -__instance.AimAngle;
             }
             else if (__instance.Diving)
             {
                 __instance.m_subAnimations[0].Rotation = __instance.DiveRotation;
                 __instance.m_subAnimations[1].Rotation = 0f;
             }
-            else if (__instance.CaughtByPlayer != null)
+            else if (__instance.CaughtByPlayer is not null)
             {
                 __instance.m_subAnimations[0].Rotation = 0f;
                 __instance.m_subAnimations[1].Rotation = 0f;
@@ -305,42 +298,21 @@ internal static class AnimHandler
             {
                 if (__instance.m_currentAnimation == Animation.LayOnGroundB)
                 {
-                    if (__instance.LastDirectionXAnimation == -1)
-                    {
-                        __instance.Rotation = 1.5707964f;
-                    }
-                    else
-                    {
-                        __instance.Rotation = -1.5707964f;
-                    }
+                    __instance.Rotation = __instance.LastDirectionXAnimation == -1 ? 1.5707964f : -1.5707964f;
 
                     __instance.LastFallingRotation = __instance.Rotation;
                     __instance.UpdateRotationDirection();
                 }
                 else if (__instance.m_currentAnimation == Animation.LayOnGroundF)
                 {
-                    if (__instance.LastDirectionXAnimation == -1)
-                    {
-                        __instance.Rotation = -1.5707964f;
-                    }
-                    else
-                    {
-                        __instance.Rotation = 1.5707964f;
-                    }
+                    __instance.Rotation = __instance.LastDirectionXAnimation == -1 ? -1.5707964f : 1.5707964f;
 
                     __instance.LastFallingRotation = __instance.Rotation;
                     __instance.UpdateRotationDirection();
                 }
                 else if (__instance.m_currentAnimation == Animation.DeathKneel)
                 {
-                    if (__instance.LastDirectionXAnimation == -1)
-                    {
-                        __instance.Rotation = -0.3926991f;
-                    }
-                    else
-                    {
-                        __instance.Rotation = 0.3926991f;
-                    }
+                    __instance.Rotation = __instance.LastDirectionXAnimation == -1 ? -0.3926991f : 0.3926991f;
 
                     __instance.LastFallingRotation = __instance.Rotation;
                     __instance.UpdateRotationDirection(__instance.LastDirectionXAnimation);
@@ -423,7 +395,7 @@ internal static class AnimHandler
             }
             else if (!__instance.StandingOnGround && !__instance.HaveTouchedGroundSinceLastInAir)
             {
-                if (__instance.CurrentAction == PlayerAction.MeleeAttack1 || __instance.CurrentAction == PlayerAction.MeleeAttack2 || __instance.CurrentAction == PlayerAction.MeleeAttack3)
+                if (__instance.CurrentAction is PlayerAction.MeleeAttack1 or PlayerAction.MeleeAttack2 or PlayerAction.MeleeAttack3)
                 {
                     __instance.SetAnimation(Animation.Idle);
                 }
@@ -461,7 +433,7 @@ internal static class AnimHandler
                 {
                     __instance.SetAnimation(Animation.Walk);
                 }
-                else if (__instance.m_modifiers.RunSpeedModifier > 1.4f && __instance.AnimationUpperOverride == null && __instance.CurrentAction == PlayerAction.Idle && !__instance.IsUsingChainsaw)
+                else if (__instance.m_modifiers.RunSpeedModifier > 1.4f && __instance.AnimationUpperOverride is null && __instance.CurrentAction == PlayerAction.Idle && !__instance.IsUsingChainsaw)
                 {
                     __instance.SetAnimation(Animation.Sprint);
                 }
@@ -506,7 +478,7 @@ internal static class AnimHandler
         __instance.Rotation = 0f;
         __instance.DiveRotation = 0f;
         __instance.SetAnimation(Animation.RocketRide);
-        if (__instance.RocketRideProjectile == null)
+        if (__instance.RocketRideProjectile is null)
         {
             __instance.m_subAnimations[0].Rotation = 0f;
             return false;
@@ -539,7 +511,7 @@ internal static class AnimHandler
         {
             __instance.m_softUpdate = false;
         }
-        else if (__instance.m_currentAnimation == Animation.Jump || __instance.m_currentAnimation == Animation.JumpFalling)
+        else if (__instance.m_currentAnimation is Animation.Jump or Animation.JumpFalling)
         {
             __instance.m_softUpdatePart = 1;
         }
@@ -587,7 +559,7 @@ internal static class AnimHandler
         }
 
         __instance.m_currentAnimationPlayerAction = animationPlayerMode;
-        if (__instance.AnimationUpperOverride != null)
+        if (__instance.AnimationUpperOverride is not null)
         {
             flag2 = __instance.m_animationUpperOverrideLastValue == __instance.m_animationUpperOverride;
         }
@@ -663,27 +635,27 @@ internal static class AnimHandler
                 __instance.m_subAnimationsLength = 1;
                 break;
             case Animation.Falling:
-            {
-                string text = "FullFallF";
-                float num2 = 1f;
-                if (__instance.WorldBody != null)
                 {
-                    num2 = __instance.WorldBody.GetLinearVelocity().X;
-                    if (float.IsNaN(num2) || float.IsInfinity(num2))
+                    string text = "FullFallF";
+                    float num2 = 1f;
+                    if (__instance.WorldBody is not null)
                     {
-                        num2 = 0f;
+                        num2 = __instance.WorldBody.GetLinearVelocity().X;
+                        if (float.IsNaN(num2) || float.IsInfinity(num2))
+                        {
+                            num2 = 0f;
+                        }
                     }
-                }
 
-                if (num2 != 0f && Math.Sign(num2) != __instance.LastDirectionX)
-                {
-                    text = "FullFallB";
-                }
+                    if (num2 != 0f && Math.Sign(num2) != __instance.LastDirectionX)
+                    {
+                        text = "FullFallB";
+                    }
 
-                __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation(text));
-                __instance.m_subAnimationsLength = 1;
-                break;
-            }
+                    __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation(text));
+                    __instance.m_subAnimationsLength = 1;
+                    break;
+                }
             case Animation.LayOnGroundF:
                 __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation("FullKnockdownF"));
                 __instance.m_subAnimationsLength = 1;
@@ -698,7 +670,7 @@ internal static class AnimHandler
                 __instance.m_subAnimationsLength = 2;
                 break;
             case Animation.Aiming:
-                if (__instance.AnimationUpperOverride != null)
+                if (__instance.AnimationUpperOverride is not null)
                 {
                     __instance.m_subAnimations[0].SetAnimation(Animations.Data.GetAnimation(__instance.GetAnimIdleLower()));
                     __instance.m_subAnimations[1].SetAnimation(Animations.Data.GetAnimation(__instance.GetAnimIdleUpper()));
@@ -732,21 +704,21 @@ internal static class AnimHandler
                         switch (__instance.CurrentWeaponDrawn)
                         {
                             case WeaponItemType.Handgun:
-                                if (__instance.CurrentHandgunWeapon != null)
+                                if (__instance.CurrentHandgunWeapon is not null)
                                 {
                                     text2 = __instance.ManualAimStart ? __instance.CurrentHandgunWeapon.Visuals.AnimManualAimStart : __instance.CurrentHandgunWeapon.Visuals.AnimManualAim;
                                 }
 
                                 break;
                             case WeaponItemType.Rifle:
-                                if (__instance.CurrentRifleWeapon != null)
+                                if (__instance.CurrentRifleWeapon is not null)
                                 {
                                     text2 = __instance.ManualAimStart ? __instance.CurrentRifleWeapon.Visuals.AnimManualAimStart : __instance.CurrentRifleWeapon.Visuals.AnimManualAim;
                                 }
 
                                 break;
                             case WeaponItemType.Thrown:
-                                if (__instance.CurrentThrownWeapon != null)
+                                if (__instance.CurrentThrownWeapon is not null)
                                 {
                                     text2 = __instance.ManualAimStart ? __instance.CurrentThrownWeapon.Visuals.AnimManualAimStart : __instance.CurrentThrownWeapon.Visuals.AnimManualAim;
                                 }
@@ -843,7 +815,7 @@ internal static class AnimHandler
                 break;
         }
 
-        if (__instance.AnimationUpperOverride != null)
+        if (__instance.AnimationUpperOverride is not null)
         {
             string text3 = __instance.AnimationUpperOverride.OverrideLowerAnimation();
             if (!string.IsNullOrEmpty(text3))
@@ -918,7 +890,7 @@ internal static class AnimHandler
             }
         }
 
-        if (__instance.AnimationUpperOverride != null)
+        if (__instance.AnimationUpperOverride is not null)
         {
             __instance.m_subAnimations[1].Play();
         }
@@ -938,9 +910,9 @@ internal static class AnimHandler
     [HarmonyPatch(typeof(ProfileGridItem), nameof(ProfileGridItem.RefreshPreviewPlayer))]
     private static void RefreshAnimationMenu(ProfileGridItem __instance)
     {
-        if (__instance.Profile != null)
+        if (__instance.Profile is not null)
         {
-            bool walkingAnimation = Constants.Random.NextBool();
+            bool walkingAnimation = Globals.Random.NextBool();
             __instance.m_previewPlayer.SetAnimation(walkingAnimation ? Animation.Walk : Animation.Idle, PlayerAction.Disabled);
         }
     }

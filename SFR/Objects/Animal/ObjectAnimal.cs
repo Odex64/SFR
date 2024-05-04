@@ -2,13 +2,13 @@
 using SFD;
 using SFD.Sounds;
 using SFR.Helper;
-using Constants = SFR.Misc.Constants;
+using SFR.Misc;
 using Math = System.Math;
 
 namespace SFR.Objects.Animal;
 
 /// <summary>
-///     Every animal must inherits from this class.
+/// Every animal must inherits from this class.
 /// </summary>
 internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : ObjectData(startParams)
 {
@@ -23,7 +23,7 @@ internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : Object
 
     public override void Initialize()
     {
-        _jumpTimer = Constants.Random.NextFloat(MinCheckInterval, MaxCheckInterval);
+        _jumpTimer = Globals.Random.NextFloat(MinCheckInterval, MaxCheckInterval);
         Body.SetFixedRotation(true);
         GameWorld.PortalsObjectsToKeepTrackOf.Add(this);
         GameWorld.TriggerMineObjectsToKeepTrackOf.Add(this);
@@ -32,9 +32,9 @@ internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : Object
 
     public override void UpdateObject(float ms)
     {
-        if (GameOwner != GameOwnerEnum.Client && Body != null && GameWorld != null)
+        if (GameOwner != GameOwnerEnum.Client && Body is not null && GameWorld is not null)
         {
-            if (GetLinearVelocity().Y < 0.01 && GetLinearVelocity().Y > -0.01)
+            if (GetLinearVelocity().Y is < (float)0.01 and > (float)-0.01)
             {
                 _timeSinceJump += ms;
                 foreach (var player in GameWorld.Players)
@@ -69,8 +69,8 @@ internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : Object
 
     public override void OnRemoveObject()
     {
-        GameWorld.TriggerMineObjectsToKeepTrackOf.Remove(this);
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
+        _ = GameWorld.TriggerMineObjectsToKeepTrackOf.Remove(this);
+        _ = GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
     }
 
     public override void Dispose()
@@ -82,14 +82,14 @@ internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : Object
     private void Jump(short faceDirection = 0)
     {
         _timeSinceJump = 0;
-        _jumpTimer = Constants.Random.NextFloat(MinCheckInterval, MaxCheckInterval);
+        _jumpTimer = Globals.Random.NextFloat(MinCheckInterval, MaxCheckInterval);
 
-        if (Constants.Random.Next(4) == 0 || Math.Abs(Math.Abs(_lastX) - Math.Abs(GetWorldPosition().X)) < 8)
+        if (Globals.Random.Next(4) == 0 || Math.Abs(Math.Abs(_lastX) - Math.Abs(GetWorldPosition().X)) < 8)
         {
             FaceDirection *= -1;
         }
 
-        if (Constants.Random.Next(10) == 0)
+        if (Globals.Random.Next(10) == 0)
         {
             Body.SetFixedRotation(false);
             Body.SetAngularVelocity(-12 * FaceDirection);
@@ -107,7 +107,7 @@ internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : Object
         }
 
         _lastX = GetWorldPosition().X;
-        Vector2 vec = new(Constants.Random.NextFloat(MinJumpForce, MaxJumpForce) * FaceDirection, Constants.Random.NextFloat(MinJumpForce, MaxJumpForce));
+        Vector2 vec = new(Globals.Random.NextFloat(MinJumpForce, MaxJumpForce) * FaceDirection, Globals.Random.NextFloat(MinJumpForce, MaxJumpForce));
         Body.SetLinearVelocity(vec);
         SyncTransform();
         SoundHandler.PlaySound(JumpSound, GameWorld);

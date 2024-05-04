@@ -11,7 +11,7 @@ internal static class NameIconHandler
     private static void DrawDeveloperIcon(Player player, Vector2 vec, float num)
     {
         var user = player.GetGameUser();
-        if (user != null && DevHandler.GetDeveloperIcon(user.Account) is { } icon)
+        if (user is not null && DevHandler.GetDeveloperIcon(user.Account) is { } icon)
         {
             player.m_spriteBatch.Draw(
                 icon,
@@ -33,7 +33,7 @@ internal static class NameIconHandler
 
         player.m_spriteBatch.Draw(
             icon,
-            new Vector2(vec.X - player.m_nameTextSize.X * 0.25f * num - icon.Width * num, vec.Y - player.m_nameTextSize.Y * num),
+            new(vec.X - player.m_nameTextSize.X * 0.25f * num - icon.Width * num, vec.Y - player.m_nameTextSize.Y * num),
             null,
             Color.Gray,
             0f,
@@ -44,12 +44,10 @@ internal static class NameIconHandler
         );
     }
 
-    private static void DrawName(Player player, Vector2 vec, float num)
-    {
-        Constants.DrawString(
+    private static void DrawName(Player player, Vector2 vec, float num) => Constants.DrawString(
             player.m_spriteBatch,
             Constants.Font1Outline,
-            player.Name, new Vector2(vec.X, vec.Y - 0.75f * player.m_nameTextSize.Y * num),
+            player.Name, new(vec.X, vec.Y - 0.75f * player.m_nameTextSize.Y * num),
             player.GetTeamTextColor(),
             0f,
             player.m_nameTextSize * 0.5f,
@@ -57,7 +55,6 @@ internal static class NameIconHandler
             SpriteEffects.None,
             0
         );
-    }
 
     internal static void Draw(Player player, Vector2 vec, float num)
     {
@@ -76,7 +73,7 @@ internal static class NameIconHandler
         if (!player.IsBot)
         {
             var user = player.GetGameUser();
-            if (user != null && DevHandler.IsDeveloper(user.Account))
+            if (user is not null && DevHandler.IsDeveloper(user.Account))
             {
                 DrawDeveloperIcon(player, vec, num);
             }

@@ -2,7 +2,7 @@
 using SFD;
 using SFD.Projectiles;
 using SFD.Tiles;
-using Constants = SFR.Misc.Constants;
+using SFR.Misc;
 
 namespace SFR.Projectiles;
 
@@ -12,8 +12,8 @@ internal sealed class ProjectileBarrett : Projectile
 
     internal ProjectileBarrett()
     {
-        Visuals = new ProjectileVisuals(Textures.GetTexture("BulletBarrett"), Textures.GetTexture("BulletBarrettSlowmo"));
-        Properties = new ProjectileProperties(94, 1500f, 2000f, 70f, 2000f, 1f, 70f, 120f, 0.0f)
+        Visuals = new(Textures.GetTexture("BulletBarrett"), Textures.GetTexture("BulletBarrettSlowmo"));
+        Properties = new(94, 1500f, 2000f, 70f, 2000f, 1f, 70f, 120f, 0.0f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Default,
@@ -42,7 +42,7 @@ internal sealed class ProjectileBarrett : Projectile
             {
                 if (player is { IsRemoved: false, IsDead: true })
                 {
-                    if (Constants.Random.Next(3) == 1)
+                    if (Globals.Random.Next(3) == 1)
                     {
                         player.Gib();
                     }

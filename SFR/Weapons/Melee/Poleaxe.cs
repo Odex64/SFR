@@ -63,10 +63,7 @@ internal sealed class Poleaxe : MWeapon, ISharpMelee
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private Poleaxe(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Poleaxe(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public float GetDecapitationChance() => 0.66f;
 

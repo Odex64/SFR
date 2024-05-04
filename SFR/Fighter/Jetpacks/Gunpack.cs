@@ -1,12 +1,11 @@
-﻿using System;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Effects;
 using SFD.Sounds;
 using SFD.Tiles;
 using SFDGameScriptInterface;
 using SFR.Helper;
-using Constants = SFR.Misc.Constants;
+using SFR.Misc;
 using Player = SFD.Player;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 
@@ -26,10 +25,7 @@ internal sealed class Gunpack : GenericJetpack
         EffectTimer = 20f;
     }
 
-    internal void ApplyFireUpgrade(ushort amount = 30)
-    {
-        _fireProjectiles = amount;
-    }
+    internal void ApplyFireUpgrade(ushort amount = 30) => _fireProjectiles = amount;
 
     protected override void PlaySound(Player player)
     {
@@ -51,7 +47,7 @@ internal sealed class Gunpack : GenericJetpack
 
                 if (extendedPlayer.Player.GameOwner != GameOwnerEnum.Client)
                 {
-                    gameWorld.SpawnProjectile(40, position, new Vector2(Constants.Random.NextFloat(-0.1f, 0.1f), -1), extendedPlayer.Player.ObjectID, _fireProjectiles > 0 ? ProjectilePowerup.Fire : ProjectilePowerup.None);
+                    _ = gameWorld.SpawnProjectile(40, position, new(Globals.Random.NextFloat(-0.1f, 0.1f), -1), extendedPlayer.Player.ObjectID, _fireProjectiles > 0 ? ProjectilePowerup.Fire : ProjectilePowerup.None);
                 }
 
                 if (!extendedPlayer.Player.InfiniteAmmo && _fireProjectiles > 0)
@@ -72,7 +68,7 @@ internal sealed class Gunpack : GenericJetpack
 
                 if (_fireRate >= _projectileTimer)
                 {
-                    throw new Exception("Wrong gunpack fire rate");
+                    throw new("Wrong gunpack fire rate");
                 }
             }
         }
@@ -109,6 +105,6 @@ internal sealed class Gunpack : GenericJetpack
         base.Discard(extendedPlayer);
         var player = extendedPlayer.Player;
 
-        player.GameWorld.CreateTile("GunpackDebris", player.Position, 0);
+        _ = player.GameWorld.CreateTile("GunpackDebris", player.Position, 0);
     }
 }

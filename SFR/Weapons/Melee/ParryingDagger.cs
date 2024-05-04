@@ -63,10 +63,7 @@ internal sealed class ParryingDagger : MWeapon
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
 
-    private ParryingDagger(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private ParryingDagger(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {

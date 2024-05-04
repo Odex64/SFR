@@ -11,23 +11,20 @@ namespace SFR.Objects;
 
 internal sealed class ObjectHead : ObjectGiblet
 {
-    private static readonly Texture2D BackupTexture = null;
-    private static readonly string[] DisallowedAccessories = ["swing", "armband", "dogtag", "scarf"];
+    private static readonly Texture2D _backupTexture = null;
+    private static readonly string[] _disallowedAccessories = ["swing", "armband", "dogtag", "scarf"];
     internal Texture2D ReplaceTexture;
 
     internal ObjectHead(ObjectDataStartParams startParams) : base(startParams) { }
 
-    public override void SetProperties()
-    {
-        Properties.Add(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
-    }
+    public override void SetProperties() => Properties.Add(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
 
     public override void Initialize()
     {
         base.Initialize();
         if (Properties.Exists(290) && GameOwner != GameOwnerEnum.Client)
         {
-            if (Properties.Get(290).Value != null)
+            if (Properties.Get(290).Value is not null)
             {
                 var targetPlayerProfileInfoObjects = GetObjectsFromProperty<ObjectPlayerProfileInfo>(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
                 if (targetPlayerProfileInfoObjects.Count > 0)
@@ -48,14 +45,14 @@ internal sealed class ObjectHead : ObjectGiblet
 
     public override void Dispose()
     {
-        GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
+        _ = GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
         base.Dispose();
     }
 
     private static Texture2D GetTextureFromEquipment(Equipment equipment)
     {
         var skin = equipment.m_parts[0][0]?.GetTexture(0);
-        if (skin != null)
+        if (skin is not null)
         {
             var task = Task.Run(() => equipment.m_parts[0][0]?.GetTexture(0, equipment.GetItemColors(0)));
             if (task.Wait(5))
@@ -69,7 +66,7 @@ internal sealed class ObjectHead : ObjectGiblet
         }
 
         var accessory = equipment.m_parts[6][0]?.GetTexture(0);
-        if (accessory != null)
+        if (accessory is not null)
         {
             var task1 = Task.Run(() => equipment.m_parts[6][0]?.GetTexture(0, equipment.GetItemColors(6)));
             if (task1.Wait(5))
@@ -83,7 +80,7 @@ internal sealed class ObjectHead : ObjectGiblet
         }
 
         var head = equipment.m_parts[8][0]?.GetTexture(0);
-        if (head != null)
+        if (head is not null)
         {
             var task2 = Task.Run(() => equipment.m_parts[8][0]?.GetTexture(0, equipment.GetItemColors(8)));
             if (task2.Wait(5))
@@ -98,9 +95,9 @@ internal sealed class ObjectHead : ObjectGiblet
 
 
         // Filter
-        if (equipment.GetItem(6) != null)
+        if (equipment.GetItem(6) is not null)
         {
-            foreach (string str in DisallowedAccessories)
+            foreach (string str in _disallowedAccessories)
             {
                 if (equipment.GetItem(6).Filename.ToLower().Contains(str))
                 {
@@ -109,17 +106,17 @@ internal sealed class ObjectHead : ObjectGiblet
             }
         }
 
-        if (skin != null && (skin.Width != 16 || skin.Height != 16))
+        if (skin is not null && (skin.Width != 16 || skin.Height != 16))
         {
             skin = null;
         }
 
-        if (accessory != null && (accessory.Width != 16 || accessory.Height != 16))
+        if (accessory is not null && (accessory.Width != 16 || accessory.Height != 16))
         {
             accessory = null;
         }
 
-        if (head != null && (head.Width != 16 || head.Height != 16))
+        if (head is not null && (head.Width != 16 || head.Height != 16))
         {
             head = null;
         }
@@ -141,17 +138,17 @@ internal sealed class ObjectHead : ObjectGiblet
         for (int i = 0; i < data.Length; i++)
         {
             var color = Color.Transparent;
-            if (skin != null && skinData[i].A == 255)
+            if (skin is not null && skinData[i].A == 255)
             {
                 color = skinData[i];
             }
 
-            if (accessory != null && accData[i].A == 255)
+            if (accessory is not null && accData[i].A == 255)
             {
                 color = accData[i];
             }
 
-            if (head != null && headData[i].A == 255)
+            if (head is not null && headData[i].A == 255)
             {
                 color = headData[i];
             }
@@ -165,38 +162,35 @@ internal sealed class ObjectHead : ObjectGiblet
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        if (ReplaceTexture != null)
+        if (ReplaceTexture is not null)
         {
             Texture = ReplaceTexture;
             ClearDecals();
-            AddDecal(new ObjectDecal(ReplaceTexture));
+            AddDecal(new(ReplaceTexture));
         }
         else
         {
-            ReplaceTexture = BackupTexture ?? Textures.GetTexture("Giblet04");
+            ReplaceTexture = _backupTexture ?? Textures.GetTexture("Giblet04");
         }
 
         base.Draw(spriteBatch, ms);
     }
 
-    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e)
-    {
-        ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
-    }
+    public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e) => ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
 
     internal static string EquipmentToString(Equipment eq)
     {
-        string str = eq.GetItem(0) == null
+        string str = eq.GetItem(0) is null
             ? "NONE:0,0,0"
             : eq.GetItem(0).Filename + ":" + eq.GetItemColors(0)[0] + "," + eq.GetItemColors(0)[1] + "," + eq.GetItemColors(0)[2];
 
         str += "|";
-        str += eq.GetItem(6) == null
+        str += eq.GetItem(6) is null
             ? "NONE:0,0,0"
             : eq.GetItem(6).Filename + ":" + eq.GetItemColors(6)[0] + "," + eq.GetItemColors(6)[1] + "," + eq.GetItemColors(6)[2];
 
         str += "|";
-        str += eq.GetItem(8) == null
+        str += eq.GetItem(8) is null
             ? "NONE:0,0,0"
             : eq.GetItem(8).Filename + ":" + eq.GetItemColors(8)[0] + "," + eq.GetItemColors(8)[1] + "," + eq.GetItemColors(8)[2];
 

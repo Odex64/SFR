@@ -5,8 +5,8 @@ using SFDGameScriptInterface;
 namespace SFR.Fighter;
 
 /// <summary>
-///     This class is used to extend the PlayerExt modifiers and save new data to them.
-///     Basically clones the base class and appends it as a modifier extension to them.
+/// This class is used to extend the PlayerExt modifiers and save new data to them.
+/// Basically clones the base class and appends it as a modifier extension to them.
 /// </summary>
 internal class ExtendedModifiers(PlayerModifiers modifiers) : IEquatable<ExtendedModifiers>
 {
@@ -15,5 +15,5 @@ internal class ExtendedModifiers(PlayerModifiers modifiers) : IEquatable<Extende
     public float BulletDodgeChance = -1;
     public float JumpHeightModifier = -1;
 
-    public bool Equals(ExtendedModifiers other) => other != null && other.Modifiers.Equals(Modifiers) && other.JumpHeightModifier == JumpHeightModifier && other.BulletDodgeChance == BulletDodgeChance;
+    public bool Equals(ExtendedModifiers other) => other is not null && other.Modifiers.Equals(Modifiers) && other.JumpHeightModifier == JumpHeightModifier && other.BulletDodgeChance == BulletDodgeChance;
 }

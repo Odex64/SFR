@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
 using SFD.Sounds;
@@ -15,14 +14,14 @@ internal sealed class Crossbow : RWeapon
 
     internal Crossbow()
     {
-        RWeaponProperties weaponProperties = new(96, "Crossbow", 1, 1, 8, 8, -1, 1000, 200, 1, 96, string.Empty, 0.05f, new Vector2(1f, -0.5f), string.Empty, "BowShoot", "GrenadeDraw", "GrenadeDraw", "OutOfAmmoLight", "WpnCrossbow", false, WeaponCategory.Primary)
+        RWeaponProperties weaponProperties = new(96, "Crossbow", 1, 1, 8, 8, -1, 1000, 200, 1, 96, string.Empty, 0.05f, new(1f, -0.5f), string.Empty, "BowShoot", "GrenadeDraw", "GrenadeDraw", "OutOfAmmoLight", "WpnCrossbow", false, WeaponCategory.Primary)
         {
             SpecialAmmoBulletsRefill = 8,
             AI_DamageOutput = DamageOutputType.High,
             AI_GravityArcingEffect = 0.66f,
             AI_MaxRange = 500f,
-            LazerPosition = new Vector2(1f, -1.5f),
-            CursorAimOffset = new Vector2(0f, 2f),
+            LazerPosition = new(1f, -1.5f),
+            CursorAimOffset = new(0f, 2f),
             AimStartSoundID = "Draw1",
             BreakDebris = ["ItemDebrisShiny00", "ItemDebrisShiny01"],
             ExtraAutomaticCooldown = 0,
@@ -65,10 +64,7 @@ internal sealed class Crossbow : RWeapon
         _textureDrawEmpty = Textures.GetTexture("CrossbowDDrawBackEmpty");
     }
 
-    private Crossbow(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals)
-    {
-        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-    }
+    private Crossbow(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
     public override RWeapon Copy()
     {
