@@ -297,14 +297,6 @@ internal sealed class ObjectClaymoreThrown : ObjectData
                 angle += 16f;
                 var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, angle, LazerRayCastCollision, _ => true);
                 GameWorld.DrawLazer(spriteBatch, _isTripped || _blink && _status < 2, rayCastResult.StartPosition, rayCastResult.EndPosition, rayCastResult.Direction);
-                if (rayCastResult.EndFixture is not null)
-                {
-                    var objectData = Read(rayCastResult.EndFixture);
-                    if (objectData.IsPlayer)
-                    {
-                        _isTripped = true;
-                    }
-                }
             }
         }
     }
