@@ -128,6 +128,8 @@ Tile(Brain00)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -375,6 +377,8 @@ Tile(Giblet05)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactWood;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		mass = 4 kg;
@@ -404,6 +408,8 @@ Tile(HeadDebris00A)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -419,6 +425,8 @@ Tile(HeadDebris00B)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -434,6 +442,8 @@ Tile(HeadDebris00C)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -678,6 +688,8 @@ Tile(Organ00)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -693,6 +705,8 @@ Tile(Organ01)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -708,6 +722,8 @@ Tile(Organ02)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -723,6 +739,8 @@ Tile(Organ03)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -738,6 +756,8 @@ Tile(Organ04)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -753,6 +773,8 @@ Tile(Organ05)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
