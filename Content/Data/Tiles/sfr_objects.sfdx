@@ -377,6 +377,8 @@ Tile(Giblet05)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactWood;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		mass = 4 kg;
@@ -406,6 +408,8 @@ Tile(HeadDebris00A)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -421,6 +425,8 @@ Tile(HeadDebris00B)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
@@ -436,6 +442,8 @@ Tile(HeadDebris00C)
 	material.blockExplosions = false;
 	material.flammable = false;
 	ImpactSound = ImpactFlesh;
+	gibpressure.total=40kg;
+	gibpressure.spike=160kg;
 	fixture()
 	{
 		collisionGroup = debris;
