@@ -16,3 +16,7 @@ packages
 
 # Other
 *.bat
+
+# C++
+x64
+*.vcxproj.user
