@@ -1,4 +1,8 @@
-﻿using HarmonyLib;
+﻿using System;
+using System.Text;
+using HarmonyLib;
+using SFD;
+using SFR.Helper;
 
 namespace SFR.Editor;
 
