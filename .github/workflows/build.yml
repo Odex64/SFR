@@ -28,4 +28,4 @@ jobs:
 
     # Build solution
     - name: Build Solution
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=${{ matrix.configuration }}
+      run: msbuild $env:Solution_Name /t:build /p:configuration=${{ matrix.configuration }}
