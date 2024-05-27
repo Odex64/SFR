@@ -26,6 +26,13 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
+    # Install dependencies for editor
+    - name: Setup vcpkg
+      run: |
+        vcpkg install raylib:x64-windows-static
+        vcpkg install raygui:x64-windows-static
+        vcpkg integrate install
+
     # Build solution
     - name: Build Solution
       run: msbuild $env:Solution_Name /t:build /p:configuration=${{ matrix.configuration }}
