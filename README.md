@@ -6,8 +6,8 @@
 [![Discord](https://img.shields.io/discord/978692248013275287?style=flat-square&logo=discord&label=Discord)](https://discord.gg/UbbCs2kywd)
 [![Activity](https://img.shields.io/github/commit-activity/w/Odex64/SFR?style=flat-square&logo=Github&label=Activity)](https://github.com/Odex64/SFR/activity)
 [![Stars](https://img.shields.io/github/stars/Odex64/SFR?style=flat-square&logo=Github&label=Stars)](https://github.com/Odex64/SFR/stargazers)
-[![Build](https://img.shields.io/github/actions/workflow/status/Odex64/SFR/build.yml?style=flat-square&logo=github)](https://github.com/Odex64/SFR/actions/workflows/build.yml)
-[![Contributors](https://img.shields.io/github/all-contributors/Odex64/SFR?style=flat-square&logo=Github)](https://github.com/Odex64/SFR/contributors)
+[![Build](https://img.shields.io/github/actions/workflow/status/Odex64/SFR/build.yml?style=flat-square&logo=github&label=Build)](https://github.com/Odex64/SFR/actions/workflows/build.yml)
+[![Contributors](https://img.shields.io/github/all-contributors/Odex64/SFR?style=flat-square&logo=Github&label=Contributors)](https://github.com/Odex64/SFR/contributors)
 
 <details>
 <summary>FAQ</summary>
