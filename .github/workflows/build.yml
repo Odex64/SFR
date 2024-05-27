@@ -1,0 +1,31 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+    paths-ignore:
+      - "*.md"
+      - ".gitignore"
+      - ".editorconfig"
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        architecture: [x64]
+        configuration: [Debug, Release]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # Add MSBuild
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    # Build solution
+    - name: Build Solution
+      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=${{ matrix.configuration }}
