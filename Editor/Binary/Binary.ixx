@@ -25,6 +25,12 @@ public:
 
     virtual ~Binary()
     {
-        Stream.close();
+        constexpr bool hasClose = requires(const T & stream) {
+            stream.Close();
+        };
+
+        if constexpr (hasClose) {
+            Stream.close();
+        }
     }
 };
