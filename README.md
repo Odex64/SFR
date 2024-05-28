@@ -9,9 +9,9 @@
 [![Build](https://img.shields.io/github/actions/workflow/status/Odex64/SFR/build.yml?style=flat-square&logo=github&label=Build)](https://github.com/Odex64/SFR/actions/workflows/build.yml)
 
 <details>
-<summary>FAQ</summary>
+<summary>📖 FAQ</summary>
 
-## What is it?
+## About
 **Superfighters Redux** is an open-source mod for [Superfighters Deluxe](https://mythologicinteractive.com/SuperfightersDeluxe). It adds new content and tweaks existing mechanics for a more engaging and dynamic game experience.
 
 ## Do you have the developers' consent?
@@ -20,7 +20,7 @@ Yes, we do. However, please read the full [license](https://github.com/Odex64/SF
 </details>
 
 <details>
-<summary>Features</summary>
+<summary>🚀 Features</summary>
 
 ## Skins
 Explore a plethora of new items and colors you can equip. Some skins even feature a tertiary color option.
@@ -44,7 +44,7 @@ Enjoy new music, sounds, triggers, gore effects, increased slots, special items,
 </details>
 
 <details>
-<summary>Installation</summary>
+<summary>⚙️ Installation</summary>
 
 ## Download
 You can download the latest version of Superfighters Redux [here](https://github.com/Odex64/SFR/releases).
@@ -56,30 +56,30 @@ You can download the latest version of Superfighters Redux [here](https://github
 </details>
 
 <details>
-<summary>Acknowledgement</summary>
+<summary>✍️ Acknowledgement</summary>
 
-# Special thanks
+## Special thanks
 * To the developers of [Superfighters Deluxe](https://mythologicinteractive.com/SuperfightersDeluxe).
-* [Argón](https://github.com/TheOriginalArgon) (Coder)
-* Motto73 (Coder)
-* [Near Huscarl](https://github.com/NearHuscarl) (Items editor)
-* Shock (Artist)
-* Dxse (Artist)
-* KLI (Artist)
-* Casey (Artist)
-* Danila015 (Artist)
-* Eiga (Balancement, Organizer)
-* Samwow (Composer)
-* Mimyuu (Special fonts)
-* Heapons (Moderator, Tester)
-* Olv (Moderator, Tester)
-* GoreDemon (Tester)
-* Pricey (Tester)
-* Emmet Brown (Tester)
-* Dark (Tester)
-* Everyone else who contributed to this mod.
+* [Argón](https://github.com/TheOriginalArgon) (Coder).
+* Motto73 (Coder).
+* [Near Huscarl](https://github.com/NearHuscarl) (Items editor).
+* Shock (Artist).
+* Dxse (Artist).
+* KLI (Artist).
+* Casey (Artist).
+* Danila015 (Artist).
+* Eiga (Balancement, Organizer).
+* Samwow (Composer).
+* Mimyuu (Special fonts).
+* Heapons (Moderator, Tester).
+* Olv (Moderator, Tester).
+* GoreDemon (Tester).
+* Pricey (Tester).
+* Emmet Brown (Tester).
+* Dark (Tester).
+* Everyone else who contributed.
 
-# Forks
+## Forks
 * [SFDCT](https://github.com/Liokindy/SFDCT) - A mod compatible with vanilla clients with some QoL enhancements.
 
 </details>
