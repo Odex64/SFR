@@ -54,3 +54,32 @@ You can download the latest version of Superfighters Redux [here](https://github
 2. Open Steam and change `Superfighters Deluxe` launch options to `cmd /k "%command%\..\SFR.exe"`.
 
 </details>
+
+<details>
+<summary>Acknowledgement</summary>
+
+# Special thanks
+* To the developers of [Superfighters Deluxe](https://mythologicinteractive.com/SuperfightersDeluxe).
+* [Argón](https://github.com/TheOriginalArgon) (Coder)
+* Motto73 (Coder)
+* [Near Huscarl](https://github.com/NearHuscarl) (Items editor)
+* Shock (Artist)
+* Dxse (Artist)
+* KLI (Artist)
+* Casey (Artist)
+* Danila015 (Artist)
+* Eiga (Balancement, Organizer)
+* Samwow (Composer)
+* Mimyuu (Special fonts)
+* Heapons (Moderator, Tester)
+* Olv (Moderator, Tester)
+* GoreDemon (Tester)
+* Pricey (Tester)
+* Emmet Brown (Tester)
+* Dark (Tester)
+* Everyone else who contributed to this mod.
+
+# Forks
+* [SFDCT](https://github.com/Liokindy/SFDCT) - A mod compatible with vanilla clients with some QoL enhancements.
+
+</details>
