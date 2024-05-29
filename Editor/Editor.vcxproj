@@ -82,8 +82,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalDependencies>xcompress.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\XNA;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -107,8 +107,8 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>
-      </AdditionalDependencies>
+      <AdditionalDependencies>xcompress.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\XNA;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -116,6 +116,12 @@
     <ClCompile Include="Binary\BinaryReader.ixx" />
     <ClCompile Include="Binary\BinaryWriter.ixx" />
     <ClCompile Include="Main.ixx" />
+    <ClCompile Include="Parser\Converter.ixx" />
+    <ClCompile Include="Parser\FlagBits.ixx" />
+    <ClCompile Include="Parser\Reader.ixx" />
+    <ClCompile Include="Parser\TargetPlatform.ixx" />
+    <ClCompile Include="Parser\XCompress.ixx" />
+    <ClCompile Include="Parser\Xnb.ixx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
