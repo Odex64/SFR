@@ -143,7 +143,7 @@ public:
         if (!std::filesystem::exists(file)) return std::unexpected("File does not exist");
 
         BinaryWriter stream{ file.relative_path().replace_extension(".xnb") };
-        stream.Write("XNB", false);
+        stream.Write<std::string>("XNB");
         stream.Write<std::uint8_t>(static_cast<std::uint8_t>('w'));
         stream.Write<std::uint8_t>(5);
         stream.Write<std::uint8_t>(128);
@@ -161,12 +161,12 @@ public:
 
         BinaryWriter memoryStream{};
         memoryStream.Write7BitEncodedInteger(1);
-        memoryStream.Write7BitEncodedInteger(type->ReaderName().size());
-        memoryStream.Write(type->ReaderName(), false);
+        memoryStream.Write7BitEncodedInteger(static_cast<std::int32_t>(type->ReaderName().size()));
+        memoryStream.Write<std::string>(type->ReaderName());
         memoryStream.Write<std::int32_t>(0);
         memoryStream.Write7BitEncodedInteger(0);
         memoryStream.Write7BitEncodedInteger(1);
-        memoryStream.Write(type->Binary(), false);
+        memoryStream.Write<std::string>(type->Binary());
 
         const std::string decompressedData{ memoryStream.ToString() };
         const std::size_t decompressedSize{ decompressedData.size() };
@@ -194,9 +194,9 @@ public:
 
         compressedData.resize(compressedSize);
 
-        stream.Write<std::uint32_t>(compressedSize + _headerSize);
-        stream.Write<std::uint32_t>(decompressedSize);
-        stream.Write(compressedData, false);
+        stream.Write<std::uint32_t>(static_cast<std::uint32_t>(compressedSize + _headerSize));
+        stream.Write<std::uint32_t>(static_cast<std::uint32_t>(decompressedSize));
+        stream.Write<std::string>(compressedData);
 
         return std::expected<Xnb, std::string>(
             std::in_place,

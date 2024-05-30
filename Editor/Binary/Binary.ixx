@@ -3,7 +3,7 @@ export module Binary;
 import std;
 
 export template <typename T>
-concept BinaryType = std::integral<T> || std::floating_point<T>;
+concept BinaryType = std::integral<T> || std::floating_point<T> || std::same_as<T, std::string>;
 
 template<typename T>
 concept DerivedStream = std::derived_from<T, std::ios>;

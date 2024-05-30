@@ -15,18 +15,15 @@ public:
     BinaryWriter& operator=(BinaryWriter&&) = delete;
 
     template<BinaryType T>
-    void Write(T data)
+    void Write(const T& data)
     {
-        Stream->write(reinterpret_cast<char*>(&data), sizeof(T));
+        Stream->write(reinterpret_cast<const char*>(&data), sizeof(T));
     }
 
-    void Write(const std::string& data, bool writeSize = true)
+    template<>
+    void Write(const std::string& data)
     {
         std::size_t size{ data.size() };
-        if (writeSize) {
-            Stream->write(reinterpret_cast<char*>(&size), sizeof(std::uint32_t));
-        }
-
         Stream->write(data.c_str(), size);
     }
 
@@ -42,8 +39,8 @@ public:
 
     [[nodiscard]] std::string ToString() const noexcept override
     {
-        if (std::ostringstream* d = dynamic_cast<std::ostringstream*>(Stream.get()); d != nullptr) {
-            return d->str();
+        if (std::ostringstream* stream = dynamic_cast<std::ostringstream*>(Stream.get()); stream != nullptr) {
+            return stream->str();
         }
 
         return std::string{};

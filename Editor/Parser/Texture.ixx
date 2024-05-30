@@ -5,7 +5,6 @@ module;
 
 export module Texture;
 
-import std;
 import Converter;
 import BinaryReader;
 import BinaryWriter;
