@@ -4,8 +4,8 @@ import Binary;
 
 export class BinaryReader final : public Binary<std::istream> {
 public:
-    explicit BinaryReader(const std::filesystem::path& file) : Binary{ std::make_unique<std::ifstream>(file, std::ios::binary) } {}
-    explicit BinaryReader(const std::string& data) : Binary{ std::make_unique<std::istringstream>(data, std::ios::binary) } {}
+    explicit BinaryReader(const std::filesystem::path& file) noexcept : Binary{ std::make_unique<std::ifstream>(file, std::ios::binary) } {}
+    explicit BinaryReader(const std::string& data) noexcept : Binary{ std::make_unique<std::istringstream>(data, std::ios::binary) } {}
     BinaryReader() = delete;
 
     BinaryReader(const BinaryReader&) = delete;
@@ -23,24 +23,21 @@ public:
         return data;
     }
 
-    std::int32_t Read7BitEncodedInteger()
+    [[nodiscard]] std::uint8_t Read7BitEncodedInteger()
     {
-        char current{};
-        int32_t index = 0, result = 0;
-        do
-        {
-            Stream->read((char*)&current, sizeof(char));
-            result |= (current & 127) << index;
-            index += 7;
-        } while ((current & 128) != 0);
+        std::uint8_t result{};
+        std::uint8_t bitsRead{};
+        std::uint8_t value{};
+
+        do {
+            value = Read<std::uint8_t>();
+            result |= (value & 0x7f) << bitsRead;
+            bitsRead += 7;
+        } while (value & 0x80);
 
         return result;
     }
 
-    template<BinaryType T>
-    [[nodiscard]] T Read(std::size_t size) {}
-
-    template<>
     [[nodiscard]] std::string Read()
     {
         std::size_t size{};
@@ -53,7 +50,6 @@ public:
         return data;
     }
 
-    template<>
     [[nodiscard]] std::string Read(std::size_t size)
     {
         std::string data{};
@@ -61,5 +57,10 @@ public:
         Stream->read(&data[0], size);
 
         return data;
+    }
+
+    [[nodiscard]] std::string ToString() const noexcept override
+    {
+        return std::string{};
     }
 };

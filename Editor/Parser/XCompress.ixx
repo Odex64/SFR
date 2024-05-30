@@ -24,14 +24,16 @@ extern "C" {
     export typedef void* XMEMDECOMPRESSION_CONTEXT;
 
     export std::int32_t __stdcall XMemCreateDecompressionContext(XMEMCODEC_TYPE codecType, const void* codecParams, std::uint32_t flags, XMEMDECOMPRESSION_CONTEXT* context);
-
-    export void __stdcall XMemDestroyDecompressionContext(XMEMDECOMPRESSION_CONTEXT Context);
-
-    export std::int32_t __stdcall XMemDecompress(XMEMDECOMPRESSION_CONTEXT Context, void* pDestination, std::size_t* pDestSize, const void* pSource, std::size_t SrcSize);
+    export void __stdcall XMemDestroyDecompressionContext(XMEMDECOMPRESSION_CONTEXT context);
+    export std::int32_t __stdcall XMemDecompress(XMEMDECOMPRESSION_CONTEXT context, void* destination, std::size_t* destinationSize, const void* source, std::size_t sourceSize);
 
 
     // ------------------------
     // COMPRESSION FUNCTIONS
     // ------------------------
+    export typedef void* XMEMCOMPRESSION_CONTEXT;
 
+    export std::int32_t __stdcall XMemCreateCompressionContext(XMEMCODEC_TYPE codecType, const void* codecParams, std::uint32_t flags, XMEMCOMPRESSION_CONTEXT* context);
+    export void __stdcall XMemDestroyCompressionContext(XMEMCOMPRESSION_CONTEXT context);
+    export std::int32_t __stdcall XMemCompress(XMEMCOMPRESSION_CONTEXT context, void* destination, std::size_t* destinationSize, const void* source, std::size_t sourceSize);
 }

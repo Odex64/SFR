@@ -1,11 +1,14 @@
 export module Converter;
 
 import std;
-import BinaryWriter;
-import BinaryReader;
 
 export class Converter {
 public:
-    virtual [[nodiscard]] bool Read(BinaryReader& stream) = 0;
-    virtual [[nodiscard]] bool Write(BinaryWriter& stream) = 0;
+    virtual void Export(const std::filesystem::path& file) const noexcept = 0;
+    virtual [[nodiscard]] std::string Binary() const noexcept = 0;
+    virtual [[nodiscard]] std::string ReaderName() const noexcept = 0;
+    virtual ~Converter() noexcept = default;
 };
+
+export template<typename T>
+concept Convertible = std::derived_from<T, Converter>;
