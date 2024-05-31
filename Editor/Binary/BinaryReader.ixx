@@ -63,4 +63,9 @@ public:
     {
         return std::string{};
     }
+
+    void Seek(std::streamsize count) const noexcept
+    {
+        Stream->ignore(count);
+    }
 };

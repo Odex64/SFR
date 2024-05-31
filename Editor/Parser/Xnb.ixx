@@ -8,10 +8,11 @@ import FlagBits;
 import XCompress;
 import Converter;
 import Texture;
+import Sound;
 
 export class Xnb final {
 private:
-    inline constexpr static std::uint8_t _headerSize{ 14 };
+    constexpr static std::uint8_t _headerSize{ 14 };
 
 public:
     const TargetPlatform Platform;
@@ -76,65 +77,37 @@ public:
 
         std::size_t compressedSize{ stream.Read<std::uint32_t>() };
         std::size_t decompressedSize{ 0 };
+
         if (flagBits == FlagBits::Compressed) {
             decompressedSize = stream.Read<std::uint32_t>();
-        }
 
-        std::string compressedData{ stream.Read(static_cast<std::size_t>(compressedSize) - _headerSize) };
+            std::string compressedData{ stream.Read(static_cast<std::size_t>(compressedSize) - _headerSize) };
 
-        XMEMDECOMPRESSION_CONTEXT decompressionContext{ 0 };
+            XMEMDECOMPRESSION_CONTEXT decompressionContext{ 0 };
 
-        XMEMCODEC_PARAMETERS_LZX codecParams{};
-        codecParams.Flags = 0;
-        codecParams.WindowSize = 64 * 1024;
-        codecParams.CompressionPartitionSize = 256 * 1024;
+            XMEMCODEC_PARAMETERS_LZX codecParams{};
+            codecParams.Flags = 0;
+            codecParams.WindowSize = 64 * 1024;
+            codecParams.CompressionPartitionSize = 256 * 1024;
 
-        if (XMemCreateDecompressionContext(XMEMCODEC_TYPE::XMEMCODEC_LZX, &codecParams, 0, &decompressionContext) != 0) {
-            return std::unexpected("Could not create decompression context");
-        }
-
-        std::string decompressedData{};
-        decompressedData.resize(decompressedSize);
-        if (XMemDecompress(decompressionContext, &decompressedData[0], &decompressedSize, &compressedData[0], compressedData.size()) != 0) {
-            XMemDestroyDecompressionContext(decompressionContext);
-            return std::unexpected("Failed decompression");
-        }
-
-        XMemDestroyDecompressionContext(decompressionContext);
-
-        BinaryReader memoryStream{ decompressedData };
-
-        const std::uint8_t readersCount{ memoryStream.Read7BitEncodedInteger() };
-        if (readersCount > 1) return std::unexpected("Only 1 reader supported");
-
-        const std::uint8_t typeLength{ memoryStream.Read7BitEncodedInteger() };
-        const std::string typeName{ memoryStream.Read(typeLength) };
-        const std::int32_t version{ memoryStream.Read<std::int32_t>() };
-
-        const std::uint8_t resourcesCount{ memoryStream.Read7BitEncodedInteger() };
-        if (resourcesCount != 0) std::unexpected("Invalid resources count");
-
-        const std::uint8_t index{ memoryStream.Read7BitEncodedInteger() };
-        if (index > readersCount) std::unexpected("Resources count and readers count do not match");
-
-        std::unique_ptr<Converter> type{ nullptr };
-        if (typeName == Texture::Reader) {
-            if (std::expected<Texture, std::string> texture = Texture::Read(memoryStream); texture.has_value()) {
-                type = std::make_unique<Texture>(std::move(texture.value()));
+            if (XMemCreateDecompressionContext(XMEMCODEC_TYPE::XMEMCODEC_LZX, &codecParams, 0, &decompressionContext) != 0) {
+                return std::unexpected("Could not create decompression context");
             }
+
+            std::string decompressedData{};
+            decompressedData.resize(decompressedSize);
+            if (XMemDecompress(decompressionContext, &decompressedData[0], &decompressedSize, &compressedData[0], compressedData.size()) != 0) {
+                XMemDestroyDecompressionContext(decompressionContext);
+                return std::unexpected("Failed decompression");
+            }
+
+            XMemDestroyDecompressionContext(decompressionContext);
+
+            BinaryReader memoryStream{ decompressedData };
+            return Xnb::FinishReading(memoryStream, targetPlatform, formatVersion, flagBits, compressedData, decompressedData);
         }
 
-        if (type == nullptr) return std::unexpected("File type not supported or there was an error while reading it");
-
-        return std::expected<Xnb, std::string>(
-            std::in_place,
-            targetPlatform,
-            formatVersion,
-            flagBits,
-            compressedData,
-            decompressedData,
-            std::move(type)
-        );
+        return Xnb::FinishReading(stream, targetPlatform, formatVersion, flagBits, {}, {});
     }
 
     template<Convertible T>
@@ -154,6 +127,12 @@ public:
             if (extension != ".png") return std::unexpected("Wrong file extension");
             if (std::expected<Texture, std::string> texture = Texture::Read(file); texture.has_value()) {
                 type = std::make_unique<Texture>(std::move(texture.value()));
+            }
+        }
+        else if constexpr (std::is_same<T, Sound>::value) {
+            if (extension != ".wav") return std::unexpected("Wrong file extension");
+            if (std::expected<Sound, std::string> sound = Sound::Read(file); sound.has_value()) {
+                type = std::make_unique<Sound>(std::move(sound.value()));
             }
         }
 
@@ -203,6 +182,47 @@ public:
             TargetPlatform::Windows,
             static_cast<std::uint8_t>(5),
             FlagBits::Compressed,
+            compressedData,
+            decompressedData,
+            std::move(type)
+        );
+    }
+
+private:
+    [[nodiscard]] static std::expected<Xnb, std::string> FinishReading(BinaryReader& stream, const TargetPlatform targetPlatform, const std::uint8_t formatVersion, const FlagBits flagBits, const std::string& compressedData, const std::string& decompressedData)
+    {
+        const std::uint8_t readersCount{ stream.Read7BitEncodedInteger() };
+        if (readersCount > 1) return std::unexpected("Only 1 reader supported");
+
+        const std::uint8_t typeLength{ stream.Read7BitEncodedInteger() };
+        const std::string typeName{ stream.Read(typeLength) };
+        const std::int32_t version{ stream.Read<std::int32_t>() };
+
+        const std::uint8_t resourcesCount{ stream.Read7BitEncodedInteger() };
+        if (resourcesCount != 0) std::unexpected("Invalid resources count");
+
+        const std::uint8_t index{ stream.Read7BitEncodedInteger() };
+        if (index > readersCount) std::unexpected("Resources count and readers count do not match");
+
+        std::unique_ptr<Converter> type{ nullptr };
+        if (typeName == Texture::Reader) {
+            if (std::expected<Texture, std::string> texture = Texture::Read(stream); texture.has_value()) {
+                type = std::make_unique<Texture>(std::move(texture.value()));
+            }
+        }
+        else if (typeName == Sound::Reader) {
+            if (std::expected<Sound, std::string> sound = Sound::Read(stream); sound.has_value()) {
+                type = std::make_unique<Sound>(std::move(sound.value()));
+            }
+        }
+
+        if (type == nullptr) return std::unexpected("File type not supported or there was an error while reading it");
+
+        return std::expected<Xnb, std::string>(
+            std::in_place,
+            targetPlatform,
+            formatVersion,
+            flagBits,
             compressedData,
             decompressedData,
             std::move(type)

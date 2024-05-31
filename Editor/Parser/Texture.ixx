@@ -62,6 +62,8 @@ public:
 
     static [[nodiscard]] std::expected<Texture, std::string> Read(const std::filesystem::path& file) noexcept
     {
+        if (file.extension().string() != ".png") return std::unexpected("Wrong file format");
+
         std::int32_t width{};
         std::int32_t height{};
         std::int32_t comp{};

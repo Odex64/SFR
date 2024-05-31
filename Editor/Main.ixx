@@ -1,19 +1,20 @@
 import std;
 import Xnb;
 import Texture;
+import Sound;
 
 int main()
 {
-    //std::expected<Xnb, std::string> file{ Xnb::Read("profile_bg.xnb") };
+    //std::expected<Xnb, std::string> file{ Xnb::Read("MenuMove.xnb") };
     //if (!file.has_value()) return 1;
-    //file.value().Type->Export("profile_bg.png");
-    std::expected<Xnb, std::string> file{ Xnb::Write<Texture>("profile_bg.png") };
+    //file.value().Type->Export("MenuMove.wav");
+    //std::expected<Xnb, std::string> file{ Xnb::Write<Sound>("MenuMove.wav") };
 
-    //for (const auto& entry : std::filesystem::recursive_directory_iterator("Images/Misc/SFDLogo")) {
-    //    if (entry.is_regular_file() && entry.path().extension() == ".png") {
-    //        std::expected<Xnb, std::string> file{ Xnb::Write<Texture>(entry.path()) };
-    //    }
-    //}
+    for (const auto& entry : std::filesystem::recursive_directory_iterator("Weapons")) {
+        if (entry.is_regular_file() && entry.path().extension() == ".wav") {
+            std::expected<Xnb, std::string> file{ Xnb::Write<Sound>(entry.path()) };
+        }
+    }
 
     return 0;
 }

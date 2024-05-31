@@ -124,6 +124,7 @@
     <ClCompile Include="Main.ixx" />
     <ClCompile Include="Parser\Converter.ixx" />
     <ClCompile Include="Parser\FlagBits.ixx" />
+    <ClCompile Include="Parser\Sound.ixx" />
     <ClCompile Include="Parser\TargetPlatform.ixx" />
     <ClCompile Include="Parser\Texture.ixx" />
     <ClCompile Include="Parser\XCompress.ixx" />
