@@ -18,11 +18,9 @@ public:
     const TargetPlatform Platform;
     const std::uint8_t FormatVersion;
     const FlagBits Flags;
-    const std::string CompressedData;
-    const std::string DecompressedData;
     const std::unique_ptr<Converter> Type;
 
-    Xnb(const TargetPlatform platform, const std::uint8_t formatVersion, const FlagBits flags, const std::string& compressedData, const std::string& decompressedData, std::unique_ptr<Converter> type) noexcept : Platform{ platform }, FormatVersion{ formatVersion }, Flags{ flags }, CompressedData{ compressedData }, DecompressedData{ std::move(decompressedData) }, Type{ std::move(type) } {}
+    Xnb(const TargetPlatform platform, const std::uint8_t formatVersion, const FlagBits flags, std::unique_ptr<Converter> type) noexcept : Platform{ platform }, FormatVersion{ formatVersion }, Flags{ flags }, Type{ std::move(type) } {}
     Xnb() = delete;
 
     Xnb(const Xnb&) = delete;
@@ -37,7 +35,7 @@ public:
 
         BinaryReader stream{ file };
 
-        const std::string header{ stream.Read(3) };
+        const std::string header{ stream.Read<std::string>(3) };
         if (header != "XNB") return std::unexpected("Invalid header");
 
         const char platform{ static_cast<char>(stream.Read<std::uint8_t>()) };
@@ -81,7 +79,7 @@ public:
         if (flagBits == FlagBits::Compressed) {
             decompressedSize = stream.Read<std::uint32_t>();
 
-            std::string compressedData{ stream.Read(static_cast<std::size_t>(compressedSize) - _headerSize) };
+            std::string compressedData{ stream.Read<std::string>(static_cast<std::size_t>(compressedSize) - _headerSize) };
 
             XMEMDECOMPRESSION_CONTEXT decompressionContext{ 0 };
 
@@ -104,10 +102,10 @@ public:
             XMemDestroyDecompressionContext(decompressionContext);
 
             BinaryReader memoryStream{ decompressedData };
-            return Xnb::FinishReading(memoryStream, targetPlatform, formatVersion, flagBits, compressedData, decompressedData);
+            return Xnb::FinishReading(memoryStream, targetPlatform, formatVersion, flagBits);
         }
 
-        return Xnb::FinishReading(stream, targetPlatform, formatVersion, flagBits, {}, {});
+        return Xnb::FinishReading(stream, targetPlatform, formatVersion, flagBits);
     }
 
     template<Convertible T>
@@ -182,20 +180,18 @@ public:
             TargetPlatform::Windows,
             static_cast<std::uint8_t>(5),
             FlagBits::Compressed,
-            compressedData,
-            decompressedData,
             std::move(type)
         );
     }
 
 private:
-    [[nodiscard]] static std::expected<Xnb, std::string> FinishReading(BinaryReader& stream, const TargetPlatform targetPlatform, const std::uint8_t formatVersion, const FlagBits flagBits, const std::string& compressedData, const std::string& decompressedData)
+    [[nodiscard]] static std::expected<Xnb, std::string> FinishReading(BinaryReader& stream, const TargetPlatform targetPlatform, const std::uint8_t formatVersion, const FlagBits flagBits)
     {
         const std::uint8_t readersCount{ stream.Read7BitEncodedInteger() };
         if (readersCount > 1) return std::unexpected("Only 1 reader supported");
 
         const std::uint8_t typeLength{ stream.Read7BitEncodedInteger() };
-        const std::string typeName{ stream.Read(typeLength) };
+        const std::string typeName{ stream.Read<std::string>(typeLength) };
         const std::int32_t version{ stream.Read<std::int32_t>() };
 
         const std::uint8_t resourcesCount{ stream.Read7BitEncodedInteger() };
@@ -223,8 +219,6 @@ private:
             targetPlatform,
             formatVersion,
             flagBits,
-            compressedData,
-            decompressedData,
             std::move(type)
         );
     }
