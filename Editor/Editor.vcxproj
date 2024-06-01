@@ -71,7 +71,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_WARNINGS;STB_IMAGE_IMPLEMENTATION;STB_IMAGE_WRITE_IMPLEMENTATION;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
@@ -126,6 +126,7 @@
     <ClCompile Include="Main.ixx" />
     <ClCompile Include="Parser\Converter.ixx" />
     <ClCompile Include="Parser\FlagBits.ixx" />
+    <ClCompile Include="Parser\Item.ixx" />
     <ClCompile Include="Parser\Sound.ixx" />
     <ClCompile Include="Parser\TargetPlatform.ixx" />
     <ClCompile Include="Parser\Texture.ixx" />
