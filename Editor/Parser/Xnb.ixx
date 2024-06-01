@@ -31,7 +31,7 @@ public:
 
     static [[nodiscard]] std::expected<Xnb, std::string> Read(const std::filesystem::path& file) noexcept
     {
-        if (file.extension().string() != ".xnb" || !std::filesystem::exists(file)) return std::unexpected("Wrong file format");
+        if (file.extension() != ".xnb" || !std::filesystem::exists(file)) return std::unexpected("Wrong file format");
 
         BinaryReader stream{ file };
 
@@ -109,18 +109,12 @@ public:
     }
 
     template<Convertible T>
-    static [[nodiscard]] std::expected<Xnb, std::string> Write(const std::filesystem::path& file) noexcept
+    static [[nodiscard]] std::expected<Xnb, std::string> Write(std::filesystem::path& file) noexcept
     {
         if (!std::filesystem::exists(file)) return std::unexpected("File does not exist");
 
-        BinaryWriter stream{ file.relative_path().replace_extension(".xnb") };
-        stream.Write<std::string>("XNB");
-        stream.Write<std::uint8_t>(static_cast<std::uint8_t>('w'));
-        stream.Write<std::uint8_t>(5);
-        stream.Write<std::uint8_t>(128);
-
         std::unique_ptr<Converter> type{ nullptr };
-        const std::string extension{ file.extension().string() };
+        const std::filesystem::path& extension{ file.extension() };
         if constexpr (std::is_same<T, Texture>::value) {
             if (extension != ".png") return std::unexpected("Wrong file extension");
             if (std::expected<Texture, std::string> texture = Texture::Read(file); texture.has_value()) {
@@ -135,6 +129,12 @@ public:
         }
 
         if (type == nullptr) return std::unexpected("File type not supported or there was an error while reading it");
+
+        BinaryWriter stream{ file.replace_extension(".xnb") };
+        stream.Write<std::string>("XNB");
+        stream.Write<std::uint8_t>(static_cast<std::uint8_t>('w'));
+        stream.Write<std::uint8_t>(5);
+        stream.Write<std::uint8_t>(128);
 
         BinaryWriter memoryStream{};
         memoryStream.Write7BitEncodedInteger(1);

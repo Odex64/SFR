@@ -58,7 +58,7 @@ public:
 
     static [[nodiscard]] std::expected<Sound, std::string> Read(const std::filesystem::path& file) noexcept
     {
-        if (file.extension().string() != ".wav") return std::unexpected("Wrong file format");
+        if (file.extension() != ".wav") return std::unexpected("Wrong file format");
 
         BinaryReader stream{ file };
 
@@ -90,9 +90,11 @@ public:
         );
     }
 
-    void Export(const std::filesystem::path& file) const noexcept override
+    void Export(std::filesystem::path& file) const noexcept override
     {
-        if (file.extension().string() != ".wav") return;
+        if (file.extension() != ".wav") {
+            file = file.replace_extension(".wav");
+        }
 
         if (std::filesystem::exists(file)) {
             std::filesystem::remove(file);

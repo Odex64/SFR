@@ -62,7 +62,7 @@ public:
 
     static [[nodiscard]] std::expected<Texture, std::string> Read(const std::filesystem::path& file) noexcept
     {
-        if (file.extension().string() != ".png") return std::unexpected("Wrong file format");
+        if (file.extension() != ".png") return std::unexpected("Wrong file format");
 
         std::int32_t width{};
         std::int32_t height{};
@@ -83,9 +83,11 @@ public:
         );
     }
 
-    void Export(const std::filesystem::path& file) const noexcept override
+    void Export(std::filesystem::path& file) const noexcept override
     {
-        if (file.extension().string() != ".png") return;
+        if (file.extension() != ".png") {
+            file = file.replace_extension(".png");
+        }
 
         if (std::filesystem::exists(file)) {
             std::filesystem::remove(file);
