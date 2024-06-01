@@ -9,6 +9,7 @@ import XCompress;
 import Converter;
 import Texture;
 import Sound;
+import Item;
 
 export class Xnb final {
 private:
@@ -127,6 +128,12 @@ public:
                 type = std::make_unique<Sound>(std::move(sound.value()));
             }
         }
+        else if constexpr (std::is_same<T, Item>::value) {
+            if (extension != ".sfditem") return std::unexpected("Wrong file extension");
+            if (std::expected<Item, std::string> item = Item::Read(file); item.has_value()) {
+                type = std::make_unique<Item>(std::move(item.value()));
+            }
+        }
 
         if (type == nullptr) return std::unexpected("File type not supported or there was an error while reading it");
 
@@ -209,6 +216,11 @@ private:
         else if (typeName == Sound::Reader) {
             if (std::expected<Sound, std::string> sound = Sound::Read(stream); sound.has_value()) {
                 type = std::make_unique<Sound>(std::move(sound.value()));
+            }
+        }
+        else if (typeName == Item::Reader) {
+            if (std::expected<Item, std::string> item = Item::Read(stream); item.has_value()) {
+                type = std::make_unique<Item>(std::move(item.value()));
             }
         }
 
