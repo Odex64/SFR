@@ -44,7 +44,8 @@ internal static class NameIconHandler
         );
     }
 
-    private static void DrawName(Player player, Vector2 vec, float num) => Constants.DrawString(
+    private static void DrawName(Player player, Vector2 vec, float num) =>
+        Constants.DrawString(
             player.m_spriteBatch,
             Constants.Font1Outline,
             player.Name, new(vec.X, vec.Y - 0.75f * player.m_nameTextSize.Y * num),
