@@ -38,5 +38,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: SFR ${{ matrix.configuration }}
-        path: D:\a\SFR\SFR\SFR\bin\x86\Release\SFR.exe
+        path: SFR\bin\x86\${{ matrix.configuration }}\SFR.exe
         compression-level: 9 
