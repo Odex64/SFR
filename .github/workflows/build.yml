@@ -22,15 +22,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    # Add MSBuild
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    # Restore packages
     - name: Restore NuGet
       run: msbuild -p:RestorePackagesConfig=true -t:restore
 
-    # Build solution
     - name: Build Solution
       run: msbuild $env:Solution_Name /t:build /p:configuration=${{ matrix.configuration }}
 
