@@ -35,7 +35,7 @@ jobs:
       run: msbuild $env:Solution_Name /t:build /p:configuration=${{ matrix.configuration }}
 
     - name: Upload
-    - uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v4
       with:
         name: SFR ${{ matrix.configuration }}
         path: "*.exe"
