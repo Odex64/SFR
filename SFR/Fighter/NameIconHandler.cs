@@ -78,6 +78,10 @@ internal static class NameIconHandler
             {
                 DrawDeveloperIcon(player, vec, num);
             }
+            else
+            {
+                DrawMemberIcon(player, vec, num);
+            }
         }
         else
         {
