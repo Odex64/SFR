@@ -124,6 +124,7 @@
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Helper\ExtendedMath.cs" />
     <Compile Include="Editor\MapToken.cs" />
+    <Compile Include="Misc\Config.cs" />
     <Compile Include="Misc\Tweaks.cs" />
     <Compile Include="Objects\Animal\ObjectAnimal.cs" />
     <Compile Include="Objects\Animal\ObjectFroggy.cs" />
