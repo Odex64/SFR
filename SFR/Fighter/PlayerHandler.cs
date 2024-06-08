@@ -6,6 +6,7 @@ using SFR.Helper;
 using SFR.Misc;
 using SFR.Objects;
 using SFR.Weapons;
+using SFR.Weapons.Melee;
 using SFR.Weapons.Rifles;
 using Player = SFD.Player;
 
@@ -251,16 +252,50 @@ internal static class PlayerHandler
     }
 
     [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.IsInDeflectBulletFrameWindow), MethodType.Getter)]
+    private static bool IsInDeflectBulletFrameWindow(Player __instance, ref bool __result)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield)
+        {
+            __result = true;
+            return false;
+        }
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.CanBeCaughtByGrab))]
+    private static bool CanBeCaughtByGrab(Player other, Player __instance, ref bool __result)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield)
+        {
+            __result = __instance.LastDirectionX == other.LastDirectionX;
+            return false;
+        }
+
+        return true;
+    }
+
+    [HarmonyPrefix]
     [HarmonyPatch(typeof(Player), nameof(Player.Movement), MethodType.Setter)]
     private static bool SetPlayerMovement(PlayerMovement value, Player __instance)
     {
         var extendedPlayer = __instance.GetExtension();
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield)
+        {
+            __instance.Walking = true;
+        }
+
         return !extendedPlayer.AdrenalineBoost || __instance.CurrentAction is not PlayerAction.MeleeAttack1 and not PlayerAction.MeleeAttack2 || __instance.Movement == PlayerMovement.Idle || value != PlayerMovement.Idle;
     }
 
     [HarmonyPrefix]
     [HarmonyPatch(typeof(Player), nameof(Player.Jump), [])]
-    private static bool CanJump(Player __instance)
+    private static bool Jump(Player __instance)
     {
         var extendedModifiers = __instance.m_modifiers.GetExtension();
         if (extendedModifiers.JumpHeightModifier != 1f)
@@ -273,14 +308,61 @@ internal static class PlayerHandler
         return true;
     }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.JumpAttack))]
+    private static bool JumpAttack(Player __instance)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield) return false;
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.TakeCover))]
+    private static bool TakeCover(Player __instance)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield) return false;
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.CanRoll))]
+    private static bool CanRoll(Player __instance)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield) return false;
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.CanCrouch))]
+    private static bool CanCrouch(Player __instance)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield) return false;
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.CanBlock))]
+    private static bool CanBlock(Player __instance)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield) return false;
+
+        return true;
+    }
+
     [HarmonyPostfix]
     [HarmonyPatch(typeof(Player), nameof(Player.TestProjectileHit))]
     private static void CanProjectileHit(ref bool __result, Player __instance)
     {
-        if (!__result)
-        {
-            return;
-        }
+        if (!__result) return;
 
         var extendedModifiers = __instance.m_modifiers.GetExtension();
         if (extendedModifiers.BulletDodgeChance > 0 && Globals.Random.NextDouble() < extendedModifiers.BulletDodgeChance)
@@ -324,6 +406,13 @@ internal static class PlayerHandler
     [HarmonyPatch(typeof(Player), nameof(Player.CanKick))]
     private static bool CanKick(float timeOffset, Player __instance, ref bool __result)
     {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        if (currentWeapon is RiotShield)
+        {
+            __result = false;
+            return false;
+        }
+
         var extendedPlayer = __instance.GetExtension();
         __result = (__instance.CurrentAction == PlayerAction.Idle || __instance.CurrentAction == PlayerAction.HipFire && __instance.ThrowableIsActivated) && !(__instance.Diving && !extendedPlayer.AdrenalineBoost || extendedPlayer.GenericJetpack is not null && extendedPlayer.GenericJetpack.State != JetpackState.Idling || __instance.Rolling || __instance.Falling || __instance.Climbing || __instance.PreparingHipFire > 0f || __instance.FireSequence.KickCooldownTimer > 800f + timeOffset || __instance.TimeSequence.PostDropClimbAttackCooldown || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
         return false;

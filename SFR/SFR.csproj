@@ -189,6 +189,7 @@
     <Compile Include="Weapons\Melee\Blade.cs" />
     <Compile Include="Weapons\Melee\Caber.cs" />
     <Compile Include="Weapons\Melee\Crowbar.cs" />
+    <Compile Include="Weapons\Melee\RiotShield.cs" />
     <Compile Include="Weapons\Melee\Greatsword.cs" />
     <Compile Include="Weapons\Melee\Morningstar.cs" />
     <Compile Include="Weapons\Melee\ParryingDagger.cs" />

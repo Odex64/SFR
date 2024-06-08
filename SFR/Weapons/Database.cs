@@ -27,6 +27,7 @@ internal static class Database
 
         Weapons ??=
         [
+            // Makeshifts
             new(WeaponItemType.Melee, new Brick()), // 71
             new(WeaponItemType.Melee, new Broom()), // 72
             new(WeaponItemType.Melee, new CannonBall()), // 73
@@ -40,7 +41,7 @@ internal static class Database
             new(WeaponItemType.Melee, new ParryingDagger()), // 79
             new(WeaponItemType.Melee, new Poleaxe()), // 80
             new(WeaponItemType.Melee, new Rapier()), // 81
-            // new(WeaponItemType.Melee, new RiotShield()), // 82
+            new(WeaponItemType.Melee, new RiotShield()), // 82
             new(WeaponItemType.Melee, new Sledgehammer()), // 83
             new(WeaponItemType.Melee, new Switchblade()), // 84
             new(WeaponItemType.Melee, new Scythe()), // 108
@@ -77,7 +78,7 @@ internal static class Database
             new(WeaponItemType.Powerup, new AdrenalineBoost()), // 103
             new(WeaponItemType.InstantPickup, new Jetpack()), // 104
             new(WeaponItemType.InstantPickup, new JetpackEditor()), // 105
-            new(WeaponItemType.InstantPickup, new Gunpack())
+            new(WeaponItemType.InstantPickup, new Gunpack()) // 106
         ];
 
         foreach (var weapon in Weapons)
@@ -181,7 +182,7 @@ internal static class Database
             { 79, 8 }, //ParryingDagger
             { 80, 8 }, // Poleaxe
             { 81, 15 }, // Rapier
-            // { 82, 16 }, // RiotShield,
+            { 82, 16 }, // RiotShield,
             { 83, 16 }, // Sledgehammer
             { 84, 18 }, // Switchblade
             // { 85, 4 }, // UnkemptHarold

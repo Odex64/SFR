@@ -2956,18 +2956,19 @@ Tile(WpnSwitchblade)
 		mass = 2.5 kg;
 	}
 }
-//Tile(WpnRiotShield)
-//{
-//	tileTexture = RiotShieldM;
-//	pickupType = instant;
-//	pickupRange = 10.0;
-//	absorbProjectile = false;
-//	projectileHit = false;
-//	impactEffect = ImpactDefault;
-//	impactSound = WeaponBounce;
-//	missileDamageMax = 17|17;
-//	fixture(){ collisionPoints = (-8.5, -3.5), (7.5, -3.5), (7.5, 6.5), (-8.5, 6.5); mass = 2.5kg; }
-//}
+
+Tile(WpnRiotShield)
+{
+	tileTexture = RiotShieldM;
+	pickupType = instant;
+	pickupRange = 10.0;
+	absorbProjectile = false;
+	projectileHit = false;
+	impactEffect = ImpactDefault;
+	impactSound = WeaponBounce;
+	missileDamageMax = 17 | 17;
+	fixture(){ collisionPoints = (-8.5, -3.5), (7.5, -3.5), (7.5, 6.5), (-8.5, 6.5); mass = 2.5kg; }
+}
 
 // disable editorEnabled again
 defaultTile(default_tile)

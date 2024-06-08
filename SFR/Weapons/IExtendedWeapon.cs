@@ -1,8 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using HarmonyLib;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
+using SFD.Effects;
+using SFD.Materials;
+using SFD.Sounds;
 using SFR.Fighter;
+using SFR.Helper;
+using SFR.Weapons.Melee;
 
 namespace SFR.Weapons;
 
@@ -47,6 +54,54 @@ internal static class ExtendedWeapon
                 }
             }
         }
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.HitByMelee))]
+    private static bool HitByMelee(Player hitBy, Player __instance)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        bool canHit = __instance.LastDirectionX != hitBy.LastDirectionX || Math.Abs(__instance.Position.X - hitBy.Position.X) < 4f;
+
+        hitBy.GetAABBMeleeAttack(out var aabb, false);
+        var effectPosition = Converter.Box2DToWorld(new Vector2((hitBy.LastDirectionX == 1) ? aabb.upperBound.X : aabb.lowerBound.X, aabb.GetCenter().Y));
+        if (hitBy.LastDirectionX == 1 && effectPosition.X > __instance.Position.X)
+        {
+            effectPosition.X = __instance.Position.X;
+        }
+        else if (hitBy.LastDirectionX == -1 && effectPosition.X < __instance.Position.X)
+        {
+            effectPosition.X = __instance.Position.X;
+        }
+
+        if (canHit && currentWeapon is RiotShield && !hitBy.IsPerformingGrabAction)
+        {
+            EffectHandler.PlayEffect("Block", effectPosition, __instance.GameWorld);
+
+            var playerHitMaterial = __instance.GetPlayerHitMaterial();
+            var material = playerHitMaterial ?? __instance.GetCurrentMeleeWeaponInUse(false).Properties.WeaponMaterial;
+            Material.HandleMeleeVsMelee(hitBy.GetCurrentMeleeWeaponInUse(false).Properties.WeaponMaterial, material, PlayerHitAction.Punch, effectPosition, __instance.GameWorld);
+
+            return false;
+        }
+
+        return true;
+    }
+
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Player), nameof(Player.HitByKick))]
+    private static bool HitByKick(Player hitBy, Player __instance)
+    {
+        object currentWeapon = __instance.GetCurrentWeapon();
+        bool canHit = __instance.LastDirectionX != hitBy.LastDirectionX || Math.Abs(__instance.Position.X - hitBy.Position.X) < 4f;
+
+        if (canHit && currentWeapon is RiotShield)
+        {
+            SoundHandler.PlaySound("MeleeBlock", __instance.Position, __instance.GameWorld);
+            return false;
+        }
+
+        return true;
     }
 
     [HarmonyPostfix]
