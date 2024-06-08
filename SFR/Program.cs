@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Reflection;
+using DiscordRPC;
 using HarmonyLib;
 using SFR.Helper;
 using SFR.Misc;
@@ -110,10 +111,39 @@ internal static class Program
 
         Logger.LogWarn("Patching");
         _harmony.PatchAll();
+
+        SetRichPresence();
+
         Logger.LogError("Starting SFR");
         SFD.Program.Main(args);
 
         return 0;
+    }
+
+    private static void SetRichPresence()
+    {
+        var client = new DiscordRpcClient("1249116075912728669");
+
+        _ = client.Initialize();
+
+        client.SetPresence(new RichPresence()
+        {
+            Details = "Rocket Riding",
+            Timestamps = Timestamps.Now,
+            Assets = new Assets()
+            {
+                LargeImageKey = "icon",
+                LargeImageText = "Superfighters Redux",
+            },
+            Buttons =
+            [
+                new Button()
+                {
+                    Label = "Discord",
+                    Url = "https://discord.gg/UbbCs2kywd"
+                }
+            ]
+        });
     }
 
     private static bool CheckUpdate()
