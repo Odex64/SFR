@@ -2956,7 +2956,6 @@ Tile(WpnSwitchblade)
 		mass = 2.5 kg;
 	}
 }
-
 Tile(WpnRiotShield)
 {
 	tileTexture = RiotShieldM;
@@ -2967,7 +2966,7 @@ Tile(WpnRiotShield)
 	impactEffect = ImpactDefault;
 	impactSound = WeaponBounce;
 	missileDamageMax = 17 | 17;
-	fixture(){ collisionPoints = (-8.5, -3.5), (7.5, -3.5), (7.5, 6.5), (-8.5, 6.5); mass = 2.5kg; }
+	fixture(){ collisionPoints = (-8, -3), (5, -3), (5, 6), (-8, 6); mass = 2.5kg; }
 }
 
 // disable editorEnabled again
