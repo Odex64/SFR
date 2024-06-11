@@ -21,34 +21,38 @@ internal sealed class DoubleBarrel : RWeapon
             CooldownAfterPostAction = 250,
             BreakDebris = ["ItemDebrisWood00", "MetalDebris00C"],
             SpecialAmmoBulletsRefill = 4,
-            AI_DamageOutput = DamageOutputType.High
+            AI_DamageOutput = DamageOutputType.High,
+            VisualText = "Double Barrel Shotgun"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireRifle",
+            AnimFireArmLength = 2f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimReloadUpper = "UpperReloadShell",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("DoubleBarrelM");
         weaponVisuals.SetDrawnTexture("DoubleBarrelD");
         weaponVisuals.SetSheathedTexture("DoubleBarrelS");
         weaponVisuals.SetThrowingTexture("DoubleBarrelThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        weaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        weaponVisuals.AnimKickUpper = "UpperKickRifle";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunRifle";
-        weaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireRifle";
-        weaponVisuals.AnimFireArmLength = 2f;
-        weaponVisuals.AnimDraw = "UpperDrawRifle";
-        weaponVisuals.AnimManualAim = "ManualAimRifle";
-        weaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        weaponVisuals.AnimReloadUpper = "UpperReloadShell";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Double Barrel Shotgun";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Reload"]);
     }
 

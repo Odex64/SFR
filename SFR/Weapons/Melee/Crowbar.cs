@@ -34,31 +34,34 @@ internal sealed class Crowbar : MWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = ["MetalDebris00A", "CrowbarDebris1"]
+            BreakDebris = ["MetalDebris00A", "CrowbarDebris1"],
+            VisualText = "Crowbar"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee",
+            AnimMeleeAttack1 = "UpperMelee1H1",
+            AnimMeleeAttack2 = "UpperMelee1H2",
+            AnimMeleeAttack3 = "UpperMelee1H3",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMelee",
+            AnimCrouchUpper = "UpperCrouchMelee",
+            AnimIdleUpper = "UpperIdleMelee",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee",
+            AnimKickUpper = "UpperKickMelee",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee",
+            AnimWalkUpper = "UpperWalkMelee",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("CrowbarM");
         weaponVisuals.SetDrawnTexture("CrowbarD");
         weaponVisuals.SetSheathedTexture("CrowbarS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee1H1";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee1H2";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee1H3";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMelee";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Crowbar";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

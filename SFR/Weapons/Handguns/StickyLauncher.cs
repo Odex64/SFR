@@ -43,38 +43,36 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
             AI_DamageOutput = DamageOutputType.None,
             CanRefilAtAmmoStashes = true,
             AI_MaxRange = 0f,
-            BreakDebris =
-            [
-                "ItemDebrisWood00",
-                "ItemDebrisShiny00",
-                "MetalDebris00C"
-            ],
-            SpecialAmmoBulletsRefill = 8
+            BreakDebris = ["ItemDebrisWood00", "ItemDebrisShiny00", "MetalDebris00C"],
+            SpecialAmmoBulletsRefill = 8,
+            VisualText = "Sticky Launcher"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerRifle",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireHandgun",
+            AnimFireArmLength = 7f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimReloadUpper = "UpperReload",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("StickyLauncherM");
         weaponVisuals.SetDrawnTexture("StickyLauncherD");
         weaponVisuals.SetSheathedTexture("StickyLauncherS");
         weaponVisuals.SetThrowingTexture("StickyLauncherThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        weaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        weaponVisuals.AnimKickUpper = "UpperKickRifle";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerRifle";
-        weaponVisuals.AnimRunUpper = "UpperRunRifle";
-        weaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireHandgun";
-        weaponVisuals.AnimFireArmLength = 7f;
-        weaponVisuals.AnimDraw = "UpperDrawRifle";
-        weaponVisuals.AnimManualAim = "ManualAimRifle";
-        weaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        weaponVisuals.AnimReloadUpper = "UpperReload";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Sticky Launcher";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
         CacheDrawnTextures(["Reload"]);
@@ -116,13 +114,9 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
         _ = args.GameWorld.CreateTile(new(pipe, args.WorldPosition, 0, 1, args.Direction.GetRotatedVector(0.2f * args.Player.LastDirectionX * (1 - args.Direction.Y)) * 9, (float)Globals.Random.NextDouble()));
         _stickies.Add(pipe);
 
-        // if (args.GameWorld.GameOwner == GameOwnerEnum.Server)
-        // {
-        //     GenericData.SendGenericDataToClients(new GenericData(DataType.StickyLauncher, pipe.ObjectID, pipe.GetWorldPosition().X, pipe.GetWorldPosition().Y, pipe.GetAngle()));
-        // }
-
         args.Handled = true;
         args.FireResult = true;
+
         SoundHandler.PlaySound("GLFire", args.Player.GameWorld);
     }
 

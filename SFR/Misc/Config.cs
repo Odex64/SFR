@@ -45,10 +45,7 @@ internal static class Config
         ApplySettings();
     }
 
-    private static void ApplySettings()
-    {
-        Constants.COLORS.MENU_BLUE = MenuBorderColor;
-    }
+    private static void ApplySettings() => Constants.COLORS.MENU_BLUE = MenuBorderColor;
 
     private static void DefaultSettings(string path)
     {

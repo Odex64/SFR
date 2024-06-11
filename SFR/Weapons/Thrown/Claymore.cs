@@ -13,29 +13,33 @@ internal sealed class Claymore : TWeapon
             MaxCarriedTotalThrowables = 4,
             NumberOfThrowables = 2,
             ThrowObjectID = "WpnClaymoreThrown",
-            DrawSoundID = "GrenadeDraw"
+            DrawSoundID = "GrenadeDraw",
+            VisualText = "Claymore"
         };
 
-        TWeaponVisuals weaponVisuals = new();
+        TWeaponVisuals weaponVisuals = new()
+        {
+            AnimDraw = "UpperDrawThrown",
+            AnimManualAim = "ManualAimThrown",
+            AnimManualAimStart = "ManualAimThrownStart",
+            AnimCrouchUpper = "UpperCrouch",
+            AnimIdleUpper = "UpperIdle",
+            AnimJumpKickUpper = "UpperJumpKick",
+            AnimJumpUpper = "UpperJump",
+            AnimJumpUpperFalling = "UpperJumpFalling",
+            AnimKickUpper = "UpperKick",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRun",
+            AnimWalkUpper = "UpperWalk",
+            AnimFullLand = "FullLandThrown",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("ClaymoreM");
         weaponVisuals.SetDrawnTexture("ClaymoreM");
-        weaponVisuals.AnimDraw = "UpperDrawThrown";
-        weaponVisuals.AnimManualAim = "ManualAimThrown";
-        weaponVisuals.AnimManualAimStart = "ManualAimThrownStart";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouch";
-        weaponVisuals.AnimIdleUpper = "UpperIdle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKick";
-        weaponVisuals.AnimJumpUpper = "UpperJump";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFalling";
-        weaponVisuals.AnimKickUpper = "UpperKick";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRun";
-        weaponVisuals.AnimWalkUpper = "UpperWalk";
-        weaponVisuals.AnimFullLand = "FullLandThrown";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Claymore";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         NumberOfThrowablesLeft = Properties.NumberOfThrowables;
     }
 

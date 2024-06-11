@@ -14,11 +14,11 @@ internal class AdrenalineBoost : PItem
         var itemProperties = new PItemProperties(103, "AdrenalineBoost", "ItemAdrenalineBoost", false, WeaponCategory.Supply)
         {
             PickupSoundID = "GetSlomo",
-            ActivateSoundID = ""
+            ActivateSoundID = "",
+            VisualText = "Adrenaline Boost"
         };
 
         var itemVisuals = new PItemVisuals(Textures.GetTexture("AdrenalineBoost"), Textures.GetTexture("AdrenalineBoostD"));
-        itemProperties.VisualText = "Adrenaline Boost";
 
         SetPropertiesAndVisuals(itemProperties, itemVisuals);
     }
@@ -39,7 +39,7 @@ internal class AdrenalineBoost : PItem
         {
             SoundHandler.PlaySound("Syringe", player.Position, player.GameWorld);
             SoundHandler.PlaySound("StrengthBoostStart", player.Position, player.GameWorld);
-            // player.StrengthBoostApply(15000f);
+
             var extendedPlayer = player.GetExtension();
             extendedPlayer.ApplyAdrenalineBoost();
             if (!player.InfiniteAmmo)

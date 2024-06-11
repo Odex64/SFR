@@ -48,31 +48,34 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
                 "CaberDebris1",
                 "CaberDebris2"
             ],
-            AI_DamageOutput = DamageOutputType.High
+            AI_DamageOutput = DamageOutputType.High,
+            VisualText = "Caber"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee",
+            AnimMeleeAttack1 = "UpperMelee1H1",
+            AnimMeleeAttack2 = "UpperMelee1H2",
+            AnimMeleeAttack3 = "UpperMelee1H3",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMelee",
+            AnimCrouchUpper = "UpperCrouchMelee",
+            AnimIdleUpper = "UpperIdleMelee",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee",
+            AnimKickUpper = "UpperKickMelee",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee",
+            AnimWalkUpper = "UpperWalkMelee",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("CaberM");
         weaponVisuals.SetDrawnTexture("CaberD");
         weaponVisuals.SetSheathedTexture("CaberS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee1H1";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee1H2";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee1H3";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMelee";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Caber";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

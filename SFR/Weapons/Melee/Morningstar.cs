@@ -31,33 +31,37 @@ internal sealed class Morningstar : MWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            AI_DamageOutput = DamageOutputType.High
+            AI_DamageOutput = DamageOutputType.High,
+            VisualText = "Morningstar"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee",
+            AnimMeleeAttack1 = "UpperMelee1H1",
+            AnimMeleeAttack2 = "UpperMelee1H2",
+            AnimMeleeAttack3 = "UpperMelee1H3Chain",
+            AnimFullJumpAttack = "FullJumpAttackMeleeChain",
+            AnimDraw = "UpperDrawMelee",
+            AnimCrouchUpper = "UpperCrouchMelee",
+            AnimIdleUpper = "UpperIdleMelee",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee",
+            AnimKickUpper = "UpperKickMelee",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee",
+            AnimWalkUpper = "UpperWalkMelee",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("MorningstarM");
         weaponVisuals.SetDrawnTexture("MorningstarD");
         weaponVisuals.SetSheathedTexture("MorningstarS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee1H1";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee1H2";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee1H3Chain";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMeleeChain";
-        weaponVisuals.AnimDraw = "UpperDrawMelee";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Morningstar";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Extended", "Curved"]);
     }
 

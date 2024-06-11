@@ -14,29 +14,33 @@ internal sealed class Snowball : TWeapon
             NumberOfThrowables = 6,
             ThrowObjectID = "WpnSnowballThrown",
             ThrowDeadlineTimer = 2550f,
-            DrawSoundID = "GrenadeDraw"
+            DrawSoundID = "GrenadeDraw",
+            VisualText = "Snowball"
         };
 
-        TWeaponVisuals weaponVisuals = new();
+        TWeaponVisuals weaponVisuals = new()
+        {
+            AnimDraw = "UpperDrawThrown",
+            AnimManualAim = "ManualAimThrown",
+            AnimManualAimStart = "ManualAimThrownStart",
+            AnimCrouchUpper = "UpperCrouch",
+            AnimIdleUpper = "UpperIdle",
+            AnimJumpKickUpper = "UpperJumpKick",
+            AnimJumpUpper = "UpperJump",
+            AnimJumpUpperFalling = "UpperJumpFalling",
+            AnimKickUpper = "UpperKick",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRun",
+            AnimWalkUpper = "UpperWalk",
+            AnimFullLand = "FullLandThrown",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("SnowballM");
         weaponVisuals.SetDrawnTexture("SnowballT");
-        weaponVisuals.AnimDraw = "UpperDrawThrown";
-        weaponVisuals.AnimManualAim = "ManualAimThrown";
-        weaponVisuals.AnimManualAimStart = "ManualAimThrownStart";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouch";
-        weaponVisuals.AnimIdleUpper = "UpperIdle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKick";
-        weaponVisuals.AnimJumpUpper = "UpperJump";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFalling";
-        weaponVisuals.AnimKickUpper = "UpperKick";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRun";
-        weaponVisuals.AnimWalkUpper = "UpperWalk";
-        weaponVisuals.AnimFullLand = "FullLandThrown";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Snowball";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         NumberOfThrowablesLeft = Properties.NumberOfThrowables;
     }
 
@@ -62,9 +66,8 @@ internal sealed class Snowball : TWeapon
 
     public override void OnDeadline(TWeaponOnDeadlineArgs e) => e.Action = TWeaponDeadlineAction.Drop;
 
-    public override TWeapon Copy() =>
-        new Snowball(Properties, Visuals)
-        {
-            NumberOfThrowablesLeft = NumberOfThrowablesLeft
-        };
+    public override TWeapon Copy() => new Snowball(Properties, Visuals)
+    {
+        NumberOfThrowablesLeft = NumberOfThrowablesLeft
+    };
 }

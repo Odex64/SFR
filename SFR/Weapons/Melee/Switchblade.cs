@@ -32,34 +32,38 @@ internal sealed class Switchblade : MWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = ["MetalDebris00A", "KnifeDebris1"]
+            BreakDebris = ["MetalDebris00A", "KnifeDebris1"],
+            VisualText = "Switchblade"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee",
+            AnimMeleeAttack1 = "UpperMelee1H1",
+            AnimMeleeAttack2 = "UpperMelee1H2",
+            AnimMeleeAttack3 = "UpperMelee1H3",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMelee",
+            AnimCrouchUpper = "UpperCrouch",
+            AnimIdleUpper = "UpperIdle",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJump",
+            AnimJumpUpperFalling = "UpperJumpFalling",
+            AnimKickUpper = "UpperKick",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRun",
+            AnimWalkUpper = "UpperWalk",
+            AnimFullLand = "FullLand",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("SwitchbladeM");
         weaponVisuals.SetDrawnTexture("SwitchbladeD");
         weaponVisuals.SetSheathedTexture("SwitchbladeS");
         weaponVisuals.SetThrowingTexture("SwitchbladeThrowing");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee1H1";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee1H2";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee1H3";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMelee";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouch";
-        weaponVisuals.AnimIdleUpper = "UpperIdle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJump";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFalling";
-        weaponVisuals.AnimKickUpper = "UpperKick";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRun";
-        weaponVisuals.AnimWalkUpper = "UpperWalk";
-        weaponVisuals.AnimFullLand = "FullLand";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Switchblade";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Open"]);
     }
 

@@ -13,11 +13,11 @@ internal sealed class HealthPouch : PItem
         PItemProperties itemProperties = new(92, "Health_Pouch", "ItemHealthPouch", false, WeaponCategory.Supply)
         {
             PickupSoundID = "GetSlomo",
-            ActivateSoundID = "GetHealthSmall"
+            ActivateSoundID = "GetHealthSmall",
+            VisualText = "Health Pouch"
         };
 
         PItemVisuals visuals = new(Textures.GetTexture("HealthPouch"));
-        itemProperties.VisualText = "Health Pouch";
 
         SetPropertiesAndVisuals(itemProperties, visuals);
     }

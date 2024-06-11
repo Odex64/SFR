@@ -56,6 +56,7 @@ internal sealed class RiotShield : MWeapon
             AnimFullLand = "FullLandMelee",
             AnimToggleThrowingMode = "UpperToggleThrowing",
         };
+
         weaponVisuals.SetModelTexture("RiotShieldM");
         weaponVisuals.SetDrawnTexture("RiotShieldD");
         weaponVisuals.SetSheathedTexture("RiotShieldS");

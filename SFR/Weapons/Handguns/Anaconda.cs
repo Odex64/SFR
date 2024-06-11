@@ -33,35 +33,41 @@ internal sealed class Anaconda : RWeapon
             CursorAimOffset = new(0f, 3.5f),
             LazerPosition = new(6f, -0.5f),
             AimStartSoundID = "PistolAim",
-            AI_DamageOutput = DamageOutputType.Low,
+            AI_DamageOutput = DamageOutputType.High,
             BreakDebris = [],
-            SpecialAmmoBulletsRefill = 10
+            SpecialAmmoBulletsRefill = 10,
+            VisualText = "Anaconda"
         };
-        RWeaponVisuals weaponVisuals = new();
+
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleHandgun",
+            AnimCrouchUpper = "UpperCrouchHandgun",
+            AnimJumpKickUpper = "UpperJumpKickHandgun",
+            AnimJumpUpper = "UpperJumpHandgun",
+            AnimJumpUpperFalling = "UpperJumpFallingHandgun",
+            AnimKickUpper = "UpperKickHandgun",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunHandgun",
+            AnimWalkUpper = "UpperWalkHandgun",
+            AnimUpperHipfire = "UpperHipfireHandgun",
+            AnimFireArmLength = 7f,
+            AnimDraw = "UpperDrawMagnum",
+            AnimManualAim = "ManualAimHandgun",
+            AnimManualAimStart = "ManualAimHandgunStart",
+            AnimReloadUpper = "UpperReload",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("AnacondaM");
         weaponVisuals.SetDrawnTexture("AnacondaD");
         weaponVisuals.SetThrowingTexture("AnacondaThrowing");
         weaponVisuals.SetHolsterTexture("AnacondaH");
         weaponVisuals.SetSheathedTexture("AnacondaS");
-        weaponVisuals.AnimIdleUpper = "UpperIdleHandgun";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchHandgun";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickHandgun";
-        weaponVisuals.AnimJumpUpper = "UpperJumpHandgun";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingHandgun";
-        weaponVisuals.AnimKickUpper = "UpperKickHandgun";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunHandgun";
-        weaponVisuals.AnimWalkUpper = "UpperWalkHandgun";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireHandgun";
-        weaponVisuals.AnimFireArmLength = 7f;
-        weaponVisuals.AnimDraw = "UpperDrawMagnum";
-        weaponVisuals.AnimManualAim = "ManualAimHandgun";
-        weaponVisuals.AnimManualAimStart = "ManualAimHandgunStart";
-        weaponVisuals.AnimReloadUpper = "UpperReload";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Anaconda";
+
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Reload"]);
     }
 

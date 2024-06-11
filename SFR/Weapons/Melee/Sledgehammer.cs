@@ -51,33 +51,37 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
                 DurabilityLoss = 4f
             },
             BreakDebris = ["SledgehammerDebris1", "WoodDebris00A"],
-            AI_DamageOutput = DamageOutputType.Low
+            AI_DamageOutput = DamageOutputType.Low,
+            VisualText = "Sledgehammer"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee2H",
+            AnimMeleeAttack1 = "UpperMelee1H1",
+            AnimMeleeAttack2 = "UpperMelee1H4",
+            AnimMeleeAttack3 = "UpperMelee2H3",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMeleeSheathed",
+            AnimCrouchUpper = "UpperCrouchMelee2H",
+            AnimIdleUpper = "UpperIdleMelee2H",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee2H",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee2H",
+            AnimKickUpper = "UpperKickMelee2H",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee2H",
+            AnimWalkUpper = "UpperWalkMelee2H",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("SledgehammerM");
         weaponVisuals.SetDrawnTexture("SledgehammerD");
         weaponVisuals.SetSheathedTexture("SledgeHammerS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee2H";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee1H1";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee1H4";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee2H3";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMeleeSheathed";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee2H";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee2H";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee2H";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee2H";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee2H";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee2H";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee2H";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Sledgehammer";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Blink"]);
     }
 

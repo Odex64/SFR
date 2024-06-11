@@ -41,32 +41,35 @@ internal sealed class QuadLauncher : RWeapon
                 "MetalDebris00B",
                 "ItemDebrisBazooka00"
             ],
-            SpecialAmmoBulletsRefill = 4
+            SpecialAmmoBulletsRefill = 4,
+            VisualText = "Quad Launcher"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireRifle",
+            AnimFireArmLength = 2f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimFullLand = "FullLandHandgun",
+            AnimReloadUpper = "UpperReloadBazooka",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("QuadLauncherM");
         weaponVisuals.SetDrawnTexture("QuadLauncherD");
         weaponVisuals.SetSheathedTexture("QuadLauncherS");
         weaponVisuals.SetThrowingTexture("QuadLauncherThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        weaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        weaponVisuals.AnimKickUpper = "UpperKickRifle";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunRifle";
-        weaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireRifle";
-        weaponVisuals.AnimFireArmLength = 2f;
-        weaponVisuals.AnimDraw = "UpperDrawRifle";
-        weaponVisuals.AnimManualAim = "ManualAimRifle";
-        weaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimReloadUpper = "UpperReloadBazooka";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Quad Launcher";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

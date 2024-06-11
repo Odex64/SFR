@@ -36,31 +36,34 @@ internal sealed class Blade : MWeapon, ISharpMelee
                 "MetalDebris00A",
                 "BladeDebris1"
             ],
-            AI_DamageOutput = DamageOutputType.Standard
+            AI_DamageOutput = DamageOutputType.Standard,
+            VisualText = "Blade"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee2H",
+            AnimMeleeAttack1 = "UpperMelee2H1",
+            AnimMeleeAttack2 = "UpperMelee2H2",
+            AnimMeleeAttack3 = "UpperMelee2H3",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMeleeSheathed",
+            AnimCrouchUpper = "UpperCrouchMelee2H",
+            AnimIdleUpper = "UpperIdleMelee2H",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee2H",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee2H",
+            AnimKickUpper = "UpperKickMelee2H",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee2H",
+            AnimWalkUpper = "UpperWalkMelee2H",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("BladeM");
         weaponVisuals.SetDrawnTexture("BladeD");
         weaponVisuals.SetSheathedTexture("BladeS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee2H";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee2H1";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee2H2";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee2H3";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMeleeSheathed";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee2H";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee2H";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee2H";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee2H";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee2H";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee2H";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee2H";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Blade";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

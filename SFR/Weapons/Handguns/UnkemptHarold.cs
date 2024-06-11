@@ -34,32 +34,35 @@ internal sealed class UnkemptHarold : RWeapon
             AI_DamageOutput = DamageOutputType.High,
             AI_HasOneShotPotential = true,
             BreakDebris = ["ItemDebrisShiny01"],
-            SpecialAmmoBulletsRefill = 18
+            SpecialAmmoBulletsRefill = 18,
+            VisualText = "Unkempt Harold"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleHandgun",
+            AnimCrouchUpper = "UpperCrouchHandgun",
+            AnimJumpKickUpper = "UpperJumpKickHandgun",
+            AnimJumpUpper = "UpperJumpHandgun",
+            AnimJumpUpperFalling = "UpperJumpFallingHandgun",
+            AnimKickUpper = "UpperKickHandgun",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunHandgun",
+            AnimWalkUpper = "UpperWalkHandgun",
+            AnimUpperHipfire = "UpperHipfireHandgun",
+            AnimFireArmLength = 7f,
+            AnimDraw = "UpperDrawMagnum",
+            AnimManualAim = "ManualAimHandgun",
+            AnimManualAimStart = "ManualAimHandgunStart",
+            AnimReloadUpper = "UpperReload",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("UnkemptHaroldM");
         weaponVisuals.SetDrawnTexture("UnkemptHaroldD");
         weaponVisuals.SetSheathedTexture("UnkemptHaroldS");
         weaponVisuals.SetThrowingTexture("UnkemptHaroldThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleHandgun";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchHandgun";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickHandgun";
-        weaponVisuals.AnimJumpUpper = "UpperJumpHandgun";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingHandgun";
-        weaponVisuals.AnimKickUpper = "UpperKickHandgun";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunHandgun";
-        weaponVisuals.AnimWalkUpper = "UpperWalkHandgun";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireHandgun";
-        weaponVisuals.AnimFireArmLength = 7f;
-        weaponVisuals.AnimDraw = "UpperDrawMagnum";
-        weaponVisuals.AnimManualAim = "ManualAimHandgun";
-        weaponVisuals.AnimManualAimStart = "ManualAimHandgunStart";
-        weaponVisuals.AnimReloadUpper = "UpperReload";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Unkempt Harold";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

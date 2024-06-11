@@ -42,34 +42,38 @@ internal sealed class Musket : RWeapon
                 "ItemDebrisWood00",
                 "ItemDebrisShiny00"
             ],
-            SpecialAmmoBulletsRefill = 8
+            SpecialAmmoBulletsRefill = 8,
+            VisualText = "Musket"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireRifle",
+            AnimFireArmLength = 2f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimReloadUpper = "UpperReloadBazooka",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("MusketM");
         weaponVisuals.SetDrawnTexture("MusketD");
         weaponVisuals.SetSheathedTexture("MusketS");
         weaponVisuals.SetThrowingTexture("MusketThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        weaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        weaponVisuals.AnimKickUpper = "UpperKickRifle";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunRifle";
-        weaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireRifle";
-        weaponVisuals.AnimFireArmLength = 2f;
-        weaponVisuals.AnimDraw = "UpperDrawRifle";
-        weaponVisuals.AnimManualAim = "ManualAimRifle";
-        weaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        weaponVisuals.AnimReloadUpper = "UpperReloadBazooka";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Musket";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Reload"]);
     }
 
@@ -144,7 +148,6 @@ internal sealed class Musket : RWeapon
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
     {
-        //Show custom animation
         string subAnimation;
         if ((subAnimation = args.SubAnimation) is not null && subAnimation == "UpperReloadBazooka")
         {

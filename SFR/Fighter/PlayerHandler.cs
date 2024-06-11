@@ -313,9 +313,7 @@ internal static class PlayerHandler
     private static bool JumpAttack(Player __instance)
     {
         object currentWeapon = __instance.GetCurrentWeapon();
-        if (currentWeapon is RiotShield) return false;
-
-        return true;
+        return currentWeapon is not RiotShield;
     }
 
     [HarmonyPrefix]
@@ -323,9 +321,7 @@ internal static class PlayerHandler
     private static bool TakeCover(Player __instance)
     {
         object currentWeapon = __instance.GetCurrentWeapon();
-        if (currentWeapon is RiotShield) return false;
-
-        return true;
+        return currentWeapon is not RiotShield;
     }
 
     [HarmonyPrefix]
@@ -333,9 +329,7 @@ internal static class PlayerHandler
     private static bool CanRoll(Player __instance)
     {
         object currentWeapon = __instance.GetCurrentWeapon();
-        if (currentWeapon is RiotShield) return false;
-
-        return true;
+        return currentWeapon is not RiotShield;
     }
 
     [HarmonyPrefix]
@@ -343,9 +337,7 @@ internal static class PlayerHandler
     private static bool CanCrouch(Player __instance)
     {
         object currentWeapon = __instance.GetCurrentWeapon();
-        if (currentWeapon is RiotShield) return false;
-
-        return true;
+        return currentWeapon is not RiotShield;
     }
 
     [HarmonyPrefix]
@@ -353,9 +345,7 @@ internal static class PlayerHandler
     private static bool CanBlock(Player __instance)
     {
         object currentWeapon = __instance.GetCurrentWeapon();
-        if (currentWeapon is RiotShield) return false;
-
-        return true;
+        return currentWeapon is not RiotShield;
     }
 
     [HarmonyPostfix]

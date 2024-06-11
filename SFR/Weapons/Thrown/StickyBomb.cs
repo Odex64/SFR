@@ -11,8 +11,6 @@ namespace SFR.Weapons.Thrown;
 
 internal sealed class StickyBomb : TWeapon
 {
-    private bool _primed;
-
     internal StickyBomb()
     {
         TWeaponProperties weaponProperties = new(91, "Sticky_Bombs", "WpnStickyBomb", false, WeaponCategory.Supply)
@@ -21,30 +19,33 @@ internal sealed class StickyBomb : TWeapon
             NumberOfThrowables = 2,
             ThrowObjectID = "WpnStickyBombThrown",
             ThrowDeadlineTimer = 2550f,
-            DrawSoundID = "GrenadeDraw"
+            DrawSoundID = "GrenadeDraw",
+            VisualText = "Sticky Bombs"
         };
 
-        TWeaponVisuals weaponVisuals = new();
+        TWeaponVisuals weaponVisuals = new()
+        {
+            AnimDraw = "UpperDrawThrown",
+            AnimManualAim = "ManualAimThrown",
+            AnimManualAimStart = "ManualAimThrownStart",
+            AnimCrouchUpper = "UpperCrouch",
+            AnimIdleUpper = "UpperIdle",
+            AnimJumpKickUpper = "UpperJumpKick",
+            AnimJumpUpper = "UpperJump",
+            AnimJumpUpperFalling = "UpperJumpFalling",
+            AnimKickUpper = "UpperKick",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRun",
+            AnimWalkUpper = "UpperWalk",
+            AnimFullLand = "FullLandThrown",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("StickyBombM");
-        weaponVisuals.SetDrawnTexture("StickyBombM");
-        weaponVisuals.SetThrowingTexture("StickyBombT");
-        weaponVisuals.AnimDraw = "UpperDrawThrown";
-        weaponVisuals.AnimManualAim = "ManualAimThrown";
-        weaponVisuals.AnimManualAimStart = "ManualAimThrownStart";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouch";
-        weaponVisuals.AnimIdleUpper = "UpperIdle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKick";
-        weaponVisuals.AnimJumpUpper = "UpperJump";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFalling";
-        weaponVisuals.AnimKickUpper = "UpperKick";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRun";
-        weaponVisuals.AnimWalkUpper = "UpperWalk";
-        weaponVisuals.AnimFullLand = "FullLandThrown";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Sticky Bombs";
+        weaponVisuals.SetDrawnTexture("StickyBombT");
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         NumberOfThrowablesLeft = Properties.NumberOfThrowables;
     }
 
@@ -54,13 +55,10 @@ internal sealed class StickyBomb : TWeapon
         NumberOfThrowablesLeft = weaponProperties.NumberOfThrowables;
     }
 
-    public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args) => _primed && args.Player is { CurrentThrownWeapon: not null } ? Visuals.Throwing : base.GetDrawnTexture(ref args);
-
     public override void OnBeforeBeginCharge(TWeaponBeforeBeginChargeArgs e) { }
 
     public override void OnThrow(TWeaponOnThrowArgs e)
     {
-        _primed = false;
         if (e.Player.GameOwner != GameOwnerEnum.Server)
         {
             SoundHandler.PlaySound("GrenadeThrow", e.Player.Position, e.Player.GameWorld);
@@ -80,12 +78,7 @@ internal sealed class StickyBomb : TWeapon
             SoundHandler.PlaySound("GrenadeSafe", e.Player.Position, e.Player.GameWorld);
             var worldPosition = e.Player.Position + new Vector2(-(float)e.Player.LastDirectionX * 5f, 7f);
             Vector2 linearVelocity = new(-(float)e.Player.LastDirectionX * 2f, 2f);
-            if (!_primed)
-            {
-                _ = e.Player.GameWorld.CreateLocalTile("StickyBombDebris1", worldPosition, Globals.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity, Globals.Random.NextFloat(-3f, 3f));
-                _ = e.Player.GameWorld.CreateLocalTile("StickyBombDebris1", worldPosition, Globals.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity * 1.5f, Globals.Random.NextFloat(-3f, 3f));
-                _primed = true;
-            }
+            _ = e.Player.GameWorld.CreateLocalTile("WpnGrenadePin", worldPosition, Globals.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity, Globals.Random.NextFloat(-3f, 3f));
         }
     }
 
@@ -100,9 +93,8 @@ internal sealed class StickyBomb : TWeapon
 
     public override void OnDeadline(TWeaponOnDeadlineArgs e) => e.Action = TWeaponDeadlineAction.Drop;
 
-    public override TWeapon Copy() =>
-        new StickyBomb(Properties, Visuals)
-        {
-            NumberOfThrowablesLeft = NumberOfThrowablesLeft
-        };
+    public override TWeapon Copy() => new StickyBomb(Properties, Visuals)
+    {
+        NumberOfThrowablesLeft = NumberOfThrowablesLeft
+    };
 }

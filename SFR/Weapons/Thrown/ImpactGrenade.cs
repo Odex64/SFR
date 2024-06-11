@@ -18,29 +18,33 @@ internal sealed class ImpactGrenade : TWeapon
             NumberOfThrowables = 2,
             ThrowObjectID = "WpnImpactGrenadesThrown",
             ThrowDeadlineTimer = 2550f,
-            DrawSoundID = "GrenadeDraw"
+            DrawSoundID = "GrenadeDraw",
+            VisualText = "Impact Grenades"
         };
 
-        TWeaponVisuals weaponVisuals = new();
+        TWeaponVisuals weaponVisuals = new()
+        {
+            AnimDraw = "UpperDrawThrown",
+            AnimManualAim = "ManualAimThrown",
+            AnimManualAimStart = "ManualAimThrownStart",
+            AnimCrouchUpper = "UpperCrouch",
+            AnimIdleUpper = "UpperIdle",
+            AnimJumpKickUpper = "UpperJumpKick",
+            AnimJumpUpper = "UpperJump",
+            AnimJumpUpperFalling = "UpperJumpFalling",
+            AnimKickUpper = "UpperKick",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRun",
+            AnimWalkUpper = "UpperWalk",
+            AnimFullLand = "FullLandThrown",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("ImpactGrenadeM");
         weaponVisuals.SetDrawnTexture("ImpactGrenadeT");
-        weaponVisuals.AnimDraw = "UpperDrawThrown";
-        weaponVisuals.AnimManualAim = "ManualAimThrown";
-        weaponVisuals.AnimManualAimStart = "ManualAimThrownStart";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouch";
-        weaponVisuals.AnimIdleUpper = "UpperIdle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKick";
-        weaponVisuals.AnimJumpUpper = "UpperJump";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFalling";
-        weaponVisuals.AnimKickUpper = "UpperKick";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRun";
-        weaponVisuals.AnimWalkUpper = "UpperWalk";
-        weaponVisuals.AnimFullLand = "FullLandThrown";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Impact Grenades";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         NumberOfThrowablesLeft = Properties.NumberOfThrowables;
     }
 

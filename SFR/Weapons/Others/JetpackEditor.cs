@@ -15,10 +15,12 @@ internal sealed class JetpackEditor : HItem
     {
         HItemProperties itemProperties = new(105, "Jetpack_Editor", "ItemJetpackEditor", false, WeaponCategory.Supply)
         {
-            GrabSoundID = "GetHealthSmall"
+            GrabSoundID = "GetHealthSmall",
+            VisualText = "Jetpack Editor"
         };
+
         HItemVisuals visuals = new(Textures.GetTexture("Pills"));
-        itemProperties.VisualText = "Jetpack Editor";
+
         Properties = itemProperties;
         Visuals = visuals;
     }

@@ -34,31 +34,34 @@ internal sealed class Poleaxe : MWeapon, ISharpMelee
                 DurabilityLoss = 4f
             },
             BreakDebris = ["MetalDebris00A", "PoleaxeDebris1", "PoleaxeDebris2"],
-            AI_DamageOutput = DamageOutputType.High
+            AI_DamageOutput = DamageOutputType.High,
+            VisualText = "Poleaxe"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee2HVerySlow",
+            AnimMeleeAttack1 = "UpperMelee2H1Slow",
+            AnimMeleeAttack2 = "UpperMelee2H2Slow",
+            AnimMeleeAttack3 = "UpperMelee2H3Slow",
+            AnimFullJumpAttack = "FullJumpAttackMeleeVerySlow",
+            AnimDraw = "UpperDrawMeleeSheathed",
+            AnimCrouchUpper = "UpperCrouchMelee2H",
+            AnimIdleUpper = "UpperIdleMelee2H",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee2H",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee2H",
+            AnimKickUpper = "UpperKickMelee2H",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee2H",
+            AnimWalkUpper = "UpperWalkMelee2H",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("PoleaxeM");
         weaponVisuals.SetDrawnTexture("PoleaxeD");
         weaponVisuals.SetSheathedTexture("PoleaxeS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee2HVerySlow";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee2H1Slow";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee2H2Slow";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee2H3Slow";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMeleeVerySlow";
-        weaponVisuals.AnimDraw = "UpperDrawMeleeSheathed";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee2H";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee2H";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee2H";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee2H";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee2H";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee2H";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee2H";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Poleaxe";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

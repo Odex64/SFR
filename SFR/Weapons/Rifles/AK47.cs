@@ -9,7 +9,7 @@ internal sealed class AK47 : RWeapon
 {
     internal AK47()
     {
-        RWeaponProperties rWeaponProperties = new(107, "AK47", 1, 18, 4, 2, -1, 95, 0, 1, 5, "ShellSmall", 0.15f, new(10f, -2f), "MuzzleFlashM", "TommyGun", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnAK47", false, WeaponCategory.Primary)
+        RWeaponProperties weaponProperties = new(107, "AK47", 1, 18, 4, 2, -1, 95, 0, 1, 5, "ShellSmall", 0.15f, new(10f, -2f), "MuzzleFlashM", "TommyGun", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnAK47", false, WeaponCategory.Primary)
         {
             BurstRoundsToFire = 3,
             BurstCooldown = 70,
@@ -19,32 +19,38 @@ internal sealed class AK47 : RWeapon
             LazerPosition = new(12f, -0.5f),
             AimStartSoundID = "PistolAim",
             BreakDebris = ["MetalDebris00A", "ItemDebrisStockWood00", "ItemDebrisShiny00"],
-            SpecialAmmoBulletsRefill = 35
+            SpecialAmmoBulletsRefill = 35,
+            VisualText = "AK47"
         };
-        RWeaponVisuals rWeaponVisuals = new();
-        rWeaponVisuals.SetModelTexture("AK47M");
-        rWeaponVisuals.SetDrawnTexture("AK47D");
-        rWeaponVisuals.SetSheathedTexture("AK47S");
-        rWeaponVisuals.SetThrowingTexture("AK47Throwing");
-        rWeaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        rWeaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        rWeaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        rWeaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        rWeaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        rWeaponVisuals.AnimKickUpper = "UpperKickRifle";
-        rWeaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        rWeaponVisuals.AnimRunUpper = "UpperRunRifle";
-        rWeaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        rWeaponVisuals.AnimUpperHipfire = "UpperHipfireRifle";
-        rWeaponVisuals.AnimFireArmLength = 2f;
-        rWeaponVisuals.AnimDraw = "UpperDrawRifle";
-        rWeaponVisuals.AnimManualAim = "ManualAimRifle";
-        rWeaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        rWeaponVisuals.AnimReloadUpper = "UpperReload";
-        rWeaponVisuals.AnimFullLand = "FullLandHandgun";
-        rWeaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        rWeaponProperties.VisualText = "AK47";
-        SetPropertiesAndVisuals(rWeaponProperties, rWeaponVisuals);
+
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireRifle",
+            AnimFireArmLength = 2f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimReloadUpper = "UpperReload",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
+        weaponVisuals.SetModelTexture("AK47M");
+        weaponVisuals.SetDrawnTexture("AK47D");
+        weaponVisuals.SetSheathedTexture("AK47S");
+        weaponVisuals.SetThrowingTexture("AK47Throwing");
+
+        SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Reload"]);
     }
 
@@ -52,9 +58,9 @@ internal sealed class AK47 : RWeapon
 
     public override RWeapon Copy()
     {
-        AK47 aK47 = new(Properties, Visuals);
-        aK47.CopyStatsFrom(this);
-        return aK47;
+        AK47 ak47 = new(Properties, Visuals);
+        ak47.CopyStatsFrom(this);
+        return ak47;
     }
 
     public override void OnReloadAnimationEvent(Player player, AnimationEvent animEvent, SubAnimationPlayer subAnim)

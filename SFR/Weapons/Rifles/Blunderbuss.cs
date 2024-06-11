@@ -37,32 +37,35 @@ internal sealed class Blunderbuss : RWeapon
             AI_DamageOutput = DamageOutputType.Standard,
             AI_GravityArcingEffect = 0.66f,
             BreakDebris = ["ItemDebrisStockWood00", "ItemDebrisWood00", "ItemDebrisShiny00"],
-            SpecialAmmoBulletsRefill = 4
+            SpecialAmmoBulletsRefill = 4,
+            VisualText = "Blunderbuss"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireRifle",
+            AnimFireArmLength = 2f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimReloadUpper = "UpperReloadBazooka",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("BlunderbussM");
         weaponVisuals.SetDrawnTexture("BlunderbussD");
         weaponVisuals.SetSheathedTexture("BlunderbussS");
         weaponVisuals.SetThrowingTexture("BlunderbussThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        weaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        weaponVisuals.AnimKickUpper = "UpperKickRifle";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunRifle";
-        weaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireRifle";
-        weaponVisuals.AnimFireArmLength = 2f;
-        weaponVisuals.AnimDraw = "UpperDrawRifle";
-        weaponVisuals.AnimManualAim = "ManualAimRifle";
-        weaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        weaponVisuals.AnimReloadUpper = "UpperReloadBazooka";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Blunderbuss";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

@@ -32,33 +32,36 @@ internal sealed class ParryingDagger : MWeapon
                 DurabilityLoss = 4f
             },
             BreakDebris = ["MetalDebris00A", "ParryingdaggerDebris1"],
-            AI_DamageOutput = DamageOutputType.Low
+            AI_DamageOutput = DamageOutputType.Low,
+            VisualText = "Parrying Dagger"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMeleeFast",
+            AnimMeleeAttack1 = "UpperMelee1H1Fast",
+            AnimMeleeAttack2 = "UpperMelee1H2Fast",
+            AnimMeleeAttack3 = "UpperMelee1H3Fast",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMeleeSheathed",
+            AnimCrouchUpper = "UpperCrouchMelee",
+            AnimIdleUpper = "UpperIdleMelee",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee",
+            AnimKickUpper = "UpperKickMelee",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee",
+            AnimWalkUpper = "UpperWalkMelee",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("ParryingdaggerM");
         weaponVisuals.SetDrawnTexture("ParryingdaggerD");
         weaponVisuals.SetSheathedTexture("ParryingdaggerS");
         weaponVisuals.SetHolsterTexture("ParryingdaggerH");
         weaponVisuals.SetThrowingTexture("ParryingdaggerThrowing");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMeleeFast";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee1H1Fast";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee1H2Fast";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee1H3Fast";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMeleeSheathed";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Parrying Dagger";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

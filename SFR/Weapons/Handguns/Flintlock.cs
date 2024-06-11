@@ -19,33 +19,37 @@ internal sealed class Flintlock : RWeapon
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.High,
             BreakDebris = ["MetalDebris00A"],
-            SpecialAmmoBulletsRefill = 3
+            SpecialAmmoBulletsRefill = 3,
+            VisualText = "Flintlock"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleHandgun",
+            AnimCrouchUpper = "UpperCrouchHandgun",
+            AnimJumpKickUpper = "UpperJumpKickHandgun",
+            AnimJumpUpper = "UpperJumpHandgun",
+            AnimJumpUpperFalling = "UpperJumpFallingHandgun",
+            AnimKickUpper = "UpperKickHandgun",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunHandgun",
+            AnimWalkUpper = "UpperWalkHandgun",
+            AnimUpperHipfire = "UpperHipfireHandgun",
+            AnimFireArmLength = 7f,
+            AnimDraw = "UpperDrawMagnum",
+            AnimManualAim = "ManualAimHandgun",
+            AnimManualAimStart = "ManualAimHandgunStart",
+            AnimReloadUpper = "UpperReloadBazooka",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("FlintlockM");
         weaponVisuals.SetDrawnTexture("FlintlockD");
         weaponVisuals.SetThrowingTexture("FlintlockThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleHandgun";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchHandgun";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickHandgun";
-        weaponVisuals.AnimJumpUpper = "UpperJumpHandgun";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingHandgun";
-        weaponVisuals.AnimKickUpper = "UpperKickHandgun";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunHandgun";
-        weaponVisuals.AnimWalkUpper = "UpperWalkHandgun";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireHandgun";
-        weaponVisuals.AnimFireArmLength = 7f;
-        weaponVisuals.AnimDraw = "UpperDrawMagnum";
-        weaponVisuals.AnimManualAim = "ManualAimHandgun";
-        weaponVisuals.AnimManualAimStart = "ManualAimHandgunStart";
-        weaponVisuals.AnimReloadUpper = "UpperReloadBazooka";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Flintlock";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["Reload"]);
     }
 

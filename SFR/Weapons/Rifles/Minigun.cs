@@ -12,13 +12,10 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
     private const float _afterFireThreshold = 1000;
 
-    // private bool _clientRevUp;
     private string _revState;
     private int _revUpCurrent;
 
     private float _soundTimeStamp;
-
-    // private bool _synced;
     private float _timeStamp;
 
     internal Minigun()
@@ -36,34 +33,38 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
             SpecialAmmoBulletsRefill = 200,
             AI_DamageOutput = DamageOutputType.High,
             AI_EffectiveRange = 80,
-            AI_MaxRange = 200
+            AI_MaxRange = 200,
+            VisualText = "Minigun"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireRifle",
+            AnimFireArmLength = 2f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimReloadUpper = "UpperReload",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("MinigunM");
         weaponVisuals.SetDrawnTexture("MinigunD");
         weaponVisuals.SetSheathedTexture("MinigunS");
         weaponVisuals.SetThrowingTexture("MinigunThrowing");
-        weaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        weaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        weaponVisuals.AnimKickUpper = "UpperKickRifle";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunRifle";
-        weaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireRifle";
-        weaponVisuals.AnimFireArmLength = 2f;
-        weaponVisuals.AnimDraw = "UpperDrawRifle";
-        weaponVisuals.AnimManualAim = "ManualAimRifle";
-        weaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        weaponVisuals.AnimReloadUpper = "UpperReload";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Minigun";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         CacheDrawnTextures(["F"]);
     }
 
@@ -160,21 +161,10 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
             _revUpCurrent = 0;
         }
 
-        // _synced = false;
-        // GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.PlayerExt.ObjectID, "SYNC_MINIGUN_UNREV"));
-        // args.PlayerExt.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.PlayerExt.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_UNREV"));
         if (_revUpCurrent >= _revUpRounds)
         {
-            // if (!_synced)
-            // {
-            //     _synced = true;
-            //     GenericData.SendGenericDataToClients(new GenericData(DataType.Minigun,new SyncFlags[] { }, args.PlayerExt.ObjectID, "SYNC_MINIGUN_REVUP"));
-            // args.PlayerExt.ObjectData.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, args.PlayerExt.GameWorld.ElapsedTotalGameTime, "SYNC_MINIGUN_REVUP"));
-            // }
-
             Properties.MuzzleEffectTextureID = "MuzzleFlashL";
             SoundHandler.PlaySound("M60", args.Player.GameWorld);
-            base.BeforeCreateProjectile(args);
             _revUpCurrent++;
             _revState = "MinigunSpin";
         }
@@ -203,11 +193,6 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         {
             base.OnRecoilEvent(player);
         }
-
-        // if (player.GameOwner == GameOwnerEnum.Client && _clientRevUp)
-        // {
-        //     base.OnRecoilEvent(player);
-        // }
     }
 
     public override Texture2D GetDrawnTexture(ref GetDrawnTextureArgs args)
@@ -222,9 +207,4 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
         return base.GetDrawnTexture(ref args);
     }
-
-    // internal void ClientSyncRev(bool value)
-    // {
-    //     _clientRevUp = value;
-    // }
 }

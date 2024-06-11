@@ -15,10 +15,12 @@ internal sealed class Jetpack : HItem
     {
         HItemProperties itemProperties = new(104, "Jetpack", "ItemJetpack", false, WeaponCategory.Supply)
         {
-            GrabSoundID = "GetHealthSmall"
+            GrabSoundID = "GetHealthSmall",
+            VisualText = "Jetpack"
         };
+
         HItemVisuals visuals = new(Textures.GetTexture("Pills"));
-        itemProperties.VisualText = "Jetpack";
+
         Properties = itemProperties;
         Visuals = visuals;
     }

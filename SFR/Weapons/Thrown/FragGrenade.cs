@@ -18,29 +18,33 @@ internal sealed class FragGrenade : TWeapon
             NumberOfThrowables = 3,
             ThrowObjectID = "WpnFragGrenadesThrown",
             ThrowDeadlineTimer = 2550f,
-            DrawSoundID = "GrenadeDraw"
+            DrawSoundID = "GrenadeDraw",
+            VisualText = "Frag Grenades"
         };
 
-        TWeaponVisuals weaponVisuals = new();
+        TWeaponVisuals weaponVisuals = new()
+        {
+            AnimDraw = "UpperDrawThrown",
+            AnimManualAim = "ManualAimThrown",
+            AnimManualAimStart = "ManualAimThrownStart",
+            AnimCrouchUpper = "UpperCrouch",
+            AnimIdleUpper = "UpperIdle",
+            AnimJumpKickUpper = "UpperJumpKick",
+            AnimJumpUpper = "UpperJump",
+            AnimJumpUpperFalling = "UpperJumpFalling",
+            AnimKickUpper = "UpperKick",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRun",
+            AnimWalkUpper = "UpperWalk",
+            AnimFullLand = "FullLandThrown",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("FragGrenadeM");
         weaponVisuals.SetDrawnTexture("FragGrenadeT");
-        weaponVisuals.AnimDraw = "UpperDrawThrown";
-        weaponVisuals.AnimManualAim = "ManualAimThrown";
-        weaponVisuals.AnimManualAimStart = "ManualAimThrownStart";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouch";
-        weaponVisuals.AnimIdleUpper = "UpperIdle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKick";
-        weaponVisuals.AnimJumpUpper = "UpperJump";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFalling";
-        weaponVisuals.AnimKickUpper = "UpperKick";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRun";
-        weaponVisuals.AnimWalkUpper = "UpperWalk";
-        weaponVisuals.AnimFullLand = "FullLandThrown";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Frag Grenades";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
+
         NumberOfThrowablesLeft = Properties.NumberOfThrowables;
     }
 

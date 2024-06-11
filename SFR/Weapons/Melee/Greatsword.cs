@@ -35,31 +35,34 @@ internal sealed class Greatsword : MWeapon, ISharpMelee
                 DurabilityLoss = 4f
             },
             BreakDebris = ["MetalDebris00A", "GreatswordDebris1"],
-            AI_DamageOutput = DamageOutputType.High
+            AI_DamageOutput = DamageOutputType.High,
+            VisualText = "Greatsword"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee2HVerySlow",
+            AnimMeleeAttack1 = "UpperMelee2H1VerySlow",
+            AnimMeleeAttack2 = "UpperMelee2H2VerySlow",
+            AnimMeleeAttack3 = "UpperMelee2H3VerySlow",
+            AnimFullJumpAttack = "FullJumpAttackMeleeVerySlow",
+            AnimDraw = "UpperDrawMeleeSheathed",
+            AnimCrouchUpper = "UpperCrouchMelee2H",
+            AnimIdleUpper = "UpperIdleMelee2H",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee2H",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee2H",
+            AnimKickUpper = "UpperKickMelee2H",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee2H",
+            AnimWalkUpper = "UpperWalkMelee2H",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("GreatswordM");
         weaponVisuals.SetDrawnTexture("GreatswordD");
         weaponVisuals.SetSheathedTexture("GreatswordS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee2HVerySlow";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee2H1VerySlow";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee2H2VerySlow";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee2H3VerySlow";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMeleeVerySlow";
-        weaponVisuals.AnimDraw = "UpperDrawMeleeSheathed";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee2H";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee2H";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee2H";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee2H";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee2H";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee2H";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee2H";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Greatsword";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

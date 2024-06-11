@@ -70,10 +70,6 @@ internal sealed class ObjectClaymoreThrown : ObjectData
         _ = Properties.Add(ObjectPropertyID.Mine_Status);
     }
 
-    private float GetDudChance() => (float)Properties.Get(ObjectPropertyID.Mine_DudChance).Value;
-
-    private void SetDudChance(float value) => Properties.Get(ObjectPropertyID.Mine_DudChance).Value = value;
-
     public override void PropertyValueChanged(ObjectPropertyInstance propertyChanged)
     {
         if (propertyChanged.Base.PropertyID == 212)
@@ -202,7 +198,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
                             _explosionTimer -= ms;
                             if (_explosionTimer <= 0f)
                             {
-                                if (Globals.Random.NextFloat() < GetDudChance())
+                                if (Globals.Random.NextFloat() < (float)Properties.Get(ObjectPropertyID.Mine_DudChance).Value)
                                 {
                                     EffectHandler.PlayEffect("GR_D", GetWorldPosition(), GameWorld);
                                     SoundHandler.PlaySound("GrenadeDud", GameWorld);

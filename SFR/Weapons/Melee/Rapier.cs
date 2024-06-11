@@ -38,31 +38,34 @@ internal sealed class Rapier : MWeapon
                 DeflectType = DeflectBulletType.Deflect,
                 DurabilityLoss = 4f
             },
-            BreakDebris = ["MetalDebris00A", "RapierDebris1"]
+            BreakDebris = ["MetalDebris00A", "RapierDebris1"],
+            VisualText = "Rapier"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee",
+            AnimMeleeAttack1 = "UpperMelee1H2",
+            AnimMeleeAttack2 = "UpperMelee2H2",
+            AnimMeleeAttack3 = "UpperMelee1H3",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMeleeSheathed",
+            AnimCrouchUpper = "UpperCrouchMelee",
+            AnimIdleUpper = "UpperIdleMelee",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee",
+            AnimKickUpper = "UpperKickMelee",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee",
+            AnimWalkUpper = "UpperWalkMelee",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("RapierM");
         weaponVisuals.SetDrawnTexture("RapierD");
         weaponVisuals.SetSheathedTexture("RapierS");
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee1H2";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee2H2";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee1H3";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMeleeSheathed";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Rapier";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }
@@ -118,8 +121,6 @@ internal sealed class Rapier : MWeapon
             _lungeDone = false;
             _lungeTimer = 0f;
         }
-
-        base.CustomHandlingPostUpdate(player, totalMs);
     }
 
     public override bool CustomHandlingOnAttackKey(Player player, bool onKeyEvent)
@@ -133,7 +134,6 @@ internal sealed class Rapier : MWeapon
             }
         }
 
-        _ = base.CustomHandlingOnAttackKey(player, onKeyEvent);
         return false;
     }
 }

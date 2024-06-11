@@ -32,34 +32,33 @@ internal sealed class Broom : MWeapon
                 DeflectType = DeflectBulletType.Absorb,
                 DurabilityLoss = 70f
             },
-            BreakDebris =
-            [
-                "CueStick00Debris"
-            ]
+            BreakDebris = ["CueStick00Debris"],
+            VisualText = "Broom"
         };
 
-        MWeaponVisuals weaponVisuals = new();
+        MWeaponVisuals weaponVisuals = new()
+        {
+            AnimBlockUpper = "UpperBlockMelee2H",
+            AnimMeleeAttack1 = "UpperMelee2H1",
+            AnimMeleeAttack2 = "UpperMelee2H2",
+            AnimMeleeAttack3 = "UpperMelee2H3",
+            AnimFullJumpAttack = "FullJumpAttackMelee",
+            AnimDraw = "UpperDrawMelee",
+            AnimCrouchUpper = "UpperCrouchMelee2H",
+            AnimIdleUpper = "UpperIdleMelee2H",
+            AnimJumpKickUpper = "UpperJumpKickMelee",
+            AnimJumpUpper = "UpperJumpMelee2H",
+            AnimJumpUpperFalling = "UpperJumpFallingMelee2H",
+            AnimKickUpper = "UpperKickMelee2H",
+            AnimStaggerUpper = "UpperStagger",
+            AnimRunUpper = "UpperRunMelee2H",
+            AnimWalkUpper = "UpperWalkMelee2H",
+            AnimFullLand = "FullLandMelee",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("Broom00");
         weaponVisuals.SetDrawnTexture("BroomD");
-        weaponVisuals.SetSheathedTexture(string.Empty);
-        weaponVisuals.AnimBlockUpper = "UpperBlockMelee2H";
-        weaponVisuals.AnimMeleeAttack1 = "UpperMelee2H1";
-        weaponVisuals.AnimMeleeAttack2 = "UpperMelee2H2";
-        weaponVisuals.AnimMeleeAttack3 = "UpperMelee2H3";
-        weaponVisuals.AnimFullJumpAttack = "FullJumpAttackMelee";
-        weaponVisuals.AnimDraw = "UpperDrawMelee";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchMelee2H";
-        weaponVisuals.AnimIdleUpper = "UpperIdleMelee2H";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickMelee";
-        weaponVisuals.AnimJumpUpper = "UpperJumpMelee2H";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingMelee2H";
-        weaponVisuals.AnimKickUpper = "UpperKickMelee2H";
-        weaponVisuals.AnimStaggerUpper = "UpperStagger";
-        weaponVisuals.AnimRunUpper = "UpperRunMelee2H";
-        weaponVisuals.AnimWalkUpper = "UpperWalkMelee2H";
-        weaponVisuals.AnimFullLand = "FullLandMelee";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Broom";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
     }

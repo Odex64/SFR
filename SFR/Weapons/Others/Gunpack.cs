@@ -15,10 +15,11 @@ internal sealed class Gunpack : HItem
     {
         HItemProperties itemProperties = new(106, "Gunpack", "ItemGunpack", false, WeaponCategory.Supply)
         {
-            GrabSoundID = "GetHealthSmall"
+            GrabSoundID = "GetHealthSmall",
+            VisualText = "Gunpack"
         };
         HItemVisuals visuals = new(Textures.GetTexture("Pills"));
-        itemProperties.VisualText = "Gunpack";
+
         Properties = itemProperties;
         Visuals = visuals;
     }

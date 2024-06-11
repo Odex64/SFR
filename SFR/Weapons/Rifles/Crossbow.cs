@@ -9,8 +9,8 @@ namespace SFR.Weapons.Rifles;
 
 internal sealed class Crossbow : RWeapon
 {
-    private static Texture2D _textureSEmpty;
-    private static Texture2D _textureDrawEmpty;
+    private static readonly Texture2D _textureSEmpty = Textures.GetTexture("CrossbowSEmpty");
+    private static readonly Texture2D _textureDrawEmpty = Textures.GetTexture("CrossbowDDrawBackEmpty");
 
     internal Crossbow()
     {
@@ -30,38 +30,39 @@ internal sealed class Crossbow : RWeapon
             MaxMagsInWeapon = 1,
             MaxCarriedSpareMags = 8,
             StartMags = 8,
-            MaxRoundsInMag = 1
+            MaxRoundsInMag = 1,
+            VisualText = "Crossbow"
         };
 
-        RWeaponVisuals weaponVisuals = new();
+        RWeaponVisuals weaponVisuals = new()
+        {
+            AnimIdleUpper = "UpperIdleRifle",
+            AnimCrouchUpper = "UpperCrouchRifle",
+            AnimJumpKickUpper = "UpperJumpKickRifle",
+            AnimJumpUpper = "UpperJumpRifle",
+            AnimJumpUpperFalling = "UpperJumpFallingRifle",
+            AnimKickUpper = "UpperKickRifle",
+            AnimStaggerUpper = "UpperStaggerHandgun",
+            AnimRunUpper = "UpperRunRifle",
+            AnimWalkUpper = "UpperWalkRifle",
+            AnimUpperHipfire = "UpperHipfireRifle",
+            AnimFireArmLength = 7f,
+            AnimDraw = "UpperDrawRifle",
+            AnimManualAim = "ManualAimRifle",
+            AnimManualAimStart = "ManualAimRifleStart",
+            AnimReloadUpper = "UpperReloadBazooka",
+            AnimFullLand = "FullLandHandgun",
+            AnimToggleThrowingMode = "UpperToggleThrowing"
+        };
+
         weaponVisuals.SetModelTexture("CrossbowM");
         weaponVisuals.SetDrawnTexture("CrossbowD");
         weaponVisuals.SetSheathedTexture("CrossbowS");
         weaponVisuals.SetThrowingTexture("CrossbowT");
-        weaponVisuals.AnimIdleUpper = "UpperIdleRifle";
-        weaponVisuals.AnimCrouchUpper = "UpperCrouchRifle";
-        weaponVisuals.AnimJumpKickUpper = "UpperJumpKickRifle";
-        weaponVisuals.AnimJumpUpper = "UpperJumpRifle";
-        weaponVisuals.AnimJumpUpperFalling = "UpperJumpFallingRifle";
-        weaponVisuals.AnimKickUpper = "UpperKickRifle";
-        weaponVisuals.AnimStaggerUpper = "UpperStaggerHandgun";
-        weaponVisuals.AnimRunUpper = "UpperRunRifle";
-        weaponVisuals.AnimWalkUpper = "UpperWalkRifle";
-        weaponVisuals.AnimUpperHipfire = "UpperHipfireRifle";
-        weaponVisuals.AnimFireArmLength = 7f;
-        weaponVisuals.AnimDraw = "UpperDrawRifle";
-        weaponVisuals.AnimManualAim = "ManualAimRifle";
-        weaponVisuals.AnimManualAimStart = "ManualAimRifleStart";
-        weaponVisuals.AnimReloadUpper = "UpperReloadBazooka";
-        weaponVisuals.AnimFullLand = "FullLandHandgun";
-        weaponVisuals.AnimToggleThrowingMode = "UpperToggleThrowing";
-        weaponProperties.VisualText = "Crossbow";
 
         SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
-        CacheDrawnTextures(["DrawBack", "Reload1", "Reload2"]);
 
-        _textureSEmpty = Textures.GetTexture("CrossbowSEmpty");
-        _textureDrawEmpty = Textures.GetTexture("CrossbowDDrawBackEmpty");
+        CacheDrawnTextures(["DrawBack", "Reload1", "Reload2"]);
     }
 
     private Crossbow(RWeaponProperties weaponProperties, RWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
