@@ -50,6 +50,19 @@ internal static class Tweaks
         return true;
     }
 
+    [HarmonyPrefix]
+    [HarmonyPatch(typeof(Enum), nameof(Enum.IsDefined))]
+    private static bool IsEnumDefined(Type enumType, object value, ref bool __result)
+    {
+        if (enumType == null)
+        {
+            throw new ArgumentNullException("enumType");
+        }
+
+        __result = enumType == typeof(WeaponItem) ? typeof(Database.CustomWeaponItem).IsEnumDefined(value) : enumType.IsEnumDefined(value);
+        return false;
+    }
+
     /// <summary>
     /// This method is used to return an enum of all the new weapons.
     /// This fixed an issue regarding supply crates

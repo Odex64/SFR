@@ -206,6 +206,7 @@ internal static class Database
             { 103, 12 }, // Adrenaline boost
             { 104, 17 }, // Jetpack
             // 105, Jetpack editor
+            {106, 11 }, // Gunpack
             { 107, 12 }, // AK47
             { 108, 10 }, // Scythe
             { 109, 12 } // Anaconda
@@ -297,7 +298,8 @@ internal static class Database
         ParryingDagger,
         Poleaxe,
         Rapier,
-        Sledgehammer = 83,
+        RiotShield,
+        Sledgehammer,
         Switchblade,
         UnkemptHarold,
         StickyLauncher,

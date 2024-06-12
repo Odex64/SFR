@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Security;
-using System.Security.Permissions;
-using System.Security.Policy;
 using HarmonyLib;
 using ScriptEngine;
 
@@ -29,13 +26,15 @@ internal static class Engine
             ApplicationName = "Sandbox",
             DisallowBindingRedirects = false,
             DisallowCodeDownload = true,
-            DisallowPublisherPolicy = true
+            DisallowPublisherPolicy = true,
         };
 
-        PermissionSet permissionSet = new(PermissionState.Unrestricted);
-        var appDomain = AppDomain.CreateDomain("Sandbox", null, info, permissionSet, typeof(Sandbox).Assembly.Evidence.GetHostEvidence<StrongName>());
-        var sandbox = (Sandbox)Activator.CreateInstanceFrom(appDomain, typeof(Sandbox).Assembly.ManifestModule.FullyQualifiedName, typeof(Sandbox).FullName!).Unwrap();
+
+        var appDomain = AppDomain.CreateDomain("Sandbox");
+        var sandbox = (Sandbox)Activator.CreateInstanceFrom(appDomain, typeof(Sandbox).Assembly.ManifestModule.FullyQualifiedName, typeof(Sandbox).FullName).Unwrap();
+
         sandbox.Setup();
+
         _appDomains.Add(sandbox, appDomain);
 
         __result = sandbox;
