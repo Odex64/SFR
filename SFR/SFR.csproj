@@ -1,53 +1,38 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="Current">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{907E970D-7E11-4461-AC55-999E0E6CF42A}</ProjectGuid>
     <OutputType>exe</OutputType>
     <RootNamespace>SFR</RootNamespace>
     <AssemblyName>SFR</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <LangVersion>default</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <StartupObject>SFR.Program</StartupObject>
-  </PropertyGroup>
-  <PropertyGroup>
     <ApplicationIcon>icon.ico</ApplicationIcon>
+    <PostBuildEvent>call "$(ProjectDir)build.bat" $(Configuration)</PostBuildEvent>
+    <LangVersion>latest</LangVersion>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>false</Optimize>
     <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>default</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>false</DebugSymbols>
     <OutputPath>bin\x86\Release\</OutputPath>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>default</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony, Version=2.3.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Lib.Harmony.2.3.3\lib\net472\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony">
+      <HintPath>..\packages\Lib.Harmony.2.3.6\lib\net452\0Harmony.dll</HintPath>
+      <Private>true</Private>
     </Reference>
     <Reference Include="Box2D.XNA">
       <HintPath>..\SFD\Box2D.XNA.dll</HintPath>
       <Private>false</Private>
-    </Reference>
-    <Reference Include="DiscordRPC, Version=1.2.1.24, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DiscordRichPresence.1.2.1.24\lib\net45\DiscordRPC.dll</HintPath>
     </Reference>
     <Reference Include="Lidgren.Network">
       <HintPath>..\SFD\Lidgren.Network.dll</HintPath>
@@ -67,9 +52,6 @@
     </Reference>
     <Reference Include="mscorlib">
       <Private>false</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SFD.GameScriptInterface">
       <HintPath>..\SFD\SFD.GameScriptInterface.dll</HintPath>
@@ -103,13 +85,12 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Bootstrap\AnimationHandler.cs" />
     <Compile Include="Bootstrap\Assets.cs" />
     <Compile Include="API\Engine.cs" />
     <Compile Include="Debug\QuickStartup.cs" />
     <Compile Include="Fighter\AnimHandler.cs" />
     <Compile Include="Fighter\ExtendedPlayer.cs" />
-    <Compile Include="Fighter\ExtendedTeam.cs" />
-    <Compile Include="Fighter\ExtendedModifiers.cs" />
     <Compile Include="Fighter\GadgetHandler.cs" />
     <Compile Include="Fighter\GoreHandler.cs" />
     <Compile Include="Fighter\DevHandler.cs" />
@@ -120,7 +101,6 @@
     <Compile Include="Fighter\Jetpacks\JetpackHandler.cs" />
     <Compile Include="Fighter\Jetpacks\JetpackState.cs" />
     <Compile Include="Fighter\Jetpacks\JetpackType.cs" />
-    <Compile Include="Fighter\ModifiersHandler.cs" />
     <Compile Include="Fighter\NameIconHandler.cs" />
     <Compile Include="Fighter\PlayerHandler.cs" />
     <Compile Include="Fighter\StatusBarHandler.cs" />
@@ -130,7 +110,6 @@
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Helper\ExtendedMath.cs" />
     <Compile Include="Editor\MapToken.cs" />
-    <Compile Include="Misc\Config.cs" />
     <Compile Include="Misc\Tweaks.cs" />
     <Compile Include="Objects\Animal\ObjectAnimal.cs" />
     <Compile Include="Objects\Animal\ObjectFroggy.cs" />
@@ -149,8 +128,6 @@
     <Compile Include="Objects\ObjectSnowballThrown.cs" />
     <Compile Include="Objects\ObjectStickyBombThrown.cs" />
     <Compile Include="Objects\ObjectStickyProjectile.cs" />
-    <Compile Include="OnlineServices\Browser.cs" />
-    <Compile Include="OnlineServices\Host.cs" />
     <Compile Include="Projectiles\Database.cs" />
     <Compile Include="Projectiles\IExtendedProjectile.cs" />
     <Compile Include="Projectiles\ProjectileBarrett.cs" />
@@ -176,7 +153,6 @@
     <Compile Include="Sync\Generic\SyncFlag.cs" />
     <Compile Include="Sync\SyncHandler.cs" />
     <Compile Include="UI\CreditsPanel.cs" />
-    <Compile Include="UI\GameMenu.cs" />
     <Compile Include="UI\MainMenu.cs" />
     <Compile Include="Misc\Globals.cs" />
     <Compile Include="Program.cs" />
@@ -230,8 +206,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="icon.ico" />
   </ItemGroup>
   <ItemGroup>

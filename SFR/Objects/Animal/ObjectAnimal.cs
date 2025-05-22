@@ -37,7 +37,7 @@ internal abstract class ObjectAnimal(ObjectDataStartParams startParams) : Object
             if (GetLinearVelocity().Y is < (float)0.01 and > (float)-0.01)
             {
                 _timeSinceJump += ms;
-                foreach (var player in GameWorld.Players)
+                foreach (Player player in GameWorld.Players)
                 {
                     if (Vector2.Distance(player.Position, GetWorldPosition()) < 32)
                     {

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
@@ -15,7 +16,9 @@ internal sealed class ObjectHead : ObjectGiblet
     private static readonly string[] _disallowedAccessories = ["swing", "armband", "dogtag", "scarf"];
     internal Texture2D ReplaceTexture;
 
-    internal ObjectHead(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectHead(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     public override void SetProperties() => Properties.Add(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
 
@@ -26,10 +29,10 @@ internal sealed class ObjectHead : ObjectGiblet
         {
             if (Properties.Get(290).Value is not null)
             {
-                var targetPlayerProfileInfoObjects = GetObjectsFromProperty<ObjectPlayerProfileInfo>(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
+                List<ObjectPlayerProfileInfo> targetPlayerProfileInfoObjects = GetObjectsFromProperty<ObjectPlayerProfileInfo>(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
                 if (targetPlayerProfileInfoObjects.Count > 0)
                 {
-                    var profile = targetPlayerProfileInfoObjects[0].GetProfile();
+                    Profile profile = targetPlayerProfileInfoObjects[0].GetProfile();
                     Equipment equipment = new();
                     equipment.Equip(profile.EquippedItems[0]);
                     equipment.Equip(profile.EquippedItems[6]);
@@ -51,10 +54,10 @@ internal sealed class ObjectHead : ObjectGiblet
 
     private static Texture2D GetTextureFromEquipment(Equipment equipment)
     {
-        var skin = equipment.m_parts[0][0]?.GetTexture(0);
+        Texture2D skin = equipment.m_parts[0][0]?.Textures[0];
         if (skin is not null)
         {
-            var task = Task.Run(() => equipment.m_parts[0][0]?.GetTexture(0, equipment.GetItemColors(0)));
+            Task<Texture2D> task = Task.Run(() => equipment.m_parts[0][0]?.GetTexture(0, equipment.GetItemColors(0), equipment.GetItemColorsKey(0)));
             if (task.Wait(5))
             {
                 skin = task.Result;
@@ -65,10 +68,10 @@ internal sealed class ObjectHead : ObjectGiblet
             }
         }
 
-        var accessory = equipment.m_parts[6][0]?.GetTexture(0);
+        Texture2D accessory = equipment.m_parts[6][0]?.Textures[0];
         if (accessory is not null)
         {
-            var task1 = Task.Run(() => equipment.m_parts[6][0]?.GetTexture(0, equipment.GetItemColors(6)));
+            Task<Texture2D> task1 = Task.Run(() => equipment.m_parts[6][0]?.GetTexture(0, equipment.GetItemColors(6), equipment.GetItemColorsKey(6)));
             if (task1.Wait(5))
             {
                 accessory = task1.Result;
@@ -79,10 +82,10 @@ internal sealed class ObjectHead : ObjectGiblet
             }
         }
 
-        var head = equipment.m_parts[8][0]?.GetTexture(0);
+        Texture2D head = equipment.m_parts[8][0]?.Textures[0];
         if (head is not null)
         {
-            var task2 = Task.Run(() => equipment.m_parts[8][0]?.GetTexture(0, equipment.GetItemColors(8)));
+            Task<Texture2D> task2 = Task.Run(() => equipment.m_parts[8][0]?.GetTexture(0, equipment.GetItemColors(8), equipment.GetItemColorsKey(8)));
             if (task2.Wait(5))
             {
                 head = task2.Result;
@@ -123,21 +126,21 @@ internal sealed class ObjectHead : ObjectGiblet
 
         // Get Colors
         Texture2D texture = new(skin?.GraphicsDevice, 16, 16);
-        var data = new Color[16 * 16];
+        Color[] data = new Color[16 * 16];
         texture.GetData(data);
-        var skinData = new Color[16 * 16];
+        Color[] skinData = new Color[16 * 16];
         skin?.GetData(skinData);
 
-        var accData = new Color[16 * 16];
+        Color[] accData = new Color[16 * 16];
         accessory?.GetData(accData);
 
-        var headData = new Color[16 * 16];
+        Color[] headData = new Color[16 * 16];
         head?.GetData(headData);
 
         // Draw
         for (int i = 0; i < data.Length; i++)
         {
-            var color = Color.Transparent;
+            Color color = Color.Transparent;
             if (skin is not null && skinData[i].A == 255)
             {
                 color = skinData[i];
@@ -166,7 +169,7 @@ internal sealed class ObjectHead : ObjectGiblet
         {
             Texture = ReplaceTexture;
             ClearDecals();
-            AddDecal(new(ReplaceTexture));
+            AddDecal(new ObjectDecal(ReplaceTexture));
         }
         else
         {
@@ -201,11 +204,11 @@ internal sealed class ObjectHead : ObjectGiblet
     {
         Equipment equipment = new();
         string[] fullItems = str.Split('|');
-        var skin = Items.GetItem(fullItems[0].Split(':')[0]);
+        Item skin = Items.GetItem(fullItems[0].Split(':')[0]);
         string[] skinColors = fullItems[0].Split(':')[1].Split(',');
-        var accessory = Items.GetItem(fullItems[1].Split(':')[0]);
+        Item accessory = Items.GetItem(fullItems[1].Split(':')[0]);
         string[] accColors = fullItems[1].Split(':')[1].Split(',');
-        var head = Items.GetItem(fullItems[2].Split(':')[0]);
+        Item head = Items.GetItem(fullItems[2].Split(':')[0]);
         string[] headColors = fullItems[2].Split(':')[1].Split(',');
         equipment.Equip(skin);
         equipment.Equip(accessory);
@@ -218,10 +221,10 @@ internal sealed class ObjectHead : ObjectGiblet
 
     public override void EditDrawExtraData(SpriteBatch spriteBatch)
     {
-        var targetPlayerProfileInfoObjects = GetObjectsFromProperty<ObjectPlayerProfileInfo>(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
+        List<ObjectPlayerProfileInfo> targetPlayerProfileInfoObjects = GetObjectsFromProperty<ObjectPlayerProfileInfo>(ObjectPropertyID.ScriptPlayerSpawnProfileInfoTarget);
         if (targetPlayerProfileInfoObjects is { Count: > 0 })
         {
-            foreach (var objectPlayerProfileInfo in targetPlayerProfileInfoObjects)
+            foreach (ObjectPlayerProfileInfo objectPlayerProfileInfo in targetPlayerProfileInfoObjects)
             {
                 GameWorld.DrawEditArrowLine(spriteBatch, this, objectPlayerProfileInfo, Color.White, 1.5f);
                 GameWorld.EditHighlightObjectsOnce.Add(objectPlayerProfileInfo);

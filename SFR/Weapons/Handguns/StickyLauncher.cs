@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
@@ -31,14 +32,14 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
             ShellID = "",
             AccuracyDeflection = 0.05f,
             ProjectileID = -1,
-            MuzzlePosition = new(8f, -2f),
+            MuzzlePosition = new Vector2(8f, -2f),
             MuzzleEffectTextureID = "MuzzleFlashS",
             BlastSoundID = "",
             DrawSoundID = "GLauncherDraw",
             GrabAmmoSoundID = "GLauncherReload",
             OutOfAmmoSoundID = "OutOfAmmoHeavy",
-            CursorAimOffset = new(0f, 3.5f),
-            LazerPosition = new(10f, -0.5f),
+            CursorAimOffset = new Vector2(0f, 3.5f),
+            LazerPosition = new Vector2(10f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.None,
             CanRefilAtAmmoStashes = true,
@@ -84,7 +85,7 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
     {
         if (player.VirtualKeyboard.PressingKey(14))
         {
-            foreach (var s in GetRealStickies())
+            foreach (ObjectStickyProjectile s in GetRealStickies())
             {
                 if (s.TimeStamp < player.GameWorld.ElapsedTotalGameTime - 600)
                 {
@@ -94,13 +95,21 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
         }
     }
 
-    public void GetDealtDamage(Player player, float damage) { }
+    public void GetDealtDamage(Player player, float damage)
+    {
+    }
 
-    public void OnHit(Player player, Player target) { }
+    public void OnHit(Player player, Player target)
+    {
+    }
 
-    public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj) { }
+    public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj)
+    {
+    }
 
-    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
+    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms)
+    {
+    }
 
     public override void GrabAmmo(Player player)
     {
@@ -110,8 +119,8 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
 
     public override void BeforeCreateProjectile(BeforeCreateProjectileArgs args)
     {
-        var pipe = (ObjectStickyProjectile)ObjectData.CreateNew(new(args.GameWorld.IDCounter.NextID(), 0, 0, "ProjectileSticky", args.GameWorld.GameOwner));
-        _ = args.GameWorld.CreateTile(new(pipe, args.WorldPosition, 0, 1, args.Direction.GetRotatedVector(0.2f * args.Player.LastDirectionX * (1 - args.Direction.Y)) * 9, (float)Globals.Random.NextDouble()));
+        ObjectStickyProjectile pipe = (ObjectStickyProjectile)ObjectData.CreateNew(new ObjectDataStartParams(args.GameWorld.IDCounter.NextID(), 0, 0, "ProjectileSticky", args.GameWorld.GameOwner));
+        _ = args.GameWorld.CreateTile(new SpawnObjectInformation(pipe, args.WorldPosition, 0, 1, args.Direction.GetRotatedVector(0.2f * args.Player.LastDirectionX * (1 - args.Direction.Y)) * 9, (float)Globals.Random.NextDouble()));
         _stickies.Add(pipe);
 
         args.Handled = true;
@@ -185,7 +194,7 @@ internal sealed class StickyLauncher : RWeapon, IExtendedWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.6f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.8f;
         linearVelocity.Y *= 0.8f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

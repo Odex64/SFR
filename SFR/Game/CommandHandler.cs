@@ -46,7 +46,7 @@ internal static class CommandHandler
                             _useHostMouse = false;
                         }
 
-                        args.Feedback.Add(new(args.SenderGameUser, "Mouse Control: " + _useHostMouse));
+                        args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "Mouse Control: " + _useHostMouse));
                     }
                 }
 
@@ -71,13 +71,13 @@ internal static class CommandHandler
             if (args.IsCommand("HELP"))
             {
                 Color color = new(159, 255, 64);
-                args.Feedback.Add(new(args.SenderGameUser, "SFR Commands: ", color, args.SenderGameUser));
+                args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "SFR Commands: ", color, args.SenderGameUser));
                 if (args.HostPrivileges)
                 {
 #if DEBUG
                     args.Feedback.Add(new(args.SenderGameUser, "'/DEBUG [INDEX] [VALUE]' debug purposes", color, args.SenderGameUser));
 #endif
-                    args.Feedback.Add(new(args.SenderGameUser, "'/MOUSE [1/0]' Drag stuff with mouse", color, args.SenderGameUser));
+                    args.Feedback.Add(new ProcessCommandMessage(args.SenderGameUser, "'/MOUSE [1/0]' Drag stuff with mouse", color, args.SenderGameUser));
                 }
             }
         }

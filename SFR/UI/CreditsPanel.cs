@@ -38,7 +38,7 @@ internal sealed class CreditsPanel : Panel
             new MenuItemLabel("NearHuscarl - For his amazing items editor", Align.Center, Color.Gold)
         ];
 
-        Menu menu = new(new(0f, 40f), Width, Height - 40, this, [.. items]);
+        Menu menu = new(new Vector2(0f, 40f), Width, Height - 40, this, [.. items]);
         members.Add(menu);
     }
 

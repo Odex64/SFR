@@ -1,6 +1,5 @@
 ﻿using System;
 using SFD;
-using SFDGameScriptInterface;
 using SFR.Fighter;
 using Vector2 = Microsoft.Xna.Framework.Vector2;
 using WeaponItemType = SFD.Weapons.WeaponItemType;
@@ -24,26 +23,14 @@ internal static class Extensions
 
     internal static ExtendedPlayer GetExtension(this Player player)
     {
-        if (ExtendedPlayer.ExtendedPlayersTable.TryGetValue(player, out var existingExtendedPlayer))
+        if (ExtendedPlayer.ExtendedPlayersTable.TryGetValue(player, out ExtendedPlayer existingExtendedPlayer))
         {
             return existingExtendedPlayer;
         }
 
-        var extendedPlayer = new ExtendedPlayer(player);
+        ExtendedPlayer extendedPlayer = new(player);
         ExtendedPlayer.ExtendedPlayersTable.Add(player, extendedPlayer);
         return extendedPlayer;
-    }
-
-    internal static ExtendedModifiers GetExtension(this PlayerModifiers modifiers)
-    {
-        if (ExtendedModifiers.ExtendedModifiersTable.TryGetValue(modifiers, out var existingExtendedModifiers))
-        {
-            return existingExtendedModifiers;
-        }
-
-        var extendedModifiers = new ExtendedModifiers(modifiers);
-        ExtendedModifiers.ExtendedModifiersTable.Add(modifiers, extendedModifiers);
-        return extendedModifiers;
     }
 
     internal static float NextFloat(this Random random, float minimum, float maximum) => (float)NextDouble(random, minimum, maximum);
@@ -58,7 +45,7 @@ internal static class Extensions
     {
         double cosAngle = Math.Cos(angle);
         double sinAngle = Math.Sin(angle);
-        return new((float)(cosAngle * vector.X - sinAngle * vector.Y), (float)(sinAngle * vector.X + cosAngle * vector.Y));
+        return new Vector2((float)(cosAngle * vector.X - sinAngle * vector.Y), (float)(sinAngle * vector.X + cosAngle * vector.Y));
     }
 
     internal static float GetAngle(this Vector2 vector) => (float)Math.Atan2(vector.Y, vector.X);

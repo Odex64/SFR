@@ -26,8 +26,8 @@ internal sealed class Winchester : RWeapon
             ShellID = "ShellBig",
             AccuracyDeflection = 0.01f,
             ProjectileID = 101,
-            MuzzlePosition = new(11f, -2.5f),
-            CursorAimOffset = new(0f, 2.5f),
+            MuzzlePosition = new Vector2(11f, -2.5f),
+            CursorAimOffset = new Vector2(0f, 2.5f),
             MuzzleEffectTextureID = "MuzzleFlashL",
             BlastSoundID = "Carbine",
             DrawSoundID = "ShotgunDraw",
@@ -35,7 +35,7 @@ internal sealed class Winchester : RWeapon
             OutOfAmmoSoundID = "OutOfAmmoHeavy",
             ClearRoundsOnReloadStart = false,
             ReloadPostCooldown = 650f,
-            LazerPosition = new(13f, -0.5f),
+            LazerPosition = new Vector2(13f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_EffectiveRange = 400f,
             BreakDebris =
@@ -134,7 +134,7 @@ internal sealed class Winchester : RWeapon
                 {
                     if (Properties.ShellID != string.Empty)
                     {
-                        var currentRifleWeapon = player.CurrentRifleWeapon;
+                        RWeapon currentRifleWeapon = player.CurrentRifleWeapon;
                         if (currentRifleWeapon is not null)
                         {
                             if (currentRifleWeapon.CurrentRoundsInWeapon <= 0)
@@ -192,7 +192,7 @@ internal sealed class Winchester : RWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.8f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.85f;
         linearVelocity.Y *= 0.85f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

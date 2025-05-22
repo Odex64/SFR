@@ -15,9 +15,13 @@ internal sealed class ObjectCrossbowBolt : ObjectData
     internal int FilterObjectId = -1;
     internal float Timer;
 
-    internal ObjectCrossbowBolt(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectCrossbowBolt(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
-    public override void Initialize() { }
+    public override void Initialize()
+    {
+    }
 
     public override void UpdateObject(float ms)
     {
@@ -29,16 +33,16 @@ internal sealed class ObjectCrossbowBolt : ObjectData
 
         if (FilterObjectId != -1)
         {
-            Body.GetFixtureByIndex(0).GetFilterData(out var filter);
+            Body.GetFixtureByIndex(0).GetFilterData(out Filter filter);
             filter.bodyIDToIgnore ??= [];
 
             filter.bodyIDToIgnore.Add(FilterObjectId, 1);
             Body.GetFixtureByIndex(0).SetFilterData(ref filter);
 
-            var otherObject = GameWorld.GetObjectDataByID(FilterObjectId);
+            ObjectData otherObject = GameWorld.GetObjectDataByID(FilterObjectId);
             if (otherObject is not null)
             {
-                otherObject.Body.GetFixtureByIndex(0).GetFilterData(out var filter1);
+                otherObject.Body.GetFixtureByIndex(0).GetFilterData(out Filter filter1);
                 filter1.bodyIDToIgnore ??= [];
                 filter1.bodyIDToIgnore.Add(ObjectID, 1);
                 otherObject.Body.GetFixtureByIndex(0).SetFilterData(ref filter1);
@@ -51,8 +55,8 @@ internal sealed class ObjectCrossbowBolt : ObjectData
         {
             if (_boltPlayer is { IsRemoved: false, IsDead: false, Rolling: false, Falling: false, Diving: false })
             {
-                var pos = Vector2.Zero;
-                var the = _boltPlayer.Position + new Vector2(_boltPlayer.LastDirectionX * _playerFace * _playerOffset.X, _playerOffset.Y);
+                Vector2 pos = Vector2.Zero;
+                Vector2 the = _boltPlayer.Position + new Vector2(_boltPlayer.LastDirectionX * _playerFace * _playerOffset.X, _playerOffset.Y);
                 FaceDirection = (short)(_boltPlayer.LastDirectionX * _playerFace);
                 if (_boltPlayer.Crouching)
                 {
@@ -69,9 +73,9 @@ internal sealed class ObjectCrossbowBolt : ObjectData
         }
         else if (IsDynamic)
         {
-            var pos = GetWorldPosition();
+            Vector2 pos = GetWorldPosition();
             pos.Y -= 4;
-            AABB.Create(out var aabb, pos, 4);
+            AABB.Create(out AABB aabb, pos, 4);
             if (GetLinearVelocity() == Vector2.Zero && GameWorld.GetObjectDataByArea(aabb, true, PhysicsLayer.All).Any(o => o.IsStatic && !o.Tile.Name.StartsWith("Bg")))
             {
                 Body.SetType(BodyType.Static);

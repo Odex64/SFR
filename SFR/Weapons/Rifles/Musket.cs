@@ -24,9 +24,9 @@ internal sealed class Musket : RWeapon
             ShellID = string.Empty,
             AccuracyDeflection = 0.09f,
             ProjectileID = 98,
-            MuzzlePosition = new(13f, -2.5f),
-            CursorAimOffset = new(0f, 2.5f),
-            LazerPosition = new(12f, -1.5f),
+            MuzzlePosition = new Vector2(13f, -2.5f),
+            CursorAimOffset = new Vector2(0f, 2.5f),
+            LazerPosition = new Vector2(12f, -1.5f),
             MuzzleEffectTextureID = "MuzzleFlashS",
             BlastSoundID = "Carbine",
             DrawSoundID = "CarbineDraw",
@@ -141,7 +141,7 @@ internal sealed class Musket : RWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.8f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.85f;
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.85f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);
         base.OnThrowWeaponItem(player, thrownWeaponItem);
     }

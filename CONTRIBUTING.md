@@ -1,16 +1,17 @@
 # Index
-* [Setup](https://github.com/Odex64/SFR/blob/master/CONTRIBUTE.md#setup)
-* [Speeding up loading times](https://github.com/Odex64/SFR/blob/master/CONTRIBUTE.md#speeding-up-loading-times)
-* [Project structure](https://github.com/Odex64/SFR/blob/master/CONTRIBUTE.md#project-structure)
 
-
+- [Setup](https://github.com/Odex64/SFR/blob/master/CONTRIBUTE.md#setup)
+- [Speeding up loading times](https://github.com/Odex64/SFR/blob/master/CONTRIBUTE.md#speeding-up-loading-times)
+- [Project structure](https://github.com/Odex64/SFR/blob/master/CONTRIBUTE.md#project-structure)
 
 ## Setup
+
 You will need the following programs
-* [Visual Studio](https://visualstudio.microsoft.com/) with ".NET Desktop development" and .NET Framework 4.7.2 SDK installed.
-* [dnSpy](https://github.com/dnSpyEx/dnSpy).
-* [Git](https://git-scm.com/).
-* Fork this repo.
+
+- [Visual Studio](https://visualstudio.microsoft.com/) with ".NET Desktop development" and .NET Framework 4.7.2 SDK installed.
+- [dnSpy](https://github.com/dnSpyEx/dnSpy).
+- [Git](https://git-scm.com/).
+- Fork this repo.
 
 **Clone** your forked repository and open its solution with Visual Studio, then wait for NuGet to install all the required dependencies.
 
@@ -32,18 +33,19 @@ One last step is to create a `SFR` folder inside your Superfighters Deluxe insta
 You can open `Core.dll` with dnSpy in order to inspect SFD code. It is a slightly modified and non-obfuscated `Superfighters Deluxe.exe` assembly.
 Now in Visual Studio try to build the solution, if you don't see any errors you're good to go!
 
-
-
 ## Speeding up loading times
+
 Fast builds & loading times is an important part of the development, especially if you have to frequently restart the game.
 
 ### Game settings
+
 First of all, start SFD/SFR normally and low the settings as much as possible, also make sure to set music volume to 0 and port forwarding to manual.
 
 <img src="https://cdn.discordapp.com/attachments/1112076185124483194/1112076185531326535/image.png" />
 <img src="https://cdn.discordapp.com/attachments/1112076185124483194/1112076185824940125/image.png" />
 
 ### More settings
+
 Now open `C:\Users\YOUR_USER\Documents\Superfighters Deluxe\config.ini` and set the following settings
 
 ```
@@ -55,10 +57,11 @@ HOST_GAME_IGNORE_SCRIPTS_WHILE_WAITING_FOR_PLAYERS=1
 ```
 
 I also recommend to set
-```TARGETFPS=144```
+`TARGETFPS=144`
 or higher if your screen has higher refresh rate, to avoid to use too much GPU.
 
 ### Startup arguments
+
 You must use the following program arguments when developing mods `-SFR -SKIP`
 It will start SFR without asking & skip updates.
 
@@ -67,9 +70,10 @@ If you want to start the game even faster and immediately load into a map inside
 
 example: `-SFR -SKIP -DEBUG C:\Users\YOUR_USERNAME\Documents\Superfighters Deluxe\Maps\Custom\Debug`.
 
-
 # Project structure
+
 The SFR mod is composed by many files and folders, here's a general overview of the project (needs update).
+
 ```
 API/                          \ Additions and tweaks to the Scripting API itself.
 ├─ Sandbox.cs                   | Modification to the Scripting API in order to make SFD.ScriptEngine work in SFR.
@@ -115,7 +119,7 @@ OnlineServices/               \  Patches to games browser and hosted game
 Projectiles/                  \ New projectiles for custom weapons
 ├─ Database.cs                  | Adds new projectile in the game.
 ├─ IExtendedProjectile.cs       | Interface for extending projectiles functionality.
-Sync/                         \ Clients & Server synchronization. 
+Sync/                         \ Clients & Server synchronization.
 ├─ Generic/                     \ Generic server data to sync any kind of information.
 │  ├─ SyncFlag.cs                 | Special flags for when syncing clients & server, like newly spawned objects.
 │  ├─ GenericData.cs              | Generic data.

@@ -22,9 +22,9 @@ internal sealed class ProjectileUnkemptHarold : Projectile
 
     internal ProjectileUnkemptHarold()
     {
-        Visuals = new(Textures.GetTexture("BulletUnkemptHarold"), Textures.GetTexture("BulletUnkemptHarold"));
-        Visuals.BulletTraceOrigin = new(Visuals.BulletTraceTexture.Width - Visuals.BulletTraceOrigin.X + 8, Visuals.BulletTraceOrigin.Y);
-        Properties = new(85, 200f, 1f, 1f, 1f, 0.2f, 0f, 0f, 0.1f)
+        Visuals = new ProjectileVisuals(Textures.GetTexture("BulletUnkemptHarold"), Textures.GetTexture("BulletUnkemptHarold"));
+        Visuals.BulletTraceOrigin = new Vector2(Visuals.BulletTraceTexture.Width - Visuals.BulletTraceOrigin.X + 8, Visuals.BulletTraceOrigin.Y);
+        Properties = new ProjectileProperties(85, 200f, 1f, 1f, 1f, 0.2f, 0f, 0f, 0.1f)
         {
             PowerupBounceRandomAngle = 0.2f,
             PowerupFireType = ProjectilePowerupFireType.Default,
@@ -34,7 +34,9 @@ internal sealed class ProjectileUnkemptHarold : Projectile
         };
     }
 
-    private ProjectileUnkemptHarold(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals) { }
+    private ProjectileUnkemptHarold(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals)
+    {
+    }
 
     public override Projectile Copy()
     {
@@ -49,7 +51,7 @@ internal sealed class ProjectileUnkemptHarold : Projectile
         {
             if (GameOwner != GameOwnerEnum.Client)
             {
-                var newProj = (ProjectileUnkemptHarold)GameWorld.CreateProjectile(85, null, Position, Direction.GetRotatedVector(-0.1), 0);
+                ProjectileUnkemptHarold newProj = (ProjectileUnkemptHarold)GameWorld.CreateProjectile(85, null, Position, Direction.GetRotatedVector(-0.1), 0);
                 newProj._splits = _splits - 1;
                 newProj = (ProjectileUnkemptHarold)GameWorld.CreateProjectile(85, null, Position, Direction.GetRotatedVector(0.1), 0);
                 newProj._splits = _splits - 1;
@@ -87,6 +89,6 @@ internal sealed class ProjectileUnkemptHarold : Projectile
     {
         _animationTimer += ms;
         _currentFrame = (int)(_animationTimer % (_frameTime * _animationFrames) / _frameTime);
-        spriteBatch.Draw(Visuals.BulletTraceTexture, Camera.ConvertWorldToScreen(Position), new Rectangle(_currentFrame * 16, 0, 16, 16), new(0.6f, 0.6f, 0.6f, 1f), GetAngle(), Visuals.BulletTraceOrigin, Camera.Zoom, SpriteEffects.None, 0f);
+        spriteBatch.Draw(Visuals.BulletTraceTexture, Camera.ConvertWorldToScreen(Position), new Rectangle(_currentFrame * 16, 0, 16, 16), new Color(0.6f, 0.6f, 0.6f, 1f), GetAngle(), Visuals.BulletTraceOrigin, Camera.Zoom, SpriteEffects.None, 0f);
     }
 }

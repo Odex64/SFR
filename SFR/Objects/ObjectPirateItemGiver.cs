@@ -17,16 +17,16 @@ internal class ObjectPirateItemGiver : ObjectButtonTrigger
         base.Activate(sender);
         if (sender is { IsPlayer: true })
         {
-            var player = GameWorld.GetPlayer(sender.ObjectID);
+            Player player = GameWorld.GetPlayer(sender.ObjectID);
 
             if (_type == "BALL")
             {
-                var wpn = WeaponDatabase.GetWeapon(93);
+                WeaponItem wpn = WeaponDatabase.GetWeapon(93);
                 _ = player.GrabWeaponItem(wpn);
             }
             else
             {
-                var weapons = new List<WeaponItem>();
+                List<WeaponItem> weapons = new();
                 switch (Globals.Random.Next(4))
                 {
                     case 0:
@@ -47,7 +47,7 @@ internal class ObjectPirateItemGiver : ObjectButtonTrigger
                         break;
                 }
 
-                foreach (var wep in weapons)
+                foreach (WeaponItem wep in weapons)
                 {
                     _ = player.GrabWeaponItem(wep);
                 }

@@ -15,7 +15,9 @@ internal sealed class ObjectCannon : ObjectActivateTrigger
 {
     private bool _isLoaded;
 
-    internal ObjectCannon(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectCannon(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     public override void Initialize()
     {
@@ -35,7 +37,7 @@ internal sealed class ObjectCannon : ObjectActivateTrigger
             }
             else if (sender is { IsPlayer: true })
             {
-                var player = GameWorld.GetPlayer(sender.BodyID);
+                Player player = GameWorld.GetPlayer(sender.BodyID);
                 if (player is { IsRemoved: false })
                 {
                     if (player.CurrentMeleeMakeshiftWeapon is CannonBall)
@@ -66,11 +68,11 @@ internal sealed class ObjectCannon : ObjectActivateTrigger
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        DrawBase(spriteBatch, ms, new(0.5f, 0.5f, 0.5f, 1f));
+        DrawBase(spriteBatch, ms, new Color(0.5f, 0.5f, 0.5f, 1f));
         if (GameWorld.EditTestMode)
         {
             string text = _isLoaded ? "LOADED" : "EMPTY";
-            var vector = Camera.ConvertWorldToScreen(GetWorldPosition() + new Vector2(-4f, 8.5f));
+            Vector2 vector = Camera.ConvertWorldToScreen(GetWorldPosition() + new Vector2(-4f, 8.5f));
             float scale = Camera.Zoom * 0.3f;
             _ = Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector + new Vector2(1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);
             _ = Constants.DrawString(spriteBatch, Constants.FontSimple, text, vector - new Vector2(1f), Color.Black, 0f, Vector2.Zero, scale, SpriteEffects.None, 0);

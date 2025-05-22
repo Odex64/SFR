@@ -4,11 +4,13 @@ using SFD;
 using SFD.MenuControls;
 using SFD.States;
 using SFD.Weapons;
+using SFDGameScriptInterface;
 using SFR.Helper;
 using SFR.Misc;
 using SFR.Weapons.Others;
 using Math = System.Math;
 using Player = SFD.Player;
+using WeaponItemType = SFD.Weapons.WeaponItemType;
 
 namespace SFR.Fighter;
 
@@ -45,20 +47,20 @@ internal static class AnimHandler
 
     private static AnimationData ChangeAnimationTime(AnimationData data, float newTime, string newName)
     {
-        var frames = data.Frames;
-        var frameData = new AnimationFrameData[frames.Length];
+        AnimationFrameData[] frames = data.Frames;
+        AnimationFrameData[] frameData = new AnimationFrameData[frames.Length];
         for (int i = 0; i < frameData.Length; i++)
         {
-            var newCollisions = new AnimationCollisionData[frames[i].Collisions.Length];
+            AnimationCollisionData[] newCollisions = new AnimationCollisionData[frames[i].Collisions.Length];
             for (int j = 0; j < frames[i].Collisions.Length; j++)
             {
                 newCollisions[j] = frames[i].Collisions[j];
             }
 
-            var newParts = new AnimationPartData[frames[i].Parts.Length];
-            foreach (var x in frames[i].Parts)
+            AnimationPartData[] newParts = new AnimationPartData[frames[i].Parts.Length];
+            foreach (AnimationPartData x in frames[i].Parts)
             {
-                newParts[i] = new(x.LocalId, x.X, x.Y, x.Rotation, x.Flip, x.Scale.X, x.Scale.Y, x.PostFix);
+                newParts[i] = new AnimationPartData(x.LocalId, x.X, x.Y, x.Rotation, x.Flip, x.Scale.X, x.Scale.Y, x.PostFix);
             }
 
             AnimationFrameData newFrame = new(frames[i].Parts, frames[i].Collisions, frames[i].Event, (int)(frames[i].Time * newTime))
@@ -68,7 +70,7 @@ internal static class AnimHandler
             frameData[i] = newFrame;
         }
 
-        return new(frameData, newName);
+        return new AnimationData(frameData, newName);
     }
 
     [HarmonyPrefix]
@@ -87,7 +89,7 @@ internal static class AnimHandler
             return false;
         }
 
-        var profile = __instance.GetProfile().ToSFDProfile();
+        IProfile profile = __instance.GetProfile().ToSFDProfile();
         if (profile.Skin.Name.Contains("Zombie") && (__instance.CurrentMeleeWeapon is null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
         {
             switch (__instance.Equipment.WeaponDrawn)
@@ -135,7 +137,7 @@ internal static class AnimHandler
             return false;
         }
 
-        var profile = __instance.GetProfile().ToSFDProfile();
+        IProfile profile = __instance.GetProfile().ToSFDProfile();
         if (!__instance.InThrowingMode && (__instance.CurrentMeleeWeapon is null || __instance.CurrentMeleeWeapon.Properties.WeaponID != 59)) // Add chainsaw support
         {
             if (profile.Skin.Name.Contains("Zombie") && !__instance.Crouching && !__instance.TakingCover)
@@ -234,7 +236,9 @@ internal static class AnimHandler
                 __instance.m_subAnimations[0].Rotation = 0f;
                 __instance.m_subAnimations[1].Rotation = __instance.AnimationUpperOverride is not null && __instance.AnimationUpperOverride.ResetRotation()
                     ? 0f
-                    : __instance.LastDirectionX == 1 ? __instance.AimAngle : -__instance.AimAngle;
+                    : __instance.LastDirectionX == 1
+                        ? __instance.AimAngle
+                        : -__instance.AimAngle;
             }
             else if (__instance.Diving)
             {
@@ -834,7 +838,7 @@ internal static class AnimHandler
                 }
                 else
                 {
-                    var animationUpperOverride = __instance.AnimationUpperOverride;
+                    IPlayerUpperAnimationOverride animationUpperOverride = __instance.AnimationUpperOverride;
                     __instance.AnimationUpperOverride = null;
                     animationUpperOverride.OverrideUpperAnimationAborted(__instance, __instance.m_currentAnimation);
                 }

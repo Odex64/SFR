@@ -2,6 +2,7 @@
 using SFD.Sounds;
 using SFD.Tiles;
 using SFD.Weapons;
+using SFR.Fighter;
 using SFR.Helper;
 using Player = SFD.Player;
 
@@ -11,14 +12,14 @@ internal class AdrenalineBoost : PItem
 {
     internal AdrenalineBoost()
     {
-        var itemProperties = new PItemProperties(103, "AdrenalineBoost", "ItemAdrenalineBoost", false, WeaponCategory.Supply)
+        PItemProperties itemProperties = new(103, "AdrenalineBoost", "ItemAdrenalineBoost", false, WeaponCategory.Supply)
         {
             PickupSoundID = "GetSlomo",
             ActivateSoundID = "",
             VisualText = "Adrenaline Boost"
         };
 
-        var itemVisuals = new PItemVisuals(Textures.GetTexture("AdrenalineBoost"), Textures.GetTexture("AdrenalineBoostD"));
+        PItemVisuals itemVisuals = new(Textures.GetTexture("AdrenalineBoost"), Textures.GetTexture("AdrenalineBoostD"));
 
         SetPropertiesAndVisuals(itemProperties, itemVisuals);
     }
@@ -40,7 +41,7 @@ internal class AdrenalineBoost : PItem
             SoundHandler.PlaySound("Syringe", player.Position, player.GameWorld);
             SoundHandler.PlaySound("StrengthBoostStart", player.Position, player.GameWorld);
 
-            var extendedPlayer = player.GetExtension();
+            ExtendedPlayer extendedPlayer = player.GetExtension();
             extendedPlayer.ApplyAdrenalineBoost();
             if (!player.InfiniteAmmo)
             {

@@ -26,9 +26,9 @@ internal sealed class Barrett : RWeapon
             ShellID = "ShellBig",
             AccuracyDeflection = 0.005f,
             ProjectileID = 94,
-            MuzzlePosition = new(12f, -1.5f),
-            CursorAimOffset = new(0f, 1.5f),
-            LazerPosition = new(5f, -4.5f),
+            MuzzlePosition = new Vector2(12f, -1.5f),
+            CursorAimOffset = new Vector2(0f, 1.5f),
+            LazerPosition = new Vector2(5f, -4.5f),
             MuzzleEffectTextureID = "MuzzleFlashShotgun",
             BlastSoundID = "Sniper",
             DrawSoundID = "SniperDraw",
@@ -96,7 +96,7 @@ internal sealed class Barrett : RWeapon
 
         if (player.GameOwner != GameOwnerEnum.Client)
         {
-            player.GameWorld.SlowmotionHandler.AddSlowmotion(new(0f, 250f, 350f, 0.2f, 0));
+            player.GameWorld.SlowmotionHandler.AddSlowmotion(new Slowmotion(0f, 250f, 350f, 0.2f, 0));
         }
     }
 
@@ -113,7 +113,7 @@ internal sealed class Barrett : RWeapon
         {
             if (subAnim.GetCurrentFrameIndex() == 1)
             {
-                SpawnMagazine(player, "MagAssaultRifle", new(-11f, -3f));
+                SpawnMagazine(player, "MagAssaultRifle", new Vector2(-11f, -3f));
                 SoundHandler.PlaySound("MagnumReloadEnd", player.Position, player.GameWorld);
             }
         }
@@ -158,7 +158,7 @@ internal sealed class Barrett : RWeapon
             {
                 if (Properties.ShellID != string.Empty)
                 {
-                    var currentRifleWeapon = player.CurrentRifleWeapon;
+                    RWeapon currentRifleWeapon = player.CurrentRifleWeapon;
                     if (currentRifleWeapon is not null)
                     {
                         if (currentRifleWeapon.CurrentRoundsInWeapon > 0)
@@ -193,7 +193,7 @@ internal sealed class Barrett : RWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.1f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.5f;
         linearVelocity.Y *= 0.5f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

@@ -82,7 +82,7 @@ internal sealed class Greatsword : MWeapon, ISharpMelee
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.9f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.6f;
         linearVelocity.Y *= 0.6f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

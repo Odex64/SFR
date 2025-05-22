@@ -108,7 +108,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
             }
             else if (_stickiedObject is { Body: not null, RemovalInitiated: false })
             {
-                var gamePos = _stickiedOffset;
+                Vector2 gamePos = _stickiedOffset;
                 SFDMath.RotatePosition(ref gamePos, _stickiedObject.GetAngle() - _stickiedAngle, out gamePos);
                 gamePos += _stickiedObject.GetWorldPosition();
                 Vector2 newPos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
@@ -123,7 +123,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
 
     private static Vector2 GetBombPosition(Player player, Vector2 offset, float angle)
     {
-        var gamePos = player.Crouching || player.Diving || player.Falling || player.Rolling || player.LayingOnGround || player.IsDead
+        Vector2 gamePos = player.Crouching || player.Diving || player.Falling || player.Rolling || player.LayingOnGround || player.IsDead
             ? player.Position + new Vector2(0, 8)
             : player.Position + new Vector2(offset.X * player.LastDirectionX * angle, offset.Y);
         Vector2 newPos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
@@ -158,9 +158,9 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        foreach (var objectDecal in m_objectDecals.Where(o => o is not null))
+        foreach (ObjectDecal objectDecal in m_objectDecals.Where(o => o is not null))
         {
-            var position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
+            Vector2 position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
             if (Stickied && _stickiedPlayer is { IsRemoved: false })
             {
                 position = GetBombPosition(_stickiedPlayer, _stickiedOffset, _stickiedAngle);
@@ -207,7 +207,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
             ApplyStickyPlayer(player, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle);
             if (GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new(DataType.StickyGrenade, [], ObjectID, player.ObjectID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.StickyGrenade, [], ObjectID, player.ObjectID, _stickiedOffset.X, _stickiedOffset.Y, _stickiedAngle));
             }
         }
     }
@@ -217,7 +217,7 @@ internal sealed class ObjectStickyBombThrown : ObjectGrenadeThrown
         if (player is not null)
         {
             _stickiedPlayer = player;
-            _stickiedOffset = new(x, y);
+            _stickiedOffset = new Vector2(x, y);
             _stickiedAngle = angle;
             Stickied = true;
         }

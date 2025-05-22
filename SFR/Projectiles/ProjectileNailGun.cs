@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using SFD;
 using SFD.Effects;
+using SFD.Materials;
 using SFD.Objects;
 using SFD.Projectiles;
 using SFD.Sounds;
@@ -16,8 +17,8 @@ internal sealed class ProjectileNailGun : Projectile, IExtendedProjectile
 
     internal ProjectileNailGun()
     {
-        Visuals = new(Textures.GetTexture("ProjectileNailgun"), Textures.GetTexture("ProjectileNailgun"));
-        Properties = new(70, 400f, 10f, 6f, 6f, 0.01f, 8f, 10f, 0.35f)
+        Visuals = new ProjectileVisuals(Textures.GetTexture("ProjectileNailgun"), Textures.GetTexture("ProjectileNailgun"));
+        Properties = new ProjectileProperties(70, 400f, 10f, 6f, 6f, 0.01f, 8f, 10f, 0.35f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Default,
@@ -26,7 +27,9 @@ internal sealed class ProjectileNailGun : Projectile, IExtendedProjectile
         };
     }
 
-    private ProjectileNailGun(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals) { }
+    private ProjectileNailGun(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals)
+    {
+    }
 
     public override float SlowmotionFactor => 1f - (1f - GameWorld.SlowmotionHandler.SlowmotionModifier) * 0.5f;
 
@@ -77,7 +80,7 @@ internal sealed class ProjectileNailGun : Projectile, IExtendedProjectile
         if (GameOwner != GameOwnerEnum.Client)
         {
             player.TakeProjectileDamage(this);
-            var material = player.GetPlayerHitMaterial() ?? playerObjectData.Tile.Material;
+            Material material = player.GetPlayerHitMaterial() ?? playerObjectData.Tile.Material;
             SoundHandler.PlaySound(material.Hit.Projectile.HitSound, GameWorld);
             EffectHandler.PlayEffect(material.Hit.Projectile.HitEffect, Position, GameWorld);
             SoundHandler.PlaySound("MeleeHitSharp", GameWorld);

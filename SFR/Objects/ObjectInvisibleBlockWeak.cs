@@ -5,7 +5,9 @@ namespace SFR.Objects;
 
 internal sealed class ObjectInvisibleBlockWeak : ObjectDestructible
 {
-    internal ObjectInvisibleBlockWeak(ObjectDataStartParams startParams) : base(startParams, "", "") { }
+    internal ObjectInvisibleBlockWeak(ObjectDataStartParams startParams) : base(startParams, "", "")
+    {
+    }
 
     public override void Initialize()
     {

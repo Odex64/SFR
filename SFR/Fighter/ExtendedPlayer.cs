@@ -32,7 +32,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>, IEquatable<ExtendedPl
     internal void ApplyAdrenalineBoost()
     {
         AdrenalineBoost = true;
-        GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
+        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
     }
 
     internal object[] GetStates()
@@ -44,7 +44,7 @@ internal sealed class ExtendedPlayer : IEquatable<Player>, IEquatable<ExtendedPl
     internal void DisableAdrenalineBoost()
     {
         AdrenalineBoost = false;
-        GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
+        GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], Player.ObjectID, GetStates()));
         SoundHandler.PlaySound("StrengthBoostStop", Player.Position, Player.GameWorld);
     }
 

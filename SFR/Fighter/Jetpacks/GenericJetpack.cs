@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Sounds;
 using SFR.Sync.Generic;
@@ -28,7 +29,7 @@ internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
 
     internal virtual void Update(float ms, ExtendedPlayer extendedPlayer)
     {
-        var player = extendedPlayer.Player;
+        Player player = extendedPlayer.Player;
         if (player.RocketRideProjectileWorldID != 0)
         {
             Discard(extendedPlayer);
@@ -55,7 +56,7 @@ internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
                 }
             }
 
-            var velocity = player.CurrentVelocity;
+            Vector2 velocity = player.CurrentVelocity;
             velocity.X *= player.SlowmotionFactor * 0.6f;
 
             velocity.Y = velocity.Y <= MaxSpeed
@@ -75,7 +76,7 @@ internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
 
                 if (player.GameOwner == GameOwnerEnum.Server)
                 {
-                    GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
+                    GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
                 }
             }
 
@@ -122,7 +123,7 @@ internal abstract class GenericJetpack(float fuel = 100f, float maxSpeed = 7f)
         extendedPlayer.GenericJetpack = null;
         if (extendedPlayer.Player.GameOwner == GameOwnerEnum.Server)
         {
-            GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], extendedPlayer.Player.ObjectID, extendedPlayer.GetStates()));
         }
     }
 

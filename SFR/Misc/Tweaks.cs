@@ -34,18 +34,6 @@ internal static class Tweaks
                     return false;
             }
         }
-        else if (eT == typeof(ObjectPropertyID) && value is int objectProperty)
-        {
-            switch (objectProperty)
-            {
-                case 500:
-                    __result = "JumpHeightModifier";
-                    return false;
-                case 501:
-                    __result = "BulletDodgeChance";
-                    return false;
-            }
-        }
 
         return true;
     }

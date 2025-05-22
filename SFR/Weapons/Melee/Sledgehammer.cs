@@ -87,7 +87,9 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
 
     private Sledgehammer(MWeaponProperties weaponProperties, MWeaponVisuals weaponVisuals) => SetPropertiesAndVisuals(weaponProperties, weaponVisuals);
 
-    public void GetDealtDamage(Player player, float damage) { }
+    public void GetDealtDamage(Player player, float damage)
+    {
+    }
 
     public void OnHit(Player player, Player target)
     {
@@ -120,8 +122,13 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
         }
     }
 
-    public void Update(Player player, float ms, float realMs) { }
-    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
+    public void Update(Player player, float ms, float realMs)
+    {
+    }
+
+    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms)
+    {
+    }
 
     public override MWeapon Copy() => new Sledgehammer(Properties, Visuals)
     {
@@ -195,7 +202,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
         if (player.GameOwner != GameOwnerEnum.Client)
         {
             BlinkTimer = time;
-            GenericData.SendGenericDataToClients(new(DataType.SledgehammerBlink, [], player.ObjectData.BodyID, time));
+            GenericData.SendGenericDataToClients(new GenericData(DataType.SledgehammerBlink, [], player.ObjectData.BodyID, time));
         }
     }
 
@@ -225,7 +232,7 @@ internal sealed class Sledgehammer : MWeapon, IExtendedWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.8f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.8f;
         linearVelocity.Y *= 0.8f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

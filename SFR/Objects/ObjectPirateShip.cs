@@ -9,7 +9,9 @@ internal class ObjectPirateShip : ObjectData
     private const int _damageFrames = 5;
     private Texture2D[] _textures;
 
-    internal ObjectPirateShip(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectPirateShip(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     public override void Initialize()
     {
@@ -34,7 +36,7 @@ internal class ObjectPirateShip : ObjectData
         {
             int frame = (int)(_damageFrames - Health.Fullness * _damageFrames);
             ClearDecals();
-            AddDecal(new(_textures[frame]));
+            AddDecal(new ObjectDecal(_textures[frame]));
         }
     }
 
@@ -44,7 +46,7 @@ internal class ObjectPirateShip : ObjectData
         {
             int frame = (int)(_damageFrames - Health.Fullness * _damageFrames);
             ClearDecals();
-            AddDecal(new(_textures[frame]));
+            AddDecal(new ObjectDecal(_textures[frame]));
             base.Draw(spriteBatch, ms);
         }
     }

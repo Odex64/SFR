@@ -3,6 +3,7 @@ using Box2D.XNA;
 using Microsoft.Xna.Framework;
 using SFD;
 using SFD.Effects;
+using SFD.Materials;
 using SFD.Objects;
 using SFD.Projectiles;
 using SFD.Sounds;
@@ -19,8 +20,8 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
 
     internal ProjectileCrossbow()
     {
-        Visuals = new(Textures.GetTexture("CrossbowBolt00"), Textures.GetTexture("CrossbowBolt00"));
-        Properties = new(96, 700f, 50f, 30f, 40f, 0f, 30f, 40f, 0.5f)
+        Visuals = new ProjectileVisuals(Textures.GetTexture("CrossbowBolt00"), Textures.GetTexture("CrossbowBolt00"));
+        Properties = new ProjectileProperties(96, 700f, 50f, 30f, 40f, 0f, 30f, 40f, 0.5f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Fireplosion,
@@ -29,7 +30,9 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
         };
     }
 
-    private ProjectileCrossbow(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals) { }
+    private ProjectileCrossbow(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals)
+    {
+    }
 
     public override float SlowmotionFactor => 1f - (1f - GameWorld.SlowmotionHandler.SlowmotionModifier) * 0.5f;
 
@@ -84,24 +87,24 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
         if (GameOwner != GameOwnerEnum.Client)
         {
             player.TakeProjectileDamage(this);
-            var material = player.GetPlayerHitMaterial() ?? playerObjectData.Tile.Material;
+            Material material = player.GetPlayerHitMaterial() ?? playerObjectData.Tile.Material;
 
             SoundHandler.PlaySound(material.Hit.Projectile.HitSound, GameWorld);
             EffectHandler.PlayEffect(material.Hit.Projectile.HitEffect, Position, GameWorld);
             SoundHandler.PlaySound("MeleeHitSharp", GameWorld);
 
             Remove();
-            var data = (ObjectCrossbowBolt)GameWorld.IDCounter.NextObjectData("CrossbowBolt01");
+            ObjectCrossbowBolt data = (ObjectCrossbowBolt)GameWorld.IDCounter.NextObjectData("CrossbowBolt01");
             SpawnObjectInformation spawnObject = new(data, Position, -GetAngle(), 1, Vector2.Zero, 0);
             data.Timer = GameWorld.ElapsedTotalGameTime + 10000;
-            var body = GameWorld.CreateTile(spawnObject);
+            Body body = GameWorld.CreateTile(spawnObject);
             body.SetType(BodyType.Static);
 
             data.ApplyPlayerBolt(player);
             data.EnableUpdateObject();
             if (GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new(DataType.Crossbow, [SyncFlag.NewObjects], data.ObjectID, player.ObjectID, data.Timer));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.Crossbow, [SyncFlag.NewObjects], data.ObjectID, player.ObjectID, data.Timer));
             }
         }
     }
@@ -112,8 +115,8 @@ internal sealed class ProjectileCrossbow : Projectile, IExtendedProjectile
         if (GameOwner != GameOwnerEnum.Client && !PowerupBounceActive && !objectData.IsPlayer && objectData.GetCollisionFilter().AbsorbProjectile)
         {
             Remove();
-            var data = (ObjectCrossbowBolt)ObjectData.CreateNew(new(GameWorld.IDCounter.NextID(), 0, 0, "CrossbowBolt00", GameOwner));
-            _ = GameWorld.CreateTile(new(data, Position, -GetAngle(), 1, objectData.LocalRenderLayer, objectData.GetLinearVelocity(), 0));
+            ObjectCrossbowBolt data = (ObjectCrossbowBolt)ObjectData.CreateNew(new ObjectDataStartParams(GameWorld.IDCounter.NextID(), 0, 0, "CrossbowBolt00", GameOwner));
+            _ = GameWorld.CreateTile(new SpawnObjectInformation(data, Position, -GetAngle(), 1, objectData.LocalRenderLayer, objectData.GetLinearVelocity(), 0));
             data.Timer = GameWorld.ElapsedTotalGameTime + 15000;
             data.EnableUpdateObject();
             data.FilterObjectId = objectData.BodyID;

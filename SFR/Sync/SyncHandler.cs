@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using HarmonyLib;
 using Lidgren.Network;
 using SFD;
+using SFR.Fighter;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
 using SFR.Objects;
@@ -34,7 +35,7 @@ internal static class SyncHandler
     [HarmonyPatch(typeof(NetMessage), nameof(NetMessage.WriteDataType))]
     private static IEnumerable<CodeInstruction> ExtendWriteData(IEnumerable<CodeInstruction> instructions)
     {
-        foreach (var instruction in instructions)
+        foreach (CodeInstruction instruction in instructions)
         {
             if (instruction.operand is null)
             {
@@ -54,7 +55,7 @@ internal static class SyncHandler
     [HarmonyPatch(typeof(NetMessage), nameof(NetMessage.ReadDataType))]
     private static IEnumerable<CodeInstruction> ExtendReadData(IEnumerable<CodeInstruction> instructions)
     {
-        foreach (var instruction in instructions)
+        foreach (CodeInstruction instruction in instructions)
         {
             if (instruction.operand is null)
             {
@@ -80,7 +81,7 @@ internal static class SyncHandler
         List<ObjectData> receivedData = [];
         foreach (int obj in objectsID)
         {
-            var data = gameWorld.GetObjectDataByID(obj);
+            ObjectData data = gameWorld.GetObjectDataByID(obj);
             if (data is null)
             {
                 if (!Attempts.ContainsKey(obj))
@@ -124,7 +125,7 @@ internal static class SyncHandler
 
         if (isLast)
         {
-            foreach (var genericServerData in GenericData.ServerData)
+            foreach (NetOutgoingMessage genericServerData in GenericData.ServerData)
             {
                 __instance.m_server.SendToAll(genericServerData, null, GenericServerData.Delivery.Method, GenericServerData.Delivery.Channel);
             }
@@ -138,7 +139,7 @@ internal static class SyncHandler
         switch (data.Type)
         {
             case DataType.SledgehammerBlink:
-                var sledgehammerPlayer = client.GameWorld.GetPlayer((int)data.Args[0]);
+                Player sledgehammerPlayer = client.GameWorld.GetPlayer((int)data.Args[0]);
                 if (sledgehammerPlayer is null)
                 {
                     return;
@@ -153,8 +154,8 @@ internal static class SyncHandler
                 break;
 
             case DataType.StickyGrenade:
-                var stickyGrenadeData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
-                var stickyGrenadePlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
+                ObjectData[] stickyGrenadeData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
+                Player stickyGrenadePlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
                 if (stickyGrenadeData is null || stickyGrenadePlayer is null)
                 {
                     return;
@@ -164,7 +165,7 @@ internal static class SyncHandler
                 break;
 
             case DataType.Head:
-                var headData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
+                ObjectData[] headData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
                 if (headData is null)
                 {
                     return;
@@ -174,35 +175,35 @@ internal static class SyncHandler
                 break;
 
             case DataType.Crossbow:
-                var crossbowData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
-                var crossbowPlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
+                ObjectData[] crossbowData = SyncGameWorldObject(client.GameWorld, data, (int)data.Args[0]);
+                Player crossbowPlayer = client.GameWorld.GetPlayer((int)data.Args[1]);
                 if (crossbowData is null || crossbowPlayer is null)
                 {
                     return;
                 }
 
-                var crossbowBolt = (ObjectCrossbowBolt)crossbowData[0];
+                ObjectCrossbowBolt crossbowBolt = (ObjectCrossbowBolt)crossbowData[0];
                 crossbowBolt.Timer = (float)data.Args[2];
                 crossbowBolt.ApplyPlayerBolt(crossbowPlayer);
                 crossbowBolt.EnableUpdateObject();
                 break;
 
             case DataType.ExtraClientStates:
-                var player = client.GameWorld.GetPlayer((int)data.Args[0]);
+                Player player = client.GameWorld.GetPlayer((int)data.Args[0]);
                 if (player is null)
                 {
                     Logger.LogError("Player is null while syncing states!");
                     return;
                 }
 
-                var extendedPlayer = player.GetExtension();
+                ExtendedPlayer extendedPlayer = player.GetExtension();
                 bool adrenalineBoost = (bool)data.Args[1];
                 if (!extendedPlayer.AdrenalineBoost && adrenalineBoost)
                 {
                     extendedPlayer.AdrenalineBoost = true;
                 }
 
-                var jetpackType = (JetpackType)(int)data.Args[2];
+                JetpackType jetpackType = (JetpackType)(int)data.Args[2];
                 if (extendedPlayer.GenericJetpack is null || jetpackType != extendedPlayer.JetpackType)
                 {
                     extendedPlayer.JetpackType = jetpackType;
@@ -233,8 +234,8 @@ internal static class SyncHandler
         switch ((int)messageData.MessageType)
         {
             case 63:
-                var data = GenericServerData.Read(msg);
-                foreach (var syncFlags in data.Flags)
+                GenericData data = GenericServerData.Read(msg);
+                foreach (SyncFlag syncFlags in data.Flags)
                 {
                     switch (syncFlags)
                     {

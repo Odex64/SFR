@@ -21,7 +21,9 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
     internal bool Detonated;
     internal float TimeStamp;
 
-    internal ObjectStickyProjectile(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectStickyProjectile(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     private bool Stickied
     {
@@ -81,7 +83,7 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
         {
             if (_stickiedObject is { Body: not null, RemovalInitiated: false })
             {
-                var gamePos = _stickiedOffset;
+                Vector2 gamePos = _stickiedOffset;
                 SFDMath.RotatePosition(ref gamePos, _stickiedObject.GetAngle() - _stickiedAngle, out gamePos);
                 gamePos += _stickiedObject.GetWorldPosition();
                 Vector2 newPos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
@@ -126,9 +128,9 @@ internal sealed class ObjectStickyProjectile : ObjectGrenadeThrown
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        foreach (var objectDecal in m_objectDecals.Where(o => o is not null))
+        foreach (ObjectDecal objectDecal in m_objectDecals.Where(o => o is not null))
         {
-            var position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
+            Vector2 position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
             Camera.ConvertBox2DToScreen(ref position, out position);
             float rotation = -Body.GetAngle();
             spriteBatch.Draw(objectDecal.Texture, position, null, Color.Gray, rotation, objectDecal.TextureOrigin, Camera.Zoom, m_faceDirectionSpriteEffect, 0f);

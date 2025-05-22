@@ -29,7 +29,9 @@ internal sealed class ObjectImpactGrenadeThrown : ObjectGrenadeThrown
         }
     }
 
-    public override void BeforePlayerMeleeHit(Player player, PlayerBeforeHitEventArgs e) { }
+    public override void BeforePlayerMeleeHit(Player player, PlayerBeforeHitEventArgs e)
+    {
+    }
 
     public override void PlayerMeleeHit(Player player, PlayerHitEventArgs e) => ObjectDataMethods.DefaultPlayerHitBaseballEffect(this, player, e);
 
@@ -51,15 +53,17 @@ internal sealed class ObjectImpactGrenadeThrown : ObjectGrenadeThrown
 
     public override void SetProperties() => Properties.Add(ObjectPropertyID.Grenade_DudChance);
 
-    public override void UpdateObject(float ms) { }
+    public override void UpdateObject(float ms)
+    {
+    }
 
     public override void OnDestroyObject() => GameWorld.TriggerExplosion(GetWorldPosition(), 80f);
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        foreach (var objectDecal in m_objectDecals)
+        foreach (ObjectDecal objectDecal in m_objectDecals)
         {
-            var position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
+            Vector2 position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
             Camera.ConvertBox2DToScreen(ref position, out position);
             float rotation = -Body.GetAngle();
             spriteBatch.Draw(objectDecal.Texture, position, null, Color.Gray, rotation, objectDecal.TextureOrigin, Camera.Zoom, m_faceDirectionSpriteEffect, 0f);

@@ -27,7 +27,7 @@ internal sealed class JetpackEditor : GenericJetpack
         JetpackBack ??= Textures.GetTexture("JetpackBack");
         JetpackDiving ??= Textures.GetTexture("JetpackDiving");
 
-        var texture = postFix switch
+        Texture2D texture = postFix switch
         {
             "" => Jetpack,
             "Back" => JetpackBack,
@@ -41,7 +41,7 @@ internal sealed class JetpackEditor : GenericJetpack
     protected internal override void Discard(ExtendedPlayer extendedPlayer)
     {
         base.Discard(extendedPlayer);
-        var player = extendedPlayer.Player;
+        Player player = extendedPlayer.Player;
 
         _ = player.GameWorld.CreateTile("JetpackDebris", player.Position, 0);
     }

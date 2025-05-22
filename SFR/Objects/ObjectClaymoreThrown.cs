@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Effects;
+using SFD.Materials;
 using SFD.Projectiles;
 using SFD.Sounds;
 using SFD.Tiles;
@@ -33,7 +34,9 @@ internal sealed class ObjectClaymoreThrown : ObjectData
     private ObjectData _stickiedObject;
     private Vector2 _stickiedOffset = Vector2.Zero;
 
-    internal ObjectClaymoreThrown(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectClaymoreThrown(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     public override void Initialize()
     {
@@ -94,10 +97,10 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             if (num != -1f)
             {
                 num += 16f;
-                var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, num, LazerRayCastCollision, _ => true);
+                GameWorld.RayCastResult rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, num, LazerRayCastCollision, _ => true);
                 if (rayCastResult.EndFixture is not null)
                 {
-                    var objectData = Read(rayCastResult.EndFixture);
+                    ObjectData objectData = Read(rayCastResult.EndFixture);
                     if (objectData.IsPlayer)
                     {
                         _isTripped = true;
@@ -118,7 +121,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
 
                 if (_stickiedObject.Body is not null)
                 {
-                    var gamePos = _stickiedOffset;
+                    Vector2 gamePos = _stickiedOffset;
                     SFDMath.RotatePosition(ref gamePos, _stickiedObject.GetAngle() - _stickiedAngle, out gamePos);
                     gamePos += _stickiedObject.GetWorldPosition();
                     Vector2 newPos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
@@ -228,8 +231,8 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             Vector2 vec = new(10, 0);
             for (int i = 0; i < 18; i++)
             {
-                var dir = vec.GetRotatedVector(-GetAngle() + Globals.Random.NextFloat(-0.25f, 0.25f));
-                var projectile = GameWorld.SpawnProjectile(61, GetWorldPosition(), dir, BodyID);
+                Vector2 dir = vec.GetRotatedVector(-GetAngle() + Globals.Random.NextFloat(-0.25f, 0.25f));
+                Projectile projectile = GameWorld.SpawnProjectile(61, GetWorldPosition(), dir, BodyID);
                 projectile.CritChanceDealtModifier = 0f;
                 projectile.Properties.DodgeChance = 0;
             }
@@ -278,11 +281,11 @@ internal sealed class ObjectClaymoreThrown : ObjectData
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        var texture2D = _blink ? _blinkTexture : _normalTexture;
-        var vector = Body.Position;
+        Texture2D texture2D = _blink ? _blinkTexture : _normalTexture;
+        Vector2 vector = Body.Position;
         vector += GameWorld.DrawingBox2DSimulationTimestepOver * Body.GetLinearVelocity();
         Camera.ConvertBox2DToScreen(ref vector, out vector);
-        spriteBatch.Draw(texture2D, vector, null, Color.Gray, GetAngle(), new(texture2D.Width / 2, texture2D.Height / 2), Camera.ZoomUpscaled, m_faceDirectionSpriteEffect, 0f);
+        spriteBatch.Draw(texture2D, vector, null, Color.Gray, GetAngle(), new Vector2(texture2D.Width / 2, texture2D.Height / 2), Camera.ZoomUpscaled, m_faceDirectionSpriteEffect, 0f);
 
         if (_status >= 2 || Body.GetType() == BodyType.Static)
         {
@@ -291,7 +294,7 @@ internal sealed class ObjectClaymoreThrown : ObjectData
             if (angle != -1f)
             {
                 angle += 16f;
-                var rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, angle, LazerRayCastCollision, _ => true);
+                GameWorld.RayCastResult rayCastResult = GameWorld.RayCast(GetWorldPosition(), theVector.GetRotatedVector(-GetAngle()), 0f, angle, LazerRayCastCollision, _ => true);
                 GameWorld.DrawLazer(spriteBatch, _isTripped || _blink && _status < 2, rayCastResult.StartPosition, rayCastResult.EndPosition, rayCastResult.Direction);
             }
         }
@@ -301,13 +304,13 @@ internal sealed class ObjectClaymoreThrown : ObjectData
     {
         if (!fixture.IsCloud())
         {
-            var objectData = Read(fixture);
-            fixture.GetFilterData(out var filter);
+            ObjectData objectData = Read(fixture);
+            fixture.GetFilterData(out Filter filter);
             if ((filter.categoryBits & 15) > 0 || objectData.IsPlayer)
             {
                 if (this != objectData)
                 {
-                    var tileFixtureMaterial = objectData.Tile.GetTileFixtureMaterial(fixture.TileFixtureIndex);
+                    Material tileFixtureMaterial = objectData.Tile.GetTileFixtureMaterial(fixture.TileFixtureIndex);
                     return !tileFixtureMaterial.Transparent;
                 }
 

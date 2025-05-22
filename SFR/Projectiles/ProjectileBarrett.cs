@@ -12,8 +12,8 @@ internal sealed class ProjectileBarrett : Projectile
 
     internal ProjectileBarrett()
     {
-        Visuals = new(Textures.GetTexture("BulletBarrett"), Textures.GetTexture("BulletBarrettSlowmo"));
-        Properties = new(94, 1500f, 2000f, 70f, 2000f, 1f, 70f, 120f, 0.0f)
+        Visuals = new ProjectileVisuals(Textures.GetTexture("BulletBarrett"), Textures.GetTexture("BulletBarrettSlowmo"));
+        Properties = new ProjectileProperties(94, 1500f, 2000f, 70f, 2000f, 1f, 70f, 120f, 0.0f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Default,
@@ -24,7 +24,9 @@ internal sealed class ProjectileBarrett : Projectile
         };
     }
 
-    private ProjectileBarrett(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals) { }
+    private ProjectileBarrett(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals)
+    {
+    }
 
     public override Projectile Copy()
     {

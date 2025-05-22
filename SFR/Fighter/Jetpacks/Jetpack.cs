@@ -9,7 +9,9 @@ namespace SFR.Fighter.Jetpacks;
 
 internal sealed class Jetpack : GenericJetpack
 {
-    internal Jetpack() : base(100, 0.4f) { }
+    internal Jetpack() : base(100, 0.4f)
+    {
+    }
 
     protected override void PlayEffect(Player player)
     {
@@ -29,7 +31,7 @@ internal sealed class Jetpack : GenericJetpack
         JetpackBack ??= Textures.GetTexture("JetpackBack");
         JetpackDiving ??= Textures.GetTexture("JetpackDiving");
 
-        var texture = postFix switch
+        Texture2D texture = postFix switch
         {
             "" => Jetpack,
             "Back" => JetpackBack,
@@ -43,7 +45,7 @@ internal sealed class Jetpack : GenericJetpack
     protected internal override void Discard(ExtendedPlayer extendedPlayer)
     {
         base.Discard(extendedPlayer);
-        var player = extendedPlayer.Player;
+        Player player = extendedPlayer.Player;
 
         _ = player.GameWorld.CreateTile("JetpackDebris", player.Position, 0);
     }

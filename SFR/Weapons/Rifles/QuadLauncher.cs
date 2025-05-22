@@ -1,4 +1,5 @@
-﻿using SFD;
+﻿using Microsoft.Xna.Framework;
+using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
@@ -22,14 +23,14 @@ internal sealed class QuadLauncher : RWeapon
             ProjectileID = 99,
             ShellID = "",
             AccuracyDeflection = 0f,
-            MuzzlePosition = new(6f, -2f),
+            MuzzlePosition = new Vector2(6f, -2f),
             MuzzleEffectTextureID = "MuzzleFlashBazooka",
             BlastSoundID = "Bazooka",
             DrawSoundID = "ShotgunDraw",
             GrabAmmoSoundID = "ShotgunReload",
             OutOfAmmoSoundID = "OutOfAmmoHeavy",
-            CursorAimOffset = new(0f, 2f),
-            LazerPosition = new(8f, -4.5f),
+            CursorAimOffset = new Vector2(0f, 2f),
+            LazerPosition = new Vector2(8f, -4.5f),
             AimStartSoundID = "PistolAim",
             AI_ImpactAoERadius = 1.43999994f,
             AI_DamageOutput = DamageOutputType.High,
@@ -113,7 +114,7 @@ internal sealed class QuadLauncher : RWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.6f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.8f;
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.8f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);
         base.OnThrowWeaponItem(player, thrownWeaponItem);
     }

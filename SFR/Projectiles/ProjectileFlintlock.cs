@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using SFD;
 using SFD.Effects;
+using SFD.Materials;
 using SFD.Projectiles;
 using SFD.Sounds;
 using SFD.Tiles;
@@ -15,8 +16,8 @@ internal sealed class ProjectileFlintlock : Projectile
 
     internal ProjectileFlintlock()
     {
-        Visuals = new(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
-        Properties = new(69, 900f, 50f, 34f, 50f, 0.5f, 34f, 45f, 0.5f)
+        Visuals = new ProjectileVisuals(Textures.GetTexture("ProjectileFlintlock"), Textures.GetTexture("ProjectileFlintlock"));
+        Properties = new ProjectileProperties(69, 900f, 50f, 34f, 50f, 0.5f, 34f, 45f, 0.5f)
         {
             PowerupBounceRandomAngle = 0f,
             PowerupFireType = ProjectilePowerupFireType.Fireplosion,
@@ -25,7 +26,9 @@ internal sealed class ProjectileFlintlock : Projectile
         };
     }
 
-    private ProjectileFlintlock(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals) { }
+    private ProjectileFlintlock(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals)
+    {
+    }
 
     public override float SlowmotionFactor => 1f - (1f - GameWorld.SlowmotionHandler.SlowmotionModifier) * 0.5f;
 
@@ -66,7 +69,7 @@ internal sealed class ProjectileFlintlock : Projectile
         if (GameOwner != GameOwnerEnum.Client)
         {
             player.TakeProjectileDamage(this);
-            var material = player.GetPlayerHitMaterial() ?? playerObjectData.Tile.Material;
+            Material material = player.GetPlayerHitMaterial() ?? playerObjectData.Tile.Material;
             SoundHandler.PlaySound(material.Hit.Projectile.HitSound, GameWorld);
             EffectHandler.PlayEffect(material.Hit.Projectile.HitEffect, Position, GameWorld);
             SoundHandler.PlaySound("MeleeHitSharp", GameWorld);

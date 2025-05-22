@@ -18,7 +18,7 @@ internal static class GadgetHandler
     [HarmonyPatch(typeof(PlayerHUD), nameof(PlayerHUD.DrawTeamIcon))]
     private static bool DrawHudTeamIcon(Player player, GameUser user, int x, int y, SpriteBatch spriteBatch, float elapsed)
     {
-        var teamIcon = Constants.GetTeamIcon(user.GameSlotTeam);
+        Texture2D teamIcon = Constants.GetTeamIcon(user.GameSlotTeam);
         if (teamIcon != null)
         {
             if (player is not null && !player.IsRemoved && !player.IsDead && !player.IsBot && user is not null)
@@ -39,7 +39,7 @@ internal static class GadgetHandler
     [HarmonyPatch(typeof(Player), nameof(Player.DrawPlates))]
     private static bool DrawExtraInfo(float ms, Player __instance)
     {
-        var vector = Camera.ConvertWorldToScreen(__instance.Position + new Vector2(0f, 24f));
+        Vector2 vector = Camera.ConvertWorldToScreen(__instance.Position + new Vector2(0f, 24f));
         float num = MathHelper.Max(Camera.Zoom * 0.4f, 1f);
 
         NameIconHandler.Draw(__instance, vector, num);
@@ -72,7 +72,7 @@ internal static class GadgetHandler
     [HarmonyPatch(typeof(Player), nameof(Player.DrawColor), MethodType.Getter)]
     private static bool GetPlayerDrawColor(Player __instance, ref Color __result)
     {
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
 
         if (extendedPlayer.AdrenalineBoost)
         {

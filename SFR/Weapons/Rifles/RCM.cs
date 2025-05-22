@@ -3,6 +3,7 @@ using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
 using SFDGameScriptInterface;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 
 namespace SFR.Weapons.Rifles;
 
@@ -23,14 +24,14 @@ internal sealed class RCM : RWeapon
             ProjectileID = 100,
             ShellID = string.Empty,
             AccuracyDeflection = 0f,
-            MuzzlePosition = new(6f, -4.5f),
+            MuzzlePosition = new Vector2(6f, -4.5f),
             MuzzleEffectTextureID = "MuzzleFlashBazooka",
             BlastSoundID = "Bazooka",
             DrawSoundID = "ShotgunDraw",
             GrabAmmoSoundID = "ShotgunReload",
             OutOfAmmoSoundID = "OutOfAmmoHeavy",
-            CursorAimOffset = new(0f, 2f),
-            LazerPosition = new(8f, -3.5f),
+            CursorAimOffset = new Vector2(0f, 2f),
+            LazerPosition = new Vector2(8f, -3.5f),
             AimStartSoundID = "PistolAim",
             AI_ImpactAoERadius = 1.43999994f,
             AI_DamageOutput = DamageOutputType.High,
@@ -127,7 +128,7 @@ internal sealed class RCM : RWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.6f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.8f;
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.8f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);
         base.OnThrowWeaponItem(player, thrownWeaponItem);
     }

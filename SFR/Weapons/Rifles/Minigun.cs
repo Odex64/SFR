@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
 using SFD.Sounds;
@@ -20,10 +21,10 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
 
     internal Minigun()
     {
-        RWeaponProperties weaponProperties = new(102, "Minigun", 1, 200, 0, 1, -1, 25, 0, 1, 102, "ShellSmall", 0.3f, new(15f, 1f), "MuzzleFlashL", "M60", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnMinigun", false, WeaponCategory.Primary)
+        RWeaponProperties weaponProperties = new(102, "Minigun", 1, 200, 0, 1, -1, 25, 0, 1, 102, "ShellSmall", 0.3f, new Vector2(15f, 1f), "MuzzleFlashL", "M60", "TommyGunDraw", "TommyGunReload", "OutOfAmmoHeavy", "WpnMinigun", false, WeaponCategory.Primary)
         {
-            CursorAimOffset = new(0f, 1f),
-            LazerPosition = new(14f, -0.5f),
+            CursorAimOffset = new Vector2(0f, 1f),
+            LazerPosition = new Vector2(14f, -0.5f),
             AimStartSoundID = "PistolAim",
             BreakDebris =
             [
@@ -92,10 +93,21 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         }
     }
 
-    public void GetDealtDamage(Player player, float damage) { }
-    public void OnHit(Player player, Player target) { }
-    public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj) { }
-    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
+    public void GetDealtDamage(Player player, float damage)
+    {
+    }
+
+    public void OnHit(Player player, Player target)
+    {
+    }
+
+    public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj)
+    {
+    }
+
+    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms)
+    {
+    }
 
     public override RWeapon Copy()
     {
@@ -110,7 +122,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
         {
             if (subAnim.GetCurrentFrameIndex() == 1)
             {
-                SpawnMagazine(player, "MagDrum", new(-8f, -3f));
+                SpawnMagazine(player, "MagDrum", new Vector2(-8f, -3f));
                 SoundHandler.PlaySound("MagnumReloadEnd", player.Position, player.GameWorld);
             }
             else if (subAnim.GetCurrentFrameIndex() == 4)
@@ -139,7 +151,7 @@ internal sealed class Minigun : RWeapon, IExtendedWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.8f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.7f;
         linearVelocity.Y *= 0.7f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

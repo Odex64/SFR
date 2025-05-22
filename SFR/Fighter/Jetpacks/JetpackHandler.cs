@@ -18,10 +18,10 @@ internal static class JetpackHandler
     [HarmonyPatch(typeof(Player), nameof(Player.ActivateObject))]
     private static void CheckDisposeKey(Player __instance)
     {
-        var closedObject = __instance.GetClosestActivateableObject(true, false, 0f, 0f);
+        ObjectData closedObject = __instance.GetClosestActivateableObject(true, false, 0f, 0f);
         if (closedObject is null)
         {
-            var extendedPlayer = __instance.GetExtension();
+            ExtendedPlayer extendedPlayer = __instance.GetExtension();
             if (extendedPlayer.GenericJetpack is { State: JetpackState.Idling } jetpack && __instance.Crouching)
             {
                 SoundHandler.PlaySound("PistolDraw", __instance.GameWorld);
@@ -35,7 +35,7 @@ internal static class JetpackHandler
     [HarmonyPatch(typeof(WpnFireAmmo), nameof(WpnFireAmmo.OnPickup))]
     private static void ApplyFireUpgrade(Player player)
     {
-        var extendedPlayer = player.GetExtension();
+        ExtendedPlayer extendedPlayer = player.GetExtension();
 
         if (extendedPlayer.GenericJetpack is Gunpack gunpack)
         {
@@ -47,7 +47,7 @@ internal static class JetpackHandler
     [HarmonyPatch(typeof(Player), nameof(Player.Draw))]
     private static bool PreDraw(SpriteBatch spriteBatch, Player __instance)
     {
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         if (extendedPlayer.GenericJetpack is null)
         {
             return true;
@@ -61,13 +61,13 @@ internal static class JetpackHandler
             }
 
             // Set angle and position according to current state
-            var gamePos = __instance.Position + new Vector2(-4 * __instance.LastDirectionX, 12);
-            var effect = __instance.LastDirectionX == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-            var texture = extendedPlayer.GenericJetpack.GetJetpackTexture(string.Empty);
+            Vector2 gamePos = __instance.Position + new Vector2(-4 * __instance.LastDirectionX, 12);
+            SpriteEffects effect = __instance.LastDirectionX == 1 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
+            Texture2D texture = extendedPlayer.GenericJetpack.GetJetpackTexture(string.Empty);
             float angle = 0;
             if (__instance.Diving)
             {
-                var aim = __instance.AimVector();
+                Vector2 aim = __instance.AimVector();
                 angle = __instance.DiveRotation;
                 gamePos = __instance.Position + new Vector2(aim.X, aim.Y) * 2 + new Vector2(0, 4);
                 Vector2 extra = new(aim.X, aim.Y);
@@ -119,9 +119,9 @@ internal static class JetpackHandler
                 gamePos += extra;
             }
 
-            gamePos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
+            gamePos = new Vector2(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
             Camera.ConvertBox2DToScreen(ref gamePos, out gamePos);
-            spriteBatch.Draw(texture, gamePos, null, new(0.5f, 0.5f, 0.5f, 1f), angle, new(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, effect, 0f);
+            spriteBatch.Draw(texture, gamePos, null, new Color(0.5f, 0.5f, 0.5f, 1f), angle, new Vector2(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, effect, 0f);
         }
 
         return true;
@@ -137,16 +137,16 @@ internal static class JetpackHandler
             wep.DrawExtra(spriteBatch, __instance, ms);
         }
 
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         if (extendedPlayer.GenericJetpack is not null)
         {
             if (__instance.Climbing)
             {
-                var gamePos = __instance.Position + new Vector2(0, 12);
-                gamePos = new(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
+                Vector2 gamePos = __instance.Position + new Vector2(0, 12);
+                gamePos = new Vector2(Converter.WorldToBox2D(gamePos.X), Converter.WorldToBox2D(gamePos.Y));
                 Camera.ConvertBox2DToScreen(ref gamePos, out gamePos);
-                var texture = extendedPlayer.GenericJetpack.GetJetpackTexture("Back");
-                spriteBatch.Draw(texture, gamePos, null, new(0.5f, 0.5f, 0.5f, 1f), 0, new(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, SpriteEffects.None, 0f);
+                Texture2D texture = extendedPlayer.GenericJetpack.GetJetpackTexture("Back");
+                spriteBatch.Draw(texture, gamePos, null, new Color(0.5f, 0.5f, 0.5f, 1f), 0, new Vector2(texture.Width / 2, texture.Height / 2), Camera.ZoomUpscaled, SpriteEffects.None, 0f);
             }
         }
     }

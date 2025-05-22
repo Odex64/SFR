@@ -25,9 +25,9 @@ internal sealed class Blunderbuss : RWeapon
             ShellID = string.Empty,
             AccuracyDeflection = 0.3f,
             ProjectileID = 95,
-            MuzzlePosition = new(13f, -2.5f),
-            CursorAimOffset = new(0f, 2.5f),
-            LazerPosition = new(12f, -1.5f),
+            MuzzlePosition = new Vector2(13f, -2.5f),
+            CursorAimOffset = new Vector2(0f, 2.5f),
+            LazerPosition = new Vector2(12f, -1.5f),
             MuzzleEffectTextureID = "MuzzleFlashShotgun",
             BlastSoundID = "Explosion",
             DrawSoundID = "CarbineDraw",
@@ -140,7 +140,7 @@ internal sealed class Blunderbuss : RWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.8f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.85f;
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity() * 0.85f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);
         base.OnThrowWeaponItem(player, thrownWeaponItem);
     }

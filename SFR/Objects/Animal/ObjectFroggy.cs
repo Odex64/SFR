@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using SFD;
 
 namespace SFR.Objects.Animal;
@@ -8,7 +9,9 @@ internal sealed class ObjectFroggy : ObjectAnimal
     private const float _animSpeed1 = 0.1f;
     private const float _animSpeed2 = 1f;
 
-    internal ObjectFroggy(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectFroggy(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     public override void Initialize()
     {
@@ -63,6 +66,6 @@ internal sealed class ObjectFroggy : ObjectAnimal
                 break;
         }
 
-        DrawBase(spriteBatch, ms, new(0.5f, 0.5f, 0.5f, 1));
+        DrawBase(spriteBatch, ms, new Color(0.5f, 0.5f, 0.5f, 1));
     }
 }

@@ -1,4 +1,5 @@
-﻿using SFD;
+﻿using Microsoft.Xna.Framework;
+using SFD;
 using SFD.Objects;
 using SFD.Sounds;
 using SFD.Weapons;
@@ -24,14 +25,14 @@ internal sealed class Anaconda : RWeapon
             ShellID = "",
             AccuracyDeflection = 0.04f,
             ProjectileID = 28,
-            MuzzlePosition = new(5f, -2f),
+            MuzzlePosition = new Vector2(5f, -2f),
             MuzzleEffectTextureID = "MuzzleFlashS",
             BlastSoundID = "Revolver",
             DrawSoundID = "RevolverDraw",
             GrabAmmoSoundID = "RevolverReload",
             OutOfAmmoSoundID = "OutOfAmmoLight",
-            CursorAimOffset = new(0f, 3.5f),
-            LazerPosition = new(6f, -0.5f),
+            CursorAimOffset = new Vector2(0f, 3.5f),
+            LazerPosition = new Vector2(6f, -0.5f),
             AimStartSoundID = "PistolAim",
             AI_DamageOutput = DamageOutputType.High,
             BreakDebris = [],
@@ -136,7 +137,7 @@ internal sealed class Anaconda : RWeapon
 
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 1.2f;
         linearVelocity.Y *= 1f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

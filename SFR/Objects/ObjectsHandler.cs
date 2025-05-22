@@ -1,8 +1,10 @@
-﻿using HarmonyLib;
+﻿using System.Collections.Generic;
+using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Objects;
+using SFD.Weapons;
 using SFR.Objects.Animal;
 using SFR.Weapons;
 
@@ -19,7 +21,7 @@ internal static class ObjectsHandler
     private static bool LoadObjects(ObjectDataStartParams startParams, ref ObjectData __result)
     {
         // For new weapons we iterate them, so we don't have to manually check their name.
-        var weapon = Database.Weapons.Find(w => startParams.MapObjectID == w.BaseProperties.ModelID.ToUpper());
+        WeaponItem weapon = Database.Weapons.Find(w => startParams.MapObjectID == w.BaseProperties.ModelID.ToUpper());
         if (weapon is not null)
         {
             __result = new ObjectWeaponItem(startParams, weapon.BaseProperties.WeaponID);
@@ -216,8 +218,8 @@ internal static class ObjectsHandler
 
     private static void DrawAnimatedObject(SpriteBatch spriteBatch, ObjectData objectData, Color drawColor)
     {
-        var value = Converter.ConvertBox2DToWorld(objectData.Body.GetPosition());
-        var zero = Vector2.Zero;
+        Vector2 value = Converter.ConvertBox2DToWorld(objectData.Body.GetPosition());
+        Vector2 zero = Vector2.Zero;
         for (int j = 0; j < objectData.m_fixtureSizeXMultiplier; j++)
         {
             for (int k = 0; k < objectData.m_fixtureSizeYMultiplier; k++)
@@ -225,7 +227,7 @@ internal static class ObjectsHandler
                 zero.X = j * objectData.CurrentAnimation.FrameWidth;
                 zero.Y = -(float)(k * objectData.CurrentAnimation.FrameHeight);
                 SFDMath.RotatePosition(ref zero, objectData.Body.GetAngle(), out zero);
-                var vector = Camera.ConvertWorldToScreen(value + zero);
+                Vector2 vector = Camera.ConvertWorldToScreen(value + zero);
                 objectData.CurrentAnimation.Draw(spriteBatch, objectData.Texture, vector, objectData.Body.GetAngle(), objectData.m_faceDirectionSpriteEffect, drawColor);
             }
         }
@@ -251,9 +253,9 @@ internal static class ObjectsHandler
             case 228:
             case 289:
             case 345:
-                var allowedValues = propertyItem.AllowedValues;
-                allowedValues.Add(new(Constants.GetTeamString(5), 5));
-                allowedValues.Add(new(Constants.GetTeamString(6), 6));
+                List<ObjectPropertyValue> allowedValues = propertyItem.AllowedValues;
+                allowedValues.Add(new ObjectPropertyValue(Constants.GetTeamString(5), 5));
+                allowedValues.Add(new ObjectPropertyValue(Constants.GetTeamString(6), 6));
                 propertyItem.SetAllowedValues(allowedValues, 0);
                 return true;
 

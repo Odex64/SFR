@@ -79,7 +79,7 @@ internal sealed class Crowbar : MWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.9f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.9f;
         linearVelocity.Y *= 0.9f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

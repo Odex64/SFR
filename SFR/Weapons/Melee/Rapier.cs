@@ -83,7 +83,7 @@ internal sealed class Rapier : MWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 0.9f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 0.9f;
         linearVelocity.Y *= 0.9f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);
@@ -110,7 +110,7 @@ internal sealed class Rapier : MWeapon
                 }
                 else if (player.GetTopSpeed() == 2.25f || player.SpeedBoostActive)
                 {
-                    player.CurrentSpeed = new(player.AimVector().X > 0 ? _lungeSpeed : -_lungeSpeed, 0f);
+                    player.CurrentSpeed = new Vector2(player.AimVector().X > 0 ? _lungeSpeed : -_lungeSpeed, 0f);
                     player.ImportantUpdate = true;
                     _lungeTimer += totalMs;
                 }
@@ -129,7 +129,7 @@ internal sealed class Rapier : MWeapon
         {
             if (player.CurrentAction == PlayerAction.JumpAttack)
             {
-                player.CurrentSpeed = new(player.AimVector().X > 0 ? _lungeSpeed * 1.4f : -_lungeSpeed * 1.4f, player.CurrentSpeed.Y);
+                player.CurrentSpeed = new Vector2(player.AimVector().X > 0 ? _lungeSpeed * 1.4f : -_lungeSpeed * 1.4f, player.CurrentSpeed.Y);
                 player.ImportantUpdate = true;
             }
         }

@@ -26,12 +26,12 @@ internal static class Engine
             ApplicationName = "Sandbox",
             DisallowBindingRedirects = false,
             DisallowCodeDownload = true,
-            DisallowPublisherPolicy = true,
+            DisallowPublisherPolicy = true
         };
 
 
-        var appDomain = AppDomain.CreateDomain("Sandbox");
-        var sandbox = (Sandbox)Activator.CreateInstanceFrom(appDomain, typeof(Sandbox).Assembly.ManifestModule.FullyQualifiedName, typeof(Sandbox).FullName).Unwrap();
+        AppDomain appDomain = AppDomain.CreateDomain("Sandbox");
+        Sandbox sandbox = (Sandbox)Activator.CreateInstanceFrom(appDomain, typeof(Sandbox).Assembly.ManifestModule.FullyQualifiedName, typeof(Sandbox).FullName).Unwrap();
 
         sandbox.Setup();
 
@@ -47,7 +47,7 @@ internal static class Engine
     {
         if (_appDomains.ContainsKey(sandbox))
         {
-            var domain = _appDomains[sandbox];
+            AppDomain domain = _appDomains[sandbox];
             sandbox.Dispose();
             _ = _appDomains.Remove(sandbox);
             AppDomain.Unload(domain);

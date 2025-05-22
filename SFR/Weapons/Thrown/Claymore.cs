@@ -49,7 +49,9 @@ internal sealed class Claymore : TWeapon
         NumberOfThrowablesLeft = weaponProperties.NumberOfThrowables;
     }
 
-    public override void OnBeforeBeginCharge(TWeaponBeforeBeginChargeArgs e) { }
+    public override void OnBeforeBeginCharge(TWeaponBeforeBeginChargeArgs e)
+    {
+    }
 
     public override void OnThrow(TWeaponOnThrowArgs e)
     {
@@ -67,7 +69,9 @@ internal sealed class Claymore : TWeapon
         }
     }
 
-    public override void OnDrop(TWeaponOnThrowArgs e) { }
+    public override void OnDrop(TWeaponOnThrowArgs e)
+    {
+    }
 
     public override void OnDeadline(TWeaponOnDeadlineArgs e) => e.Action = TWeaponDeadlineAction.Drop;
 

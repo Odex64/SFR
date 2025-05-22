@@ -12,9 +12,11 @@
 <summary>📖 FAQ</summary>
 
 ## About
+
 **Superfighters Redux** is an open-source mod for [Superfighters Deluxe](https://mythologicinteractive.com/SuperfightersDeluxe). It adds new content and tweaks existing mechanics for a more engaging and dynamic game experience.
 
 ## Do you have the developers' consent?
+
 Yes, we do. However, please read the full [license](https://github.com/Odex64/SFR/blob/master/LICENSE) for detailed clarification.
 
 </details>
@@ -23,22 +25,26 @@ Yes, we do. However, please read the full [license](https://github.com/Odex64/SF
 <summary>🚀 Features</summary>
 
 ## Skins
+
 Explore a plethora of new items and colors you can equip. Some skins even feature a tertiary color option.
 
 ![Skins Preview #1](docs/SkinsPreview1.gif)
 ![Skins Preview #2](docs/SkinsPreview2.gif)
 
 ## Weapons
+
 Discover tons of new weapons and makeshift items, each with unique mechanics and effects.
 
 ![Weapons](docs/Weapons.gif)
 
 ## Tiles
+
 Unleash your creativity with a vast collection of new tiles and colors, perfect for custom level design.
 
 ![Tiles](docs/Tiles.gif)
 
 ## Much More
+
 Enjoy new music, sounds, triggers, gore effects, increased slots, special items, and various other enhancements.
 
 </details>
@@ -47,9 +53,11 @@ Enjoy new music, sounds, triggers, gore effects, increased slots, special items,
 <summary>⚙️ Installation</summary>
 
 ## Download
+
 You can download the latest version of Superfighters Redux [here](https://github.com/Odex64/SFR/releases).
 
 ## Setup
+
 1. Extract the downloaded archive into your `Superfighters Deluxe` folder. If you have a previous SFR installation, ensure it is deleted first.
 2. Open Steam and change `Superfighters Deluxe` launch options to `cmd /k "%command%\..\SFR.exe"`.
 
@@ -59,27 +67,29 @@ You can download the latest version of Superfighters Redux [here](https://github
 <summary>✍️ Acknowledgement</summary>
 
 ## Special thanks
-* To the developers of [Superfighters Deluxe](https://mythologicinteractive.com/SuperfightersDeluxe).
-* [Argón](https://github.com/TheOriginalArgon) (Coder).
-* Motto73 (Coder).
-* [Near Huscarl](https://github.com/NearHuscarl) (Items editor).
-* Shock (Artist).
-* Dxse (Artist).
-* KLI (Artist).
-* Casey (Artist).
-* Danila015 (Artist).
-* Eiga (Balancement, Organizer).
-* Samwow (Composer).
-* Mimyuu (Special fonts).
-* Heapons (Moderator, Tester).
-* Olv (Moderator, Tester).
-* GoreDemon (Tester).
-* Pricey (Tester).
-* Emmet Brown (Tester).
-* Dark (Tester).
-* Everyone else who contributed.
+
+- To the developers of [Superfighters Deluxe](https://mythologicinteractive.com/SuperfightersDeluxe).
+- [Argón](https://github.com/TheOriginalArgon) (Coder).
+- Motto73 (Coder).
+- [Near Huscarl](https://github.com/NearHuscarl) (Items editor).
+- Shock (Artist).
+- Dxse (Artist).
+- KLI (Artist).
+- Casey (Artist).
+- Danila015 (Artist).
+- Eiga (Balancement, Organizer).
+- Samwow (Composer).
+- Mimyuu (Special fonts).
+- Heapons (Moderator, Tester).
+- Olv (Moderator, Tester).
+- GoreDemon (Tester).
+- Pricey (Tester).
+- Emmet Brown (Tester).
+- Dark (Tester).
+- Everyone else who contributed.
 
 ## Forks
-* [SFDCT](https://github.com/Liokindy/SFDCT) - A mod compatible with vanilla clients with some QoL enhancements.
+
+- [SFDCT](https://github.com/Liokindy/SFDCT) - A mod compatible with vanilla clients with some QoL enhancements.
 
 </details>

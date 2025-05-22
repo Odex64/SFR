@@ -54,7 +54,9 @@ internal sealed class ImpactGrenade : TWeapon
         NumberOfThrowablesLeft = weaponProperties.NumberOfThrowables;
     }
 
-    public override void OnBeforeBeginCharge(TWeaponBeforeBeginChargeArgs e) { }
+    public override void OnBeforeBeginCharge(TWeaponBeforeBeginChargeArgs e)
+    {
+    }
 
     public override void OnThrow(TWeaponOnThrowArgs e)
     {
@@ -65,7 +67,7 @@ internal sealed class ImpactGrenade : TWeapon
 
         if (e.Player.GameOwner != GameOwnerEnum.Client && e.ThrowableIsActivated)
         {
-            var objectGrenadeThrown = (ObjectImpactGrenadeThrown)e.ThrowableObjectData;
+            ObjectImpactGrenadeThrown objectGrenadeThrown = (ObjectImpactGrenadeThrown)e.ThrowableObjectData;
             objectGrenadeThrown.ExplosionTimer = e.ThrowableDeadlineTimer;
         }
     }
@@ -75,7 +77,7 @@ internal sealed class ImpactGrenade : TWeapon
         if (e.Player.GameOwner != GameOwnerEnum.Server)
         {
             SoundHandler.PlaySound("GrenadeSafe", e.Player.Position, e.Player.GameWorld);
-            var worldPosition = e.Player.Position + new Vector2(-(float)e.Player.LastDirectionX * 5f, 7f);
+            Vector2 worldPosition = e.Player.Position + new Vector2(-(float)e.Player.LastDirectionX * 5f, 7f);
             Vector2 linearVelocity = new(-(float)e.Player.LastDirectionX * 2f, 2f);
             _ = e.Player.GameWorld.CreateLocalTile("WpnGrenadePin", worldPosition, Globals.Random.NextFloat(-3f, 3f), (short)e.Player.LastDirectionX, linearVelocity, Globals.Random.NextFloat(-3f, 3f));
         }
@@ -85,7 +87,7 @@ internal sealed class ImpactGrenade : TWeapon
     {
         if (e.Player.GameOwner != GameOwnerEnum.Client && e.ThrowableIsActivated)
         {
-            var objectGrenadeThrown = (ObjectImpactGrenadeThrown)e.ThrowableObjectData;
+            ObjectImpactGrenadeThrown objectGrenadeThrown = (ObjectImpactGrenadeThrown)e.ThrowableObjectData;
             objectGrenadeThrown.ExplosionTimer = e.ThrowableDeadlineTimer;
         }
     }

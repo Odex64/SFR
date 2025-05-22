@@ -91,7 +91,7 @@ internal sealed class Switchblade : MWeapon
     public override void OnThrowWeaponItem(Player player, ObjectWeaponItem thrownWeaponItem)
     {
         thrownWeaponItem.Body.SetAngularVelocity(thrownWeaponItem.Body.GetAngularVelocity() * 2f);
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         linearVelocity.X *= 1.5f;
         linearVelocity.Y *= 1.25f;
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);

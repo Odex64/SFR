@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using System;
+using Microsoft.Xna.Framework.Graphics;
 using SFD;
 using SFD.Effects;
 using SFD.Sounds;
@@ -17,7 +18,9 @@ internal sealed class Gunpack : GenericJetpack
     private float _fireRate;
     private float _projectileTimer;
 
-    internal Gunpack() : base(140, 1.2f) { }
+    internal Gunpack() : base(140, 1.2f)
+    {
+    }
 
     protected override void PlayEffect(Player player)
     {
@@ -42,12 +45,12 @@ internal sealed class Gunpack : GenericJetpack
         {
             if (_projectileTimer - _fireRate <= 0f)
             {
-                var gameWorld = extendedPlayer.Player.GameWorld;
-                var position = extendedPlayer.Player.Position - new Vector2(0, 8);
+                GameWorld gameWorld = extendedPlayer.Player.GameWorld;
+                Vector2 position = extendedPlayer.Player.Position - new Vector2(0, 8);
 
                 if (extendedPlayer.Player.GameOwner != GameOwnerEnum.Client)
                 {
-                    _ = gameWorld.SpawnProjectile(40, position, new(Globals.Random.NextFloat(-0.1f, 0.1f), -1), extendedPlayer.Player.ObjectID, _fireProjectiles > 0 ? ProjectilePowerup.Fire : ProjectilePowerup.None);
+                    _ = gameWorld.SpawnProjectile(40, position, new Vector2(Globals.Random.NextFloat(-0.1f, 0.1f), -1), extendedPlayer.Player.ObjectID, _fireProjectiles > 0 ? ProjectilePowerup.Fire : ProjectilePowerup.None);
                 }
 
                 if (!extendedPlayer.Player.InfiniteAmmo && _fireProjectiles > 0)
@@ -68,7 +71,7 @@ internal sealed class Gunpack : GenericJetpack
 
                 if (_fireRate >= _projectileTimer)
                 {
-                    throw new("Wrong gunpack fire rate");
+                    throw new Exception("Wrong gunpack fire rate");
                 }
             }
         }
@@ -89,7 +92,7 @@ internal sealed class Gunpack : GenericJetpack
         JetpackBack ??= Textures.GetTexture("GunpackBack");
         JetpackDiving ??= Textures.GetTexture("GunpackDiving");
 
-        var texture = postFix switch
+        Texture2D texture = postFix switch
         {
             "" => Jetpack,
             "Back" => JetpackBack,
@@ -103,7 +106,7 @@ internal sealed class Gunpack : GenericJetpack
     protected internal override void Discard(ExtendedPlayer extendedPlayer)
     {
         base.Discard(extendedPlayer);
-        var player = extendedPlayer.Player;
+        Player player = extendedPlayer.Player;
 
         _ = player.GameWorld.CreateTile("GunpackDebris", player.Position, 0);
     }

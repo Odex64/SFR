@@ -101,12 +101,21 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
         }
     }
 
-    public void OnHit(Player player, Player target) { }
+    public void OnHit(Player player, Player target)
+    {
+    }
 
-    public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj) { }
+    public void OnHitObject(Player player, PlayerHitEventArgs args, ObjectData obj)
+    {
+    }
 
-    public void Update(Player player, float ms, float realMs) { }
-    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms) { }
+    public void Update(Player player, float ms, float realMs)
+    {
+    }
+
+    public void DrawExtra(SpriteBatch spritebatch, Player player, float ms)
+    {
+    }
 
     public override MWeapon Copy() => new Caber(Properties, Visuals)
     {
@@ -118,7 +127,7 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
 
     private static void TriggerExplosion(Player ownerPlayer)
     {
-        var position = ownerPlayer.Position + new Vector2(8f * ownerPlayer.LastDirectionX, ownerPlayer.Crouching ? 8f : 0f);
+        Vector2 position = ownerPlayer.Position + new Vector2(8f * ownerPlayer.LastDirectionX, ownerPlayer.Crouching ? 8f : 0f);
         ownerPlayer.Position += new Vector2(0f, 2f);
 
         // Create a fake explosion instead
@@ -128,11 +137,11 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
 
         // Move the owner player and damage him
         ownerPlayer.TakeMiscDamage(_caberSelfDamage, sourceID: ownerPlayer.ObjectID);
-        ownerPlayer.SetNewLinearVelocity(new(ownerPlayer.CurrentVelocity.X, _caberSelfBoost));
+        ownerPlayer.SetNewLinearVelocity(new Vector2(ownerPlayer.CurrentVelocity.X, _caberSelfBoost));
 
         // Move all the nearby players and damage them
-        AABB.Create(out var area, ownerPlayer.Position, ownerPlayer.Position, _caberRadius);
-        foreach (var obj in ownerPlayer.GameWorld.GetObjectDataByArea(area, false, PhysicsLayer.Active))
+        AABB.Create(out AABB area, ownerPlayer.Position, ownerPlayer.Position, _caberRadius);
+        foreach (ObjectData obj in ownerPlayer.GameWorld.GetObjectDataByArea(area, false, PhysicsLayer.Active))
         {
             // Damage objects
             if (obj.InternalData is not Player && obj.Destructable)
@@ -148,9 +157,9 @@ internal sealed class Caber : MWeapon, IExtendedWeapon
 
             // Have to use TakeMiscDamage, to actually kill the players + attach a source id for scripters
             player.TakeMiscDamage(_caberDamage, sourceID: ownerPlayer.ObjectID);
-            var direction = player.Position - (position + new Vector2(0f, -12f));
+            Vector2 direction = player.Position - (position + new Vector2(0f, -12f));
             float distance = Vector2.Distance(player.Position, position);
-            var boost = direction / distance * _caberBoost;
+            Vector2 boost = direction / distance * _caberBoost;
             player.Position += new Vector2(0f, 2f);
 
             // Limit target velocity

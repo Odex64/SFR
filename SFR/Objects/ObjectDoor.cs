@@ -10,7 +10,9 @@ internal sealed class ObjectDoor : ObjectData
 {
     internal bool IsOpen;
 
-    internal ObjectDoor(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectDoor(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     public override void Initialize()
     {
@@ -50,7 +52,7 @@ internal sealed class ObjectDoor : ObjectData
             SoundHandler.PlaySound("ButtonPush1", GetWorldCenterPosition(), 1f, GameWorld);
         }
 
-        Body.GetFixtureList().GetFilterData(out var filter);
+        Body.GetFixtureList().GetFilterData(out Filter filter);
         if (IsOpen)
         {
             filter.categoryBits = 0;
@@ -61,10 +63,10 @@ internal sealed class ObjectDoor : ObjectData
             filter.categoryBits = Tile.TileFixtures[0].Filter.box2DFilter.categoryBits;
             filter.maskBits = Tile.TileFixtures[0].Filter.box2DFilter.maskBits;
 
-            foreach (var player in GameWorld.Players)
+            foreach (Player player in GameWorld.Players)
             {
-                var playerArea = player.ObjectData.GetWorldAABB();
-                var doorArea = GetWorldAABB();
+                AABB playerArea = player.ObjectData.GetWorldAABB();
+                AABB doorArea = GetWorldAABB();
                 if (playerArea.Overlap(ref doorArea))
                 {
                     player.SetNewWorldPosition(player.Position + new Vector2(player.LastDirectionX * 4f, 0f));
@@ -79,7 +81,7 @@ internal sealed class ObjectDoor : ObjectData
         filter.projectileHit = !IsOpen;
         filter.absorbProjectile = !IsOpen;
         Body.GetFixtureList().SetFilterData(ref filter);
-        SyncedMethod(new(ObjectDataSyncedMethod.Methods.AnimationSetFrame, GameWorld.ElapsedTotalGameTime, IsOpen ? 1 : 0, true));
+        SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, GameWorld.ElapsedTotalGameTime, IsOpen ? 1 : 0, true));
     }
 
     public override void Activate(ObjectData sender) => ToggleDoor(!IsOpen);

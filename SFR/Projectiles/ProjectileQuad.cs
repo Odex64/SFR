@@ -21,8 +21,8 @@ internal sealed class ProjectileQuad : ProjectileBazooka
 
     internal ProjectileQuad()
     {
-        Visuals = new(Textures.GetTexture("QuadRocket"), Textures.GetTexture("QuadRocket"));
-        Properties = new(99, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
+        Visuals = new ProjectileVisuals(Textures.GetTexture("QuadRocket"), Textures.GetTexture("QuadRocket"));
+        Properties = new ProjectileProperties(99, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
         {
             DodgeChance = 0f,
             CanBeAbsorbedOrBlocked = false,
@@ -33,7 +33,9 @@ internal sealed class ProjectileQuad : ProjectileBazooka
         };
     }
 
-    private ProjectileQuad(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals) { }
+    private ProjectileQuad(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals)
+    {
+    }
 
     public override Projectile Copy()
     {
@@ -148,7 +150,7 @@ internal sealed class ProjectileQuad : ProjectileBazooka
             _seed = bytes[0];
             float x = bytes[1] / 128f - 1f;
             float y = bytes[2] / 128f - 1f;
-            _originalDirection = new(x, y);
+            _originalDirection = new Vector2(x, y);
         }
     }
 }

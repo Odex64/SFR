@@ -3,7 +3,6 @@ using SFD;
 using SFD.Weapons;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
-using SFR.Misc;
 using SFR.Objects;
 using SFR.Weapons;
 using SFR.Weapons.Melee;
@@ -226,7 +225,7 @@ internal static class PlayerHandler
     {
         if (__instance.VirtualKeyboardLastMovement is PlayerMovement.Right or PlayerMovement.Left)
         {
-            var data = __instance.LedgeGrabData?.ObjectData;
+            ObjectData data = __instance.LedgeGrabData?.ObjectData;
             if (data is ObjectDoor { IsOpen: true })
             {
                 __instance.ClearLedgeGrab();
@@ -247,7 +246,7 @@ internal static class PlayerHandler
             wep.Update(__instance, ms, realMs);
         }
 
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         extendedPlayer.GenericJetpack?.Update(ms, extendedPlayer);
     }
 
@@ -283,7 +282,7 @@ internal static class PlayerHandler
     [HarmonyPatch(typeof(Player), nameof(Player.Movement), MethodType.Setter)]
     private static bool SetPlayerMovement(PlayerMovement value, Player __instance)
     {
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         object currentWeapon = __instance.GetCurrentWeapon();
         if (currentWeapon is RiotShield)
         {
@@ -291,21 +290,6 @@ internal static class PlayerHandler
         }
 
         return !extendedPlayer.AdrenalineBoost || __instance.CurrentAction is not PlayerAction.MeleeAttack1 and not PlayerAction.MeleeAttack2 || __instance.Movement == PlayerMovement.Idle || value != PlayerMovement.Idle;
-    }
-
-    [HarmonyPrefix]
-    [HarmonyPatch(typeof(Player), nameof(Player.Jump), [])]
-    private static bool Jump(Player __instance)
-    {
-        var extendedModifiers = __instance.m_modifiers.GetExtension();
-        if (extendedModifiers.JumpHeightModifier != 1f)
-        {
-            float jumpForce = 7.55f * extendedModifiers.JumpHeightModifier;
-            __instance.Jump(jumpForce);
-            return false;
-        }
-
-        return true;
     }
 
     [HarmonyPrefix]
@@ -349,23 +333,10 @@ internal static class PlayerHandler
     }
 
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Player), nameof(Player.TestProjectileHit))]
-    private static void CanProjectileHit(ref bool __result, Player __instance)
-    {
-        if (!__result) return;
-
-        var extendedModifiers = __instance.m_modifiers.GetExtension();
-        if (extendedModifiers.BulletDodgeChance > 0 && Globals.Random.NextDouble() < extendedModifiers.BulletDodgeChance)
-        {
-            __result = false;
-        }
-    }
-
-    [HarmonyPostfix]
     [HarmonyPatch(typeof(Player), nameof(Player.HandlePlayerKeyHoldingPreUpdateEvent))]
     private static void UpdateKeyEvent(Player __instance)
     {
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         if (__instance.CurrentAction is PlayerAction.MeleeAttack1 or PlayerAction.MeleeAttack2 && __instance.Movement != PlayerMovement.Idle && extendedPlayer.AdrenalineBoost)
         {
             if (__instance.VirtualKeyboard.PressingKey(2) || __instance.VirtualKeyboard.PressingKey(3))
@@ -403,7 +374,7 @@ internal static class PlayerHandler
             return false;
         }
 
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         __result = (__instance.CurrentAction == PlayerAction.Idle || __instance.CurrentAction == PlayerAction.HipFire && __instance.ThrowableIsActivated) && !(__instance.Diving && !extendedPlayer.AdrenalineBoost || extendedPlayer.GenericJetpack is not null && extendedPlayer.GenericJetpack.State != JetpackState.Idling || __instance.Rolling || __instance.Falling || __instance.Climbing || __instance.PreparingHipFire > 0f || __instance.FireSequence.KickCooldownTimer > 800f + timeOffset || __instance.TimeSequence.PostDropClimbAttackCooldown || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
         return false;
     }
@@ -412,7 +383,7 @@ internal static class PlayerHandler
     [HarmonyPatch(typeof(Player), nameof(Player.CanAttack))]
     private static bool CanAttack(Player __instance, ref bool __result)
     {
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         __result = !(__instance.Diving && !extendedPlayer.AdrenalineBoost || extendedPlayer.GenericJetpack is not null && extendedPlayer.GenericJetpack.State != JetpackState.Idling || __instance.Rolling || __instance.Climbing || __instance.LedgeGrabbing || __instance.ThrowingModeToggleQueued || __instance.ClimbingClient || __instance.StrengthBoostPreparing || __instance.SpeedBoostPreparing);
         return false;
     }
@@ -421,7 +392,7 @@ internal static class PlayerHandler
     [HarmonyPatch(typeof(Player), nameof(Player.TimeSequence.Update))]
     private static void UpdateTimeSequence(float ms, Player __instance)
     {
-        var extendedPlayer = __instance.GetExtension();
+        ExtendedPlayer extendedPlayer = __instance.GetExtension();
         if (extendedPlayer.AdrenalineBoost)
         {
             extendedPlayer.Time.AdrenalineBoost -= ms;

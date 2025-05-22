@@ -9,10 +9,10 @@ internal static class GenericServerData
 
     public static GenericData Read(NetIncomingMessage incomingMessage)
     {
-        var type = (DataType)incomingMessage.ReadInt32();
+        DataType type = (DataType)incomingMessage.ReadInt32();
 
         byte flagsLength = incomingMessage.ReadByte();
-        var flags = new SyncFlag[flagsLength];
+        SyncFlag[] flags = new SyncFlag[flagsLength];
         for (int i = 0; i < flagsLength; i++)
         {
             flags[i] = (SyncFlag)incomingMessage.ReadInt32();
@@ -40,7 +40,7 @@ internal static class GenericServerData
             }
         }
 
-        return new(type, flags, data);
+        return new GenericData(type, flags, data);
     }
 
     public static NetOutgoingMessage Write(GenericData genericData, NetOutgoingMessage netOutgoingMessage)
@@ -63,7 +63,7 @@ internal static class GenericServerData
         netOutgoingMessage.Write((int)genericData.Type);
 
         netOutgoingMessage.Write((byte)genericData.Flags.Length);
-        foreach (var flag in genericData.Flags)
+        foreach (SyncFlag flag in genericData.Flags)
         {
             netOutgoingMessage.Write((int)flag);
         }

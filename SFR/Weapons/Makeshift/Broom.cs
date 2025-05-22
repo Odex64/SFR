@@ -84,10 +84,10 @@ internal sealed class Broom : MWeapon
             thrownWeaponItem.Body.SetTransform(thrownWeaponItem.Body.Position, thrownWeaponItem.Body.Rotation + 1.57079637f);
         }
 
-        var linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
+        Vector2 linearVelocity = thrownWeaponItem.Body.GetLinearVelocity();
         thrownWeaponItem.Body.SetLinearVelocity(linearVelocity);
-        var unitX = Vector2.UnitX;
-        SFDMath.ProjectUonV(ref linearVelocity, ref unitX, out var x);
+        Vector2 unitX = Vector2.UnitX;
+        SFDMath.ProjectUonV(ref linearVelocity, ref unitX, out Vector2 x);
         float num = 2f * (x.CalcSafeLength() / linearVelocity.CalcSafeLength());
         thrownWeaponItem.Body.SetAngularVelocity(-(float)Math.Sign(linearVelocity.X) * num);
         base.OnThrowWeaponItem(player, thrownWeaponItem);

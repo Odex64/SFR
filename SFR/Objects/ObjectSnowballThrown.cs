@@ -18,7 +18,9 @@ internal sealed class ObjectSnowballThrown : ObjectData
     private const float _snowballDamage = 6f;
     private TrailSpawner _trailSpawner;
 
-    internal ObjectSnowballThrown(ObjectDataStartParams startParams) : base(startParams) { }
+    internal ObjectSnowballThrown(ObjectDataStartParams startParams) : base(startParams)
+    {
+    }
 
     public override void Initialize()
     {
@@ -28,7 +30,7 @@ internal sealed class ObjectSnowballThrown : ObjectData
         //Body.SetAngularDamping(3f);
         Body.SetAngularVelocity(Body.GetAngularVelocity() * 6f);
 
-        _trailSpawner = new(GameWorld, Body, new(0f, 0f), "F_S");
+        _trailSpawner = new TrailSpawner(GameWorld, Body, new Vector2(0f, 0f), "F_S");
     }
 
     public override void OnRemoveObject() => GameWorld.PortalsObjectsToKeepTrackOf.Remove(this);
@@ -54,7 +56,7 @@ internal sealed class ObjectSnowballThrown : ObjectData
                     return;
                 }
 
-                var linearVelocity = GetLinearVelocity();
+                Vector2 linearVelocity = GetLinearVelocity();
                 if (Math.Abs(linearVelocity.X) > 0.1f || Math.Abs(linearVelocity.Y) > 0.1f)
                 {
                     linearVelocity.Normalize();
@@ -78,7 +80,7 @@ internal sealed class ObjectSnowballThrown : ObjectData
 
         if (GameOwner != GameOwnerEnum.Client && otherObject.IsPlayer)
         {
-            var player = (Player)otherObject.InternalData;
+            Player player = (Player)otherObject.InternalData;
             player.TakeMiscDamage(_snowballDamage);
             Destroy();
         }
@@ -137,7 +139,7 @@ internal sealed class TrailSpawner
         {
             _nextTrace -= ms;
             float num = 0f;
-            var worldPoint = _body.GetWorldPoint(_localOffset);
+            Vector2 worldPoint = _body.GetWorldPoint(_localOffset);
             if (Constants.EFFECT_LEVEL_FULL)
             {
                 num = Vector2.Distance(worldPoint, _lastBodyPosition);
@@ -155,7 +157,7 @@ internal sealed class TrailSpawner
                 if (num2 > 1)
                 {
                     float scaleFactor = num / num2;
-                    var value2 = worldPoint - _lastBodyPosition;
+                    Vector2 value2 = worldPoint - _lastBodyPosition;
                     value2.Normalize();
                     for (int i = 1; i <= num2; i++)
                     {

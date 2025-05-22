@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Box2D.XNA;
+using HarmonyLib;
 using SFD;
 using SFD.Effects;
 using SFD.Objects;
@@ -37,8 +38,8 @@ internal static class GoreHandler
             string[] giblets = ["Organ00", "Organ01", "Organ02", "Organ03", "Organ04", "Organ05"];
             foreach (string giblet in giblets)
             {
-                var value = Converter.ConvertBox2DToWorld(__instance.WorldBody.GetPosition());
-                SpawnObjectInformation spawnObjectInformation = new(__instance.GameWorld.IDCounter.NextObjectData(giblet), value, 1f, 1, new(Globals.Random.NextFloat(-4.5f, 4.5f), Globals.Random.NextFloat(4f, 4f)), Globals.Random.NextFloat(-0.3f, 0.3f))
+                Vector2 value = Converter.ConvertBox2DToWorld(__instance.WorldBody.GetPosition());
+                SpawnObjectInformation spawnObjectInformation = new(__instance.GameWorld.IDCounter.NextObjectData(giblet), value, 1f, 1, new Vector2(Globals.Random.NextFloat(-4.5f, 4.5f), Globals.Random.NextFloat(4f, 4f)), Globals.Random.NextFloat(-0.3f, 0.3f))
                 {
                     FireBurning = __instance.ObjectData.Fire.IsBurning,
                     FireSmoking = __instance.ObjectData.Fire.IsSmoking
@@ -58,8 +59,8 @@ internal static class GoreHandler
     {
         if (hitObject.IsPlayer)
         {
-            var player = __instance.GetPlayer(hitObject.BodyID);
-            var profile = player.GetProfile().ToSFDProfile();
+            Player player = __instance.GetPlayer(hitObject.BodyID);
+            IProfile profile = player.GetProfile().ToSFDProfile();
             if (profile.Skin.Name.Contains("Headless") || !profile.Skin.Name.Contains("Zombie") && !player.IsDead)
             {
                 return;
@@ -89,8 +90,8 @@ internal static class GoreHandler
                 return;
             }
 
-            var aabb = hitObject.GetWorldAABB();
-            var position = projectile.Position;
+            AABB aabb = hitObject.GetWorldAABB();
+            Vector2 position = projectile.Position;
             int facingDirection = player.LastDirectionX * (player.GetAnimation().ToString() == "LayOnGroundB" ? -1 : 1);
 
             if ((player.Crouching || player.FullLanding) && position.Y > aabb.GetCenter().Y + _headThresholdCrouching)
@@ -122,7 +123,7 @@ internal static class GoreHandler
     /// </summary>
     internal static void MeleeHit(Player source, Player target)
     {
-        var weapon = source.CurrentMeleeWeapon;
+        MWeapon weapon = source.CurrentMeleeWeapon;
         if (source.CurrentWeaponDrawn == WeaponItemType.Melee && source.CurrentMeleeMakeshiftWeapon is null)
         {
             if (weapon is WpnKatana or WpnMachete or WpnChainsaw or WpnAxe or ISharpMelee && !target.GetProfile().ToSFDProfile().Skin.Name.Contains("Headless"))
@@ -177,7 +178,7 @@ internal static class GoreHandler
     {
         if (__instance.Burned)
         {
-            var item = Items.GetItem(__instance.Gender == Player.GenderType.Male ? "Burnt" : "Burnt_fem");
+            Item item = Items.GetItem(__instance.Gender == Player.GenderType.Male ? "Burnt" : "Burnt_fem");
             if (__instance.GetProfile().ToSFDProfile().Skin.Name.Contains("Burnt"))
             {
                 return false;
@@ -214,14 +215,14 @@ internal static class GoreHandler
         if (headshotType == "Bazinga")
         {
             player.GameWorld.SpawnDebris(player.ObjectData, position, 4, ["HeadDebris00A", "HeadDebris00B", "HeadDebris00C"]);
-            var spine = ObjectData.CreateNew(new(player.GameWorld.IDCounter.NextID(), 100, 0, "Giblet05", player.GameWorld.GameOwner));
-            _ = player.GameWorld.CreateTile(new(spine, player.Position + new Vector2(0, 13), 0, (short)player.LastDirectionX, new(Globals.Random.NextFloat(-0.5f, 0.5f), Globals.Random.NextFloat(6, 10)), Globals.Random.NextFloat(-1f, 1f)));
+            ObjectData spine = ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "Giblet05", player.GameWorld.GameOwner));
+            _ = player.GameWorld.CreateTile(new SpawnObjectInformation(spine, player.Position + new Vector2(0, 13), 0, (short)player.LastDirectionX, new Vector2(Globals.Random.NextFloat(-0.5f, 0.5f), Globals.Random.NextFloat(6, 10)), Globals.Random.NextFloat(-1f, 1f)));
 
-            var skull = ObjectData.CreateNew(new(player.GameWorld.IDCounter.NextID(), 100, 0, "Giblet04", player.GameWorld.GameOwner));
-            _ = player.GameWorld.CreateTile(new(skull, player.Position + new Vector2(2, 18), 0, (short)player.LastDirectionX, spine.GetLinearVelocity(), Globals.Random.NextFloat(-1f, 1f)));
+            ObjectData skull = ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "Giblet04", player.GameWorld.GameOwner));
+            _ = player.GameWorld.CreateTile(new SpawnObjectInformation(skull, player.Position + new Vector2(2, 18), 0, (short)player.LastDirectionX, spine.GetLinearVelocity(), Globals.Random.NextFloat(-1f, 1f)));
 
-            var revJoint = (ObjectRevoluteJoint)ObjectData.CreateNew(new(player.GameWorld.IDCounter.NextID(), 100, 0, "RevoluteJoint", player.GameWorld.GameOwner));
-            _ = player.GameWorld.CreateTile(new(revJoint, player.Position + new Vector2(0, 16)));
+            ObjectRevoluteJoint revJoint = (ObjectRevoluteJoint)ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "RevoluteJoint", player.GameWorld.GameOwner));
+            _ = player.GameWorld.CreateTile(new SpawnObjectInformation(revJoint, player.Position + new Vector2(0, 16)));
             revJoint.AddObjectToProperty(spine, ObjectPropertyID.JointBodyA);
             revJoint.AddObjectToProperty(skull, ObjectPropertyID.JointBodyB);
             revJoint.FinalizeProperties();
@@ -235,12 +236,12 @@ internal static class GoreHandler
         if (headshotType == "Melee_Sharp")
         {
             // var head = (ObjectHead)ObjectData.CreateNew(new ObjectDataStartParams(player.GameWorld.IDCounter.NextID(), 100, 0, "Head00", player.GameWorld.GameOwner));
-            var head = (ObjectHead)player.GameWorld.CreateObjectData("Head00");
-            _ = player.GameWorld.CreateTile(new(head, player.Position + new Vector2(0, 16), 0, (short)player.LastDirectionX, new(Globals.Random.NextFloat(-0.5f, 0.5f), Globals.Random.NextFloat(6, 10)), Globals.Random.NextFloat(-6f, 6f)));
+            ObjectHead head = (ObjectHead)player.GameWorld.CreateObjectData("Head00");
+            _ = player.GameWorld.CreateTile(new SpawnObjectInformation(head, player.Position + new Vector2(0, 16), 0, (short)player.LastDirectionX, new Vector2(Globals.Random.NextFloat(-0.5f, 0.5f), Globals.Random.NextFloat(6, 10)), Globals.Random.NextFloat(-6f, 6f)));
             switch (player.GameOwner)
             {
                 case GameOwnerEnum.Server:
-                    GenericData.SendGenericDataToClients(new(DataType.Head, [SyncFlag.NewObjects], head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
+                    GenericData.SendGenericDataToClients(new GenericData(DataType.Head, [SyncFlag.NewObjects], head.ObjectID, ObjectHead.EquipmentToString(player.Equipment)));
                     // head.SyncedMethod(new ObjectDataSyncedMethod(ObjectDataSyncedMethod.Methods.AnimationSetFrame, player.GameWorld.ElapsedTotalGameTime, ObjectHead.EquipmentToString(player.Equipment)));
                     break;
                 case GameOwnerEnum.Local:
@@ -250,10 +251,10 @@ internal static class GoreHandler
         }
 
         // Apply profile
-        var profile = player.GetProfile().ToSFDProfile();
+        IProfile profile = player.GetProfile().ToSFDProfile();
         profile.Head = GetCorrespondingHat(profile.Skin, headshotType);
         profile.Accesory = null;
-        profile.Skin = new(GetCorrespondingSkin(profile.Skin.Name), profile.Skin.Color1, profile.Skin.Color2, profile.Skin.Color3);
+        profile.Skin = new IProfileClothingItem(GetCorrespondingSkin(profile.Skin.Name), profile.Skin.Color1, profile.Skin.Color2, profile.Skin.Color3);
         player.ApplyScriptProfile(profile);
         player.MetaDataUpdated = true;
         // Items.SetGoreScriptable(false);
@@ -315,9 +316,9 @@ internal static class GoreHandler
 
         return headshotType switch
         {
-            "Bazinga" => new("ChestCavity", color1, color2, color3),
-            "Melee_Sharp" => new("Headless", color1, color2, color3),
-            _ => hat.Contains("HeadShot") ? new(hat, color1, color3, color2) : new IProfileClothingItem(hat, color1, color2, color3)
+            "Bazinga" => new IProfileClothingItem("ChestCavity", color1, color2, color3),
+            "Melee_Sharp" => new IProfileClothingItem("Headless", color1, color2, color3),
+            _ => hat.Contains("HeadShot") ? new IProfileClothingItem(hat, color1, color3, color2) : new IProfileClothingItem(hat, color1, color2, color3)
         };
     }
 }

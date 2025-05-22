@@ -103,9 +103,9 @@ internal sealed class ObjectFragGrenadeThrown : ObjectGrenadeThrown
 
     public override void Draw(SpriteBatch spriteBatch, float ms)
     {
-        foreach (var objectDecal in m_objectDecals)
+        foreach (ObjectDecal objectDecal in m_objectDecals)
         {
-            var position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
+            Vector2 position = objectDecal.HaveOffset ? Body.GetWorldPoint(objectDecal.LocalOffset) : Body.Position;
             Camera.ConvertBox2DToScreen(ref position, out position);
             float rotation = -Body.GetAngle();
             spriteBatch.Draw(objectDecal.Texture, position, null, Color.Gray, rotation, objectDecal.TextureOrigin, Camera.Zoom, m_faceDirectionSpriteEffect, 0f);

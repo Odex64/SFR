@@ -1,10 +1,12 @@
 ﻿using SFD;
 using SFD.Effects;
+using SFD.GameKeyboard;
 using SFD.Projectiles;
 using SFD.Sounds;
 using SFD.Tiles;
 using SFDGameScriptInterface;
 using ProjectileProperties = SFD.Projectiles.ProjectileProperties;
+using Vector2 = Microsoft.Xna.Framework.Vector2;
 using WeaponItemType = SFD.Weapons.WeaponItemType;
 
 namespace SFR.Projectiles;
@@ -17,8 +19,8 @@ internal sealed class ProjectileRCM : ProjectileBazooka
 
     internal ProjectileRCM()
     {
-        Visuals = new(Textures.GetTexture("RCMRocket"), Textures.GetTexture("RCMRocket"));
-        Properties = new(100, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
+        Visuals = new ProjectileVisuals(Textures.GetTexture("RCMRocket"), Textures.GetTexture("RCMRocket"));
+        Properties = new ProjectileProperties(100, 300f, 0f, 10f, 10f, 0f, 0f, 15f, 0.5f)
         {
             DodgeChance = 0f,
             CanBeAbsorbedOrBlocked = false,
@@ -29,7 +31,9 @@ internal sealed class ProjectileRCM : ProjectileBazooka
         };
     }
 
-    private ProjectileRCM(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals) { }
+    private ProjectileRCM(ProjectileProperties projectileProperties, ProjectileVisuals projectileVisuals) : base(projectileProperties, projectileVisuals)
+    {
+    }
 
     public override Projectile Copy()
     {
@@ -48,8 +52,8 @@ internal sealed class ProjectileRCM : ProjectileBazooka
         {
             if (OwnerCanControl())
             {
-                var velocity = Velocity;
-                var keyboard = PlayerOwner.VirtualKeyboard;
+                Vector2 velocity = Velocity;
+                PlayerVirtualKeyboard keyboard = PlayerOwner.VirtualKeyboard;
                 if (keyboard!.PressingKey(2)) //Left
                 {
                     SFDMath.RotatePosition(ref velocity, 0.009f * ms, out velocity);

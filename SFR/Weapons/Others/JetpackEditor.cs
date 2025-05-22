@@ -2,6 +2,7 @@
 using SFD.Sounds;
 using SFD.Tiles;
 using SFD.Weapons;
+using SFR.Fighter;
 using SFR.Fighter.Jetpacks;
 using SFR.Helper;
 using SFR.Sync.Generic;
@@ -25,7 +26,9 @@ internal sealed class JetpackEditor : HItem
         Visuals = visuals;
     }
 
-    private JetpackEditor(HItemProperties itemProperties, HItemVisuals itemVisuals) : base(itemProperties, itemVisuals) { }
+    private JetpackEditor(HItemProperties itemProperties, HItemVisuals itemVisuals) : base(itemProperties, itemVisuals)
+    {
+    }
 
     public override void OnPickup(Player player, HItem instantPickupItem)
     {
@@ -33,12 +36,12 @@ internal sealed class JetpackEditor : HItem
         {
             SoundHandler.PlaySound(instantPickupItem.Properties.GrabSoundID, player.Position, player.GameWorld);
 
-            var extendedPlayer = player.GetExtension();
+            ExtendedPlayer extendedPlayer = player.GetExtension();
             extendedPlayer.JetpackType = JetpackType.JetpackEditor;
             extendedPlayer.GenericJetpack = new Fighter.Jetpacks.JetpackEditor();
             if (player.GameOwner == GameOwnerEnum.Server)
             {
-                GenericData.SendGenericDataToClients(new(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
+                GenericData.SendGenericDataToClients(new GenericData(DataType.ExtraClientStates, [], player.ObjectID, extendedPlayer.GetStates()));
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Box2D.XNA;
 using HarmonyLib;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +8,7 @@ using SFD;
 using SFD.Effects;
 using SFD.Materials;
 using SFD.Sounds;
+using SFD.Weapons;
 using SFR.Fighter;
 using SFR.Helper;
 using SFR.Weapons.Melee;
@@ -38,10 +40,10 @@ internal static class ExtendedWeapon
     [HarmonyPatch(typeof(Player), nameof(Player.UpdateMeleeWeaponDurabilityOnHitObjects))]
     private static void GetDealtDamage(IEnumerable<ObjectData> objectsHitInMelee, Player __instance)
     {
-        var weapon = __instance.GetCurrentMeleeWeaponInUse();
+        MWeapon weapon = __instance.GetCurrentMeleeWeaponInUse();
         if (weapon is IExtendedWeapon wep)
         {
-            foreach (var objectData in objectsHitInMelee)
+            foreach (ObjectData objectData in objectsHitInMelee)
             {
                 if (!objectData.IsPlayer)
                 {
@@ -49,7 +51,7 @@ internal static class ExtendedWeapon
                 }
                 else
                 {
-                    var player = (Player)objectData.InternalData;
+                    Player player = (Player)objectData.InternalData;
                     wep.GetDealtDamage(__instance, player.CurrentAction != PlayerAction.Block ? weapon.Properties.DurabilityLossOnHitPlayers : weapon.Properties.DurabilityLossOnHitBlockingPlayers);
                 }
             }
@@ -63,8 +65,8 @@ internal static class ExtendedWeapon
         object currentWeapon = __instance.GetCurrentWeapon();
         bool canHit = __instance.LastDirectionX != hitBy.LastDirectionX || Math.Abs(__instance.Position.X - hitBy.Position.X) < 4f;
 
-        hitBy.GetAABBMeleeAttack(out var aabb, false);
-        var effectPosition = Converter.Box2DToWorld(new Vector2((hitBy.LastDirectionX == 1) ? aabb.upperBound.X : aabb.lowerBound.X, aabb.GetCenter().Y));
+        hitBy.GetAABBMeleeAttack(out AABB aabb, false);
+        Vector2 effectPosition = Converter.Box2DToWorld(new Vector2(hitBy.LastDirectionX == 1 ? aabb.upperBound.X : aabb.lowerBound.X, aabb.GetCenter().Y));
         if (hitBy.LastDirectionX == 1 && effectPosition.X > __instance.Position.X)
         {
             effectPosition.X = __instance.Position.X;
@@ -78,8 +80,8 @@ internal static class ExtendedWeapon
         {
             EffectHandler.PlayEffect("Block", effectPosition, __instance.GameWorld);
 
-            var playerHitMaterial = __instance.GetPlayerHitMaterial();
-            var material = playerHitMaterial ?? __instance.GetCurrentMeleeWeaponInUse(false).Properties.WeaponMaterial;
+            Material playerHitMaterial = __instance.GetPlayerHitMaterial();
+            Material material = playerHitMaterial ?? __instance.GetCurrentMeleeWeaponInUse(false).Properties.WeaponMaterial;
             Material.HandleMeleeVsMelee(hitBy.GetCurrentMeleeWeaponInUse(false).Properties.WeaponMaterial, material, PlayerHitAction.Punch, effectPosition, __instance.GameWorld);
 
             return false;
@@ -110,7 +112,7 @@ internal static class ExtendedWeapon
     {
         GoreHandler.MeleeHit(hitBy, __instance);
 
-        var weapon = hitBy.GetCurrentMeleeWeaponInUse();
+        MWeapon weapon = hitBy.GetCurrentMeleeWeaponInUse();
         if (weapon is IExtendedWeapon wep)
         {
             wep.OnHit(hitBy, __instance);
@@ -121,7 +123,7 @@ internal static class ExtendedWeapon
     [HarmonyPatch(typeof(ObjectData), nameof(ObjectData.PlayerMeleeHit))]
     private static void OnHitObject(Player player, PlayerHitEventArgs e, ObjectData __instance)
     {
-        var weapon = player.GetCurrentMeleeWeaponInUse();
+        MWeapon weapon = player.GetCurrentMeleeWeaponInUse();
         if (weapon is IExtendedWeapon wep)
         {
             wep.OnHitObject(player, e, __instance);

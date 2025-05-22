@@ -5,7 +5,6 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Reflection;
-using DiscordRPC;
 using HarmonyLib;
 using SFR.Helper;
 using SFR.Misc;
@@ -62,7 +61,7 @@ internal static class Program
         {
             Logger.LogWarn("Start SFR or SFD: \n1. SFR\n2. SFD", false, false);
             Console.SetCursorPosition("Start SFD or SFD: ".Length, Console.CursorTop - 3);
-            var key = Console.ReadKey().Key;
+            ConsoleKey key = Console.ReadKey().Key;
             Console.SetCursorPosition(0, Console.CursorTop + 4);
             if (key is ConsoleKey.D2 or ConsoleKey.NumPad2)
             {
@@ -86,22 +85,10 @@ internal static class Program
             }
         }
 
-        bool isServer = false;
         for (int i = 0; i < args.Length; i++)
         {
-            if (args[i].Equals("-SERVER", StringComparison.OrdinalIgnoreCase))
-            {
-                isServer = true;
-            }
-            else if (isServer && args[i].Equals("-SLOTS", StringComparison.OrdinalIgnoreCase))
-            {
-                if (i + 1 < args.Length && int.TryParse(args[i + 1], out int slots))
-                {
-                    Globals.Slots = slots;
-                }
-            }
 #if DEBUG
-            else if (args[i].Equals("-DEBUG", StringComparison.OrdinalIgnoreCase))
+            if (args[i].Equals("-DEBUG", StringComparison.OrdinalIgnoreCase))
             {
                 Globals.QuickStart = true;
                 Globals.DebugMap = args[i + 1] + ".sfdm";
@@ -112,38 +99,10 @@ internal static class Program
         Logger.LogWarn("Patching");
         _harmony.PatchAll();
 
-        SetRichPresence();
-
         Logger.LogError("Starting SFR");
         SFD.Program.Main(args);
 
         return 0;
-    }
-
-    private static void SetRichPresence()
-    {
-        var client = new DiscordRpcClient("1249116075912728669");
-
-        _ = client.Initialize();
-
-        client.SetPresence(new RichPresence()
-        {
-            Details = "Rocket Riding",
-            Timestamps = Timestamps.Now,
-            Assets = new Assets()
-            {
-                LargeImageKey = "icon",
-                LargeImageText = "Superfighters Redux",
-            },
-            Buttons =
-            [
-                new Button()
-                {
-                    Label = "Discord",
-                    Url = "https://discord.gg/UbbCs2kywd"
-                }
-            ]
-        });
     }
 
     private static bool CheckUpdate()
@@ -151,7 +110,7 @@ internal static class Program
         string remoteVersion;
         try
         {
-            _webClient = new();
+            _webClient = new WebClient();
             remoteVersion = _webClient.DownloadString(_versionUri).Trim();
         }
         catch (WebException)
@@ -233,7 +192,7 @@ internal static class Program
                 File.Delete(file);
             }
 
-            using (var archive = ZipFile.OpenRead(archivePath))
+            using (ZipArchive archive = ZipFile.OpenRead(archivePath))
             {
                 archive.ExtractToDirectory(GameDirectory);
             }
