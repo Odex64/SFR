@@ -91,5 +91,6 @@ You can download the latest version of Superfighters Redux [here](https://github
 ## Forks
 
 - [SFDCT](https://github.com/Liokindy/SFDCT) - A mod compatible with vanilla clients with some QoL enhancements.
+- [Roman's Fork](https://github.com/Liokindy/SFDCT)](https://github.com/ec22761/SFR) - Extends SFR with further additional content.
 
 </details>
